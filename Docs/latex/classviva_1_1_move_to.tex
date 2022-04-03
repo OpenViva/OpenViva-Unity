@@ -1,0 +1,118 @@
+\hypertarget{classviva_1_1_move_to}{}\doxysection{viva.\+Move\+To Class Reference}
+\label{classviva_1_1_move_to}\index{viva.MoveTo@{viva.MoveTo}}
+
+
+Performs pathfinding on the character to reach a destination. The character must be in an Animation\+State that applies forward motion to move along the waypoints.  
+
+
+Inheritance diagram for viva.\+Move\+To\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classviva_1_1_move_to}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classviva_1_1_move_to_ad6b7f96da92ebe77d841eb230206e634}{Move\+To}} (\mbox{\hyperlink{classviva_1_1_autonomy}{Autonomy}} \+\_\+autonomy, float \+\_\+keep\+Distance=0.\+0f, float \+\_\+max\+Walk\+Speed=1f)
+\begin{DoxyCompactList}\small\item\em Attempts to move a character to a specified destination. The destination is set with Attempt\+Follow\+Path() \end{DoxyCompactList}\item 
+override bool \mbox{\hyperlink{classviva_1_1_move_to_af8f8be41338198cd414c8aed541f454e}{On\+Requirement\+Validate}} ()
+\begin{DoxyCompactList}\small\item\em Used to constantly check the success/\+Fail state of a finished requirement task. If they fall from a success state or if they failed, the \mbox{\hyperlink{classviva_1_1_task}{Task}} will be registered for execution in the next \mbox{\hyperlink{classviva_1_1_autonomy}{Autonomy}} tick until it succeeds again, thereby acting as a requirement. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classviva_1_1_move_to_afbabcee10a12144c3b8f930f5944bee2}{Stop}} ()
+\begin{DoxyCompactList}\small\item\em Stops the current pathfinding. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classviva_1_1_move_to_a89c1039a13e8f7d526508e3b6cafa27a}{is\+Move\+To\+Active}} ()
+\begin{DoxyCompactList}\small\item\em Check if there is an active pathfinding request. \end{DoxyCompactList}\item 
+Vector3? \mbox{\hyperlink{classviva_1_1_move_to_abbd171ef8d61c4dfa05fec28c9e2edaf}{Get\+Current\+Destination}} ()
+\begin{DoxyCompactList}\small\item\em Get the final destination of the current pathfind request. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+Performs pathfinding on the character to reach a destination. The character must be in an Animation\+State that applies forward motion to move along the waypoints. 
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classviva_1_1_move_to_ad6b7f96da92ebe77d841eb230206e634}\label{classviva_1_1_move_to_ad6b7f96da92ebe77d841eb230206e634}} 
+\index{viva.MoveTo@{viva.MoveTo}!MoveTo@{MoveTo}}
+\index{MoveTo@{MoveTo}!viva.MoveTo@{viva.MoveTo}}
+\doxysubsubsection{\texorpdfstring{MoveTo()}{MoveTo()}}
+{\footnotesize\ttfamily viva.\+Move\+To.\+Move\+To (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classviva_1_1_autonomy}{Autonomy}}}]{\+\_\+autonomy,  }\item[{float}]{\+\_\+keep\+Distance = {\ttfamily 0.0f},  }\item[{float}]{\+\_\+max\+Walk\+Speed = {\ttfamily 1f} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Attempts to move a character to a specified destination. The destination is set with Attempt\+Follow\+Path() 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+autonomy} & The \mbox{\hyperlink{classviva_1_1_autonomy}{Autonomy}} of the parent character. Exception will be thrown if it is null.\\
+\hline
+{\em \+\_\+keep\+Distance} & The minimum distance required to be near the target.\\
+\hline
+\end{DoxyParams}
+
+
+The following makes the character follow the specified transform and keep 2 meters apart. 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{var followObject = \textcolor{keyword}{new} Moveto( character.autonomy, 2.0f );}
+\DoxyCodeLine{followObject.target.SetTargetTransform( \textcolor{comment}{//...some transform}}
+
+\end{DoxyCode}
+ 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classviva_1_1_move_to_abbd171ef8d61c4dfa05fec28c9e2edaf}\label{classviva_1_1_move_to_abbd171ef8d61c4dfa05fec28c9e2edaf}} 
+\index{viva.MoveTo@{viva.MoveTo}!GetCurrentDestination@{GetCurrentDestination}}
+\index{GetCurrentDestination@{GetCurrentDestination}!viva.MoveTo@{viva.MoveTo}}
+\doxysubsubsection{\texorpdfstring{GetCurrentDestination()}{GetCurrentDestination()}}
+{\footnotesize\ttfamily Vector3? viva.\+Move\+To.\+Get\+Current\+Destination (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Get the final destination of the current pathfind request. 
+
+\begin{DoxyReturn}{Returns}
+null\+: There is no pathfinding active. Vector3\+: The final destination.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classviva_1_1_move_to_a89c1039a13e8f7d526508e3b6cafa27a}\label{classviva_1_1_move_to_a89c1039a13e8f7d526508e3b6cafa27a}} 
+\index{viva.MoveTo@{viva.MoveTo}!isMoveToActive@{isMoveToActive}}
+\index{isMoveToActive@{isMoveToActive}!viva.MoveTo@{viva.MoveTo}}
+\doxysubsubsection{\texorpdfstring{isMoveToActive()}{isMoveToActive()}}
+{\footnotesize\ttfamily bool viva.\+Move\+To.\+is\+Move\+To\+Active (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Check if there is an active pathfinding request. 
+
+\mbox{\Hypertarget{classviva_1_1_move_to_af8f8be41338198cd414c8aed541f454e}\label{classviva_1_1_move_to_af8f8be41338198cd414c8aed541f454e}} 
+\index{viva.MoveTo@{viva.MoveTo}!OnRequirementValidate@{OnRequirementValidate}}
+\index{OnRequirementValidate@{OnRequirementValidate}!viva.MoveTo@{viva.MoveTo}}
+\doxysubsubsection{\texorpdfstring{OnRequirementValidate()}{OnRequirementValidate()}}
+{\footnotesize\ttfamily override bool viva.\+Move\+To.\+On\+Requirement\+Validate (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Used to constantly check the success/\+Fail state of a finished requirement task. If they fall from a success state or if they failed, the \mbox{\hyperlink{classviva_1_1_task}{Task}} will be registered for execution in the next \mbox{\hyperlink{classviva_1_1_autonomy}{Autonomy}} tick until it succeeds again, thereby acting as a requirement. 
+
+\begin{DoxyReturn}{Returns}
+true\+: The \mbox{\hyperlink{classviva_1_1_task}{Task}} is still in a success state. false\+: The \mbox{\hyperlink{classviva_1_1_task}{Task}} has fallen from its success state.
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classviva_1_1_task_a6dbe27c5aeb3caf1ade6d929852d0b30}{viva.\+Task}}.
+
+\mbox{\Hypertarget{classviva_1_1_move_to_afbabcee10a12144c3b8f930f5944bee2}\label{classviva_1_1_move_to_afbabcee10a12144c3b8f930f5944bee2}} 
+\index{viva.MoveTo@{viva.MoveTo}!Stop@{Stop}}
+\index{Stop@{Stop}!viva.MoveTo@{viva.MoveTo}}
+\doxysubsubsection{\texorpdfstring{Stop()}{Stop()}}
+{\footnotesize\ttfamily void viva.\+Move\+To.\+Stop (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Stops the current pathfinding. 
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/\+Master-\/\+Donut/\+Documents/v/\+Assets/\+Scripts/\+Autonomy/Move\+To.\+cs\end{DoxyCompactItemize}

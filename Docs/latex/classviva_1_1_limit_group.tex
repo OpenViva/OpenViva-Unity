@@ -1,0 +1,118 @@
+\hypertarget{classviva_1_1_limit_group}{}\doxysection{viva.\+Limit\+Group Class Reference}
+\label{classviva_1_1_limit_group}\index{viva.LimitGroup@{viva.LimitGroup}}
+
+
+Class used for attaching multiple percent limits. The limit with the lowest value will be used in whatever it limits. Whenever a new limit is added or removed, the overall group value is recalculated.  
+
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classviva_1_1_limit_group_a3895018c4f778a97818575680f1a0698}{Add}} (object tag, float \mbox{\hyperlink{classviva_1_1_limit_group_a372f9ae995d6ae799769bec9b252f614}{value}})
+\begin{DoxyCompactList}\small\item\em Creates or updates a limit entry with the specified tag. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classviva_1_1_limit_group_aeb91082010145a0725906ff3f3b8058e}{Set}} (object tag, float \mbox{\hyperlink{classviva_1_1_limit_group_a372f9ae995d6ae799769bec9b252f614}{value}})
+\begin{DoxyCompactList}\small\item\em Updates a limit entry value if the tag is already present in the group. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classviva_1_1_limit_group_a44eec34190a3b1c04e6dac5baf1d3a86}{Remove}} (object tag)
+\begin{DoxyCompactList}\small\item\em Removes a limit entry with the specified tag. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classviva_1_1_limit_group_a50c5300534e1707a1a2c14934bfdfcf5}{\+\_\+\+Internal\+Reset}} ()
+\begin{DoxyCompactList}\small\item\em Removes all limits. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classviva_1_1_limit_group_a6e0a22db1a44bea02380721fcf02699f}{Update}} ()
+\begin{DoxyCompactList}\small\item\em Recalculates the overall group value. This is done automatically already. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+float \mbox{\hyperlink{classviva_1_1_limit_group_a372f9ae995d6ae799769bec9b252f614}{value}} = 1.\+0f\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\begin{DoxyCompactList}\small\item\em The value of the overall group. If no limits are present, the limit is 1.\+0f, otherwise it is the lowest limit value. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Class used for attaching multiple percent limits. The limit with the lowest value will be used in whatever it limits. Whenever a new limit is added or removed, the overall group value is recalculated. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classviva_1_1_limit_group_a50c5300534e1707a1a2c14934bfdfcf5}\label{classviva_1_1_limit_group_a50c5300534e1707a1a2c14934bfdfcf5}} 
+\index{viva.LimitGroup@{viva.LimitGroup}!\_InternalReset@{\_InternalReset}}
+\index{\_InternalReset@{\_InternalReset}!viva.LimitGroup@{viva.LimitGroup}}
+\doxysubsubsection{\texorpdfstring{\_InternalReset()}{\_InternalReset()}}
+{\footnotesize\ttfamily void viva.\+Limit\+Group.\+\_\+\+Internal\+Reset (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Removes all limits. 
+
+\mbox{\Hypertarget{classviva_1_1_limit_group_a3895018c4f778a97818575680f1a0698}\label{classviva_1_1_limit_group_a3895018c4f778a97818575680f1a0698}} 
+\index{viva.LimitGroup@{viva.LimitGroup}!Add@{Add}}
+\index{Add@{Add}!viva.LimitGroup@{viva.LimitGroup}}
+\doxysubsubsection{\texorpdfstring{Add()}{Add()}}
+{\footnotesize\ttfamily void viva.\+Limit\+Group.\+Add (\begin{DoxyParamCaption}\item[{object}]{tag,  }\item[{float}]{value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Creates or updates a limit entry with the specified tag. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em tag} & The tag that represents who added this limit. This is so it can be later removed using this object as a tag.\\
+\hline
+{\em value} & The value of the limit. Value will be clamped between 0 and 1.\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classviva_1_1_limit_group_a44eec34190a3b1c04e6dac5baf1d3a86}\label{classviva_1_1_limit_group_a44eec34190a3b1c04e6dac5baf1d3a86}} 
+\index{viva.LimitGroup@{viva.LimitGroup}!Remove@{Remove}}
+\index{Remove@{Remove}!viva.LimitGroup@{viva.LimitGroup}}
+\doxysubsubsection{\texorpdfstring{Remove()}{Remove()}}
+{\footnotesize\ttfamily void viva.\+Limit\+Group.\+Remove (\begin{DoxyParamCaption}\item[{object}]{tag }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Removes a limit entry with the specified tag. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em tag} & The tag to search and remove.\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classviva_1_1_limit_group_aeb91082010145a0725906ff3f3b8058e}\label{classviva_1_1_limit_group_aeb91082010145a0725906ff3f3b8058e}} 
+\index{viva.LimitGroup@{viva.LimitGroup}!Set@{Set}}
+\index{Set@{Set}!viva.LimitGroup@{viva.LimitGroup}}
+\doxysubsubsection{\texorpdfstring{Set()}{Set()}}
+{\footnotesize\ttfamily void viva.\+Limit\+Group.\+Set (\begin{DoxyParamCaption}\item[{object}]{tag,  }\item[{float}]{value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Updates a limit entry value if the tag is already present in the group. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em tag} & The tag to search for. \\
+\hline
+{\em value} & The new value of the limit. Value will be clamped between 0 and 1.\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classviva_1_1_limit_group_a6e0a22db1a44bea02380721fcf02699f}\label{classviva_1_1_limit_group_a6e0a22db1a44bea02380721fcf02699f}} 
+\index{viva.LimitGroup@{viva.LimitGroup}!Update@{Update}}
+\index{Update@{Update}!viva.LimitGroup@{viva.LimitGroup}}
+\doxysubsubsection{\texorpdfstring{Update()}{Update()}}
+{\footnotesize\ttfamily void viva.\+Limit\+Group.\+Update (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Recalculates the overall group value. This is done automatically already. 
+
+
+
+\doxysubsection{Property Documentation}
+\mbox{\Hypertarget{classviva_1_1_limit_group_a372f9ae995d6ae799769bec9b252f614}\label{classviva_1_1_limit_group_a372f9ae995d6ae799769bec9b252f614}} 
+\index{viva.LimitGroup@{viva.LimitGroup}!value@{value}}
+\index{value@{value}!viva.LimitGroup@{viva.LimitGroup}}
+\doxysubsubsection{\texorpdfstring{value}{value}}
+{\footnotesize\ttfamily float viva.\+Limit\+Group.\+value = 1.\+0f\hspace{0.3cm}{\ttfamily [get]}}
+
+
+
+The value of the overall group. If no limits are present, the limit is 1.\+0f, otherwise it is the lowest limit value. 
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/\+Master-\/\+Donut/\+Documents/v/\+Assets/\+Scripts/\+Puppet\+Master\+Lite/Limit\+Group.\+cs\end{DoxyCompactItemize}

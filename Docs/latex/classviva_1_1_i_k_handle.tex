@@ -1,0 +1,69 @@
+\hypertarget{classviva_1_1_i_k_handle}{}\doxysection{viva.\+IKHandle Class Reference}
+\label{classviva_1_1_i_k_handle}\index{viva.IKHandle@{viva.IKHandle}}
+
+
+Class for handling a \mbox{\hyperlink{classviva_1_1_character_i_k}{Character\+IK}} handle. The most recent handle will be used to animate the IK while the rest will fade away and be removed.  
+
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classviva_1_1_i_k_handle_a89d75b0e40e4b787e6d93ec84319b8c4}{Kill}} ()
+\begin{DoxyCompactList}\small\item\em Start blending away from the animation. Once the weight reaches 0, the handle will be removed from the \mbox{\hyperlink{classviva_1_1_character_i_k}{Character\+IK}}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{classviva_1_1_i_k_handle_ad0a2c0080a61460454a5d349112ff1ba}{alive}} = true\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Check if handle is still in use \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Class for handling a \mbox{\hyperlink{classviva_1_1_character_i_k}{Character\+IK}} handle. The most recent handle will be used to animate the IK while the rest will fade away and be removed. 
+
+The following example makes the right arm of a character point towards the center of the map. 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{character.biped.rightArmIK.AddRetargeting( delegate( out Vector3 target, out Vector3 pole, out Quaternion handRotation )\{}
+\DoxyCodeLine{    target = \textcolor{keyword}{new} Vector3( 0, 2, 0 );}
+\DoxyCodeLine{    pole = \textcolor{keyword}{new} Vector3( 0, 0, 0 );}
+\DoxyCodeLine{}
+\DoxyCodeLine{    handRotation = Quaternion.identity;}
+\DoxyCodeLine{\}, out IKHandle activeHandle );}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{//Once you are done you can stop the influence of this retargeting with:}}
+\DoxyCodeLine{activeHandle.Kill();}
+
+\end{DoxyCode}
+ 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classviva_1_1_i_k_handle_a89d75b0e40e4b787e6d93ec84319b8c4}\label{classviva_1_1_i_k_handle_a89d75b0e40e4b787e6d93ec84319b8c4}} 
+\index{viva.IKHandle@{viva.IKHandle}!Kill@{Kill}}
+\index{Kill@{Kill}!viva.IKHandle@{viva.IKHandle}}
+\doxysubsubsection{\texorpdfstring{Kill()}{Kill()}}
+{\footnotesize\ttfamily void viva.\+IKHandle.\+Kill (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Start blending away from the animation. Once the weight reaches 0, the handle will be removed from the \mbox{\hyperlink{classviva_1_1_character_i_k}{Character\+IK}}. 
+
+
+
+\doxysubsection{Property Documentation}
+\mbox{\Hypertarget{classviva_1_1_i_k_handle_ad0a2c0080a61460454a5d349112ff1ba}\label{classviva_1_1_i_k_handle_ad0a2c0080a61460454a5d349112ff1ba}} 
+\index{viva.IKHandle@{viva.IKHandle}!alive@{alive}}
+\index{alive@{alive}!viva.IKHandle@{viva.IKHandle}}
+\doxysubsubsection{\texorpdfstring{alive}{alive}}
+{\footnotesize\ttfamily bool viva.\+IKHandle.\+alive = true\hspace{0.3cm}{\ttfamily [get]}}
+
+
+
+Check if handle is still in use 
+
+\begin{DoxyReturn}{Returns}
+true\+: Still allowed to influence animation. false\+: Is being blended away.
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/\+Master-\/\+Donut/\+Documents/v/\+Assets/\+Scripts/\+Autonomy/Character\+IK.\+cs\end{DoxyCompactItemize}

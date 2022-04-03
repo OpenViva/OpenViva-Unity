@@ -1,0 +1,121 @@
+\hypertarget{classviva_1_1_pickup}{}\doxysection{viva.\+Pickup Class Reference}
+\label{classviva_1_1_pickup}\index{viva.Pickup@{viva.Pickup}}
+
+
+Performs pathfinding on the character to reach a destination and pickup an item. The character must be in an Animation\+State that applies forward motion to move along the waypoints.  
+
+
+Inheritance diagram for viva.\+Pickup\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classviva_1_1_pickup}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classviva_1_1_pickup_aab16a301dcfc3fbcbf410ed62ae92067}{Pickup}} (\mbox{\hyperlink{classviva_1_1_autonomy}{Autonomy}} \+\_\+autonomy, Item item, Handle\+Drop\+Return\+Func \+\_\+if\+Needs\+To\+Drop=null, bool? \+\_\+prefer\+Right=null)
+\begin{DoxyCompactList}\small\item\em Attempts to pickup the item with by a random grabbable. Logic includes moving to the item and the built in pickup animations. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classviva_1_1_pickup_a30d6d146498b85ce62d6a84a08cd54d1}{Pickup}} (\mbox{\hyperlink{classviva_1_1_autonomy}{Autonomy}} \+\_\+autonomy, Grabbable \+\_\+grabbable, Handle\+Drop\+Return\+Func \+\_\+if\+Needs\+To\+Drop=null, bool? \+\_\+prefer\+Right=null)
+\begin{DoxyCompactList}\small\item\em Attempts to pickup the specified grabbable. Logic includes moving to the item and the built in pickup animations. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classviva_1_1_pickup_a81932b3669af530f076f5836000a4a08}{Pickup}} (\mbox{\hyperlink{classviva_1_1_autonomy}{Autonomy}} \+\_\+autonomy, Attribute\+Request \+\_\+attribute\+Request, Handle\+Drop\+Return\+Func \+\_\+if\+Needs\+To\+Drop=null, bool? \+\_\+prefer\+Right=null)
+\begin{DoxyCompactList}\small\item\em Attempts to find and pickup any item with the specified attribute. Logic includes moving to the item and the built in pickup animations. \end{DoxyCompactList}\item 
+override bool \mbox{\hyperlink{classviva_1_1_pickup_aeafd1aaf2e0ae6d00732e9cd653a6156}{On\+Requirement\+Validate}} ()
+\begin{DoxyCompactList}\small\item\em Used to constantly check the success/\+Fail state of a finished requirement task. If they fall from a success state or if they failed, the \mbox{\hyperlink{classviva_1_1_task}{Task}} will be registered for execution in the next \mbox{\hyperlink{classviva_1_1_autonomy}{Autonomy}} tick until it succeeds again, thereby acting as a requirement. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+Performs pathfinding on the character to reach a destination and pickup an item. The character must be in an Animation\+State that applies forward motion to move along the waypoints. 
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classviva_1_1_pickup_aab16a301dcfc3fbcbf410ed62ae92067}\label{classviva_1_1_pickup_aab16a301dcfc3fbcbf410ed62ae92067}} 
+\index{viva.Pickup@{viva.Pickup}!Pickup@{Pickup}}
+\index{Pickup@{Pickup}!viva.Pickup@{viva.Pickup}}
+\doxysubsubsection{\texorpdfstring{Pickup()}{Pickup()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily viva.\+Pickup.\+Pickup (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classviva_1_1_autonomy}{Autonomy}}}]{\+\_\+autonomy,  }\item[{Item}]{item,  }\item[{Handle\+Drop\+Return\+Func}]{\+\_\+if\+Needs\+To\+Drop = {\ttfamily null},  }\item[{bool?}]{\+\_\+prefer\+Right = {\ttfamily null} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Attempts to pickup the item with by a random grabbable. Logic includes moving to the item and the built in pickup animations. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+autonomy} & The \mbox{\hyperlink{classviva_1_1_autonomy}{Autonomy}} of the parent character. Exception will be thrown if it is null.\\
+\hline
+{\em grabbable} & The Rigidbody to pickup. Rigidbody must be specified or else an exception is thrown.\\
+\hline
+{\em if\+Needs\+To\+Drop} & If specified, the task will ask you for a drop task to handle making room for the target grabbable. Otherwise task will fail if preferred grabber is already occupied\\
+\hline
+{\em prefer\+Right} & Do you prefer using the right hand (true)? Or left hand (false)? Or neither (null).\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classviva_1_1_pickup_a30d6d146498b85ce62d6a84a08cd54d1}\label{classviva_1_1_pickup_a30d6d146498b85ce62d6a84a08cd54d1}} 
+\index{viva.Pickup@{viva.Pickup}!Pickup@{Pickup}}
+\index{Pickup@{Pickup}!viva.Pickup@{viva.Pickup}}
+\doxysubsubsection{\texorpdfstring{Pickup()}{Pickup()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily viva.\+Pickup.\+Pickup (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classviva_1_1_autonomy}{Autonomy}}}]{\+\_\+autonomy,  }\item[{Grabbable}]{\+\_\+grabbable,  }\item[{Handle\+Drop\+Return\+Func}]{\+\_\+if\+Needs\+To\+Drop = {\ttfamily null},  }\item[{bool?}]{\+\_\+prefer\+Right = {\ttfamily null} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Attempts to pickup the specified grabbable. Logic includes moving to the item and the built in pickup animations. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+autonomy} & The \mbox{\hyperlink{classviva_1_1_autonomy}{Autonomy}} of the parent character. Exception will be thrown if it is null.\\
+\hline
+{\em grabbable} & The Rigidbody to pickup. Rigidbody must be specified or else an exception is thrown.\\
+\hline
+{\em if\+Needs\+To\+Drop} & If specified, the task will ask you for a drop task to handle making room for the target grabbable. Otherwise task will fail if preferred grabber is already occupied\\
+\hline
+{\em prefer\+Right} & Do you prefer using the right hand (true)? Or left hand (false)? Or neither (null).\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classviva_1_1_pickup_a81932b3669af530f076f5836000a4a08}\label{classviva_1_1_pickup_a81932b3669af530f076f5836000a4a08}} 
+\index{viva.Pickup@{viva.Pickup}!Pickup@{Pickup}}
+\index{Pickup@{Pickup}!viva.Pickup@{viva.Pickup}}
+\doxysubsubsection{\texorpdfstring{Pickup()}{Pickup()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily viva.\+Pickup.\+Pickup (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classviva_1_1_autonomy}{Autonomy}}}]{\+\_\+autonomy,  }\item[{Attribute\+Request}]{\+\_\+attribute\+Request,  }\item[{Handle\+Drop\+Return\+Func}]{\+\_\+if\+Needs\+To\+Drop = {\ttfamily null},  }\item[{bool?}]{\+\_\+prefer\+Right = {\ttfamily null} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Attempts to find and pickup any item with the specified attribute. Logic includes moving to the item and the built in pickup animations. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+autonomy} & The \mbox{\hyperlink{classviva_1_1_autonomy}{Autonomy}} of the parent character. Exception will be thrown if it is null.\\
+\hline
+{\em attribute} & The attribute of the item. These are found in the .item of all items.\\
+\hline
+{\em if\+Needs\+To\+Drop} & If specified, the task will ask you for a drop task to handle making room for the target grabbable. Otherwise task will fail if preferred grabber is already occupied\\
+\hline
+{\em prefer\+Right} & Do you prefer using the right hand (true)? Or left hand (false)? Or neither (null).\\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classviva_1_1_pickup_aeafd1aaf2e0ae6d00732e9cd653a6156}\label{classviva_1_1_pickup_aeafd1aaf2e0ae6d00732e9cd653a6156}} 
+\index{viva.Pickup@{viva.Pickup}!OnRequirementValidate@{OnRequirementValidate}}
+\index{OnRequirementValidate@{OnRequirementValidate}!viva.Pickup@{viva.Pickup}}
+\doxysubsubsection{\texorpdfstring{OnRequirementValidate()}{OnRequirementValidate()}}
+{\footnotesize\ttfamily override bool viva.\+Pickup.\+On\+Requirement\+Validate (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Used to constantly check the success/\+Fail state of a finished requirement task. If they fall from a success state or if they failed, the \mbox{\hyperlink{classviva_1_1_task}{Task}} will be registered for execution in the next \mbox{\hyperlink{classviva_1_1_autonomy}{Autonomy}} tick until it succeeds again, thereby acting as a requirement. 
+
+\begin{DoxyReturn}{Returns}
+true\+: The \mbox{\hyperlink{classviva_1_1_task}{Task}} is still in a success state. false\+: The \mbox{\hyperlink{classviva_1_1_task}{Task}} has fallen from its success state.
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classviva_1_1_task_a6dbe27c5aeb3caf1ade6d929852d0b30}{viva.\+Task}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/\+Master-\/\+Donut/\+Documents/v/\+Assets/\+Scripts/\+Autonomy/Pickup.\+cs\end{DoxyCompactItemize}

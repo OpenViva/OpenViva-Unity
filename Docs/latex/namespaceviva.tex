@@ -1,0 +1,53 @@
+\hypertarget{namespaceviva}{}\doxysection{viva Namespace Reference}
+\label{namespaceviva}\index{viva@{viva}}
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classviva_1_1_body_set}{Body\+Set}}
+\begin{DoxyCompactList}\small\item\em Represents a collection of Animation\+States that share a similar body pose. Example\+: \char`\"{}walk forward\char`\"{}, \char`\"{}standing idle\char`\"{}, \char`\"{}standing waving hello\char`\"{} all belong to a \mbox{\hyperlink{classviva_1_1_body_set}{Body\+Set}} named \char`\"{}standing\char`\"{} because they are all being performed while standing. This is used for pathfinding animation transitions to animate going from one \mbox{\hyperlink{classviva_1_1_body_set}{Body\+Set}} to another in a contextually coherent way. Example\+: Going from a \char`\"{}sleep face down\char`\"{} animation to a \char`\"{}standing jump\char`\"{} requires the character to roll over and stand up before jumping. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classviva_1_1_animation_set}{Animation\+Set}}
+\begin{DoxyCompactList}\small\item\em The object that holds all \mbox{\hyperlink{classviva_1_1_body_set}{Body\+Set}} objects. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classviva_1_1_autonomy}{Autonomy}}
+\begin{DoxyCompactList}\small\item\em The Mono\+Behaviour class for handling character logic. \mbox{\hyperlink{classviva_1_1_task}{Task}} objects can be added to perform complex sequences of logic trees. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classviva_1_1_i_k_handle}{IKHandle}}
+\begin{DoxyCompactList}\small\item\em Class for handling a \mbox{\hyperlink{classviva_1_1_character_i_k}{Character\+IK}} handle. The most recent handle will be used to animate the IK while the rest will fade away and be removed. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classviva_1_1_character_i_k}{Character\+IK}}
+\begin{DoxyCompactList}\small\item\em For an example using \mbox{\hyperlink{classviva_1_1_character_i_k}{Character\+IK}}, see \mbox{\hyperlink{classviva_1_1_i_k_handle}{IKHandle}}. The base class for 2 bone inverse kinematics used by Characters during the animation phase. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classviva_1_1_condition}{Condition}}
+\begin{DoxyCompactList}\small\item\em Base class for all \mbox{\hyperlink{classviva_1_1_autonomy}{Autonomy}} tasks. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classviva_1_1_custom_variable_condition}{Custom\+Variable\+Condition}}
+\begin{DoxyCompactList}\small\item\em Ensures that a custom\+Variable is a specific value. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classviva_1_1_drop}{Drop}}
+\begin{DoxyCompactList}\small\item\em Performs pathfinding on the character to drop an item at a destination. The character must be in an Animation\+State that applies forward motion to move along the waypoints. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classviva_1_1_enum_task_manager}{Enum\+Task\+Manager}}
+\begin{DoxyCompactList}\small\item\em Ensures that a custom\+Variable is a specific value. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classviva_1_1_target}{Target}}
+\begin{DoxyCompactList}\small\item\em Handles the targeting of a point in space. You can target a transform to constantly target its position without having to update the point constantly. If the transform is lost, the target will automatically revert to a null value. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classviva_1_1_face_target_body}{Face\+Target\+Body}}
+\begin{DoxyCompactList}\small\item\em Rotates the character model\textquotesingle{}s animation armature after it is animated so it faces a point in space. When added as a requirement, the character\textquotesingle{}s body must face the target before performing the next \mbox{\hyperlink{classviva_1_1_task}{Task}}. When added as a passive, the character\textquotesingle{}s body will constantly try to face a target. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classviva_1_1_move_to}{Move\+To}}
+\begin{DoxyCompactList}\small\item\em Performs pathfinding on the character to reach a destination. The character must be in an Animation\+State that applies forward motion to move along the waypoints. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classviva_1_1_pickup}{Pickup}}
+\begin{DoxyCompactList}\small\item\em Performs pathfinding on the character to reach a destination and pickup an item. The character must be in an Animation\+State that applies forward motion to move along the waypoints. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classviva_1_1_play_animation}{Play\+Animation}}
+\begin{DoxyCompactList}\small\item\em Allows the character to play an animation through the \mbox{\hyperlink{classviva_1_1_autonomy}{Autonomy}} tree. Optionally enforces correct \mbox{\hyperlink{classviva_1_1_body_set}{Body\+Set}} to ensure the character is in the correct \mbox{\hyperlink{classviva_1_1_body_set}{Body\+Set}} before performing the animation. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classviva_1_1_task}{Task}}
+\begin{DoxyCompactList}\small\item\em Base class for all \mbox{\hyperlink{classviva_1_1_autonomy}{Autonomy}} tasks. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classviva_1_1_timer}{Timer}}
+\begin{DoxyCompactList}\small\item\em Runs a timer in seconds. Then the task succeeds. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classviva_1_1_character}{Character}}
+\begin{DoxyCompactList}\small\item\em The class used to represent all in-\/game characters \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classviva_1_1_character_ragdoll}{Character\+Ragdoll}}
+\begin{DoxyCompactList}\small\item\em The class used to represent 16-\/bone physics ragdolls. You can control the strength of each animated muscle or the ragdoll as a whole with muscle\+Limit and pin\+Limit. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classviva_1_1_input_button}{Input\+Button}}
+\begin{DoxyCompactList}\small\item\em Class for attaching functions to controllers such as keyboards and VR controllers. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structviva_1_1_bool_limit_group}{Bool\+Limit\+Group}}
+\begin{DoxyCompactList}\small\item\em Class used for simple on/off permission based limit If there are any entries added the group\textquotesingle{}s allow value is false, true otherwise \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classviva_1_1_limit_group}{Limit\+Group}}
+\begin{DoxyCompactList}\small\item\em Class used for attaching multiple percent limits. The limit with the lowest value will be used in whatever it limits. Whenever a new limit is added or removed, the overall group value is recalculated. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classviva_1_1_muscle}{Muscle}}
+\begin{DoxyCompactList}\small\item\em The class controlling animated Configurable\+Joints \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classviva_1_1_ragdoll}{Ragdoll}}
+\begin{DoxyCompactList}\small\item\em The class used to represent 16-\/bone physics ragdolls. You can control the strength of each animated muscle or the ragdoll as a whole with muscle\+Limit and pin\+Limit. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classviva_1_1_viva_instance}{Viva\+Instance}}
+\begin{DoxyCompactList}\small\item\em The class used to represent all in-\/game instances \end{DoxyCompactList}\end{DoxyCompactItemize}

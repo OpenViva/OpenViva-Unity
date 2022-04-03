@@ -1,0 +1,75 @@
+\hypertarget{classviva_1_1_custom_variable_condition}{}\doxysection{viva.\+Custom\+Variable\+Condition Class Reference}
+\label{classviva_1_1_custom_variable_condition}\index{viva.CustomVariableCondition@{viva.CustomVariableCondition}}
+
+
+Ensures that a custom\+Variable is a specific value.  
+
+
+Inheritance diagram for viva.\+Custom\+Variable\+Condition\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classviva_1_1_custom_variable_condition}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classviva_1_1_custom_variable_condition_adce3cc2ecfb5d02c4ad912adac313ada}{Custom\+Variable\+Condition}} (\mbox{\hyperlink{classviva_1_1_autonomy}{Autonomy}} \+\_\+autonomy, Viva\+Script source, \mbox{\hyperlink{classviva_1_1_viva_instance}{Viva\+Instance}} \+\_\+instance, string variable\+Name)
+\begin{DoxyCompactList}\small\item\em Ensures that a custom\+Variable is a specific value. Use on\+Condition to check the success/fail of the condition. \end{DoxyCompactList}\item 
+override bool \mbox{\hyperlink{classviva_1_1_custom_variable_condition_a0e30619b03c6432bb43b55856b140bc8}{On\+Requirement\+Validate}} ()
+\begin{DoxyCompactList}\small\item\em Used to constantly check the success/\+Fail state of a finished requirement task. If they fall from a success state or if they failed, the \mbox{\hyperlink{classviva_1_1_task}{Task}} will be registered for execution in the next \mbox{\hyperlink{classviva_1_1_autonomy}{Autonomy}} tick until it succeeds again, thereby acting as a requirement. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+Ensures that a custom\+Variable is a specific value. 
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classviva_1_1_custom_variable_condition_adce3cc2ecfb5d02c4ad912adac313ada}\label{classviva_1_1_custom_variable_condition_adce3cc2ecfb5d02c4ad912adac313ada}} 
+\index{viva.CustomVariableCondition@{viva.CustomVariableCondition}!CustomVariableCondition@{CustomVariableCondition}}
+\index{CustomVariableCondition@{CustomVariableCondition}!viva.CustomVariableCondition@{viva.CustomVariableCondition}}
+\doxysubsubsection{\texorpdfstring{CustomVariableCondition()}{CustomVariableCondition()}}
+{\footnotesize\ttfamily viva.\+Custom\+Variable\+Condition.\+Custom\+Variable\+Condition (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classviva_1_1_autonomy}{Autonomy}}}]{\+\_\+autonomy,  }\item[{Viva\+Script}]{source,  }\item[{\mbox{\hyperlink{classviva_1_1_viva_instance}{Viva\+Instance}}}]{\+\_\+instance,  }\item[{string}]{variable\+Name }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Ensures that a custom\+Variable is a specific value. Use on\+Condition to check the success/fail of the condition. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+autonomy} & The \mbox{\hyperlink{classviva_1_1_autonomy}{Autonomy}} of the parent character. Exception will be thrown if it is null.\\
+\hline
+{\em source} & The script who is calling this (Used to keep track of where this task originated from).\\
+\hline
+{\em \+\_\+instance} & The object whose variable will be checked.\\
+\hline
+{\em variable\+Name} & The name of the variable.\\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classviva_1_1_custom_variable_condition_a0e30619b03c6432bb43b55856b140bc8}\label{classviva_1_1_custom_variable_condition_a0e30619b03c6432bb43b55856b140bc8}} 
+\index{viva.CustomVariableCondition@{viva.CustomVariableCondition}!OnRequirementValidate@{OnRequirementValidate}}
+\index{OnRequirementValidate@{OnRequirementValidate}!viva.CustomVariableCondition@{viva.CustomVariableCondition}}
+\doxysubsubsection{\texorpdfstring{OnRequirementValidate()}{OnRequirementValidate()}}
+{\footnotesize\ttfamily override bool viva.\+Custom\+Variable\+Condition.\+On\+Requirement\+Validate (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Used to constantly check the success/\+Fail state of a finished requirement task. If they fall from a success state or if they failed, the \mbox{\hyperlink{classviva_1_1_task}{Task}} will be registered for execution in the next \mbox{\hyperlink{classviva_1_1_autonomy}{Autonomy}} tick until it succeeds again, thereby acting as a requirement. 
+
+\begin{DoxyReturn}{Returns}
+true\+: The \mbox{\hyperlink{classviva_1_1_task}{Task}} is still in a success state. false\+: The \mbox{\hyperlink{classviva_1_1_task}{Task}} has fallen from its success state.
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classviva_1_1_task_a6dbe27c5aeb3caf1ade6d929852d0b30}{viva.\+Task}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/\+Master-\/\+Donut/\+Documents/v/\+Assets/\+Scripts/\+Autonomy/Custom\+Variable\+Task.\+cs\end{DoxyCompactItemize}

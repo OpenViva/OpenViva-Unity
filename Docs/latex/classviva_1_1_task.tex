@@ -1,0 +1,502 @@
+\hypertarget{classviva_1_1_task}{}\doxysection{viva.\+Task Class Reference}
+\label{classviva_1_1_task}\index{viva.Task@{viva.Task}}
+
+
+Base class for all \mbox{\hyperlink{classviva_1_1_autonomy}{Autonomy}} tasks.  
+
+
+Inheritance diagram for viva.\+Task\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=9.000000cm]{classviva_1_1_task}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classviva_1_1_task_ad864c60f97377f0bb912fdb6f4a152e6}{Task}} (\mbox{\hyperlink{classviva_1_1_autonomy}{Autonomy}} \+\_\+autonomy)
+\begin{DoxyCompactList}\small\item\em The base class for all autonomy tasks. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classviva_1_1_task_a96c68b0cdf580046e504c3fcc2098163}{Start}} (Viva\+Script source, string task\+Name, int \+\_\+priority=0)
+\begin{DoxyCompactList}\small\item\em Start a task. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classviva_1_1_task_ac82acd56618aad5f964009ff4c4c058a}{Start\+Constant}} (Viva\+Script source, string task\+Name)
+\begin{DoxyCompactList}\small\item\em Start a task as a constant. Will always run every frame (Like a passive) \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classviva_1_1_task_aee05654683ef8b095be56894cd009075}{Add\+Passive}} (\mbox{\hyperlink{classviva_1_1_task}{Task}} passive)
+\begin{DoxyCompactList}\small\item\em Adds a \mbox{\hyperlink{classviva_1_1_task}{Task}} into the \mbox{\hyperlink{classviva_1_1_task}{Task}}\textquotesingle{}s passive tree. Passives will always run if the parent \mbox{\hyperlink{classviva_1_1_task}{Task}} is registered. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classviva_1_1_task_a4db94e16ede5259c0675ecb3ebfe778d}{Remove\+Passive}} (\mbox{\hyperlink{classviva_1_1_task}{Task}} passive)
+\begin{DoxyCompactList}\small\item\em Removes a \mbox{\hyperlink{classviva_1_1_task}{Task}} into the \mbox{\hyperlink{classviva_1_1_task}{Task}}\textquotesingle{}s passive tree. If the passive \mbox{\hyperlink{classviva_1_1_task}{Task}} is active it will be unregistered. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classviva_1_1_task_aac4cf59b31067ab8f4657fc392e7802c}{Remove\+All\+Passives\+And\+Requirements}} ()
+\begin{DoxyCompactList}\small\item\em Removes all added passives and requirements. If the Tasks are active they will be unregistered. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classviva_1_1_task_ab435a49622aff3648b804c197769f1ef}{Add\+Requirement}} (\mbox{\hyperlink{classviva_1_1_task}{Task}} requirement)
+\begin{DoxyCompactList}\small\item\em Adds a \mbox{\hyperlink{classviva_1_1_task}{Task}} into the \mbox{\hyperlink{classviva_1_1_task}{Task}}\textquotesingle{}s requirement tree. Requirements must always be in a success state before the parent \mbox{\hyperlink{classviva_1_1_task}{Task}} can run. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classviva_1_1_task_ade7318c08fc57ba2e09f9a7c2d641626}{Prepend\+Requirement}} (\mbox{\hyperlink{classviva_1_1_task}{Task}} requirement)
+\begin{DoxyCompactList}\small\item\em Inserts a \mbox{\hyperlink{classviva_1_1_task}{Task}} at the beginning of the \mbox{\hyperlink{classviva_1_1_task}{Task}}\textquotesingle{}s requirement tree. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classviva_1_1_task_a23446d77d20dc5dccfef4257b7218eb0}{Remove\+Requirement}} (\mbox{\hyperlink{classviva_1_1_task}{Task}} requirement)
+\begin{DoxyCompactList}\small\item\em Removes a \mbox{\hyperlink{classviva_1_1_task}{Task}} into the \mbox{\hyperlink{classviva_1_1_task}{Task}}\textquotesingle{}s requirement tree. If the requirement \mbox{\hyperlink{classviva_1_1_task}{Task}} is active it will be unregistered. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classviva_1_1_task}{Task}} \mbox{\hyperlink{classviva_1_1_task_aac9e5747314aa102365b9775d7388720}{Get\+Passive}} (int index)
+\begin{DoxyCompactList}\small\item\em Gets the passive \mbox{\hyperlink{classviva_1_1_task}{Task}} at index in the \mbox{\hyperlink{classviva_1_1_task}{Task}}\textquotesingle{}s passive tree. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classviva_1_1_task}{Task}} \mbox{\hyperlink{classviva_1_1_task_a1c4eec39081e45e472bb2c01cc177072}{Get\+Requirement}} (int index)
+\begin{DoxyCompactList}\small\item\em Gets the requirement \mbox{\hyperlink{classviva_1_1_task}{Task}} at index in the \mbox{\hyperlink{classviva_1_1_task}{Task}}\textquotesingle{}s passive tree. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classviva_1_1_task_a33d12c947e807a06ba9bba80b930a93d}{Fail}} (string reason=\char`\"{}\char`\"{})
+\begin{DoxyCompactList}\small\item\em Marks the \mbox{\hyperlink{classviva_1_1_task}{Task}} for failure. The on\+Fail callback will run in the next \mbox{\hyperlink{classviva_1_1_autonomy}{Autonomy}} tick. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classviva_1_1_task_a93f236800ed48e8c8eccd750a20f2e13}{Succeed}} ()
+\begin{DoxyCompactList}\small\item\em Marks the \mbox{\hyperlink{classviva_1_1_task}{Task}} for success. The on\+Success callback will run in the next \mbox{\hyperlink{classviva_1_1_autonomy}{Autonomy}} tick. \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{classviva_1_1_task_a6dbe27c5aeb3caf1ade6d929852d0b30}{On\+Requirement\+Validate}} ()
+\begin{DoxyCompactList}\small\item\em Used to constantly check the success/\+Fail state of a finished requirement task. If they fall from a success state or if they failed, the \mbox{\hyperlink{classviva_1_1_task}{Task}} will be registered for execution in the next \mbox{\hyperlink{classviva_1_1_autonomy}{Autonomy}} tick until it succeeds again, thereby acting as a requirement. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+string \mbox{\hyperlink{classviva_1_1_task_a4ca561f526068dae56f64588b5d38254}{name}}
+\begin{DoxyCompactList}\small\item\em The name of the task (Optional). \end{DoxyCompactList}\item 
+readonly \mbox{\hyperlink{classviva_1_1_autonomy}{Autonomy}} \mbox{\hyperlink{classviva_1_1_task_a49b6092168e940ce67a53e436c194c39}{autonomy}}
+\begin{DoxyCompactList}\small\item\em The autonomy of the parent character. \end{DoxyCompactList}\item 
+Generic\+Callback \mbox{\hyperlink{classviva_1_1_task_aa142efdcab59772053eb8836a6813959}{on\+Fail}}
+\begin{DoxyCompactList}\small\item\em Callback delegate fired when the task fails. \end{DoxyCompactList}\item 
+Generic\+Callback \mbox{\hyperlink{classviva_1_1_task_a747cbce2dd0b007788278d8da6d4bca0}{on\+Success}}
+\begin{DoxyCompactList}\small\item\em Callback delegate fired when the task succeeds. \end{DoxyCompactList}\item 
+Generic\+Callback \mbox{\hyperlink{classviva_1_1_task_ac6285db08de9a5784c7cd2df29d3e11d}{on\+Interrupted}}
+\begin{DoxyCompactList}\small\item\em Callback delegate fired when the task is removed from the execution queue and is not finished. \end{DoxyCompactList}\item 
+Generic\+Callback \mbox{\hyperlink{classviva_1_1_task_ab59badd2b3bc9ab0fae069dae773237a}{on\+Fixed\+Update}}
+\begin{DoxyCompactList}\small\item\em Callback delegate fired during Unity\textquotesingle{}s Fixed\+Update(). \end{DoxyCompactList}\item 
+Generic\+Callback \mbox{\hyperlink{classviva_1_1_task_acab4ade83c15a45b7a02e8aaf1a620a3}{on\+Update}}
+\begin{DoxyCompactList}\small\item\em Callback delegate fired during Unity\textquotesingle{}s Update(). \end{DoxyCompactList}\item 
+Generic\+Callback \mbox{\hyperlink{classviva_1_1_task_a66442681ff953f85e8bbe1a0385d81b6}{on\+Late\+Update}}
+\begin{DoxyCompactList}\small\item\em Callback delegate fired during Unity\textquotesingle{}s Late\+Update(). \end{DoxyCompactList}\item 
+Generic\+Callback \mbox{\hyperlink{classviva_1_1_task_a0da326d111baf7e4cc18912ea09076e6}{on\+Modify\+Animation}}
+\begin{DoxyCompactList}\small\item\em Callback delegate fired when the parent character model\textquotesingle{}s animation\+Player animates. \end{DoxyCompactList}\item 
+Int\+Return\+Func \mbox{\hyperlink{classviva_1_1_task_a2387b1f01fd904199bfd6166ae72f032}{on\+Animation\+Change}}
+\begin{DoxyCompactList}\small\item\em Callback delegate fired when the parent character model\textquotesingle{}s animation\+Player changes Animation\+State. Passes the layer of the player that changed. \end{DoxyCompactList}\item 
+Ragdoll\+Collision\+Callback \mbox{\hyperlink{classviva_1_1_task_a3a3cdc42e43702848b2318e835b2a652}{on\+Ragdoll\+Collision\+Enter}}
+\begin{DoxyCompactList}\small\item\em Callback delegate fired when the parent character ragdoll\textquotesingle{}s bones start contact with a collision. \end{DoxyCompactList}\item 
+Ragdoll\+Collision\+Callback \mbox{\hyperlink{classviva_1_1_task_a85fff982068a7b09fc22c1df9f02f42a}{on\+Ragdoll\+Collision\+Exit}}
+\begin{DoxyCompactList}\small\item\em Callback delegate fired when the parent character model\textquotesingle{}s bones exit contact with a collision. \end{DoxyCompactList}\item 
+Generic\+Callback \mbox{\hyperlink{classviva_1_1_task_a72d1fe8d45e69bc53db6772c66c79adc}{on\+Registered}}
+\begin{DoxyCompactList}\small\item\em Callback delegate fired when the \mbox{\hyperlink{classviva_1_1_task}{Task}} is registered in an \mbox{\hyperlink{classviva_1_1_autonomy}{Autonomy}} tree. \end{DoxyCompactList}\item 
+Generic\+Callback \mbox{\hyperlink{classviva_1_1_task_a4dc2fbff55116dfdb096f30ccbac1db6}{on\+Unregistered}}
+\begin{DoxyCompactList}\small\item\em Callback delegate fired when the \mbox{\hyperlink{classviva_1_1_task}{Task}} is unregistered in an \mbox{\hyperlink{classviva_1_1_autonomy}{Autonomy}} tree. \end{DoxyCompactList}\item 
+Generic\+Callback \mbox{\hyperlink{classviva_1_1_task_acc717e465ff85e91a5053cf562871875}{on\+Reset}}
+\begin{DoxyCompactList}\small\item\em Callback delegate fired when the \mbox{\hyperlink{classviva_1_1_task}{Task}} is reset (Success or Fail is cleared). \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classviva_1_1_character}{Character}} \mbox{\hyperlink{classviva_1_1_task_a25f6920ba9cc7edd551ea3a60742a9e0}{self}}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\begin{DoxyCompactList}\small\item\em A shorthand form of retrieving the parent character from within the \mbox{\hyperlink{classviva_1_1_task}{Task}}. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classviva_1_1_task_a9044b286d69e4ddee63735769614153d}{failed}}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Boolean state if the \mbox{\hyperlink{classviva_1_1_task}{Task}} has failed. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classviva_1_1_task_a0e1e34eaf92e27c1d72a11f37fc0897f}{succeeded}}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Boolean state if the \mbox{\hyperlink{classviva_1_1_task}{Task}} has succeeded. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classviva_1_1_task_a27df0a3c572d1711280c12ba73c72e44}{finished}}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Boolean state if the \mbox{\hyperlink{classviva_1_1_task}{Task}} has failed or succeeded. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classviva_1_1_task_ae6b66dbb3756de62acc711674f78706a}{registered}} = false\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Boolean state if the \mbox{\hyperlink{classviva_1_1_task}{Task}} is currently active in an \mbox{\hyperlink{classviva_1_1_autonomy}{Autonomy}} tree. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classviva_1_1_task_a21aa2d702a4836485b0924fc427db7d9}{passive\+Count}}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Returns the number of passives added to this \mbox{\hyperlink{classviva_1_1_task}{Task}}. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classviva_1_1_task_a56244097f1dd1a0c430dbf809635d28d}{requirement\+Count}}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Returns the number of requirements added to this \mbox{\hyperlink{classviva_1_1_task}{Task}}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Base class for all \mbox{\hyperlink{classviva_1_1_autonomy}{Autonomy}} tasks. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classviva_1_1_task_ad864c60f97377f0bb912fdb6f4a152e6}\label{classviva_1_1_task_ad864c60f97377f0bb912fdb6f4a152e6}} 
+\index{viva.Task@{viva.Task}!Task@{Task}}
+\index{Task@{Task}!viva.Task@{viva.Task}}
+\doxysubsubsection{\texorpdfstring{Task()}{Task()}}
+{\footnotesize\ttfamily viva.\+Task.\+Task (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classviva_1_1_autonomy}{Autonomy}}}]{\+\_\+autonomy }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+The base class for all autonomy tasks. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+autonomy} & The \mbox{\hyperlink{classviva_1_1_autonomy}{Autonomy}} of the parent character. Exception will be thrown if it is null.\\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classviva_1_1_task_aee05654683ef8b095be56894cd009075}\label{classviva_1_1_task_aee05654683ef8b095be56894cd009075}} 
+\index{viva.Task@{viva.Task}!AddPassive@{AddPassive}}
+\index{AddPassive@{AddPassive}!viva.Task@{viva.Task}}
+\doxysubsubsection{\texorpdfstring{AddPassive()}{AddPassive()}}
+{\footnotesize\ttfamily void viva.\+Task.\+Add\+Passive (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classviva_1_1_task}{Task}}}]{passive }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Adds a \mbox{\hyperlink{classviva_1_1_task}{Task}} into the \mbox{\hyperlink{classviva_1_1_task}{Task}}\textquotesingle{}s passive tree. Passives will always run if the parent \mbox{\hyperlink{classviva_1_1_task}{Task}} is registered. 
+
+\mbox{\Hypertarget{classviva_1_1_task_ab435a49622aff3648b804c197769f1ef}\label{classviva_1_1_task_ab435a49622aff3648b804c197769f1ef}} 
+\index{viva.Task@{viva.Task}!AddRequirement@{AddRequirement}}
+\index{AddRequirement@{AddRequirement}!viva.Task@{viva.Task}}
+\doxysubsubsection{\texorpdfstring{AddRequirement()}{AddRequirement()}}
+{\footnotesize\ttfamily void viva.\+Task.\+Add\+Requirement (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classviva_1_1_task}{Task}}}]{requirement }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Adds a \mbox{\hyperlink{classviva_1_1_task}{Task}} into the \mbox{\hyperlink{classviva_1_1_task}{Task}}\textquotesingle{}s requirement tree. Requirements must always be in a success state before the parent \mbox{\hyperlink{classviva_1_1_task}{Task}} can run. 
+
+\mbox{\Hypertarget{classviva_1_1_task_a33d12c947e807a06ba9bba80b930a93d}\label{classviva_1_1_task_a33d12c947e807a06ba9bba80b930a93d}} 
+\index{viva.Task@{viva.Task}!Fail@{Fail}}
+\index{Fail@{Fail}!viva.Task@{viva.Task}}
+\doxysubsubsection{\texorpdfstring{Fail()}{Fail()}}
+{\footnotesize\ttfamily void viva.\+Task.\+Fail (\begin{DoxyParamCaption}\item[{string}]{reason = {\ttfamily \char`\"{}\char`\"{}} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Marks the \mbox{\hyperlink{classviva_1_1_task}{Task}} for failure. The on\+Fail callback will run in the next \mbox{\hyperlink{classviva_1_1_autonomy}{Autonomy}} tick. 
+
+\mbox{\Hypertarget{classviva_1_1_task_aac9e5747314aa102365b9775d7388720}\label{classviva_1_1_task_aac9e5747314aa102365b9775d7388720}} 
+\index{viva.Task@{viva.Task}!GetPassive@{GetPassive}}
+\index{GetPassive@{GetPassive}!viva.Task@{viva.Task}}
+\doxysubsubsection{\texorpdfstring{GetPassive()}{GetPassive()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classviva_1_1_task}{Task}} viva.\+Task.\+Get\+Passive (\begin{DoxyParamCaption}\item[{int}]{index }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Gets the passive \mbox{\hyperlink{classviva_1_1_task}{Task}} at index in the \mbox{\hyperlink{classviva_1_1_task}{Task}}\textquotesingle{}s passive tree. 
+
+\mbox{\Hypertarget{classviva_1_1_task_a1c4eec39081e45e472bb2c01cc177072}\label{classviva_1_1_task_a1c4eec39081e45e472bb2c01cc177072}} 
+\index{viva.Task@{viva.Task}!GetRequirement@{GetRequirement}}
+\index{GetRequirement@{GetRequirement}!viva.Task@{viva.Task}}
+\doxysubsubsection{\texorpdfstring{GetRequirement()}{GetRequirement()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classviva_1_1_task}{Task}} viva.\+Task.\+Get\+Requirement (\begin{DoxyParamCaption}\item[{int}]{index }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Gets the requirement \mbox{\hyperlink{classviva_1_1_task}{Task}} at index in the \mbox{\hyperlink{classviva_1_1_task}{Task}}\textquotesingle{}s passive tree. 
+
+\mbox{\Hypertarget{classviva_1_1_task_a6dbe27c5aeb3caf1ade6d929852d0b30}\label{classviva_1_1_task_a6dbe27c5aeb3caf1ade6d929852d0b30}} 
+\index{viva.Task@{viva.Task}!OnRequirementValidate@{OnRequirementValidate}}
+\index{OnRequirementValidate@{OnRequirementValidate}!viva.Task@{viva.Task}}
+\doxysubsubsection{\texorpdfstring{OnRequirementValidate()}{OnRequirementValidate()}}
+{\footnotesize\ttfamily virtual bool viva.\+Task.\+On\+Requirement\+Validate (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Used to constantly check the success/\+Fail state of a finished requirement task. If they fall from a success state or if they failed, the \mbox{\hyperlink{classviva_1_1_task}{Task}} will be registered for execution in the next \mbox{\hyperlink{classviva_1_1_autonomy}{Autonomy}} tick until it succeeds again, thereby acting as a requirement. 
+
+\begin{DoxyReturn}{Returns}
+true\+: The \mbox{\hyperlink{classviva_1_1_task}{Task}} is still in a success state. false\+: The \mbox{\hyperlink{classviva_1_1_task}{Task}} has fallen from its success state.
+\end{DoxyReturn}
+
+
+Reimplemented in \mbox{\hyperlink{classviva_1_1_pickup_aeafd1aaf2e0ae6d00732e9cd653a6156}{viva.\+Pickup}}, \mbox{\hyperlink{classviva_1_1_move_to_af8f8be41338198cd414c8aed541f454e}{viva.\+Move\+To}}, \mbox{\hyperlink{classviva_1_1_face_target_body_af5fb68222fb2135730d55d0276761797}{viva.\+Face\+Target\+Body}}, \mbox{\hyperlink{classviva_1_1_drop_aae720834ea95c910b240c2c0234ae960}{viva.\+Drop}}, \mbox{\hyperlink{classviva_1_1_custom_variable_condition_a0e30619b03c6432bb43b55856b140bc8}{viva.\+Custom\+Variable\+Condition}}, and \mbox{\hyperlink{classviva_1_1_condition_a4d6f808de3afe8f307e6a47fa904ee3a}{viva.\+Condition}}.
+
+\mbox{\Hypertarget{classviva_1_1_task_ade7318c08fc57ba2e09f9a7c2d641626}\label{classviva_1_1_task_ade7318c08fc57ba2e09f9a7c2d641626}} 
+\index{viva.Task@{viva.Task}!PrependRequirement@{PrependRequirement}}
+\index{PrependRequirement@{PrependRequirement}!viva.Task@{viva.Task}}
+\doxysubsubsection{\texorpdfstring{PrependRequirement()}{PrependRequirement()}}
+{\footnotesize\ttfamily void viva.\+Task.\+Prepend\+Requirement (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classviva_1_1_task}{Task}}}]{requirement }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Inserts a \mbox{\hyperlink{classviva_1_1_task}{Task}} at the beginning of the \mbox{\hyperlink{classviva_1_1_task}{Task}}\textquotesingle{}s requirement tree. 
+
+\mbox{\Hypertarget{classviva_1_1_task_aac4cf59b31067ab8f4657fc392e7802c}\label{classviva_1_1_task_aac4cf59b31067ab8f4657fc392e7802c}} 
+\index{viva.Task@{viva.Task}!RemoveAllPassivesAndRequirements@{RemoveAllPassivesAndRequirements}}
+\index{RemoveAllPassivesAndRequirements@{RemoveAllPassivesAndRequirements}!viva.Task@{viva.Task}}
+\doxysubsubsection{\texorpdfstring{RemoveAllPassivesAndRequirements()}{RemoveAllPassivesAndRequirements()}}
+{\footnotesize\ttfamily void viva.\+Task.\+Remove\+All\+Passives\+And\+Requirements (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Removes all added passives and requirements. If the Tasks are active they will be unregistered. 
+
+\mbox{\Hypertarget{classviva_1_1_task_a4db94e16ede5259c0675ecb3ebfe778d}\label{classviva_1_1_task_a4db94e16ede5259c0675ecb3ebfe778d}} 
+\index{viva.Task@{viva.Task}!RemovePassive@{RemovePassive}}
+\index{RemovePassive@{RemovePassive}!viva.Task@{viva.Task}}
+\doxysubsubsection{\texorpdfstring{RemovePassive()}{RemovePassive()}}
+{\footnotesize\ttfamily void viva.\+Task.\+Remove\+Passive (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classviva_1_1_task}{Task}}}]{passive }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Removes a \mbox{\hyperlink{classviva_1_1_task}{Task}} into the \mbox{\hyperlink{classviva_1_1_task}{Task}}\textquotesingle{}s passive tree. If the passive \mbox{\hyperlink{classviva_1_1_task}{Task}} is active it will be unregistered. 
+
+\mbox{\Hypertarget{classviva_1_1_task_a23446d77d20dc5dccfef4257b7218eb0}\label{classviva_1_1_task_a23446d77d20dc5dccfef4257b7218eb0}} 
+\index{viva.Task@{viva.Task}!RemoveRequirement@{RemoveRequirement}}
+\index{RemoveRequirement@{RemoveRequirement}!viva.Task@{viva.Task}}
+\doxysubsubsection{\texorpdfstring{RemoveRequirement()}{RemoveRequirement()}}
+{\footnotesize\ttfamily void viva.\+Task.\+Remove\+Requirement (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classviva_1_1_task}{Task}}}]{requirement }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Removes a \mbox{\hyperlink{classviva_1_1_task}{Task}} into the \mbox{\hyperlink{classviva_1_1_task}{Task}}\textquotesingle{}s requirement tree. If the requirement \mbox{\hyperlink{classviva_1_1_task}{Task}} is active it will be unregistered. 
+
+\mbox{\Hypertarget{classviva_1_1_task_a96c68b0cdf580046e504c3fcc2098163}\label{classviva_1_1_task_a96c68b0cdf580046e504c3fcc2098163}} 
+\index{viva.Task@{viva.Task}!Start@{Start}}
+\index{Start@{Start}!viva.Task@{viva.Task}}
+\doxysubsubsection{\texorpdfstring{Start()}{Start()}}
+{\footnotesize\ttfamily void viva.\+Task.\+Start (\begin{DoxyParamCaption}\item[{Viva\+Script}]{source,  }\item[{string}]{task\+Name,  }\item[{int}]{\+\_\+priority = {\ttfamily 0} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Start a task. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em source} & Who added the task.\\
+\hline
+{\em task\+Name} & The name to give to this task. Cannot be null.\\
+\hline
+{\em \+\_\+priority} & The priority to know where to insert into the queue. Higher values are placed at the front.\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classviva_1_1_task_ac82acd56618aad5f964009ff4c4c058a}\label{classviva_1_1_task_ac82acd56618aad5f964009ff4c4c058a}} 
+\index{viva.Task@{viva.Task}!StartConstant@{StartConstant}}
+\index{StartConstant@{StartConstant}!viva.Task@{viva.Task}}
+\doxysubsubsection{\texorpdfstring{StartConstant()}{StartConstant()}}
+{\footnotesize\ttfamily void viva.\+Task.\+Start\+Constant (\begin{DoxyParamCaption}\item[{Viva\+Script}]{source,  }\item[{string}]{task\+Name }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Start a task as a constant. Will always run every frame (Like a passive) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em source} & Who added the task.\\
+\hline
+{\em task\+Name} & The name to give to this task. Cannot be null.\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classviva_1_1_task_a93f236800ed48e8c8eccd750a20f2e13}\label{classviva_1_1_task_a93f236800ed48e8c8eccd750a20f2e13}} 
+\index{viva.Task@{viva.Task}!Succeed@{Succeed}}
+\index{Succeed@{Succeed}!viva.Task@{viva.Task}}
+\doxysubsubsection{\texorpdfstring{Succeed()}{Succeed()}}
+{\footnotesize\ttfamily void viva.\+Task.\+Succeed (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Marks the \mbox{\hyperlink{classviva_1_1_task}{Task}} for success. The on\+Success callback will run in the next \mbox{\hyperlink{classviva_1_1_autonomy}{Autonomy}} tick. 
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classviva_1_1_task_a49b6092168e940ce67a53e436c194c39}\label{classviva_1_1_task_a49b6092168e940ce67a53e436c194c39}} 
+\index{viva.Task@{viva.Task}!autonomy@{autonomy}}
+\index{autonomy@{autonomy}!viva.Task@{viva.Task}}
+\doxysubsubsection{\texorpdfstring{autonomy}{autonomy}}
+{\footnotesize\ttfamily readonly \mbox{\hyperlink{classviva_1_1_autonomy}{Autonomy}} viva.\+Task.\+autonomy}
+
+
+
+The autonomy of the parent character. 
+
+\mbox{\Hypertarget{classviva_1_1_task_a4ca561f526068dae56f64588b5d38254}\label{classviva_1_1_task_a4ca561f526068dae56f64588b5d38254}} 
+\index{viva.Task@{viva.Task}!name@{name}}
+\index{name@{name}!viva.Task@{viva.Task}}
+\doxysubsubsection{\texorpdfstring{name}{name}}
+{\footnotesize\ttfamily string viva.\+Task.\+name}
+
+
+
+The name of the task (Optional). 
+
+\mbox{\Hypertarget{classviva_1_1_task_a2387b1f01fd904199bfd6166ae72f032}\label{classviva_1_1_task_a2387b1f01fd904199bfd6166ae72f032}} 
+\index{viva.Task@{viva.Task}!onAnimationChange@{onAnimationChange}}
+\index{onAnimationChange@{onAnimationChange}!viva.Task@{viva.Task}}
+\doxysubsubsection{\texorpdfstring{onAnimationChange}{onAnimationChange}}
+{\footnotesize\ttfamily Int\+Return\+Func viva.\+Task.\+on\+Animation\+Change}
+
+
+
+Callback delegate fired when the parent character model\textquotesingle{}s animation\+Player changes Animation\+State. Passes the layer of the player that changed. 
+
+\mbox{\Hypertarget{classviva_1_1_task_aa142efdcab59772053eb8836a6813959}\label{classviva_1_1_task_aa142efdcab59772053eb8836a6813959}} 
+\index{viva.Task@{viva.Task}!onFail@{onFail}}
+\index{onFail@{onFail}!viva.Task@{viva.Task}}
+\doxysubsubsection{\texorpdfstring{onFail}{onFail}}
+{\footnotesize\ttfamily Generic\+Callback viva.\+Task.\+on\+Fail}
+
+
+
+Callback delegate fired when the task fails. 
+
+\mbox{\Hypertarget{classviva_1_1_task_ab59badd2b3bc9ab0fae069dae773237a}\label{classviva_1_1_task_ab59badd2b3bc9ab0fae069dae773237a}} 
+\index{viva.Task@{viva.Task}!onFixedUpdate@{onFixedUpdate}}
+\index{onFixedUpdate@{onFixedUpdate}!viva.Task@{viva.Task}}
+\doxysubsubsection{\texorpdfstring{onFixedUpdate}{onFixedUpdate}}
+{\footnotesize\ttfamily Generic\+Callback viva.\+Task.\+on\+Fixed\+Update}
+
+
+
+Callback delegate fired during Unity\textquotesingle{}s Fixed\+Update(). 
+
+\mbox{\Hypertarget{classviva_1_1_task_ac6285db08de9a5784c7cd2df29d3e11d}\label{classviva_1_1_task_ac6285db08de9a5784c7cd2df29d3e11d}} 
+\index{viva.Task@{viva.Task}!onInterrupted@{onInterrupted}}
+\index{onInterrupted@{onInterrupted}!viva.Task@{viva.Task}}
+\doxysubsubsection{\texorpdfstring{onInterrupted}{onInterrupted}}
+{\footnotesize\ttfamily Generic\+Callback viva.\+Task.\+on\+Interrupted}
+
+
+
+Callback delegate fired when the task is removed from the execution queue and is not finished. 
+
+\mbox{\Hypertarget{classviva_1_1_task_a66442681ff953f85e8bbe1a0385d81b6}\label{classviva_1_1_task_a66442681ff953f85e8bbe1a0385d81b6}} 
+\index{viva.Task@{viva.Task}!onLateUpdate@{onLateUpdate}}
+\index{onLateUpdate@{onLateUpdate}!viva.Task@{viva.Task}}
+\doxysubsubsection{\texorpdfstring{onLateUpdate}{onLateUpdate}}
+{\footnotesize\ttfamily Generic\+Callback viva.\+Task.\+on\+Late\+Update}
+
+
+
+Callback delegate fired during Unity\textquotesingle{}s Late\+Update(). 
+
+\mbox{\Hypertarget{classviva_1_1_task_a0da326d111baf7e4cc18912ea09076e6}\label{classviva_1_1_task_a0da326d111baf7e4cc18912ea09076e6}} 
+\index{viva.Task@{viva.Task}!onModifyAnimation@{onModifyAnimation}}
+\index{onModifyAnimation@{onModifyAnimation}!viva.Task@{viva.Task}}
+\doxysubsubsection{\texorpdfstring{onModifyAnimation}{onModifyAnimation}}
+{\footnotesize\ttfamily Generic\+Callback viva.\+Task.\+on\+Modify\+Animation}
+
+
+
+Callback delegate fired when the parent character model\textquotesingle{}s animation\+Player animates. 
+
+\mbox{\Hypertarget{classviva_1_1_task_a3a3cdc42e43702848b2318e835b2a652}\label{classviva_1_1_task_a3a3cdc42e43702848b2318e835b2a652}} 
+\index{viva.Task@{viva.Task}!onRagdollCollisionEnter@{onRagdollCollisionEnter}}
+\index{onRagdollCollisionEnter@{onRagdollCollisionEnter}!viva.Task@{viva.Task}}
+\doxysubsubsection{\texorpdfstring{onRagdollCollisionEnter}{onRagdollCollisionEnter}}
+{\footnotesize\ttfamily Ragdoll\+Collision\+Callback viva.\+Task.\+on\+Ragdoll\+Collision\+Enter}
+
+
+
+Callback delegate fired when the parent character ragdoll\textquotesingle{}s bones start contact with a collision. 
+
+\mbox{\Hypertarget{classviva_1_1_task_a85fff982068a7b09fc22c1df9f02f42a}\label{classviva_1_1_task_a85fff982068a7b09fc22c1df9f02f42a}} 
+\index{viva.Task@{viva.Task}!onRagdollCollisionExit@{onRagdollCollisionExit}}
+\index{onRagdollCollisionExit@{onRagdollCollisionExit}!viva.Task@{viva.Task}}
+\doxysubsubsection{\texorpdfstring{onRagdollCollisionExit}{onRagdollCollisionExit}}
+{\footnotesize\ttfamily Ragdoll\+Collision\+Callback viva.\+Task.\+on\+Ragdoll\+Collision\+Exit}
+
+
+
+Callback delegate fired when the parent character model\textquotesingle{}s bones exit contact with a collision. 
+
+\mbox{\Hypertarget{classviva_1_1_task_a72d1fe8d45e69bc53db6772c66c79adc}\label{classviva_1_1_task_a72d1fe8d45e69bc53db6772c66c79adc}} 
+\index{viva.Task@{viva.Task}!onRegistered@{onRegistered}}
+\index{onRegistered@{onRegistered}!viva.Task@{viva.Task}}
+\doxysubsubsection{\texorpdfstring{onRegistered}{onRegistered}}
+{\footnotesize\ttfamily Generic\+Callback viva.\+Task.\+on\+Registered}
+
+
+
+Callback delegate fired when the \mbox{\hyperlink{classviva_1_1_task}{Task}} is registered in an \mbox{\hyperlink{classviva_1_1_autonomy}{Autonomy}} tree. 
+
+\mbox{\Hypertarget{classviva_1_1_task_acc717e465ff85e91a5053cf562871875}\label{classviva_1_1_task_acc717e465ff85e91a5053cf562871875}} 
+\index{viva.Task@{viva.Task}!onReset@{onReset}}
+\index{onReset@{onReset}!viva.Task@{viva.Task}}
+\doxysubsubsection{\texorpdfstring{onReset}{onReset}}
+{\footnotesize\ttfamily Generic\+Callback viva.\+Task.\+on\+Reset}
+
+
+
+Callback delegate fired when the \mbox{\hyperlink{classviva_1_1_task}{Task}} is reset (Success or Fail is cleared). 
+
+\mbox{\Hypertarget{classviva_1_1_task_a747cbce2dd0b007788278d8da6d4bca0}\label{classviva_1_1_task_a747cbce2dd0b007788278d8da6d4bca0}} 
+\index{viva.Task@{viva.Task}!onSuccess@{onSuccess}}
+\index{onSuccess@{onSuccess}!viva.Task@{viva.Task}}
+\doxysubsubsection{\texorpdfstring{onSuccess}{onSuccess}}
+{\footnotesize\ttfamily Generic\+Callback viva.\+Task.\+on\+Success}
+
+
+
+Callback delegate fired when the task succeeds. 
+
+\mbox{\Hypertarget{classviva_1_1_task_a4dc2fbff55116dfdb096f30ccbac1db6}\label{classviva_1_1_task_a4dc2fbff55116dfdb096f30ccbac1db6}} 
+\index{viva.Task@{viva.Task}!onUnregistered@{onUnregistered}}
+\index{onUnregistered@{onUnregistered}!viva.Task@{viva.Task}}
+\doxysubsubsection{\texorpdfstring{onUnregistered}{onUnregistered}}
+{\footnotesize\ttfamily Generic\+Callback viva.\+Task.\+on\+Unregistered}
+
+
+
+Callback delegate fired when the \mbox{\hyperlink{classviva_1_1_task}{Task}} is unregistered in an \mbox{\hyperlink{classviva_1_1_autonomy}{Autonomy}} tree. 
+
+\mbox{\Hypertarget{classviva_1_1_task_acab4ade83c15a45b7a02e8aaf1a620a3}\label{classviva_1_1_task_acab4ade83c15a45b7a02e8aaf1a620a3}} 
+\index{viva.Task@{viva.Task}!onUpdate@{onUpdate}}
+\index{onUpdate@{onUpdate}!viva.Task@{viva.Task}}
+\doxysubsubsection{\texorpdfstring{onUpdate}{onUpdate}}
+{\footnotesize\ttfamily Generic\+Callback viva.\+Task.\+on\+Update}
+
+
+
+Callback delegate fired during Unity\textquotesingle{}s Update(). 
+
+
+
+\doxysubsection{Property Documentation}
+\mbox{\Hypertarget{classviva_1_1_task_a9044b286d69e4ddee63735769614153d}\label{classviva_1_1_task_a9044b286d69e4ddee63735769614153d}} 
+\index{viva.Task@{viva.Task}!failed@{failed}}
+\index{failed@{failed}!viva.Task@{viva.Task}}
+\doxysubsubsection{\texorpdfstring{failed}{failed}}
+{\footnotesize\ttfamily bool viva.\+Task.\+failed\hspace{0.3cm}{\ttfamily [get]}}
+
+
+
+Boolean state if the \mbox{\hyperlink{classviva_1_1_task}{Task}} has failed. 
+
+\mbox{\Hypertarget{classviva_1_1_task_a27df0a3c572d1711280c12ba73c72e44}\label{classviva_1_1_task_a27df0a3c572d1711280c12ba73c72e44}} 
+\index{viva.Task@{viva.Task}!finished@{finished}}
+\index{finished@{finished}!viva.Task@{viva.Task}}
+\doxysubsubsection{\texorpdfstring{finished}{finished}}
+{\footnotesize\ttfamily bool viva.\+Task.\+finished\hspace{0.3cm}{\ttfamily [get]}}
+
+
+
+Boolean state if the \mbox{\hyperlink{classviva_1_1_task}{Task}} has failed or succeeded. 
+
+\mbox{\Hypertarget{classviva_1_1_task_a21aa2d702a4836485b0924fc427db7d9}\label{classviva_1_1_task_a21aa2d702a4836485b0924fc427db7d9}} 
+\index{viva.Task@{viva.Task}!passiveCount@{passiveCount}}
+\index{passiveCount@{passiveCount}!viva.Task@{viva.Task}}
+\doxysubsubsection{\texorpdfstring{passiveCount}{passiveCount}}
+{\footnotesize\ttfamily int viva.\+Task.\+passive\+Count\hspace{0.3cm}{\ttfamily [get]}}
+
+
+
+Returns the number of passives added to this \mbox{\hyperlink{classviva_1_1_task}{Task}}. 
+
+\mbox{\Hypertarget{classviva_1_1_task_ae6b66dbb3756de62acc711674f78706a}\label{classviva_1_1_task_ae6b66dbb3756de62acc711674f78706a}} 
+\index{viva.Task@{viva.Task}!registered@{registered}}
+\index{registered@{registered}!viva.Task@{viva.Task}}
+\doxysubsubsection{\texorpdfstring{registered}{registered}}
+{\footnotesize\ttfamily bool viva.\+Task.\+registered = false\hspace{0.3cm}{\ttfamily [get]}}
+
+
+
+Boolean state if the \mbox{\hyperlink{classviva_1_1_task}{Task}} is currently active in an \mbox{\hyperlink{classviva_1_1_autonomy}{Autonomy}} tree. 
+
+\mbox{\Hypertarget{classviva_1_1_task_a56244097f1dd1a0c430dbf809635d28d}\label{classviva_1_1_task_a56244097f1dd1a0c430dbf809635d28d}} 
+\index{viva.Task@{viva.Task}!requirementCount@{requirementCount}}
+\index{requirementCount@{requirementCount}!viva.Task@{viva.Task}}
+\doxysubsubsection{\texorpdfstring{requirementCount}{requirementCount}}
+{\footnotesize\ttfamily int viva.\+Task.\+requirement\+Count\hspace{0.3cm}{\ttfamily [get]}}
+
+
+
+Returns the number of requirements added to this \mbox{\hyperlink{classviva_1_1_task}{Task}}. 
+
+\mbox{\Hypertarget{classviva_1_1_task_a25f6920ba9cc7edd551ea3a60742a9e0}\label{classviva_1_1_task_a25f6920ba9cc7edd551ea3a60742a9e0}} 
+\index{viva.Task@{viva.Task}!self@{self}}
+\index{self@{self}!viva.Task@{viva.Task}}
+\doxysubsubsection{\texorpdfstring{self}{self}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classviva_1_1_character}{Character}} viva.\+Task.\+self\hspace{0.3cm}{\ttfamily [get]}}
+
+
+
+A shorthand form of retrieving the parent character from within the \mbox{\hyperlink{classviva_1_1_task}{Task}}. 
+
+\mbox{\Hypertarget{classviva_1_1_task_a0e1e34eaf92e27c1d72a11f37fc0897f}\label{classviva_1_1_task_a0e1e34eaf92e27c1d72a11f37fc0897f}} 
+\index{viva.Task@{viva.Task}!succeeded@{succeeded}}
+\index{succeeded@{succeeded}!viva.Task@{viva.Task}}
+\doxysubsubsection{\texorpdfstring{succeeded}{succeeded}}
+{\footnotesize\ttfamily bool viva.\+Task.\+succeeded\hspace{0.3cm}{\ttfamily [get]}}
+
+
+
+Boolean state if the \mbox{\hyperlink{classviva_1_1_task}{Task}} has succeeded. 
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/\+Master-\/\+Donut/\+Documents/v/\+Assets/\+Scripts/\+Autonomy/Task.\+cs\end{DoxyCompactItemize}

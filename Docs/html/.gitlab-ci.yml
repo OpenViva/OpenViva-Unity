@@ -1,0 +1,5 @@
+deploy-prod:
+  stage: deploy
+  script:
+    - cd /var/www/viva-docs
+    - git pull

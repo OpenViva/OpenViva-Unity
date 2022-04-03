@@ -1,0 +1,73 @@
+\hypertarget{classviva_1_1_drop}{}\doxysection{viva.\+Drop Class Reference}
+\label{classviva_1_1_drop}\index{viva.Drop@{viva.Drop}}
+
+
+Performs pathfinding on the character to drop an item at a destination. The character must be in an Animation\+State that applies forward motion to move along the waypoints.  
+
+
+Inheritance diagram for viva.\+Drop\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classviva_1_1_drop}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classviva_1_1_drop_a486818dce003ad17a5129d7b20f126b2}{Drop}} (\mbox{\hyperlink{classviva_1_1_autonomy}{Autonomy}} \+\_\+autonomy, Grabbable \+\_\+grabbable, Zone \+\_\+drop\+Off\+Zone=null)
+\begin{DoxyCompactList}\small\item\em Attempts to drop the specified item at the specified location. Logic includes moving to the spot and the built in pickup animations. \mbox{\hyperlink{classviva_1_1_task}{Task}} will fail if task starts without holding the item. \end{DoxyCompactList}\item 
+override bool \mbox{\hyperlink{classviva_1_1_drop_aae720834ea95c910b240c2c0234ae960}{On\+Requirement\+Validate}} ()
+\begin{DoxyCompactList}\small\item\em Ensures the character is still considered at the destination. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+Performs pathfinding on the character to drop an item at a destination. The character must be in an Animation\+State that applies forward motion to move along the waypoints. 
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classviva_1_1_drop_a486818dce003ad17a5129d7b20f126b2}\label{classviva_1_1_drop_a486818dce003ad17a5129d7b20f126b2}} 
+\index{viva.Drop@{viva.Drop}!Drop@{Drop}}
+\index{Drop@{Drop}!viva.Drop@{viva.Drop}}
+\doxysubsubsection{\texorpdfstring{Drop()}{Drop()}}
+{\footnotesize\ttfamily viva.\+Drop.\+Drop (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classviva_1_1_autonomy}{Autonomy}}}]{\+\_\+autonomy,  }\item[{Grabbable}]{\+\_\+grabbable,  }\item[{Zone}]{\+\_\+drop\+Off\+Zone = {\ttfamily null} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Attempts to drop the specified item at the specified location. Logic includes moving to the spot and the built in pickup animations. \mbox{\hyperlink{classviva_1_1_task}{Task}} will fail if task starts without holding the item. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+autonomy} & The \mbox{\hyperlink{classviva_1_1_autonomy}{Autonomy}} of the parent character. Exception will be thrown if it is null.\\
+\hline
+{\em \+\_\+grabbable} & The Rigidbody to pickup. Rigidbody must be specified or else an exception is thrown.\\
+\hline
+{\em drop\+Off\+Zone} & The optional drop\+Zone location to place the grabbable\\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classviva_1_1_drop_aae720834ea95c910b240c2c0234ae960}\label{classviva_1_1_drop_aae720834ea95c910b240c2c0234ae960}} 
+\index{viva.Drop@{viva.Drop}!OnRequirementValidate@{OnRequirementValidate}}
+\index{OnRequirementValidate@{OnRequirementValidate}!viva.Drop@{viva.Drop}}
+\doxysubsubsection{\texorpdfstring{OnRequirementValidate()}{OnRequirementValidate()}}
+{\footnotesize\ttfamily override bool viva.\+Drop.\+On\+Requirement\+Validate (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Ensures the character is still considered at the destination. 
+
+\begin{DoxyReturn}{Returns}
+true\+: Still at the destination. false\+: moved away from destination.
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classviva_1_1_task_a6dbe27c5aeb3caf1ade6d929852d0b30}{viva.\+Task}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/\+Master-\/\+Donut/\+Documents/v/\+Assets/\+Scripts/\+Autonomy/Drop.\+cs\end{DoxyCompactItemize}

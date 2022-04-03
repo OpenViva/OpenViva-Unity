@@ -1,0 +1,89 @@
+\hypertarget{classviva_1_1_task_target}{}\doxysection{viva.\+Task\+Target Class Reference}
+\label{classviva_1_1_task_target}\index{viva.TaskTarget@{viva.TaskTarget}}
+
+
+Handles the targeting of a point in space. You can target a transform to constantly target its position without having to update the point constantly. If the transform is lost, the target will automatically revert to a null value.  
+
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\itemSettings 
+void \mbox{\hyperlink{classviva_1_1_task_target_ad4c45b2d0b6e809e075cd22a8331df0b}{Set\+Target\+Position}} (Vector3? pos)
+\begin{DoxyCompactList}\small\itemSettings\em Assigns a point in world space \end{DoxyCompactList}\itemSettings 
+void \mbox{\hyperlink{classviva_1_1_task_target_a09dceaf338f8729ea3b747d0f80bb13c}{Set\+Target\+Ragdoll}} (\mbox{\hyperlink{classviva_1_1_ragdoll}{Ragdoll}} ragdoll)
+\begin{DoxyCompactList}\small\itemSettings\em Assigns the target as a \mbox{\hyperlink{classviva_1_1_ragdoll}{Ragdoll}}. It will read their floor position. \end{DoxyCompactList}\itemSettings 
+void \mbox{\hyperlink{classviva_1_1_task_target_a997bceee82bf99108b57cdc301bf7039}{Set\+Target\+Transform}} (Transform new\+Target\+Transform)
+\begin{DoxyCompactList}\small\itemSettings\em Assigns a transform to track its world position. \end{DoxyCompactList}\itemSettings 
+Vector3? \mbox{\hyperlink{classviva_1_1_task_target_a65524a23838a1e8416f0c6cd0157bdb6}{Read}} ()
+\begin{DoxyCompactList}\small\itemSettings\em Reads the current value of whatever it is tracking. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Handles the targeting of a point in space. You can target a transform to constantly target its position without having to update the point constantly. If the transform is lost, the target will automatically revert to a null value. 
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classviva_1_1_task_target_a65524a23838a1e8416f0c6cd0157bdb6}\label{classviva_1_1_task_target_a65524a23838a1e8416f0c6cd0157bdb6}} 
+\index{viva.TaskTarget@{viva.TaskTarget}!Read@{Read}}
+\index{Read@{Read}!viva.TaskTarget@{viva.TaskTarget}}
+\doxysubsubsection{\texorpdfstring{Read()}{Read()}}
+{\footnotesize\ttfamily Vector3? viva.\+Task\+Target.\+Read (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Reads the current value of whatever it is tracking. 
+
+\begin{DoxyReturn}{Returns}
+null\+: There is nothing being tracked. Vector3\+: a point in world space.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classviva_1_1_task_target_ad4c45b2d0b6e809e075cd22a8331df0b}\label{classviva_1_1_task_target_ad4c45b2d0b6e809e075cd22a8331df0b}} 
+\index{viva.TaskTarget@{viva.TaskTarget}!SetTargetPosition@{SetTargetPosition}}
+\index{SetTargetPosition@{SetTargetPosition}!viva.TaskTarget@{viva.TaskTarget}}
+\doxysubsubsection{\texorpdfstring{SetTargetPosition()}{SetTargetPosition()}}
+{\footnotesize\ttfamily void viva.\+Task\+Target.\+Set\+Target\+Position (\begin{DoxyParamCaption}\itemSettings[{Vector3?}]{pos }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Assigns a point in world space 
+
+
+\begin{DoxyParams}{Parameters}
+{\em pos} & The point in world space. You can pass null to disable the entire \mbox{\hyperlink{classviva_1_1_task_target}{Task\+Target}}.\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classviva_1_1_task_target_a09dceaf338f8729ea3b747d0f80bb13c}\label{classviva_1_1_task_target_a09dceaf338f8729ea3b747d0f80bb13c}} 
+\index{viva.TaskTarget@{viva.TaskTarget}!SetTargetRagdoll@{SetTargetRagdoll}}
+\index{SetTargetRagdoll@{SetTargetRagdoll}!viva.TaskTarget@{viva.TaskTarget}}
+\doxysubsubsection{\texorpdfstring{SetTargetRagdoll()}{SetTargetRagdoll()}}
+{\footnotesize\ttfamily void viva.\+Task\+Target.\+Set\+Target\+Ragdoll (\begin{DoxyParamCaption}\itemSettings[{\mbox{\hyperlink{classviva_1_1_ragdoll}{Ragdoll}}}]{ragdoll }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Assigns the target as a \mbox{\hyperlink{classviva_1_1_ragdoll}{Ragdoll}}. It will read their floor position. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ragdoll} & The ragdoll to target. You can pass null to disable the entire \mbox{\hyperlink{classviva_1_1_task_target}{Task\+Target}}.\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classviva_1_1_task_target_a997bceee82bf99108b57cdc301bf7039}\label{classviva_1_1_task_target_a997bceee82bf99108b57cdc301bf7039}} 
+\index{viva.TaskTarget@{viva.TaskTarget}!SetTargetTransform@{SetTargetTransform}}
+\index{SetTargetTransform@{SetTargetTransform}!viva.TaskTarget@{viva.TaskTarget}}
+\doxysubsubsection{\texorpdfstring{SetTargetTransform()}{SetTargetTransform()}}
+{\footnotesize\ttfamily void viva.\+Task\+Target.\+Set\+Target\+Transform (\begin{DoxyParamCaption}\itemSettings[{Transform}]{new\+Target\+Transform }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Assigns a transform to track its world position. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em new\+Target\+Transform} & The new target transform. You can pass null to disable the entire \mbox{\hyperlink{classviva_1_1_task_target}{Task\+Target}}.\\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\itemSettings 
+C\+:/\+Users/\+Master-\/\+Donut/\+Documents/v/\+Assets/\+Scripts/\+Autonomy/Face\+Target\+Body.\+cs\end{DoxyCompactItemize}

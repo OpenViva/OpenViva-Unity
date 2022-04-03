@@ -1,0 +1,106 @@
+\hypertarget{classviva_1_1_target}{}\doxysection{viva.\+Target Class Reference}
+\label{classviva_1_1_target}\index{viva.Target@{viva.Target}}
+
+
+Handles the targeting of a point in space. You can target a transform to constantly target its position without having to update the point constantly. If the transform is lost, the target will automatically revert to a null value.  
+
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classviva_1_1_target_a7c7efde24ffd2b48d0da7edaada1c58f}{Set\+Target\+Position}} (Vector3? pos)
+\begin{DoxyCompactList}\small\item\em Assigns a point in world space \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classviva_1_1_target_a3bbdab9e9e1a14efd85dd3e5c10f125d}{Set\+Target\+Character}} (\mbox{\hyperlink{classviva_1_1_character}{Character}} character)
+\begin{DoxyCompactList}\small\item\em Assigns the target as a \mbox{\hyperlink{classviva_1_1_character}{Character}}. It will read their floor position. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classviva_1_1_target_a258d4157837650a199c3f59ac9bff568}{Set\+Target\+Rigid\+Body}} (Rigidbody rigid\+Body)
+\begin{DoxyCompactList}\small\item\em Assigns the target as a Rigidbody. It will read the worldcentermass position. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classviva_1_1_target_ad6b284cf053f57c1830be0294eafbc73}{Set\+Target\+Transform}} (Transform new\+Target\+Transform)
+\begin{DoxyCompactList}\small\item\em Assigns a transform to track its world position. \end{DoxyCompactList}\item 
+Vector3? \mbox{\hyperlink{classviva_1_1_target_ae055d97611c593ca784a32109e5bf37e}{Read}} ()
+\begin{DoxyCompactList}\small\item\em Reads the current value of whatever it is tracking. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Handles the targeting of a point in space. You can target a transform to constantly target its position without having to update the point constantly. If the transform is lost, the target will automatically revert to a null value. 
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classviva_1_1_target_ae055d97611c593ca784a32109e5bf37e}\label{classviva_1_1_target_ae055d97611c593ca784a32109e5bf37e}} 
+\index{viva.Target@{viva.Target}!Read@{Read}}
+\index{Read@{Read}!viva.Target@{viva.Target}}
+\doxysubsubsection{\texorpdfstring{Read()}{Read()}}
+{\footnotesize\ttfamily Vector3? viva.\+Target.\+Read (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Reads the current value of whatever it is tracking. 
+
+\begin{DoxyReturn}{Returns}
+null\+: There is nothing being tracked. Vector3\+: a point in world space.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classviva_1_1_target_a3bbdab9e9e1a14efd85dd3e5c10f125d}\label{classviva_1_1_target_a3bbdab9e9e1a14efd85dd3e5c10f125d}} 
+\index{viva.Target@{viva.Target}!SetTargetCharacter@{SetTargetCharacter}}
+\index{SetTargetCharacter@{SetTargetCharacter}!viva.Target@{viva.Target}}
+\doxysubsubsection{\texorpdfstring{SetTargetCharacter()}{SetTargetCharacter()}}
+{\footnotesize\ttfamily void viva.\+Target.\+Set\+Target\+Character (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classviva_1_1_character}{Character}}}]{character }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Assigns the target as a \mbox{\hyperlink{classviva_1_1_character}{Character}}. It will read their floor position. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em character} & The character to target. You can pass null to disable the entire Task\+Target.\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classviva_1_1_target_a7c7efde24ffd2b48d0da7edaada1c58f}\label{classviva_1_1_target_a7c7efde24ffd2b48d0da7edaada1c58f}} 
+\index{viva.Target@{viva.Target}!SetTargetPosition@{SetTargetPosition}}
+\index{SetTargetPosition@{SetTargetPosition}!viva.Target@{viva.Target}}
+\doxysubsubsection{\texorpdfstring{SetTargetPosition()}{SetTargetPosition()}}
+{\footnotesize\ttfamily void viva.\+Target.\+Set\+Target\+Position (\begin{DoxyParamCaption}\item[{Vector3?}]{pos }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Assigns a point in world space 
+
+
+\begin{DoxyParams}{Parameters}
+{\em pos} & The point in world space. You can pass null to disable the entire Task\+Target.\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classviva_1_1_target_a258d4157837650a199c3f59ac9bff568}\label{classviva_1_1_target_a258d4157837650a199c3f59ac9bff568}} 
+\index{viva.Target@{viva.Target}!SetTargetRigidBody@{SetTargetRigidBody}}
+\index{SetTargetRigidBody@{SetTargetRigidBody}!viva.Target@{viva.Target}}
+\doxysubsubsection{\texorpdfstring{SetTargetRigidBody()}{SetTargetRigidBody()}}
+{\footnotesize\ttfamily void viva.\+Target.\+Set\+Target\+Rigid\+Body (\begin{DoxyParamCaption}\item[{Rigidbody}]{rigid\+Body }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Assigns the target as a Rigidbody. It will read the worldcentermass position. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em rigid\+Body} & The rigid\+Body to target. You can pass null to disable the entire Task\+Target.\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classviva_1_1_target_ad6b284cf053f57c1830be0294eafbc73}\label{classviva_1_1_target_ad6b284cf053f57c1830be0294eafbc73}} 
+\index{viva.Target@{viva.Target}!SetTargetTransform@{SetTargetTransform}}
+\index{SetTargetTransform@{SetTargetTransform}!viva.Target@{viva.Target}}
+\doxysubsubsection{\texorpdfstring{SetTargetTransform()}{SetTargetTransform()}}
+{\footnotesize\ttfamily void viva.\+Target.\+Set\+Target\+Transform (\begin{DoxyParamCaption}\item[{Transform}]{new\+Target\+Transform }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Assigns a transform to track its world position. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em new\+Target\+Transform} & The new target transform. You can pass null to disable the entire Task\+Target.\\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/\+Master-\/\+Donut/\+Documents/v/\+Assets/\+Scripts/\+Autonomy/Face\+Target\+Body.\+cs\end{DoxyCompactItemize}

@@ -1,0 +1,101 @@
+\hypertarget{classviva_1_1_character_i_k}{}\doxysection{viva.\+Character\+IK Class Reference}
+\label{classviva_1_1_character_i_k}\index{viva.CharacterIK@{viva.CharacterIK}}
+
+
+For an example using \mbox{\hyperlink{classviva_1_1_character_i_k}{Character\+IK}}, see \mbox{\hyperlink{classviva_1_1_i_k_handle}{IKHandle}}. The base class for 2 bone inverse kinematics used by Characters during the animation phase.  
+
+
+
+
+Inherited by viva.\+Arm\+IK, viva.\+Leg\+IK, and viva.\+Spine\+IK.
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classviva_1_1_i_k_handle}{IKHandle}} \mbox{\hyperlink{classviva_1_1_character_i_k_aee475465b3d17dc7590b4c525f3440a3}{Add\+Retargeting}} (Update\+IKInfo\+Callback \+\_\+update\+Handle, out \mbox{\hyperlink{classviva_1_1_i_k_handle}{IKHandle}} handle, int \+\_\+priority=0)
+\begin{DoxyCompactList}\small\item\em Creates an \mbox{\hyperlink{classviva_1_1_i_k_handle}{IKHandle}} to control when the stop the influence of this new Retargeting \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classviva_1_1_character_i_k_a5964ab8284cade089262a0699274f60e}{Kill}} ()
+\begin{DoxyCompactList}\small\item\em Kill all handles in this \mbox{\hyperlink{classviva_1_1_character_i_k}{Character\+IK}}. Custom Character\+IKs will be removed when all handles are removed \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+Vector3 \mbox{\hyperlink{classviva_1_1_character_i_k_ad7bafae80b14cca50a0ed7cebf025d22}{Hold\+Space\+To\+World}} (Vector3 hold\+Space\+Pos)
+\begin{DoxyCompactList}\small\item\em Convert a hold space Vector3 to world space. \end{DoxyCompactList}\item 
+Vector3 \mbox{\hyperlink{classviva_1_1_character_i_k_a36240751f0545546ac83d15dbb44a29f}{World\+To\+Hold\+Space}} (Vector3 world\+Pos)
+\begin{DoxyCompactList}\small\item\em Convert a world space Vector3 to hold space. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+For an example using \mbox{\hyperlink{classviva_1_1_character_i_k}{Character\+IK}}, see \mbox{\hyperlink{classviva_1_1_i_k_handle}{IKHandle}}. The base class for 2 bone inverse kinematics used by Characters during the animation phase. 
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classviva_1_1_character_i_k_aee475465b3d17dc7590b4c525f3440a3}\label{classviva_1_1_character_i_k_aee475465b3d17dc7590b4c525f3440a3}} 
+\index{viva.CharacterIK@{viva.CharacterIK}!AddRetargeting@{AddRetargeting}}
+\index{AddRetargeting@{AddRetargeting}!viva.CharacterIK@{viva.CharacterIK}}
+\doxysubsubsection{\texorpdfstring{AddRetargeting()}{AddRetargeting()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classviva_1_1_i_k_handle}{IKHandle}} viva.\+Character\+IK.\+Add\+Retargeting (\begin{DoxyParamCaption}\item[{Update\+IKInfo\+Callback}]{\+\_\+update\+Handle,  }\item[{out \mbox{\hyperlink{classviva_1_1_i_k_handle}{IKHandle}}}]{handle,  }\item[{int}]{\+\_\+priority = {\ttfamily 0} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Creates an \mbox{\hyperlink{classviva_1_1_i_k_handle}{IKHandle}} to control when the stop the influence of this new Retargeting 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+update\+Handle} & The Update\+IKInfo\+Callback that supplies the information to the IK. Exception will be thrown if it is null.\\
+\hline
+{\em handle} & The \mbox{\hyperlink{classviva_1_1_i_k_handle}{IKHandle}} to control the resulting retargeting object.\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classviva_1_1_character_i_k_ad7bafae80b14cca50a0ed7cebf025d22}\label{classviva_1_1_character_i_k_ad7bafae80b14cca50a0ed7cebf025d22}} 
+\index{viva.CharacterIK@{viva.CharacterIK}!HoldSpaceToWorld@{HoldSpaceToWorld}}
+\index{HoldSpaceToWorld@{HoldSpaceToWorld}!viva.CharacterIK@{viva.CharacterIK}}
+\doxysubsubsection{\texorpdfstring{HoldSpaceToWorld()}{HoldSpaceToWorld()}}
+{\footnotesize\ttfamily Vector3 viva.\+Character\+IK.\+Hold\+Space\+To\+World (\begin{DoxyParamCaption}\item[{Vector3}]{hold\+Space\+Pos }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}}
+
+
+
+Convert a hold space Vector3 to world space. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em hold\+Space\+Pos} & The Vector3 to convert.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Vector3\+: The converted position.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classviva_1_1_character_i_k_a5964ab8284cade089262a0699274f60e}\label{classviva_1_1_character_i_k_a5964ab8284cade089262a0699274f60e}} 
+\index{viva.CharacterIK@{viva.CharacterIK}!Kill@{Kill}}
+\index{Kill@{Kill}!viva.CharacterIK@{viva.CharacterIK}}
+\doxysubsubsection{\texorpdfstring{Kill()}{Kill()}}
+{\footnotesize\ttfamily void viva.\+Character\+IK.\+Kill (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Kill all handles in this \mbox{\hyperlink{classviva_1_1_character_i_k}{Character\+IK}}. Custom Character\+IKs will be removed when all handles are removed 
+
+\mbox{\Hypertarget{classviva_1_1_character_i_k_a36240751f0545546ac83d15dbb44a29f}\label{classviva_1_1_character_i_k_a36240751f0545546ac83d15dbb44a29f}} 
+\index{viva.CharacterIK@{viva.CharacterIK}!WorldToHoldSpace@{WorldToHoldSpace}}
+\index{WorldToHoldSpace@{WorldToHoldSpace}!viva.CharacterIK@{viva.CharacterIK}}
+\doxysubsubsection{\texorpdfstring{WorldToHoldSpace()}{WorldToHoldSpace()}}
+{\footnotesize\ttfamily Vector3 viva.\+Character\+IK.\+World\+To\+Hold\+Space (\begin{DoxyParamCaption}\item[{Vector3}]{world\+Pos }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}}
+
+
+
+Convert a world space Vector3 to hold space. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em world\+Pos} & The Vector3 to convert.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Vector3\+: The converted position.
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/\+Master-\/\+Donut/\+Documents/v/\+Assets/\+Scripts/\+Autonomy/Character\+IK.\+cs\end{DoxyCompactItemize}

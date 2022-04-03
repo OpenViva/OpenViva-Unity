@@ -1,0 +1,64 @@
+\hypertarget{classviva_1_1_play_animation}{}\doxysection{viva.\+Play\+Animation Class Reference}
+\label{classviva_1_1_play_animation}\index{viva.PlayAnimation@{viva.PlayAnimation}}
+
+
+Allows the character to play an animation through the \mbox{\hyperlink{classviva_1_1_autonomy}{Autonomy}} tree. Optionally enforces correct \mbox{\hyperlink{classviva_1_1_body_set}{Body\+Set}} to ensure the character is in the correct \mbox{\hyperlink{classviva_1_1_body_set}{Body\+Set}} before performing the animation.  
+
+
+Inheritance diagram for viva.\+Play\+Animation\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classviva_1_1_play_animation}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classviva_1_1_play_animation_a2035d8549146ea6d9141d59aca1fe787}{Play\+Animation}} (\mbox{\hyperlink{classviva_1_1_autonomy}{Autonomy}} \+\_\+autonomy, string \+\_\+body\+Set\+Name, string \+\_\+body\+Set\+Animation=null, bool \+\_\+animate\+Torso=true, float \+\_\+loops\+To\+Complete=1, string \+\_\+wait\+For\+Animation\+Group=\char`\"{}idle\char`\"{})
+\begin{DoxyCompactList}\small\item\em Tasks the character to play a \mbox{\hyperlink{classviva_1_1_body_set}{Body\+Set}} animation. \mbox{\hyperlink{classviva_1_1_body_set}{Body\+Set}} and/or Animation name must be specified. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+Allows the character to play an animation through the \mbox{\hyperlink{classviva_1_1_autonomy}{Autonomy}} tree. Optionally enforces correct \mbox{\hyperlink{classviva_1_1_body_set}{Body\+Set}} to ensure the character is in the correct \mbox{\hyperlink{classviva_1_1_body_set}{Body\+Set}} before performing the animation. 
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classviva_1_1_play_animation_a2035d8549146ea6d9141d59aca1fe787}\label{classviva_1_1_play_animation_a2035d8549146ea6d9141d59aca1fe787}} 
+\index{viva.PlayAnimation@{viva.PlayAnimation}!PlayAnimation@{PlayAnimation}}
+\index{PlayAnimation@{PlayAnimation}!viva.PlayAnimation@{viva.PlayAnimation}}
+\doxysubsubsection{\texorpdfstring{PlayAnimation()}{PlayAnimation()}}
+{\footnotesize\ttfamily viva.\+Play\+Animation.\+Play\+Animation (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classviva_1_1_autonomy}{Autonomy}}}]{\+\_\+autonomy,  }\item[{string}]{\+\_\+body\+Set\+Name,  }\item[{string}]{\+\_\+body\+Set\+Animation = {\ttfamily null},  }\item[{bool}]{\+\_\+animate\+Torso = {\ttfamily true},  }\item[{float}]{\+\_\+loops\+To\+Complete = {\ttfamily 1},  }\item[{string}]{\+\_\+wait\+For\+Animation\+Group = {\ttfamily \char`\"{}idle\char`\"{}} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Tasks the character to play a \mbox{\hyperlink{classviva_1_1_body_set}{Body\+Set}} animation. \mbox{\hyperlink{classviva_1_1_body_set}{Body\+Set}} and/or Animation name must be specified. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+autonomy} & The \mbox{\hyperlink{classviva_1_1_autonomy}{Autonomy}} of the parent character. Exception will be thrown if it is null.\\
+\hline
+{\em \+\_\+body\+Set\+Name} & The target \mbox{\hyperlink{classviva_1_1_body_set}{Body\+Set}} to reach. If \+\_\+body\+Set\+Name is null, it will play the \+\_\+body\+Set\+Animation of the current body\+Set.\\
+\hline
+{\em \+\_\+body\+Set\+Animation} & The animation slot (not name!) to play in the \mbox{\hyperlink{classviva_1_1_body_set}{Body\+Set}}. If \+\_\+body\+Set\+Animation is null, it will default to the \char`\"{}idle\char`\"{} slot of the destination \+\_\+body\+Set\+Name.\\
+\hline
+{\em \+\_\+animate\+Torso} & Is this a torso animation\+Layer animation? Valud does not matter for NPCs\\
+\hline
+{\em \+\_\+loops\+To\+Complete} & The number or fraction of loops to play before it automatically succeeds. A value of -\/1 will never succeed unless specified by code.\\
+\hline
+{\em \+\_\+wait\+For\+Animation\+Group} & The animation that this task must start from. A Value of null will just play it immediately.\\
+\hline
+\end{DoxyParams}
+
+
+The following makes the character tpose in place. 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{var playTpose = \textcolor{keyword}{new} \mbox{\hyperlink{classviva_1_1_play_animation_a2035d8549146ea6d9141d59aca1fe787}{PlayAnimation}}( character.autonomy, \textcolor{stringliteral}{"{}stand"{}}, \textcolor{stringliteral}{"{}tpose"{}} );}
+
+\end{DoxyCode}
+ 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/\+Master-\/\+Donut/\+Documents/v/\+Assets/\+Scripts/\+Autonomy/Play\+Animation.\+cs\end{DoxyCompactItemize}

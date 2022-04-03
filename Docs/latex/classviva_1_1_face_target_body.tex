@@ -1,0 +1,103 @@
+\hypertarget{classviva_1_1_face_target_body}{}\doxysection{viva.\+Face\+Target\+Body Class Reference}
+\label{classviva_1_1_face_target_body}\index{viva.FaceTargetBody@{viva.FaceTargetBody}}
+
+
+Rotates the character model\textquotesingle{}s animation armature after it is animated so it faces a point in space. When added as a requirement, the character\textquotesingle{}s body must face the target before performing the next \mbox{\hyperlink{classviva_1_1_task}{Task}}. When added as a passive, the character\textquotesingle{}s body will constantly try to face a target.  
+
+
+Inheritance diagram for viva.\+Face\+Target\+Body\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classviva_1_1_face_target_body}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classviva_1_1_face_target_body_a1d12a85d50eb676bcdc8f30114f48640}{Face\+Target\+Body}} (\mbox{\hyperlink{classviva_1_1_autonomy}{Autonomy}} \+\_\+autonomy, float speed\+Multiplier=1.\+0f, float \+\_\+min\+Success\+Bearing=20.\+0f, float \+\_\+duration\+Required=0.\+35f, \mbox{\hyperlink{classviva_1_1_target}{Target}} \+\_\+pivot=null)
+\begin{DoxyCompactList}\small\item\em Tasks the character to turn their body to face a particular target. \end{DoxyCompactList}\item 
+override bool \mbox{\hyperlink{classviva_1_1_face_target_body_af5fb68222fb2135730d55d0276761797}{On\+Requirement\+Validate}} ()
+\begin{DoxyCompactList}\small\item\em Used to constantly check the success/\+Fail state of a finished requirement task. If they fall from a success state or if they failed, the \mbox{\hyperlink{classviva_1_1_task}{Task}} will be registered for execution in the next \mbox{\hyperlink{classviva_1_1_autonomy}{Autonomy}} tick until it succeeds again, thereby acting as a requirement. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+readonly \mbox{\hyperlink{classviva_1_1_target}{Target}} \mbox{\hyperlink{classviva_1_1_face_target_body_aeade30c5c37a4964170ecb817793ceee}{target}} = new \mbox{\hyperlink{classviva_1_1_target}{Target}}()
+\begin{DoxyCompactList}\small\item\em The target to rotate towards \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+Rotates the character model\textquotesingle{}s animation armature after it is animated so it faces a point in space. When added as a requirement, the character\textquotesingle{}s body must face the target before performing the next \mbox{\hyperlink{classviva_1_1_task}{Task}}. When added as a passive, the character\textquotesingle{}s body will constantly try to face a target. 
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classviva_1_1_face_target_body_a1d12a85d50eb676bcdc8f30114f48640}\label{classviva_1_1_face_target_body_a1d12a85d50eb676bcdc8f30114f48640}} 
+\index{viva.FaceTargetBody@{viva.FaceTargetBody}!FaceTargetBody@{FaceTargetBody}}
+\index{FaceTargetBody@{FaceTargetBody}!viva.FaceTargetBody@{viva.FaceTargetBody}}
+\doxysubsubsection{\texorpdfstring{FaceTargetBody()}{FaceTargetBody()}}
+{\footnotesize\ttfamily viva.\+Face\+Target\+Body.\+Face\+Target\+Body (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classviva_1_1_autonomy}{Autonomy}}}]{\+\_\+autonomy,  }\item[{float}]{speed\+Multiplier = {\ttfamily 1.0f},  }\item[{float}]{\+\_\+min\+Success\+Bearing = {\ttfamily 20.0f},  }\item[{float}]{\+\_\+duration\+Required = {\ttfamily 0.35f},  }\item[{\mbox{\hyperlink{classviva_1_1_target}{Target}}}]{\+\_\+pivot = {\ttfamily null} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Tasks the character to turn their body to face a particular target. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+autonomy} & The \mbox{\hyperlink{classviva_1_1_autonomy}{Autonomy}} of the parent character. Exception will be thrown if it is null.\\
+\hline
+{\em speed\+Multiplier} & The speed multiplier of the character\textquotesingle{}s rotation as it changes to face the target.\\
+\hline
+{\em \+\_\+min\+Success\+Bearing} & The minimum bearing in degrees that considers the character successfully facing the target.\\
+\hline
+{\em \+\_\+duration\+Required} & The minimum time required for the character to face the target before succeeding.\\
+\hline
+{\em \+\_\+pivot} & Optional pivot to force rotation around a point (only if nearby).\\
+\hline
+\end{DoxyParams}
+
+
+The following makes the character face the player\textquotesingle{}s feet position. 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{var facePlayer = \textcolor{keyword}{new} \mbox{\hyperlink{classviva_1_1_face_target_body_a1d12a85d50eb676bcdc8f30114f48640}{FaceTargetBody}}( character.autonomy );}
+\DoxyCodeLine{facePlayer.target.SetTargetRagdoll( VivaPlayer.user.character.ragdoll );}
+
+\end{DoxyCode}
+ 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classviva_1_1_face_target_body_af5fb68222fb2135730d55d0276761797}\label{classviva_1_1_face_target_body_af5fb68222fb2135730d55d0276761797}} 
+\index{viva.FaceTargetBody@{viva.FaceTargetBody}!OnRequirementValidate@{OnRequirementValidate}}
+\index{OnRequirementValidate@{OnRequirementValidate}!viva.FaceTargetBody@{viva.FaceTargetBody}}
+\doxysubsubsection{\texorpdfstring{OnRequirementValidate()}{OnRequirementValidate()}}
+{\footnotesize\ttfamily override bool viva.\+Face\+Target\+Body.\+On\+Requirement\+Validate (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Used to constantly check the success/\+Fail state of a finished requirement task. If they fall from a success state or if they failed, the \mbox{\hyperlink{classviva_1_1_task}{Task}} will be registered for execution in the next \mbox{\hyperlink{classviva_1_1_autonomy}{Autonomy}} tick until it succeeds again, thereby acting as a requirement. 
+
+\begin{DoxyReturn}{Returns}
+true\+: The \mbox{\hyperlink{classviva_1_1_task}{Task}} is still in a success state. false\+: The \mbox{\hyperlink{classviva_1_1_task}{Task}} has fallen from its success state.
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classviva_1_1_task_a6dbe27c5aeb3caf1ade6d929852d0b30}{viva.\+Task}}.
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classviva_1_1_face_target_body_aeade30c5c37a4964170ecb817793ceee}\label{classviva_1_1_face_target_body_aeade30c5c37a4964170ecb817793ceee}} 
+\index{viva.FaceTargetBody@{viva.FaceTargetBody}!target@{target}}
+\index{target@{target}!viva.FaceTargetBody@{viva.FaceTargetBody}}
+\doxysubsubsection{\texorpdfstring{target}{target}}
+{\footnotesize\ttfamily readonly \mbox{\hyperlink{classviva_1_1_target}{Target}} viva.\+Face\+Target\+Body.\+target = new \mbox{\hyperlink{classviva_1_1_target}{Target}}()}
+
+
+
+The target to rotate towards 
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/\+Master-\/\+Donut/\+Documents/v/\+Assets/\+Scripts/\+Autonomy/Face\+Target\+Body.\+cs\end{DoxyCompactItemize}

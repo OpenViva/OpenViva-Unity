@@ -1,0 +1,134 @@
+\hypertarget{classviva_1_1_character}{}\doxysection{viva.\+Character Class Reference}
+\label{classviva_1_1_character}\index{viva.Character@{viva.Character}}
+
+
+The class used to represent all in-\/game characters  
+
+
+Inheritance diagram for viva.\+Character\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classviva_1_1_character}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classviva_1_1_character_ab26c754dc4552da30e968451c6636e84}\label{classviva_1_1_character_ab26c754dc4552da30e968451c6636e84}} 
+void \mbox{\hyperlink{classviva_1_1_character_ab26c754dc4552da30e968451c6636e84}{Set\+Animation\+Layers}} (Ragdoll\+Mask\mbox{[}$\,$\mbox{]} \+\_\+muscle\+Layer\+Masks, Ragdoll\+Mask\mbox{[}$\,$\mbox{]} \+\_\+animation\+Layer\+Masks, int \+\_\+main\+Layer\+Index, int \+\_\+leg\+Layer\+Index)
+\begin{DoxyCompactList}\small\item\em Sets the animation\+Layers for multi layered animations. 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+muscle\+Layer\+Masks} & The array of Ragdoll\+Mask to specify which muscles each layer will animate.\\
+\hline
+{\em \+\_\+animation\+Layer\+Masks} & The optional corresponding array of Ragdoll\+Mask to specify which bones each layer will animate.\\
+\hline
+\end{DoxyParams}
+\end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classviva_1_1_character_a8f86d739c0704b3a4d0d6a1e76c00123}\label{classviva_1_1_character_a8f86d739c0704b3a4d0d6a1e76c00123}} 
+Weight \mbox{\hyperlink{classviva_1_1_character_a8f86d739c0704b3a4d0d6a1e76c00123}{Get\+Weight}} (string name)
+\begin{DoxyCompactList}\small\item\em Searches all character weights with the specified name. If not present it will create a new one. \begin{DoxyReturn}{Returns}
+Weight\+: The weight with the specified name. ~\newline
+ 
+\end{DoxyReturn}
+\end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classviva_1_1_character_ae0271a1537641395e58fedca67dcb238}\label{classviva_1_1_character_ae0271a1537641395e58fedca67dcb238}} 
+void \mbox{\hyperlink{classviva_1_1_character_ae0271a1537641395e58fedca67dcb238}{Add\+IK}} (\mbox{\hyperlink{classviva_1_1_character_i_k}{Character\+IK}} ik)
+\begin{DoxyCompactList}\small\item\em Adds a new custom \mbox{\hyperlink{classviva_1_1_character_i_k}{Character\+IK}}. This should only be done for bones that do not already have IK. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classviva_1_1_character_af3e50ec44825e56495997304245eb460}\label{classviva_1_1_character_af3e50ec44825e56495997304245eb460}} 
+\mbox{\hyperlink{classviva_1_1_input_button}{Input\+Button}} \mbox{\hyperlink{classviva_1_1_character_af3e50ec44825e56495997304245eb460}{Get\+Input}} (Input input\+Enum)
+\begin{DoxyCompactList}\small\item\em Gets the \mbox{\hyperlink{classviva_1_1_input_button}{Input\+Button}} with the specified Keyboard enum. 
+\begin{DoxyParams}{Parameters}
+{\em input\+Enum} & key\+Enum\+: The \mbox{\hyperlink{classviva_1_1_input_button}{Input\+Button}} enum of the desired \mbox{\hyperlink{classviva_1_1_input_button}{Input\+Button}}. \\
+\hline
+\end{DoxyParams}
+\end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classviva_1_1_character_a765bdc121cff2ba2c3915fd092e854d3}\label{classviva_1_1_character_a765bdc121cff2ba2c3915fd092e854d3}} 
+readonly List$<$ Animation\+Layer $>$ \mbox{\hyperlink{classviva_1_1_character_a765bdc121cff2ba2c3915fd092e854d3}{animation\+Layers}} = new List$<$Animation\+Layer$>$()
+\begin{DoxyCompactList}\small\item\em The List of all Animation\+Layers. Always has at least 1 layer. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classviva_1_1_character_a534feb72640cf06397b11d3b1847a483}\label{classviva_1_1_character_a534feb72640cf06397b11d3b1847a483}} 
+Arm\+IK \mbox{\hyperlink{classviva_1_1_character_a534feb72640cf06397b11d3b1847a483}{right\+Arm\+IK}}
+\begin{DoxyCompactList}\small\item\em The right arm \mbox{\hyperlink{classviva_1_1_character_i_k}{Character\+IK}}. Use this for dynamically animating the arm. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classviva_1_1_character_a30f32b670e916011089752c137e26ebc}\label{classviva_1_1_character_a30f32b670e916011089752c137e26ebc}} 
+Arm\+IK \mbox{\hyperlink{classviva_1_1_character_a30f32b670e916011089752c137e26ebc}{left\+Arm\+IK}}
+\begin{DoxyCompactList}\small\item\em The left arm \mbox{\hyperlink{classviva_1_1_character_i_k}{Character\+IK}}. Use this for dynamically animating the arm. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classviva_1_1_character_a67c8f2db69c1f6dcb3a89272e9a5a040}\label{classviva_1_1_character_a67c8f2db69c1f6dcb3a89272e9a5a040}} 
+readonly Listener\+Gesture \mbox{\hyperlink{classviva_1_1_character_a67c8f2db69c1f6dcb3a89272e9a5a040}{on\+Gesture}} = new Listener\+Gesture( \char`\"{}on\+Gesture\char`\"{} )
+\begin{DoxyCompactList}\small\item\em The callback for receiving gestures \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classviva_1_1_character_a746d6619de1eaa43a30626c5f73eed6a}\label{classviva_1_1_character_a746d6619de1eaa43a30626c5f73eed6a}} 
+readonly Listener\+String \mbox{\hyperlink{classviva_1_1_character_a746d6619de1eaa43a30626c5f73eed6a}{on\+Send\+Gesture}} = new Listener\+String( null, \char`\"{}on\+Send\+Gesture\char`\"{} )
+\begin{DoxyCompactList}\small\item\em The callback for sending gestures (not receiving) \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classviva_1_1_character_a6bca2d2422e327e99f3ca196df3edd85}\label{classviva_1_1_character_a6bca2d2422e327e99f3ca196df3edd85}} 
+readonly Listener\+Generic \mbox{\hyperlink{classviva_1_1_character_a6bca2d2422e327e99f3ca196df3edd85}{on\+Selected}} = new Listener\+Generic( \char`\"{}on\+Selected\char`\"{} )
+\begin{DoxyCompactList}\small\item\em The callback for whenever this character is selected \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classviva_1_1_character_acec4c3d9b89ce3d32ce9c534f99b197e}\label{classviva_1_1_character_acec4c3d9b89ce3d32ce9c534f99b197e}} 
+Model \mbox{\hyperlink{classviva_1_1_character_acec4c3d9b89ce3d32ce9c534f99b197e}{model}}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\begin{DoxyCompactList}\small\item\em The Model used by the character \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classviva_1_1_character_a869a3db2eafd34fed87a21a9a3530f72}\label{classviva_1_1_character_a869a3db2eafd34fed87a21a9a3530f72}} 
+\mbox{\hyperlink{classviva_1_1_autonomy}{Autonomy}} \mbox{\hyperlink{classviva_1_1_character_a869a3db2eafd34fed87a21a9a3530f72}{autonomy}}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\begin{DoxyCompactList}\small\item\em The autonomy of the character for logic \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classviva_1_1_character_ac0228dbf109693d53568e7121ece397d}\label{classviva_1_1_character_ac0228dbf109693d53568e7121ece397d}} 
+Nav \mbox{\hyperlink{classviva_1_1_character_ac0228dbf109693d53568e7121ece397d}{nav}}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\begin{DoxyCompactList}\small\item\em The navigation of the character for logic \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classviva_1_1_character_a3709d928294628588729856a1c2c3aaa}\label{classviva_1_1_character_a3709d928294628588729856a1c2c3aaa}} 
+\mbox{\hyperlink{classviva_1_1_character_ragdoll}{Character\+Ragdoll}} \mbox{\hyperlink{classviva_1_1_character_a3709d928294628588729856a1c2c3aaa}{ragdoll}} = null\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\begin{DoxyCompactList}\small\item\em The physics ragdoll of the \mbox{\hyperlink{classviva_1_1_character}{Character}}. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classviva_1_1_character_a0dcc37831a3be4704c6cfe08900e9d8a}\label{classviva_1_1_character_a0dcc37831a3be4704c6cfe08900e9d8a}} 
+Vision \mbox{\hyperlink{classviva_1_1_character_a0dcc37831a3be4704c6cfe08900e9d8a}{vision}} = null\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\begin{DoxyCompactList}\small\item\em The system handling when objects are seen \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classviva_1_1_character_ab72038cde37ee3510df56443b9ef0bf6}\label{classviva_1_1_character_ab72038cde37ee3510df56443b9ef0bf6}} 
+\mbox{\hyperlink{classviva_1_1_animation_set}{Animation\+Set}} \mbox{\hyperlink{classviva_1_1_character_ab72038cde37ee3510df56443b9ef0bf6}{torso\+Animation\+Set}}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\begin{DoxyCompactList}\small\item\em The \mbox{\hyperlink{classviva_1_1_animation_set}{Animation\+Set}} of the main layer, which always includes the torso. This is recreated every time scripts are reloaded \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classviva_1_1_character_a29ac5cbb676155c00da4e50c68f1f6aa}\label{classviva_1_1_character_a29ac5cbb676155c00da4e50c68f1f6aa}} 
+\mbox{\hyperlink{classviva_1_1_animation_set}{Animation\+Set}} \mbox{\hyperlink{classviva_1_1_character_a29ac5cbb676155c00da4e50c68f1f6aa}{leg\+Animation\+Set}}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\begin{DoxyCompactList}\small\item\em The \mbox{\hyperlink{classviva_1_1_animation_set}{Animation\+Set}} of the legs. This is recreated every time scripts are reloaded \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classviva_1_1_character_ac0ac43d0831fd8c21decc41f15e20294}\label{classviva_1_1_character_ac0ac43d0831fd8c21decc41f15e20294}} 
+Animation\+Layer \mbox{\hyperlink{classviva_1_1_character_ac0ac43d0831fd8c21decc41f15e20294}{torso\+Animation\+Layer}}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\begin{DoxyCompactList}\small\item\em The main Animation\+Layer. Always includes the torso. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classviva_1_1_character_af5508badc028786113c8286c1eead719}\label{classviva_1_1_character_af5508badc028786113c8286c1eead719}} 
+Animation\+Layer \mbox{\hyperlink{classviva_1_1_character_af5508badc028786113c8286c1eead719}{leg\+Animation\+Layer}}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\begin{DoxyCompactList}\small\item\em The Animation\+Layer for legs \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classviva_1_1_character_acf87a0ceec299c96b5b9b42c64bbd1dc}\label{classviva_1_1_character_acf87a0ceec299c96b5b9b42c64bbd1dc}} 
+Raycast\+Hit? \mbox{\hyperlink{classviva_1_1_character_acf87a0ceec299c96b5b9b42c64bbd1dc}{ground}}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\begin{DoxyCompactList}\small\item\em The approximate floor position the character is standing on \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classviva_1_1_character_a1d739f213b68e5106ce5e70438d395f2}\label{classviva_1_1_character_a1d739f213b68e5106ce5e70438d395f2}} 
+Grabber \mbox{\hyperlink{classviva_1_1_character_a1d739f213b68e5106ce5e70438d395f2}{right\+Hand\+Grabber}}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\begin{DoxyCompactList}\small\item\em The right hand grabber for grabbing physics objects. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classviva_1_1_character_a23fad05df24b0b62bbcac1f1af568a2a}\label{classviva_1_1_character_a23fad05df24b0b62bbcac1f1af568a2a}} 
+Grabber \mbox{\hyperlink{classviva_1_1_character_a23fad05df24b0b62bbcac1f1af568a2a}{left\+Hand\+Grabber}}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\begin{DoxyCompactList}\small\item\em The left hand grabber for grabbing physics objects. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classviva_1_1_character_ad0af9c3efa4722bcea895a279d7b3822}\label{classviva_1_1_character_ad0af9c3efa4722bcea895a279d7b3822}} 
+Head\+Look\+At \mbox{\hyperlink{classviva_1_1_character_ad0af9c3efa4722bcea895a279d7b3822}{head\+Look\+At}}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\begin{DoxyCompactList}\small\item\em The class controlling where the character\textquotesingle{}s head points at. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classviva_1_1_character_a6d885604f126c787d52c00f925f48dda}\label{classviva_1_1_character_a6d885604f126c787d52c00f925f48dda}} 
+Eye\+Look\+At \mbox{\hyperlink{classviva_1_1_character_a6d885604f126c787d52c00f925f48dda}{eye\+Look\+At}}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\begin{DoxyCompactList}\small\item\em The class controlling where the character\textquotesingle{}s eyes look at. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classviva_1_1_character_ad4c07b12c1e7419791f9775dde0c2a1a}\label{classviva_1_1_character_ad4c07b12c1e7419791f9775dde0c2a1a}} 
+float \mbox{\hyperlink{classviva_1_1_character_ad4c07b12c1e7419791f9775dde0c2a1a}{scale}}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\begin{DoxyCompactList}\small\item\em The armature lossy\+Scale\textquotesingle{}s x of the model used by this character \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classviva_1_1_character_acb2c23355c71fa90b7464306a89a66c4}\label{classviva_1_1_character_acb2c23355c71fa90b7464306a89a66c4}} 
+string \mbox{\hyperlink{classviva_1_1_character_acb2c23355c71fa90b7464306a89a66c4}{voice}}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\begin{DoxyCompactList}\small\item\em The voice sound set of the character \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classviva_1_1_character_a88cbcd5b958c58891142b956633c2167}\label{classviva_1_1_character_a88cbcd5b958c58891142b956633c2167}} 
+Weight\+Manager1D \mbox{\hyperlink{classviva_1_1_character_a88cbcd5b958c58891142b956633c2167}{locomotion\+Forward}}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\begin{DoxyCompactList}\small\item\em The locomotion animation blend to go forward \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classviva_1_1_character_ad1ee729c2f10c326cb546fbce9178bce}\label{classviva_1_1_character_ad1ee729c2f10c326cb546fbce9178bce}} 
+Viva\+Player \mbox{\hyperlink{classviva_1_1_character_ad1ee729c2f10c326cb546fbce9178bce}{possessor}}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Returns if the character is currently being controlled by an actual player \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+The class used to represent all in-\/game characters 
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/\+Master-\/\+Donut/\+Documents/v/\+Assets/\+Scripts/Character.\+Awareness.\+cs\item 
+C\+:/\+Users/\+Master-\/\+Donut/\+Documents/v/\+Assets/\+Scripts/Character.\+cs\item 
+C\+:/\+Users/\+Master-\/\+Donut/\+Documents/v/\+Assets/\+Scripts/Character.\+Input.\+cs\end{DoxyCompactItemize}

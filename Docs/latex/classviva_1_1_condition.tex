@@ -1,0 +1,69 @@
+\hypertarget{classviva_1_1_condition}{}\doxysection{viva.\+Condition Class Reference}
+\label{classviva_1_1_condition}\index{viva.Condition@{viva.Condition}}
+
+
+Base class for all \mbox{\hyperlink{classviva_1_1_autonomy}{Autonomy}} tasks.  
+
+
+Inheritance diagram for viva.\+Condition\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classviva_1_1_condition}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classviva_1_1_condition_ac9c75d3a386ff9b9b83713f9b0ebbdc8}{Condition}} (\mbox{\hyperlink{classviva_1_1_autonomy}{Autonomy}} \+\_\+autonomy, Bool\+Return\+Func \+\_\+condition)
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{classviva_1_1_task}{Task}} that remains in a success as long as the target instance object isn\textquotesingle{}t destroyed \end{DoxyCompactList}\item 
+override bool \mbox{\hyperlink{classviva_1_1_condition_a4d6f808de3afe8f307e6a47fa904ee3a}{On\+Requirement\+Validate}} ()
+\begin{DoxyCompactList}\small\item\em Used to constantly check the success/\+Fail state of a finished requirement task. If they fall from a success state or if they failed, the \mbox{\hyperlink{classviva_1_1_task}{Task}} will be registered for execution in the next \mbox{\hyperlink{classviva_1_1_autonomy}{Autonomy}} tick until it succeeds again, thereby acting as a requirement. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+Base class for all \mbox{\hyperlink{classviva_1_1_autonomy}{Autonomy}} tasks. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classviva_1_1_condition_ac9c75d3a386ff9b9b83713f9b0ebbdc8}\label{classviva_1_1_condition_ac9c75d3a386ff9b9b83713f9b0ebbdc8}} 
+\index{viva.Condition@{viva.Condition}!Condition@{Condition}}
+\index{Condition@{Condition}!viva.Condition@{viva.Condition}}
+\doxysubsubsection{\texorpdfstring{Condition()}{Condition()}}
+{\footnotesize\ttfamily viva.\+Condition.\+Condition (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classviva_1_1_autonomy}{Autonomy}}}]{\+\_\+autonomy,  }\item[{Bool\+Return\+Func}]{\+\_\+condition }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\mbox{\hyperlink{classviva_1_1_task}{Task}} that remains in a success as long as the target instance object isn\textquotesingle{}t destroyed 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+autonomy} & The \mbox{\hyperlink{classviva_1_1_autonomy}{Autonomy}} of the parent character. Exception will be thrown if it is null.\\
+\hline
+{\em \+\_\+condition} & The condition to check. Returns true if success or false if failure. Exception will be thrown if it is null.\\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classviva_1_1_condition_a4d6f808de3afe8f307e6a47fa904ee3a}\label{classviva_1_1_condition_a4d6f808de3afe8f307e6a47fa904ee3a}} 
+\index{viva.Condition@{viva.Condition}!OnRequirementValidate@{OnRequirementValidate}}
+\index{OnRequirementValidate@{OnRequirementValidate}!viva.Condition@{viva.Condition}}
+\doxysubsubsection{\texorpdfstring{OnRequirementValidate()}{OnRequirementValidate()}}
+{\footnotesize\ttfamily override bool viva.\+Condition.\+On\+Requirement\+Validate (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Used to constantly check the success/\+Fail state of a finished requirement task. If they fall from a success state or if they failed, the \mbox{\hyperlink{classviva_1_1_task}{Task}} will be registered for execution in the next \mbox{\hyperlink{classviva_1_1_autonomy}{Autonomy}} tick until it succeeds again, thereby acting as a requirement. 
+
+\begin{DoxyReturn}{Returns}
+true\+: The \mbox{\hyperlink{classviva_1_1_task}{Task}} is still in a success state. false\+: The \mbox{\hyperlink{classviva_1_1_task}{Task}} has fallen from its success state.
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classviva_1_1_task_a6dbe27c5aeb3caf1ade6d929852d0b30}{viva.\+Task}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/\+Master-\/\+Donut/\+Documents/v/\+Assets/\+Scripts/\+Autonomy/Condition.\+cs\end{DoxyCompactItemize}

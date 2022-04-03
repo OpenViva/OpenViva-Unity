@@ -1,0 +1,85 @@
+\hypertarget{classviva_1_1_animation_set}{}\doxysection{viva.\+Animation\+Set Class Reference}
+\label{classviva_1_1_animation_set}\index{viva.AnimationSet@{viva.AnimationSet}}
+
+
+The object that holds all \mbox{\hyperlink{classviva_1_1_body_set}{Body\+Set}} objects.  
+
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classviva_1_1_body_set}{Body\+Set}} \mbox{\hyperlink{classviva_1_1_animation_set_aed0a8b7e210ffd94991b7a7de2af4876}{Find\+Parent\+Body\+Set}} (Animation\+Node animation\+State)
+\begin{DoxyCompactList}\small\item\em Searches all Body\+Sets for the animation\+State and returns the parent \mbox{\hyperlink{classviva_1_1_body_set}{Body\+Set}}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classviva_1_1_body_set}{Body\+Set}} \mbox{\hyperlink{classviva_1_1_animation_set_aadb6115f8de20cc8cc2372220b375cb1}{this\mbox{[}string name\mbox{]}}}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Returns the \mbox{\hyperlink{classviva_1_1_body_set}{Body\+Set}} associated with the name given. If it does not exist, it will create a \mbox{\hyperlink{classviva_1_1_body_set}{Body\+Set}} with that name. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+The object that holds all \mbox{\hyperlink{classviva_1_1_body_set}{Body\+Set}} objects. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classviva_1_1_animation_set_aed0a8b7e210ffd94991b7a7de2af4876}\label{classviva_1_1_animation_set_aed0a8b7e210ffd94991b7a7de2af4876}} 
+\index{viva.AnimationSet@{viva.AnimationSet}!FindParentBodySet@{FindParentBodySet}}
+\index{FindParentBodySet@{FindParentBodySet}!viva.AnimationSet@{viva.AnimationSet}}
+\doxysubsubsection{\texorpdfstring{FindParentBodySet()}{FindParentBodySet()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classviva_1_1_body_set}{Body\+Set}} viva.\+Animation\+Set.\+Find\+Parent\+Body\+Set (\begin{DoxyParamCaption}\item[{Animation\+Node}]{animation\+State }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Searches all Body\+Sets for the animation\+State and returns the parent \mbox{\hyperlink{classviva_1_1_body_set}{Body\+Set}}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em animation\+State} & The Animation\+State to search.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\mbox{\hyperlink{classviva_1_1_body_set}{Body\+Set}}\+: the parent \mbox{\hyperlink{classviva_1_1_body_set}{Body\+Set}} if found. Null otherwise.
+\end{DoxyReturn}
+
+
+\doxysubsection{Property Documentation}
+\mbox{\Hypertarget{classviva_1_1_animation_set_aadb6115f8de20cc8cc2372220b375cb1}\label{classviva_1_1_animation_set_aadb6115f8de20cc8cc2372220b375cb1}} 
+\index{viva.AnimationSet@{viva.AnimationSet}!this\mbox{[}string name\mbox{]}@{this[string name]}}
+\index{this\mbox{[}string name\mbox{]}@{this[string name]}!viva.AnimationSet@{viva.AnimationSet}}
+\doxysubsubsection{\texorpdfstring{this[string name]}{this[string name]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classviva_1_1_body_set}{Body\+Set}} viva.\+Animation\+Set.\+this\mbox{[}string name\mbox{]}\hspace{0.3cm}{\ttfamily [get]}}
+
+
+
+Returns the \mbox{\hyperlink{classviva_1_1_body_set}{Body\+Set}} associated with the name given. If it does not exist, it will create a \mbox{\hyperlink{classviva_1_1_body_set}{Body\+Set}} with that name. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & The name of the \mbox{\hyperlink{classviva_1_1_body_set}{Body\+Set}} to search for or create.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\mbox{\hyperlink{classviva_1_1_body_set}{Body\+Set}}\+: the \mbox{\hyperlink{classviva_1_1_body_set}{Body\+Set}} if found or a new one if not found.
+\end{DoxyReturn}
+
+
+The following creates 2 connected Body\+Sets and allows them to transition to each other. 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{var layingRightSide = character.animationSet[\textcolor{stringliteral}{"{}laying right"{}}];}
+\DoxyCodeLine{var sleepingSideRight = \textcolor{keyword}{new} AnimationStateClip( \textcolor{comment}{//...some animation}}
+\DoxyCodeLine{layingRightSide[\textcolor{stringliteral}{"{}sleeping"{}}] = sleepingSideRight;}
+\DoxyCodeLine{}
+\DoxyCodeLine{var layingLeftSide = character.animationSet[\textcolor{stringliteral}{"{}laying left"{}}];}
+\DoxyCodeLine{var sleepingSideLeft = \textcolor{keyword}{new} AnimationStateClip( \textcolor{comment}{//...some animation}}
+\DoxyCodeLine{layingLeftSide[\textcolor{stringliteral}{"{}sleeping"{}}] = sleepingSideLeft;}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{//create transitions from sleeping left to sleeping right, and vice versa}}
+\DoxyCodeLine{layingRightSide.transitions[ layingLeftSide ] = \textcolor{keyword}{new} AnimationStateClip( \textcolor{comment}{//some animation transitioning from right to left}}
+\DoxyCodeLine{layingLeftSide.transitions[ layingRightSide ] = \textcolor{keyword}{new} AnimationStateClip( \textcolor{comment}{//some animation transitioning from left to right}}
+\DoxyCodeLine{\textcolor{comment}{//These 2 BodySets are now connected by these transitions and PlayAnimation() can now pathfind from and to each other!}}
+
+\end{DoxyCode}
+ 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/\+Master-\/\+Donut/\+Documents/v/\+Assets/\+Scripts/\+Autonomy/Animation\+Set.\+cs\end{DoxyCompactItemize}

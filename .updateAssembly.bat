@@ -1,0 +1,1 @@
+xcopy C:\Users\Master-Donut\Documents\v\Library\ScriptAssemblies\Assembly-CSharp.dll C:\Users\Master-Donut\Documents\v\Library\PlayerDataCache\Win64\Data\Managed\Assembly-CSharp.dll /Y

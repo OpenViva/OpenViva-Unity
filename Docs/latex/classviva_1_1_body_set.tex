@@ -1,0 +1,53 @@
+\hypertarget{classviva_1_1_body_set}{}\doxysection{viva.\+Body\+Set Class Reference}
+\label{classviva_1_1_body_set}\index{viva.BodySet@{viva.BodySet}}
+
+
+Represents a collection of Animation\+States that share a similar body pose. Example\+: \char`\"{}walk forward\char`\"{}, \char`\"{}standing idle\char`\"{}, \char`\"{}standing waving hello\char`\"{} all belong to a \mbox{\hyperlink{classviva_1_1_body_set}{Body\+Set}} named \char`\"{}standing\char`\"{} because they are all being performed while standing. This is used for pathfinding animation transitions to animate going from one \mbox{\hyperlink{classviva_1_1_body_set}{Body\+Set}} to another in a contextually coherent way. Example\+: Going from a \char`\"{}sleep face down\char`\"{} animation to a \char`\"{}standing jump\char`\"{} requires the character to roll over and stand up before jumping.  
+
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classviva_1_1_body_set_a93809d5b3743f54ebe52e3b8a7bb5a05}\label{classviva_1_1_body_set_a93809d5b3743f54ebe52e3b8a7bb5a05}} 
+bool \mbox{\hyperlink{classviva_1_1_body_set_a93809d5b3743f54ebe52e3b8a7bb5a05}{Contains}} (Animation\+Node animation\+State)
+\begin{DoxyCompactList}\small\item\em Checks if this \mbox{\hyperlink{classviva_1_1_body_set}{Body\+Set}} contains the following Animation\+State \begin{DoxyReturn}{Returns}
+bool\+: True if it is contained. False otherwise.
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em animation\+State} & The Animation\+State to check.\\
+\hline
+\end{DoxyParams}
+\end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classviva_1_1_body_set_a67943a26e32c3a77b9b78e711e55ae7f}\label{classviva_1_1_body_set_a67943a26e32c3a77b9b78e711e55ae7f}} 
+readonly string \mbox{\hyperlink{classviva_1_1_body_set_a67943a26e32c3a77b9b78e711e55ae7f}{name}}
+\begin{DoxyCompactList}\small\item\em The name of the \mbox{\hyperlink{classviva_1_1_body_set}{Body\+Set}} \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classviva_1_1_body_set_a1e1ded380153051723220da0879c77ba}\label{classviva_1_1_body_set_a1e1ded380153051723220da0879c77ba}} 
+readonly Dictionary$<$ \mbox{\hyperlink{classviva_1_1_body_set}{Body\+Set}}, Animation\+Node $>$ \mbox{\hyperlink{classviva_1_1_body_set_a1e1ded380153051723220da0879c77ba}{transitions}} = new Dictionary$<$\mbox{\hyperlink{classviva_1_1_body_set}{Body\+Set}}, Animation\+Node$>$()
+\begin{DoxyCompactList}\small\item\em The dictionary for maintaining \mbox{\hyperlink{classviva_1_1_body_set}{Body\+Set}} path connections. Use this if you have a new type of \mbox{\hyperlink{classviva_1_1_body_set}{Body\+Set}} pose you wish to add. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classviva_1_1_body_set_ae5a799bbc947282d937900563eab2efd}\label{classviva_1_1_body_set_ae5a799bbc947282d937900563eab2efd}} 
+int \mbox{\hyperlink{classviva_1_1_body_set_ae5a799bbc947282d937900563eab2efd}{Count}}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\begin{DoxyCompactList}\small\item\em \begin{DoxyReturn}{Returns}
+Get the number of Animation\+States in this \mbox{\hyperlink{classviva_1_1_body_set}{Body\+Set}} 
+\end{DoxyReturn}
+\end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classviva_1_1_body_set_a6a7cb415175f5b4eedeb7e5488f0249e}\label{classviva_1_1_body_set_a6a7cb415175f5b4eedeb7e5488f0249e}} 
+Animation\+Node \mbox{\hyperlink{classviva_1_1_body_set_a6a7cb415175f5b4eedeb7e5488f0249e}{this\mbox{[}string key\mbox{]}}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em The name of the \mbox{\hyperlink{classviva_1_1_body_set}{Body\+Set}} \begin{DoxyReturn}{Returns}
+Animation\+State\+: The Animation\+State if found. Null otherwise.
+\end{DoxyReturn}
+\end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Represents a collection of Animation\+States that share a similar body pose. Example\+: \char`\"{}walk forward\char`\"{}, \char`\"{}standing idle\char`\"{}, \char`\"{}standing waving hello\char`\"{} all belong to a \mbox{\hyperlink{classviva_1_1_body_set}{Body\+Set}} named \char`\"{}standing\char`\"{} because they are all being performed while standing. This is used for pathfinding animation transitions to animate going from one \mbox{\hyperlink{classviva_1_1_body_set}{Body\+Set}} to another in a contextually coherent way. Example\+: Going from a \char`\"{}sleep face down\char`\"{} animation to a \char`\"{}standing jump\char`\"{} requires the character to roll over and stand up before jumping. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/\+Master-\/\+Donut/\+Documents/v/\+Assets/\+Scripts/\+Autonomy/Animation\+Set.\+cs\end{DoxyCompactItemize}
