@@ -1,0 +1,241 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2474981540241856046
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2474981540241856047}
+  - component: {fileID: 2474981540241856044}
+  m_Layer: 0
+  m_Name: BuiltInAssetManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2474981540241856047
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2474981540241856046}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2474981540241856044
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2474981540241856046}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e44ad77eedac2244eaaba74893fb56b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_playerPrefab: {fileID: 93675598782415417, guid: 251f070f9115460419bbc9dd86ad8980,
+    type: 3}
+  builtInAnimations: {fileID: 11400000, guid: f6bed35b56d86dd4e99e3b1da9544bfd, type: 2}
+  modelDefaultShader: {fileID: -6465566751694194690, guid: 2a812448796575e4f9b8877b81be75a1,
+    type: 3}
+  modelUnlitShader: {fileID: -6465566751694194690, guid: 7c5dc1e0732ce8d41b86a0336ebb8137,
+    type: 3}
+  modeOutlineMaterial: {fileID: 2100000, guid: d30a073361d03e041932693d97c1def0, type: 2}
+  m_bipedPrefab: {fileID: 1757722468557320306, guid: 0049c8af2d3973e4bb5c9a5d81ce43bc,
+    type: 3}
+  m_animalPrefab: {fileID: 3280748704085250648, guid: f2f2e0af5557f8e4b9403ec46abd6e04,
+    type: 3}
+  ragdollActivePhysicMaterial: {fileID: 13400000, guid: 07807b02bfbcb4d408bf03538b665bf2,
+    type: 2}
+  ragdollHandPhysicMaterial: {fileID: 13400000, guid: aee659055fe8f844aa81e2f7d87fb1d4,
+    type: 2}
+  ragdollStickyHandPhysicMaterial: {fileID: 13400000, guid: 6ba8f918d0f82cb488cce1ed85141dad,
+    type: 2}
+  ragdollFootPhysicMaterial: {fileID: 13400000, guid: 1cd1266497e2a7d4381f6b30d9c80c60,
+    type: 2}
+  grabbableCylinderMesh: {fileID: -5932693010545731358, guid: 1f24cf7f4b388a2458a6eb5ecd1ef440,
+    type: 3}
+  grabbableMaterial: {fileID: 2100000, guid: 0207656d994c3a44fb9f9096c550c837, type: 2}
+  grabbableCylinderDirectionOffset:
+  - {x: 90, y: 0, z: -90}
+  - {x: -90, y: 180, z: -90}
+  - {x: -90, y: -90, z: 180}
+  speechBubblePrefab: {fileID: 5323452456574942111, guid: 95459fff6cdedc34699cf18ca289c5c2,
+    type: 3}
+  tPoseEuler:
+  - {x: 0, y: 0, z: 180}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 180}
+  - {x: 0, y: 0, z: 180}
+  - {x: 0, y: 0, z: 180}
+  - {x: 0, y: 0, z: 180}
+  - {x: -66, y: 0, z: 180}
+  - {x: -66, y: 0, z: 180}
+  - {x: 0, y: 0, z: -90}
+  - {x: 0, y: 0, z: 90}
+  - {x: 0, y: 0, z: -90}
+  - {x: 0, y: 0, z: 90}
+  - {x: 0, y: 0, z: -90}
+  - {x: 0, y: 0, z: 90}
+  - {x: 0, y: 0, z: -90}
+  - {x: 0, y: 0, z: 90}
+  - {x: 0, y: 0, z: 90}
+  - {x: 0, y: 0, z: 90}
+  - {x: 0, y: 0, z: 90}
+  - {x: 0, y: 0, z: 90}
+  - {x: 0, y: 0, z: 90}
+  - {x: 0, y: 0, z: 90}
+  - {x: 0, y: 0, z: 90}
+  - {x: 0, y: 0, z: 90}
+  - {x: 0, y: 0, z: 90}
+  - {x: 0, y: 0, z: 90}
+  - {x: 0, y: 0, z: 90}
+  - {x: 0, y: 0, z: 90}
+  - {x: 0, y: 0, z: 90}
+  - {x: 0, y: 0, z: 90}
+  - {x: 0, y: 0, z: 90}
+  - {x: 0, y: 0, z: 90}
+  - {x: 0, y: 0, z: 90}
+  - {x: 0, y: 0, z: 90}
+  - {x: 0, y: 0, z: 90}
+  - {x: 0, y: 0, z: 90}
+  - {x: 0, y: 0, z: 90}
+  - {x: 0, y: 0, z: 90}
+  - {x: 0, y: 0, z: 90}
+  - {x: 0, y: 0, z: 90}
+  - {x: 0, y: 0, z: 90}
+  - {x: 0, y: 0, z: 90}
+  - {x: 0, y: 0, z: 90}
+  - {x: 0, y: 0, z: 90}
+  - {x: 0, y: 0, z: 90}
+  - {x: 0, y: 0, z: 90}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  tPoseUp:
+  - -1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 2
+  - 2
+  defaultFBXThumbnail: {fileID: 2800000, guid: 58a8d2d471ed0d04b8ab6c35c4804f87, type: 3}
+  m_mainUIPrefab: {fileID: 0}
+  m_gameUIPrefab: {fileID: 6899640422785365457, guid: ed453afaff1ad1d44a392d8e298e0486,
+    type: 3}
+  commandLibraryEntryPrefab: {fileID: 4347714920711428637, guid: 36f5dd0005bd9df4ea252f547a9d5b77,
+    type: 3}
+  defaultModelMaterials:
+  - {fileID: 2100000, guid: 8781628a75f927144a20218ee30b0b40, type: 2}
+  - {fileID: 2100000, guid: 9b866e74415c2134c9e1c537d8a56b3d, type: 2}
+  - {fileID: 2100000, guid: d47daac0f2d041445a4f434a444d4993, type: 2}
+  - {fileID: 2100000, guid: fe054fc508c61e041b1e4b46ae7f3869, type: 2}
+  toonModelMaterials:
+  - {fileID: 2100000, guid: 173a8ccd6bedd3c48b35c23d6411a677, type: 2}
+  - {fileID: 2100000, guid: 3c1fd8042ac58214fb73d5b47f0d0df8, type: 2}
+  - {fileID: 2100000, guid: 18b7bdbc3e13846488e33ec76dc54956, type: 2}
+  physicsSoundGroups:
+  - {fileID: 11400000, guid: 93da004092acc5c4a92530b9125c3254, type: 2}
+  - {fileID: 11400000, guid: 1e0c835d51c13654baec7a2493e3e6b0, type: 2}
+  - {fileID: 11400000, guid: dbfa5e190c2a6284fa5a15ed84041234, type: 2}
+  - {fileID: 11400000, guid: 0c03cdb468d6b5a4f81f3dbdab77fba7, type: 2}
+  - {fileID: 11400000, guid: 10bd2f127e0ed9f47bc4ed40bb53633e, type: 2}
+  - {fileID: 11400000, guid: a7ab9b1b2cfbbcb4493ba2fb99dafcab, type: 2}
+  - {fileID: 11400000, guid: 7656ec6501236eb4db77896dfdedec3a, type: 2}
+  - {fileID: 11400000, guid: b9bdddcfc8dfe104189e44556f06c682, type: 2}
+  - {fileID: 11400000, guid: bcbf7cfde13f59346a2d51997adf9b7e, type: 2}
+  - {fileID: 11400000, guid: f6e15fbd23cad7545a650384cecbde3a, type: 2}
+  - {fileID: 11400000, guid: cda1c0a22702aab43b0fe3eb6e9a2f69, type: 2}
+  - {fileID: 11400000, guid: 780974734273f1e41bbb41c781c6feab, type: 2}
+  - {fileID: 11400000, guid: 6a7d1023004d87f42b641471e82520a4, type: 2}
+  - {fileID: 11400000, guid: afa3ac424af5c7345bbc6e37995625e2, type: 2}
+  physicsDragSounds:
+  - {fileID: 8300000, guid: 437df6830a7604b43bfb5df050c74b63, type: 3}
+  physicsSoundSoundSettings:
+  - {fileID: 11400000, guid: 4fac292c1ed17af478412156641eaf1a, type: 2}
+  - {fileID: 11400000, guid: f5fe70c114ddfaf46a2620d6ca4539f3, type: 2}
+  weatherSounds:
+  - name: outdoor
+    morningSound: ambMorningOutside.wav
+    daySound: ambDayOutside.wav
+    nightSound: ambNightOutside.wav
+    indoors: 0
+  - name: indoor
+    morningSound: ambMorningInside.wav
+    daySound: ambDayInside.wav
+    nightSound: ambNightInside.wav
+    indoors: 0
+  - name: pond
+    morningSound: ambWaterPondDaytime.wav
+    daySound: ambWaterPondDaytime.wav
+    nightSound: ambWaterPondNighttime.wav
+    indoors: 0
+  sprites:
+  - {fileID: 21300000, guid: 62d1ca55e1888514daea23abce684bed, type: 3}
+  - {fileID: 21300000, guid: a18bc20acbd06ed4fac17bd84a9be5f4, type: 3}
+  - {fileID: 21300000, guid: 5d8083c44d255154dbc624f6107f0ffd, type: 3}
+  - {fileID: 21300000, guid: 293aa221bc1f1a446bfe0d245a615e2a, type: 3}
+  capsuleGround: {fileID: 13400000, guid: f6246d245851a3c469ff575f5e3d761d, type: 2}
+  capsuleAir: {fileID: 13400000, guid: 7cd617a2cd218514597036f18af86a1d, type: 2}
+  physicMaterials:
+  - {fileID: 13400000, guid: 89227b70f45dafd40ae5b36ac4488ced, type: 2}
+  - {fileID: 13400000, guid: 0913ed764372e894b838264fb5b3bf09, type: 2}
+  - {fileID: 13400000, guid: 2887cd08f2f458f469cdcb7ba0e3e14c, type: 2}
+  - {fileID: 13400000, guid: af451d48131ab7c4784310e64fdaa399, type: 2}

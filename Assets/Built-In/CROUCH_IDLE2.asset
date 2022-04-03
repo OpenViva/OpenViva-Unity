@@ -1,0 +1,176 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99f0b51cd73873644a54ed926f916a05, type: 3}
+  m_Name: CROUCH_IDLE2
+  m_EditorClassIdentifier: 
+  fileData: "{\n    \"m_name\": \"CROUCH_IDLE2\",\n    \"m_duration\": 0.0416666679084301,\n   
+    \"m_baseFramerate\": 24.0,\n    \"m_channels\": [\n        {\n            \"m_channel\":
+    1,\n            \"m_bindTarget\": \"ARM_L\",\n            \"m_frameSets\": [\n               
+    {\n                    \"m_frames\": [\n                        -0.001331272884272039\n                   
+    ]\n                },\n                {\n                    \"m_frames\": [\n                       
+    -0.000025754676244105212\n                    ]\n                },\n               
+    {\n                    \"m_frames\": [\n                        0.011559011414647103\n                   
+    ]\n                },\n                {\n                    \"m_frames\": [\n                       
+    0.9999323487281799\n                    ]\n                }\n            ],\n           
+    \"m_bindTargetHash\": 936937645\n        },\n        {\n            \"m_channel\":
+    1,\n            \"m_bindTarget\": \"ARM_R\",\n            \"m_frameSets\": [\n               
+    {\n                    \"m_frames\": [\n                        -0.0013314737007021905\n                   
+    ]\n                },\n                {\n                    \"m_frames\": [\n                       
+    0.000019848268493660726\n                    ]\n                },\n               
+    {\n                    \"m_frames\": [\n                        -0.011558731086552143\n                   
+    ]\n                },\n                {\n                    \"m_frames\": [\n                       
+    0.9999323487281799\n                    ]\n                }\n            ],\n           
+    \"m_bindTargetHash\": 936937667\n        },\n        {\n            \"m_channel\":
+    1,\n            \"m_bindTarget\": \"FOOT_L\",\n            \"m_frameSets\": [\n               
+    {\n                    \"m_frames\": [\n                        0.9083094596862793\n                   
+    ]\n                },\n                {\n                    \"m_frames\": [\n                       
+    -0.007928550243377686\n                    ]\n                },\n               
+    {\n                    \"m_frames\": [\n                        -0.06600811332464218\n                   
+    ]\n                },\n                {\n                    \"m_frames\": [\n                       
+    0.41298189759254458\n                    ]\n                }\n            ],\n           
+    \"m_bindTargetHash\": -103590451\n        },\n        {\n            \"m_channel\":
+    1,\n            \"m_bindTarget\": \"FOOT_R\",\n            \"m_frameSets\": [\n               
+    {\n                    \"m_frames\": [\n                        0.9082958102226257\n                   
+    ]\n                },\n                {\n                    \"m_frames\": [\n                       
+    0.007932121865451336\n                    ]\n                },\n               
+    {\n                    \"m_frames\": [\n                        0.06599879264831543\n                   
+    ]\n                },\n                {\n                    \"m_frames\": [\n                       
+    0.4130132794380188\n                    ]\n                }\n            ],\n           
+    \"m_bindTargetHash\": -910159505\n        },\n        {\n            \"m_channel\":
+    1,\n            \"m_bindTarget\": \"HAND_L\",\n            \"m_frameSets\": [\n               
+    {\n                    \"m_frames\": [\n                        0.011110407300293446\n                   
+    ]\n                },\n                {\n                    \"m_frames\": [\n                       
+    -0.00043732021003961563\n                    ]\n                },\n               
+    {\n                    \"m_frames\": [\n                        0.0045523876324296\n                   
+    ]\n                },\n                {\n                    \"m_frames\": [\n                       
+    0.999927818775177\n                    ]\n                }\n            ],\n           
+    \"m_bindTargetHash\": 960465176\n        },\n        {\n            \"m_channel\":
+    1,\n            \"m_bindTarget\": \"HAND_R\",\n            \"m_frameSets\": [\n               
+    {\n                    \"m_frames\": [\n                        0.011110329069197178\n                   
+    ]\n                },\n                {\n                    \"m_frames\": [\n                       
+    0.0004486407560762018\n                    ]\n                },\n               
+    {\n                    \"m_frames\": [\n                        -0.004551823250949383\n                   
+    ]\n                },\n                {\n                    \"m_frames\": [\n                       
+    0.999927818775177\n                    ]\n                }\n            ],\n           
+    \"m_bindTargetHash\": 1767034230\n        },\n        {\n            \"m_channel\":
+    1,\n            \"m_bindTarget\": \"HEAD\",\n            \"m_frameSets\": [\n               
+    {\n                    \"m_frames\": [\n                        0.00007495470345020294\n                   
+    ]\n                },\n                {\n                    \"m_frames\": [\n                       
+    -8.866445710964399e-8\n                    ]\n                },\n               
+    {\n                    \"m_frames\": [\n                        0.00000550541017219075\n                   
+    ]\n                },\n                {\n                    \"m_frames\": [\n                       
+    1.0\n                    ]\n                }\n            ],\n            \"m_bindTargetHash\":
+    1488409984\n        },\n        {\n            \"m_channel\": 0,\n           
+    \"m_bindTarget\": \"HIPS\",\n            \"m_frameSets\": [\n               
+    {\n                    \"m_frames\": [\n                        2.0242263421010877e-9\n                   
+    ]\n                },\n                {\n                    \"m_frames\": [\n                       
+    0.5219753384590149\n                    ]\n                },\n               
+    {\n                    \"m_frames\": [\n                        -0.0948605164885521\n                   
+    ]\n                }\n            ],\n            \"m_bindTargetHash\": 903815352\n       
+    },\n        {\n            \"m_channel\": 1,\n            \"m_bindTarget\": \"HIPS\",\n           
+    \"m_frameSets\": [\n                {\n                    \"m_frames\": [\n                       
+    0.00021769152954220772\n                    ]\n                },\n               
+    {\n                    \"m_frames\": [\n                        1.4067781251014822e-7\n                   
+    ]\n                },\n                {\n                    \"m_frames\": [\n                       
+    -1.0\n                    ]\n                },\n                {\n                   
+    \"m_frames\": [\n                        -0.00014135958917904645\n                   
+    ]\n                }\n            ],\n            \"m_bindTargetHash\": 903815352\n       
+    },\n        {\n            \"m_channel\": 1,\n            \"m_bindTarget\": \"LEG_L\",\n           
+    \"m_frameSets\": [\n                {\n                    \"m_frames\": [\n                       
+    -0.9107889533042908\n                    ]\n                },\n               
+    {\n                    \"m_frames\": [\n                        -0.01047107856720686\n                   
+    ]\n                },\n                {\n                    \"m_frames\": [\n                       
+    0.035376373678445819\n                    ]\n                },\n               
+    {\n                    \"m_frames\": [\n                        0.41122063994407656\n                   
+    ]\n                }\n            ],\n            \"m_bindTargetHash\": 1010594461\n       
+    },\n        {\n            \"m_channel\": 1,\n            \"m_bindTarget\": \"LEG_R\",\n           
+    \"m_frameSets\": [\n                {\n                    \"m_frames\": [\n                       
+    -0.9107732176780701\n                    ]\n                },\n               
+    {\n                    \"m_frames\": [\n                        0.010473682545125485\n                   
+    ]\n                },\n                {\n                    \"m_frames\": [\n                       
+    -0.03536885604262352\n                    ]\n                },\n               
+    {\n                    \"m_frames\": [\n                        0.41125598549842837\n                   
+    ]\n                }\n            ],\n            \"m_bindTargetHash\": 1010594487\n       
+    },\n        {\n            \"m_channel\": 1,\n            \"m_bindTarget\": \"LOWER_SPINE\",\n           
+    \"m_frameSets\": [\n                {\n                    \"m_frames\": [\n                       
+    -0.001164149260148406\n                    ]\n                },\n               
+    {\n                    \"m_frames\": [\n                        0.15525302290916444\n                   
+    ]\n                },\n                {\n                    \"m_frames\": [\n                       
+    0.9878740906715393\n                    ]\n                },\n               
+    {\n                    \"m_frames\": [\n                        -0.00024408480385318398\n                   
+    ]\n                }\n            ],\n            \"m_bindTargetHash\": 407320889\n       
+    },\n        {\n            \"m_channel\": 1,\n            \"m_bindTarget\": \"NECK\",\n           
+    \"m_frameSets\": [\n                {\n                    \"m_frames\": [\n                       
+    0.00008220704330597073\n                    ]\n                },\n               
+    {\n                    \"m_frames\": [\n                        0.0018102007452398539\n                   
+    ]\n                },\n                {\n                    \"m_frames\": [\n                       
+    -0.000048467736633028835\n                    ]\n                },\n               
+    {\n                    \"m_frames\": [\n                        -0.9999986290931702\n                   
+    ]\n                }\n            ],\n            \"m_bindTargetHash\": -433904513\n       
+    },\n        {\n            \"m_channel\": 1,\n            \"m_bindTarget\": \"SHOULDER_L\",\n           
+    \"m_frameSets\": [\n                {\n                    \"m_frames\": [\n                       
+    0.009469124488532544\n                    ]\n                },\n               
+    {\n                    \"m_frames\": [\n                        0.010303587652742863\n                   
+    ]\n                },\n                {\n                    \"m_frames\": [\n                       
+    -0.7486593127250671\n                    ]\n                },\n               
+    {\n                    \"m_frames\": [\n                        -0.6628075838088989\n                   
+    ]\n                }\n            ],\n            \"m_bindTargetHash\": 682696953\n       
+    },\n        {\n            \"m_channel\": 1,\n            \"m_bindTarget\": \"SHOULDER_R\",\n           
+    \"m_frameSets\": [\n                {\n                    \"m_frames\": [\n                       
+    0.008111041970551014\n                    ]\n                },\n               
+    {\n                    \"m_frames\": [\n                        -0.00910649448633194\n                   
+    ]\n                },\n                {\n                    \"m_frames\": [\n                       
+    0.7486038208007813\n                    ]\n                },\n               
+    {\n                    \"m_frames\": [\n                        -0.6629058718681336\n                   
+    ]\n                }\n            ],\n            \"m_bindTargetHash\": -1548793541\n       
+    },\n        {\n            \"m_channel\": 1,\n            \"m_bindTarget\": \"UPPER_ARM_L\",\n           
+    \"m_frameSets\": [\n                {\n                    \"m_frames\": [\n                       
+    0.18401484191417695\n                    ]\n                },\n               
+    {\n                    \"m_frames\": [\n                        0.19575044512748719\n                   
+    ]\n                },\n                {\n                    \"m_frames\": [\n                       
+    0.532328188419342\n                    ]\n                },\n               
+    {\n                    \"m_frames\": [\n                        0.8027745485305786\n                   
+    ]\n                }\n            ],\n            \"m_bindTargetHash\": 1674589276\n       
+    },\n        {\n            \"m_channel\": 1,\n            \"m_bindTarget\": \"UPPER_ARM_R\",\n           
+    \"m_frameSets\": [\n                {\n                    \"m_frames\": [\n                       
+    0.18401575088500977\n                    ]\n                },\n               
+    {\n                    \"m_frames\": [\n                        -0.19575756788253785\n                   
+    ]\n                },\n                {\n                    \"m_frames\": [\n                       
+    -0.5323273539543152\n                    ]\n                },\n               
+    {\n                    \"m_frames\": [\n                        0.8027732372283936\n                   
+    ]\n                }\n            ],\n            \"m_bindTargetHash\": 1674589270\n       
+    },\n        {\n            \"m_channel\": 1,\n            \"m_bindTarget\": \"UPPER_LEG_L\",\n           
+    \"m_frameSets\": [\n                {\n                    \"m_frames\": [\n                       
+    -0.4660228192806244\n                    ]\n                },\n               
+    {\n                    \"m_frames\": [\n                        -0.021210912615060808\n                   
+    ]\n                },\n                {\n                    \"m_frames\": [\n                       
+    0.0003760814433917403\n                    ]\n                },\n               
+    {\n                    \"m_frames\": [\n                        -0.8845182657241821\n                   
+    ]\n                }\n            ],\n            \"m_bindTargetHash\": -1625834818\n       
+    },\n        {\n            \"m_channel\": 1,\n            \"m_bindTarget\": \"UPPER_LEG_R\",\n           
+    \"m_frameSets\": [\n                {\n                    \"m_frames\": [\n                       
+    0.46602699160575869\n                    ]\n                },\n               
+    {\n                    \"m_frames\": [\n                        -0.021469127386808397\n                   
+    ]\n                },\n                {\n                    \"m_frames\": [\n                       
+    0.000828212418127805\n                    ]\n                },\n               
+    {\n                    \"m_frames\": [\n                        0.8845096230506897\n                   
+    ]\n                }\n            ],\n            \"m_bindTargetHash\": -1625834828\n       
+    },\n        {\n            \"m_channel\": 1,\n            \"m_bindTarget\": \"UPPER_SPINE\",\n           
+    \"m_frameSets\": [\n                {\n                    \"m_frames\": [\n                       
+    -0.15514016151428224\n                    ]\n                },\n               
+    {\n                    \"m_frames\": [\n                        0.000022460222680820152\n                   
+    ]\n                },\n                {\n                    \"m_frames\": [\n                       
+    -0.00023968625464476645\n                    ]\n                },\n               
+    {\n                    \"m_frames\": [\n                        -0.9878924489021301\n                   
+    ]\n                }\n            ],\n            \"m_bindTargetHash\": -563564926\n       
+    }\n    ],\n    \"m_ragdollCompatible\": true,\n    \"enableRootMotion\": false,\n   
+    \"createMirrorVariant\": false\n}"

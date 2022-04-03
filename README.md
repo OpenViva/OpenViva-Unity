@@ -1,1 +1,3 @@
-The Contiunation of Viva 
+# OpenViva
+
+Open source continuation of Viva.
