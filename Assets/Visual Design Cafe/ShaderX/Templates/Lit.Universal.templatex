@@ -1,0 +1,274 @@
+{% comment %}
+// Copyright 2020 Visual Design Cafe. All rights reserved.
+// This shader was created using ShaderX, a shader framework by Visual Design Cafe.
+// https://www.visualdesigncafe.com/shaderx
+{% endcomment %}
+
+// Vertex
+#if defined(SHADERPASS_SHADOWCASTER)
+    float3 _LightDirection;
+#endif
+
+float4 UnityObjectToClipPos( float3 positionOS, float3 positionWS, float3 normalWS )
+{
+    #if defined(SHADERPASS_SHADOWCASTER)
+        // Define shadow pass specific clip position for Universal
+        float4 positionCS = TransformWorldToHClip(ApplyShadowBias(positionWS, normalWS, _LightDirection));
+        #if UNITY_REVERSED_Z
+            positionCS.z = min(positionCS.z, positionCS.w * UNITY_NEAR_CLIP_VALUE);
+        #else
+            positionCS.z = max(positionCS.z, positionCS.w * UNITY_NEAR_CLIP_VALUE);
+        #endif
+    #elif defined(SHADERPASS_META)
+        float4 positionCS = TransformWorldToHClip(positionWS);
+    #else
+        float4 positionCS = TransformWorldToHClip(positionWS);
+    #endif
+
+    return positionCS;
+}
+
+SurfaceInput vert( VertexAttributes input )
+{
+    SurfaceInput output = (SurfaceInput)0;
+
+    UNITY_SETUP_INSTANCE_ID(input);
+    UNITY_TRANSFER_INSTANCE_ID(input, output);
+    UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO(output);
+
+    {% if PreVertexMethod %}
+        PreVertexMethod( input );
+    {% endif %}
+
+    float3 positionWS = TransformObjectToWorld(input.positionOS);
+    float3 normalWS = TransformObjectToWorldNormal(input.normalOS);
+    float4 tangentWS = float4(TransformObjectToWorldDir(input.tangentOS.xyz), input.tangentOS.w);
+
+    output.positionCS = UnityObjectToClipPos( input.positionOS.xyz, positionWS, normalWS );
+    output.positionWS = positionWS;
+    output.normalWS = normalWS;			// normalized in TransformObjectToWorldNormal()
+    output.tangentWS = tangentWS;		// normalized in TransformObjectToWorldDir()
+    output.texCoord0 = input.uv0;
+    output.texCoord1 = input.uv1;
+    output.texCoord2 = input.uv2;
+    //output.texCoord3 = input.uv3;
+    output.color = input.color;
+    output.viewDirectionWS.xyz = normalize( _WorldSpaceCameraPos.xyz - positionWS );
+
+    VertexMethod( input, output, float4(0,0,0,0) );
+
+    positionWS = output.positionWS;
+    normalWS = output.normalWS;			// normalized in TransformObjectToWorldNormal()
+    tangentWS = output.tangentWS;		// normalized in TransformObjectToWorldDir()
+
+    // Recalculate vertex based on modifications to output
+    // TODO: Only do this if the position changed
+    input.positionOS = TransformWorldToObject( output.positionWS );
+    output.positionCS = UnityObjectToClipPos( input.positionOS.xyz, positionWS, normalWS );
+
+    input.uv0 = output.texCoord0;
+    input.uv1 = output.texCoord1;
+    input.uv2 = output.texCoord2;
+
+    #if SHADERPASS == SHADERPASS_FORWARD
+        OUTPUT_LIGHTMAP_UV(input.uv1, unity_LightmapST, output.ambientOrLightmapUV);
+        OUTPUT_SH(normalWS, output.ambientOrLightmapUV);
+    #endif
+
+    {% if pass.name == "Universal Forward" %}
+        #ifdef _MAIN_LIGHT_SHADOWS
+            output.shadowCoord = TransformWorldToShadowCoord( positionWS );
+        #endif
+
+        #ifdef VARYINGS_NEED_FOG_AND_VERTEX_LIGHT
+            half3 vertexLight = VertexLighting(positionWS, normalWS);
+            half fogFactor = ComputeFogFactor(output.positionCS.z);
+            output.fogFactorAndVertexLight = half4(fogFactor, vertexLight);
+        #endif
+    {% endif %}
+
+    {% if PostVertexMethod %}
+        PostVertexMethod( input, output );
+    {% endif %}
+
+    return output;
+}
+
+// Fragment
+{% if pass.name == "Universal Forward" %}
+
+    void BuildCommonSurface(
+        SurfaceInput input,
+        Surface surface,
+        out SurfaceCommon common )
+    {
+        common = (SurfaceCommon)0;
+        common.alpha = surface.Alpha;
+        common.smoothness = surface.Smoothness;
+        common.diffuse = surface.Albedo;
+        common.specular = 0;
+        common.oneMinusReflectivity = 0;
+
+        #if _NORMAL_DROPOFF_TS
+            float crossSign = (input.tangentWS.w > 0.0 ? 1.0 : -1.0) * GetOddNegativeScale();
+            float3 bitangent = crossSign * cross(input.normalWS.xyz, input.tangentWS.xyz);
+            common.normalWS = 
+                TransformTangentToWorld(
+                    surface.Normal, 
+                    half3x3(input.tangentWS.xyz, bitangent, input.normalWS.xyz));
+        #elif _NORMAL_DROPOFF_OS
+            common.normalWS = TransformObjectToWorldNormal(surface.Normal);
+        #elif _NORMAL_DROPOFF_WS
+            common.normalWS = surface.Normal;
+        #endif
+
+        #ifdef _NORMALMAP
+            common.normalWS = normalize(common.normalWS);
+        #endif
+    }
+
+    void BuildCommonLighting(
+        SurfaceInput input,
+        Surface surface,
+        SurfaceCommon surfaceCommon,
+        out LightingCommon lighting )
+    {
+        lighting = (LightingCommon)0;
+
+        // The main light is sampled in the UniversalFragmentPBR, but it is not returned.
+        // If we have a PostLightingMethod then we need to make sure that the lighting
+        // data is available, so we sample the light here.
+        // It is best to replace the UniversalFragmentPBR method with a custom method
+        // that returns the data we need.
+        {% if PostLightingMethod %}
+            Light light = GetMainLight( input.shadowCoord );
+            lighting.light = light;
+            lighting.light.direction *= -1; // TODO: Should this really be inverted?
+        {% else %}
+            lighting.light = (Light)0;
+        {% endif %}
+
+        #ifdef LIGHTMAP_ON
+            lighting.indirect.diffuse = 
+                SampleLightmap( input.ambientOrLightmapUV.xy, surfaceCommon.normalWS );
+        #else
+            lighting.indirect.diffuse = 
+                SampleSHPixel( input.ambientOrLightmapUV.xyz, surfaceCommon.normalWS );
+        #endif
+    }
+{% endif %}
+
+half4 frag(SurfaceInput input) : SV_TARGET 
+{    
+    UNITY_SETUP_INSTANCE_ID(input);
+    UNITY_SETUP_STEREO_EYE_INDEX_POST_VERTEX(input);
+
+    // Normalize the ViewDirection per-pixel so that we have an accurate value.
+    input.viewDirectionWS.xyz = normalize(input.viewDirectionWS.xyz);
+
+    #ifdef LOD_FADE_CROSSFADE
+        // TODO: Dithering is not stable for shadows. Not a big issue since it is usually not noticeable, or the fade is further away than the shadow rendering distance.
+        #if !defined(SHADER_API_GLES)
+            LODDitheringTransition(
+                ComputeFadeMaskSeed( 
+                    GetWorldSpaceNormalizeViewDir(input.positionWS), // we need a very accurate view direction to get good dithering. The regular viewDirectionWS that we get as input is not accurate enough because it is calculated per-vertex and then interpolated. That is why we calculate the view direction again here.
+                    input.positionCS.xy),
+                unity_LODFade.x);
+        #endif
+    #endif
+
+    Surface surface = (Surface)0;
+    surface.Albedo = 1;
+    surface.Emission = 0;
+    surface.Metallic = 0;
+    surface.Smoothness = 0.5;
+    surface.Occlusion = 1;
+    surface.Alpha = 1;
+    surface.Normal = float3(0,0,1);
+    SurfaceMethod( input, surface );
+
+    {% if pass.name == "Universal Forward" %}
+        
+        SurfaceCommon surfaceCommon;
+        LightingCommon lightingCommon;
+
+        // Calculate per-pixel shadow coordinates for shadow cascades.
+        #if defined(MAIN_LIGHT_CALCULATE_SHADOWS)
+            input.shadowCoord = TransformWorldToShadowCoord(input.positionWS);
+        #endif
+
+        {% if LightingMethod %}
+
+            // Custom lighting method.
+            BuildCommonSurface( input, surface, surfaceCommon );
+            BuildCommonLighting( input, surface, surfaceCommon, lightingCommon );
+            half4 color = LightingMethod( input, surface, surfaceCommon, lightingCommon );
+
+        {% else %}
+
+            BuildCommonSurface( input, surface, surfaceCommon );
+            BuildCommonLighting( input, surface, surfaceCommon, lightingCommon );
+
+            // Unity's URP lighting method.
+            InputData inputData;
+            inputData.positionWS = input.positionWS;
+            inputData.normalWS = surfaceCommon.normalWS;
+            inputData.viewDirectionWS = input.viewDirectionWS.xyz;
+            inputData.shadowCoord = input.shadowCoord;
+            inputData.fogCoord = input.fogFactorAndVertexLight.x;
+            inputData.vertexLighting = input.fogFactorAndVertexLight.yzw;
+            inputData.bakedGI = lightingCommon.indirect.diffuse;
+
+            #ifdef _SPECULAR_SETUP
+                float3 specular = surface.Specular;
+                float metallic = 1;
+            #else   
+                float3 specular = 0;
+                float metallic = surface.Metallic;
+            #endif
+
+            #ifdef _LIGHTING_QUALITY_LOW
+                half4 color = 
+                    UniversalFragmentBlinnPhong(
+                        inputData, 
+                        surface.Albedo, 
+                        half4(surface.Smoothness.xxx,1), 
+                        exp2(10 * surface.Smoothness + 1), 
+                        surface.Emission, 
+                        surface.Alpha );
+            #else
+                half4 color = 
+                    UniversalFragmentPBR(
+                        inputData,
+                        surface.Albedo,
+                        metallic,
+                        specular,
+                        surface.Smoothness,
+                        surface.Occlusion,
+                        surface.Emission,
+                        surface.Alpha);
+            #endif
+
+        {% endif %}
+
+        {% if PostLightingMethod %}
+            PostLightingMethod( input, surface, surfaceCommon, lightingCommon, color );
+        {% endif %}
+
+        color.rgb = MixFog( color.rgb, inputData.fogCoord ); 
+        return color;
+
+    {% elseif pass.name == "Meta" %}
+        MetaInput metaInput = (MetaInput)0;
+        metaInput.Albedo = surface.Albedo;
+        metaInput.Emission = surface.Emission;
+        return MetaFragment(metaInput);
+
+    {% elseif pass.light_mode == "Universal2D" %}
+        return half4(surface.Albedo, surface.Alpha);
+
+    {% else %}
+        return 0;
+
+    {% endif %}
+}

@@ -1,0 +1,55 @@
+{% comment %}
+// Copyright 2020 Visual Design Cafe. All rights reserved.
+// This shader was created using ShaderX, a shader framework by Visual Design Cafe.
+// https://www.visualdesigncafe.com/shaderx
+
+// Package: Nature Shaders
+// Website: https://www.visualdesigncafe.com/nature-shaders
+// Documentation: https://support.visualdesigncafe.com/hc/categories/900000043503
+{% endcomment %}
+
+
+/// <summary>
+/// Returns the time for gusts.
+/// Smoothly adjusted for changes in wind speed.
+/// </summary>
+float GetSmoothGustOffset(float timeOffset)
+{
+    #if SHADERPASS == SHADERPASS_MOTION_VECTORS
+        // BUG:
+        // We should be able to use SHADERPASS_MOTION_VECTORS_PREV_FRAME here
+        // to return the previous time without having to check the time offset.
+        // However, the shader compiler does not recognize g_PrevSmoothTime as
+        // being used if we do that.
+        return timeOffset < 0 ? g_PrevSmoothTime.y : g_SmoothTime.y;
+    #else
+        return g_SmoothTime.y;
+    #endif
+}
+
+float3 SampleGust(
+    float3 objectPivot, 
+    float3 vertexWorldPosition,
+    float3 windDirection,
+    float phaseOffset, 
+    float edgeFlutter,
+    float lod,
+    float time )
+{
+    #if defined(_TYPE_TREE_LEAVES) || defined(_TYPE_TREE_BARK)
+        time -= phaseOffset * 0.05;
+        lod = 5;
+    #else
+        time -= phaseOffset * 0.05;
+    #endif
+
+    float2 windOffsetOverTime = windDirection.xz * time;
+    #if defined(_TYPE_TREE_LEAVES)
+        float3 vertexOffset = vertexWorldPosition - objectPivot;
+        float2 offset = objectPivot.xz * 0.02 - windOffsetOverTime + vertexOffset.xz * 0.0075 * edgeFlutter;
+    #else
+        float2 offset = objectPivot.xz * 0.02 - windOffsetOverTime;
+    #endif
+    float strength  = tex2Dlod( g_GustNoise, float4(offset, 0, lod) ).r;
+    return strength * windDirection;
+}

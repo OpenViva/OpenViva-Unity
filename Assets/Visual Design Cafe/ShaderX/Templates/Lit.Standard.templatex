@@ -1,0 +1,609 @@
+{% comment %}
+// Copyright 2020 Visual Design Cafe. All rights reserved.
+// This shader was created using ShaderX, a shader framework by Visual Design Cafe.
+// https://www.visualdesigncafe.com/shaderx
+{% endcomment %}
+
+{% if pass.name == "MotionVectors" %}
+    #if defined(USING_STEREO_MATRICES)
+            float4x4 _StereoNonJitteredVP[2];
+            float4x4 _StereoPreviousVP[2];
+    #else
+            float4x4 _NonJitteredVP;
+            float4x4 _PreviousVP;
+    #endif
+    float4x4 _PreviousM;
+    bool _HasLastPositionData;
+    bool _ForceNoMotion;
+{% endif %}
+
+{% if pass.Name == "ShadowCaster" %}
+    void ApplyShadowNormalBias( inout float3 positionWS, float3 normalWS )
+    {
+        if (unity_LightShadowBias.z != 0.0)
+        {
+            float3 wLight = normalize(UnityWorldSpaceLightDir(positionWS.xyz));
+
+            // apply normal offset bias (inset position along the normal)
+            // bias needs to be scaled by sine between normal and light direction
+            // (http://the-witness.net/news/2013/09/shadow-mapping-summary-part-1/)
+            //
+            // unity_LightShadowBias.z contains user-specified normal offset amount
+            // scaled by world space texel size.
+
+            float shadowCos = dot(normalWS, wLight);
+            float shadowSine = sqrt(1-shadowCos*shadowCos);
+            float normalBias = unity_LightShadowBias.z * shadowSine;
+
+            positionWS.xyz -= normalWS * normalBias;
+        }
+    }
+{% endif %}
+
+inline half4 VertexGIForward(VertexAttributes v, float3 posWorld, half3 normalWorld)
+{
+    half4 ambientOrLightmapUV = 0;
+    // Static lightmaps
+    #ifdef LIGHTMAP_ON
+        ambientOrLightmapUV.xy = v.uv1.xy * unity_LightmapST.xy + unity_LightmapST.zw;
+        ambientOrLightmapUV.zw = 0;
+    // Sample light probe for Dynamic objects only (no static or dynamic lightmaps)
+    #elif UNITY_SHOULD_SAMPLE_SH
+        #ifdef VERTEXLIGHT_ON
+            // Approximated illumination from non-important point lights
+            ambientOrLightmapUV.rgb = 
+                Shade4PointLights(
+                    unity_4LightPosX0, 
+                    unity_4LightPosY0, 
+                    unity_4LightPosZ0,
+                    unity_LightColor[0].rgb, 
+                    unity_LightColor[1].rgb, 
+                    unity_LightColor[2].rgb, 
+                    unity_LightColor[3].rgb,
+                    unity_4LightAtten0, 
+                    posWorld, 
+                    normalWorld);
+        #endif
+
+        ambientOrLightmapUV.rgb = ShadeSHPerVertex(normalWorld, ambientOrLightmapUV.rgb);
+    #endif
+
+    #ifdef DYNAMICLIGHTMAP_ON
+        ambientOrLightmapUV.zw = v.uv2.xy * unity_DynamicLightmapST.xy + unity_DynamicLightmapST.zw;
+    #endif
+
+    return ambientOrLightmapUV;
+}
+
+struct TransferShadowWrapper_vertex
+{
+    float4 vertex;
+};
+
+struct TransferShadowWrapper
+{
+    UNITY_SHADOW_COORDS(9)
+    float4 pos;
+};
+
+SurfaceInput vert( VertexAttributes input )
+{
+    SurfaceInput output = (SurfaceInput)0;
+
+    UNITY_SETUP_INSTANCE_ID(input);
+    UNITY_TRANSFER_INSTANCE_ID(input,output);
+    UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO(output);
+
+    {% if PreVertexMethod %}
+        PreVertexMethod( input );
+    {% endif %}
+
+    float3 positionWS = TransformObjectToWorld(input.positionOS);
+    float3 normalWorld = UnityObjectToWorldNormal(input.normalOS);
+    float4 tangentWS = float4(TransformObjectToWorldDir(input.tangentOS.xyz), input.tangentOS.w);
+
+    output.positionCS = UnityObjectToClipPos(input.positionOS);
+    output.positionWS = positionWS.xyz;
+    output.normalWS = normalWorld;
+    output.tangentWS = tangentWS;
+    output.texCoord0 = input.uv0; // * _MainTex_ST.xy + _MainTex_ST.zw;
+    output.texCoord1 = input.uv1;
+    output.texCoord2 = input.uv2;
+    output.color = input.color;
+    output.viewDirectionWS.xyz = normalize( positionWS.xyz - _WorldSpaceCameraPos );
+
+    {% if pass.name == "MotionVectors" %}
+        SurfaceInput previousOutput = output;
+    {% endif %}
+
+    VertexMethod( input, output, float4(0,0,0,0) );
+
+    positionWS = output.positionWS;
+    normalWorld = output.normalWS;
+    tangentWS = output.tangentWS;
+
+    {% if pass.Name == "ShadowCaster" %}
+        ApplyShadowNormalBias( output.positionWS, output.normalWS );
+    {% endif %}
+
+    // Recalculate vertex based on modifications to output
+    // TODO: Only do this if the position changed
+    input.positionOS = TransformWorldToObject( output.positionWS );
+    output.positionCS = UnityObjectToClipPos( input.positionOS );
+
+    input.uv0 = output.texCoord0;
+    input.uv1 = output.texCoord1;
+    input.uv2 = output.texCoord2;
+
+    {% if pass.Name == "FORWARD" or pass.name == "FORWARD_DELTA" %}
+        
+        // COMPUTE_LIGHT_COORDS has "v.vertex" hardcoded, so we need to make sure that 
+        // "v.vertex" exists in the code. (our code uses "input.positionOS")
+        TransferShadowWrapper_vertex v;
+        v.vertex = float4(input.positionOS.xyz, 1);
+
+        // TODO: COMPUTE_LIGHT_COORDS transforms v.vertex to world position. We have already
+        // calculated the world position in o.positionWS. Let's use that one instead.
+        // Then we can also skip the World to Object recalculation for the vertex position above.
+        COMPUTE_LIGHT_COORDS( output ) 
+
+        // UNITY_TRANSFER_SHADOW has ".pos" hardcoded, so we need to make sure that 
+        // ".pos" exists in the code. (our code uses ".positionCS")
+        TransferShadowWrapper shadowWrapper;
+        shadowWrapper._ShadowCoord = output._ShadowCoord;
+        shadowWrapper.pos = output.positionCS;
+
+        UNITY_TRANSFER_SHADOW( shadowWrapper, input.uv1 )
+        output._ShadowCoord = shadowWrapper._ShadowCoord;
+
+        //
+        output.ambientOrLightmapUV = VertexGIForward(input, positionWS, normalWorld);
+
+        //
+        #if defined(FOG_LINEAR) || defined(FOG_EXP) || defined(FOG_EXP2)
+            #if (SHADER_TARGET < 30) || defined(SHADER_API_MOBILE)
+                UNITY_CALC_FOG_FACTOR(output.positionCS.z); 
+                output.viewDirectionWS.w = unityFogFactor;
+            #else
+                output.viewDirectionWS.w = output.positionCS.z;
+            #endif
+        #endif
+
+    {% elseif pass.Name == "DEFERRED" %}
+        output.ambientOrLightmapUV = 0;
+        #ifdef LIGHTMAP_ON
+            output.ambientOrLightmapUV.xy = input.uv1.xy * unity_LightmapST.xy + unity_LightmapST.zw;
+        #elif UNITY_SHOULD_SAMPLE_SH
+            output.ambientOrLightmapUV.rgb = 
+                ShadeSHPerVertex(normalWorld, output.ambientOrLightmapUV.rgb);
+        #endif
+        #ifdef DYNAMICLIGHTMAP_ON
+            output.ambientOrLightmapUV.zw = input.uv2.xy * unity_DynamicLightmapST.xy + unity_DynamicLightmapST.zw;
+        #endif
+
+    {% elseif pass.Name == "ShadowCaster" %}
+        output.positionCS = UnityApplyLinearShadowBias(output.positionCS);
+
+    {% elseif pass.name == "META" %}
+        // TODO: Use the vertex world position. 
+        // Transforming the position back is just an unnecessary extra step
+        input.positionOS = TransformWorldToObject( output.positionWS );
+
+        output.positionCS = 
+            UnityMetaVertexPosition(
+                float4(input.positionOS,1), 
+                input.uv1.xy, 
+                input.uv2.xy, 
+                unity_LightmapST, 
+                unity_DynamicLightmapST);
+
+        #ifdef EDITOR_VISUALIZATION
+            output.vizUV = 0;
+            output.lightCoord = 0;
+            if (unity_VisualizationMode == EDITORVIZ_TEXTURE)
+                output.vizUV = 
+                    UnityMetaVizUV(
+                        unity_EditorViz_UVIndex, 
+                        input.uv0.xy, 
+                        input.uv1.xy, 
+                        input.uv2.xy, 
+                        unity_EditorViz_Texture_ST);
+            else if (unity_VisualizationMode == EDITORVIZ_SHOWLIGHTMASK)
+            {
+                output.vizUV = input.uv1.xy * unity_LightmapST.xy + unity_LightmapST.zw;
+                output.lightCoord = 
+                    mul(
+                        unity_EditorViz_WorldToLight, 
+                        mul(unity_ObjectToWorld, float4(input.positionOS.xyz, 1)));
+            }
+        #endif
+
+    {% endif %}
+
+    {% if PostVertexMethod %}
+        PostVertexMethod( input, output );
+    {% endif %}
+
+    {% if pass.name == "MotionVectors" %}
+
+        #define SHADERPASS_MOTION_VECTORS_PREV_FRAME
+
+        // Output current vertex position.
+        output.currentPositionCS = mul(UNITY_MATRIX_UNJITTERED_VP, float4(positionWS, 1.0));
+
+        // Calculate previous vertex position.
+        float4 deltaTime = unity_DeltaTime;
+        VertexMethod( input, previousOutput, -deltaTime );
+
+        // Output previous vertex position.
+        output.previousPositionCS = mul(UNITY_MATRIX_PREV_VP, float4(previousOutput.positionWS, 1.0));
+
+        #undef SHADERPASS_MOTION_VECTORS_PREV_FRAME
+
+    {% endif %}
+
+    return output;
+}
+
+{% if pass.name == "FORWARD" or pass.name == "FORWARD_DELTA" or pass.name == "DEFERRED" or pass.name == "META" %}
+    
+    inline UnityGI SampleUnityGI(
+        float3 positionWS,
+        float3 viewDirectionWS,
+        SurfaceCommon surface,
+        half occlusion, 
+        half4 ambientOrLightmapUV, 
+        half atten, 
+        Light light, 
+        bool reflections )
+    {
+        UnityGIInput input;
+        input.light = CastToUnityLight( light );
+        input.worldPos = positionWS;
+        input.worldViewDir = -viewDirectionWS;
+        input.atten = atten;
+        #if defined(LIGHTMAP_ON) || defined(DYNAMICLIGHTMAP_ON)
+            input.ambient = 0;
+            input.lightmapUV = ambientOrLightmapUV;
+        #else
+            input.ambient = ambientOrLightmapUV.rgb;
+            input.lightmapUV = 0;
+        #endif
+
+        input.probeHDR[0] = unity_SpecCube0_HDR;
+        input.probeHDR[1] = unity_SpecCube1_HDR;
+        #if defined(UNITY_SPECCUBE_BLENDING) || defined(UNITY_SPECCUBE_BOX_PROJECTION)
+        input.boxMin[0] = unity_SpecCube0_BoxMin; // .w holds lerp value for blending
+        #endif
+        #ifdef UNITY_SPECCUBE_BOX_PROJECTION
+        input.boxMax[0] = unity_SpecCube0_BoxMax;
+        input.probePosition[0] = unity_SpecCube0_ProbePosition;
+        input.boxMax[1] = unity_SpecCube1_BoxMax;
+        input.boxMin[1] = unity_SpecCube1_BoxMin;
+        input.probePosition[1] = unity_SpecCube1_ProbePosition;
+        #endif
+
+        if( reflections )
+        {
+            Unity_GlossyEnvironmentData g = 
+                UnityGlossyEnvironmentSetup(
+                    surface.smoothness, 
+                    -viewDirectionWS, 
+                    surface.normalWS, 
+                    surface.specular);
+
+            return UnityGlobalIllumination( input, occlusion, surface.normalWS, g );
+        }
+        else
+        {
+            return UnityGlobalIllumination( input, occlusion, surface.normalWS );
+        }
+    }
+
+    void BuildCommonSurface(
+        SurfaceInput input,
+        Surface surface,
+        out SurfaceCommon common )
+    {
+        common.alpha = surface.Alpha;
+        common.smoothness = surface.Smoothness;
+        common.diffuse = 
+            DiffuseAndSpecularFromMetallic( 
+                surface.Albedo,
+                surface.Metallic,
+                /* out */ common.specular,
+                /* out */ common.oneMinusReflectivity );
+
+        float crossSign = (input.tangentWS.w > 0.0 ? 1.0 : -1.0) * GetOddNegativeScale();
+        float3 bitangent = crossSign * cross(input.normalWS.xyz, input.tangentWS.xyz);
+        common.normalWS = 
+            normalize( 
+                TransformTangentToWorld(
+                    surface.Normal, 
+                    half3x3(input.tangentWS.xyz, bitangent, input.normalWS.xyz)) );
+    }
+
+    {% if pass.name == "FORWARD" or pass.name == "FORWARD_DELTA" or pass.name == "DEFERRED" %}
+        struct UNITY_LIGHT_ATTENUATION_WRAPPER
+        {
+            float4 pos;
+            DECLARE_LIGHT_COORDS(8)
+            UNITY_SHADOW_COORDS(9)
+        };
+        
+        void BuildCommonLighting(
+            SurfaceInput input,
+            Surface surface,
+            SurfaceCommon surfaceCommon,
+            out LightingCommon lightingCommon )
+        {
+            {% if pass.name == "DEFERRED" %}
+                Light mainLight = GetDummyLight();
+                half atten = 1;
+            {% else %}
+                Light mainLight = GetMainLight();
+                UNITY_LIGHT_ATTENUATION_WRAPPER unity_light_attenuation_wrapper;
+                unity_light_attenuation_wrapper.pos = input.positionCS;
+                unity_light_attenuation_wrapper._ShadowCoord = input._ShadowCoord;
+                #ifndef DIRECTIONAL
+                    unity_light_attenuation_wrapper._LightCoord = input._LightCoord;
+                #endif
+                UNITY_LIGHT_ATTENUATION( atten, unity_light_attenuation_wrapper, input.positionWS );
+            {% endif %}
+
+            {% if pass.name == "FORWARD_DELTA" %}
+                float3 lightDir = 
+                    _WorldSpaceLightPos0.xyz - input.positionWS.xyz * _WorldSpaceLightPos0.w;
+                
+                #ifndef USING_DIRECTIONAL_LIGHT
+                    lightDir = normalize( lightDir );
+                #endif
+
+                lightingCommon.light = GetAdditiveLight( lightDir, atten );
+                // Forward Add pass should not use any indirect light. Because we don't want
+                // to add the indirect light multiple times.
+                lightingCommon.indirect.diffuse = 0;
+                lightingCommon.indirect.specular = 0;
+            {% else %}
+
+                bool sampleReflections = true;
+                {% if pass.name == "DEFERRED" %}
+                    #if UNITY_ENABLE_REFLECTION_BUFFERS
+                        sampleReflections = false;
+                    #endif
+                {% endif %}
+
+                UnityGI standardGI = 
+                    SampleUnityGI( 
+                        input.positionWS,
+                        input.viewDirectionWS,
+                        surfaceCommon, 
+                        surface.Occlusion, 
+                        input.ambientOrLightmapUV, 
+                        atten, 
+                        mainLight, 
+                        sampleReflections );
+
+                lightingCommon.light = CastFromUnityLight( standardGI.light );
+                lightingCommon.indirect.diffuse = standardGI.indirect.diffuse;
+                lightingCommon.indirect.specular = standardGI.indirect.specular;
+
+            {% endif %}
+        }
+    {% endif %}
+{% endif %}
+
+half4 OutputForward( half4 output, half alphaFromSurface )
+{
+    #if defined(_ALPHABLEND_ON) || defined(_ALPHAPREMULTIPLY_ON)
+        output.a = alphaFromSurface;
+    #else
+        UNITY_OPAQUE_ALPHA(output.a);
+    #endif
+    return output;
+}
+
+// Albedo for lightmapping should basically be diffuse color.
+// But rough metals (black diffuse) still scatter quite a lot of light around, so
+// we want to take some of that into account too.
+half3 UnityLightmappingAlbedo (half3 diffuse, half3 specular, half smoothness)
+{
+    half roughness = SmoothnessToRoughness(smoothness);
+    half3 res = diffuse;
+    res += specular * roughness * 0.5;
+    return res;
+}
+
+{% if pass.name == "DEFERRED" %} 
+    #define FRAG_OUTPUT void
+    #define FRAG_SEMANTIC
+{% else %}
+    #define FRAG_OUTPUT half4
+    #define FRAG_SEMANTIC : SV_TARGET
+{% endif %}
+
+FRAG_OUTPUT frag( 
+    SurfaceInput i
+    {% if pass.name == "ShadowCaster" %}
+
+    {% elseif pass.name == "DEFERRED" %}
+        , out half4 outGBuffer0 : SV_Target0
+        , out half4 outGBuffer1 : SV_Target1
+        , out half4 outGBuffer2 : SV_Target2
+        , out half4 outEmission : SV_Target3
+        #if defined(SHADOWS_SHADOWMASK) && (UNITY_ALLOWED_MRT_COUNT > 4)
+            , out half4 outShadowMask : SV_Target4
+        #endif
+        // TODO: Add support for depth offset
+        // , out float outputDepth : SV_Depth
+    {% endif %}
+ ) FRAG_SEMANTIC
+{
+    UNITY_SETUP_INSTANCE_ID(i);
+    UNITY_SETUP_STEREO_EYE_INDEX_POST_VERTEX(i);
+
+    i.viewDirectionWS.xyz = normalize(i.viewDirectionWS.xyz);
+
+    #ifdef LOD_FADE_CROSSFADE
+        {% if unity.version.major == 2018 %}
+            // The value of unity_LODFade is handled differently in Unity 2018.4. 
+            // Use the default built-in implementation for crossfading instead to
+            // ensure that the fade works correctly. Any other Unity version will
+            // use our custom implementation below.
+            UNITY_APPLY_DITHER_CROSSFADE( i.positionCS.xy );
+        {% else %}
+            // TODO: Dithering is not stable for shadows, most likely because the shadow camera position changes depending on the orientation of the main camera. Not a big issue since it is usually not noticeable, or the fade is further away than the shadow rendering distance. We can fix this by using the matrix of the main camera instead of the current camera. This matrix should be available somewhere in Unity's internal variables.
+            #if !defined(SHADER_API_GLES)
+                LODDitheringTransition(
+                    ComputeFadeMaskSeed( 
+                        GetWorldSpaceNormalizeViewDir(i.positionWS), // we need a very accurate view direction to get good dithering. The regular viewDirectionWS that we get as input is not accurate enough because it is calculated per-vertex and then interpolated. That is why we calculate the view direction again here. TODO: For low-quality material settings we can use the positionCS value directly, ignoring the view direction.
+                        i.positionCS.xy),
+                    unity_LODFade.x);
+            #else
+                UNITY_APPLY_DITHER_CROSSFADE( i.positionCS.xy );
+            #endif
+        {% endif %}
+    #endif
+
+
+    Surface surface = (Surface)0;
+    surface.Albedo = 1;
+    surface.Emission = 0;
+    surface.Metallic = 0;
+    surface.Smoothness = 0.5;
+    surface.Occlusion = 1;
+    surface.Alpha = 1;
+    surface.Normal = float3(0,0,1);
+    SurfaceMethod( i, surface );
+
+    {% if pass.name == "FORWARD" or pass.name == "FORWARD_DELTA" or pass.name == "DEFERRED" %}
+        
+        SurfaceCommon surfaceCommon = (SurfaceCommon)0;
+        LightingCommon lightingCommon = (LightingCommon)0;
+
+        {% if LightingMethod %}
+
+            // Custom lighting method.
+            BuildCommonSurface( i, surface, surfaceCommon );
+            BuildCommonLighting(i, surface, surfaceCommon, lightingCommon );
+            half4 c = LightingMethod( i, surface, surfaceCommon, lightingCommon );
+
+        {% else %}
+
+            BuildCommonSurface( i, surface, surfaceCommon );
+            BuildCommonLighting(i, surface, surfaceCommon, lightingCommon );
+
+            // Unity's standard lighting method.
+            #ifdef _LIGHTING_QUALITY_LOW
+                #undef UNITY_BRDF_PBS
+                #define UNITY_BRDF_PBS BRDF3_Unity_PBS
+            #else
+                // Use the default UNITY_BRDF_PBS
+            #endif
+
+            half4 c = 
+                UNITY_BRDF_PBS(
+                    surfaceCommon.diffuse, 
+                    surfaceCommon.specular, 
+                    surfaceCommon.oneMinusReflectivity, 
+                    surfaceCommon.smoothness, 
+                    surfaceCommon.normalWS, 
+                    -i.viewDirectionWS.xyz, 
+                    CastToUnityLight( lightingCommon.light ), 
+                    CastToUnityIndirect( lightingCommon.indirect ) );
+            
+            c.rgb += surface.Emission;
+
+        {% endif %}
+
+        {% if PostLightingMethod %}
+            PostLightingMethod( i, surface, surfaceCommon, lightingCommon, c );
+        {% endif %}
+
+        {% if pass.name == "DEFERRED" %}
+            #ifndef UNITY_HDR_ON
+                c.rgb = exp2(-c.rgb);
+            #endif
+        {% endif %}
+
+        // Fog
+        {% if pass.name != "DEFERRED" %}
+            #if defined(FOG_LINEAR) || defined(FOG_EXP) || defined(FOG_EXP2)
+                float _unity_fogCoord = i.viewDirectionWS.w;
+                {% if pass.name == "FORWARD_DELTA" %}
+                    UNITY_APPLY_FOG_COLOR( _unity_fogCoord, c.rgb, half4(0,0,0,0) );
+                {% else %}
+                    UNITY_APPLY_FOG(_unity_fogCoord, c.rgb);
+                {% endif %}
+            #endif
+        {% endif %}
+
+        {% if pass.name == "DEFERRED" %}
+            UnityStandardData data;
+            data.diffuseColor   = surfaceCommon.diffuse;
+            data.occlusion      = surface.Occlusion;
+            data.specularColor  = surfaceCommon.specular;
+            data.smoothness     = surfaceCommon.smoothness;
+            data.normalWorld    = surfaceCommon.normalWS;
+
+            UnityStandardDataToGbuffer(data, outGBuffer0, outGBuffer1, outGBuffer2);
+
+            outEmission = half4(c.rgb, 1);
+
+            #if defined(SHADOWS_SHADOWMASK) && (UNITY_ALLOWED_MRT_COUNT > 4)
+                outShadowMask = UnityGetRawBakedOcclusions(i.ambientOrLightmapUV.xy, i.positionWS.xyz);
+            #endif
+        {% else %}
+            return OutputForward (c, surfaceCommon.alpha);
+        {% endif %} 
+
+    {% elseif pass.name == "ShadowCaster" %}
+        #if defined(SHADOWS_CUBE) && !defined(SHADOWS_CUBE_IN_DEPTH_TEX)
+            return UnityEncodeCubeShadowDepth(
+                (length(i.positionWS.xyz - _LightPositionRange.xyz) + unity_LightShadowBias.x) 
+                    * _LightPositionRange.w);
+        #else
+            return 0;
+        #endif
+
+    {% elseif pass.name == "META" %}
+        // we're interested in diffuse & specular colors,
+        // and surface roughness to produce final albedo.
+        SurfaceCommon surfaceCommon;
+        BuildCommonSurface( i, surface, surfaceCommon );
+
+        UnityMetaInput o = (UnityMetaInput)0;
+        #ifdef EDITOR_VISUALIZATION
+            o.Albedo = surfaceCommon.diffuse;
+            o.VizUV = i.vizUV;
+            o.LightCoord = i.lightCoord;
+        #else
+            o.Albedo = 
+                UnityLightmappingAlbedo( 
+                    surfaceCommon.diffuse, 
+                    surfaceCommon.specular, 
+                    surfaceCommon.smoothness );
+        #endif
+        o.SpecularColor = surfaceCommon.specular;
+        o.Emission = surface.Emission;
+
+        return UnityMetaFragment(o);
+
+    {% elseif pass.name == "MotionVectors" %}
+
+        // Encode motion vector
+        float2 p = i.currentPositionCS.xy / i.currentPositionCS.w;
+        float2 pp = i.previousPositionCS.xy / i.previousPositionCS.w;
+        float2 motionVector = (p.xy - pp.xy);
+
+        #if UNITY_UV_STARTS_AT_TOP
+            motionVector.y = -motionVector.y;
+        #endif
+
+        return float4(motionVector.xy, 0, 1);
+
+    {% else %}
+        #error Unknown pass {{pass.name}}
+
+    {% endif %}
+}

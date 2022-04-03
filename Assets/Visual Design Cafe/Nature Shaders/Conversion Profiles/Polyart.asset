@@ -1,0 +1,185 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1236654335, guid: da3a78c44cb604b4397d2fe6c9dfa81c, type: 3}
+  m_Name: Polyart
+  m_EditorClassIdentifier: 
+  _source: (^|\/)(Polyart)
+  _destination: (^|\/)Nature Shaders\/
+  _properties:
+  - _source:
+      _name: Constant
+      _type: 0
+    _destination:
+      _name: _AlphaTestThreshold
+      _type: 1
+  - _source:
+      _name: 1
+      _type: 1
+    _destination:
+      _name: _AlphaTest
+      _type: 1
+  - _source:
+      _name: 0
+      _type: 1
+    _destination:
+      _name: _SurfaceMapMethod
+      _type: 1
+  - _source:
+      _name: Foliage
+      _type: 0
+    _destination:
+      _name: _TranslucencyShadow
+      _type: 1
+  - _source:
+      _name: _AlphaCutoff
+      _type: 1
+    _destination:
+      _name: _AlphaTestThreshold
+      _type: 1
+  - _source:
+      _name: _ColorBottom
+      _type: 4
+    _destination:
+      _name: _Tint
+      _type: 4
+  - _source:
+      _name: _ColorTop
+      _type: 4
+    _destination:
+      _name: _TintVariation
+      _type: 4
+  - _source:
+      _name: _ColorTint
+      _type: 4
+    _destination:
+      _name: _Tint
+      _type: 4
+  - _source:
+      _name: _ColorTint
+      _type: 4
+    _destination:
+      _name: _TintVariation
+      _type: 4
+  - _source:
+      _name: _FoliageTexture
+      _type: 5
+    _destination:
+      _name: _Albedo
+      _type: 5
+  - _source:
+      _name: _FoliageTexture
+      _type: 5
+    _destination:
+      _name: _MainTex
+      _type: 5
+  - _source:
+      _name: _Smoothness
+      _type: 1
+    _destination:
+      _name: _Glossiness
+      _type: 1
+  - _source:
+      _name: _Translucency
+      _type: 1
+    _destination:
+      _name: _TranslucencyStrength
+      _type: 1
+  - _source:
+      _name: _TransNormalDistortion
+      _type: 1
+    _destination:
+      _name: _TranslucencyDistortion
+      _type: 1
+  - _source:
+      _name: _TransScattering
+      _type: 1
+    _destination:
+      _name: _TranslucencyScattering
+      _type: 1
+  - _source:
+      _name: _TransAmbient
+      _type: 1
+    _destination:
+      _name: _TranslucencyAmbient
+      _type: 1
+  - _source:
+      _name: _TransShadow
+      _type: 1
+    _destination:
+      _name: _TranslucencyShadow
+      _type: 1
+  - _source:
+      _name: Grass
+      _type: 0
+    _destination:
+      _name: _TranslucencyShadow
+      _type: 1
+  - _source:
+      _name: Cutoff
+      _type: 1
+    _destination:
+      _name: _AlphaTestThreshold
+      _type: 1
+  - _source:
+      _name: Surface
+      _type: 0
+    _destination:
+      _name: _AlphaTestThreshold
+      _type: 1
+  - _source:
+      _name: _AlbedoTint
+      _type: 4
+    _destination:
+      _name: _Tint
+      _type: 4
+  - _source:
+      _name: _AlbedoTexture
+      _type: 5
+    _destination:
+      _name: _Albedo
+      _type: 5
+  - _source:
+      _name: _AlbedoTexture
+      _type: 5
+    _destination:
+      _name: _MainTex
+      _type: 5
+  - _source:
+      _name: _NormalTexture
+      _type: 5
+    _destination:
+      _name: _NormalMap
+      _type: 5
+  - _source:
+      _name: _NormalIntensity
+      _type: 1
+    _destination:
+      _name: _NormalMapScale
+      _type: 1
+  - _source:
+      _name: _EmissiveTexture
+      _type: 5
+    _destination:
+      _name: _EmissionMap
+      _type: 5
+  - _source:
+      _name: _EmissiveMultiplier
+      _type: 1
+    _destination:
+      _name: _EmissionIntensity
+      _type: 1
+  - _source:
+      _name: _SmoothnessMultiplier
+      _type: 1
+    _destination:
+      _name: _Glossiness
+      _type: 1

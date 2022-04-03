@@ -1,0 +1,68 @@
+{% comment %}
+// Copyright 2020 Visual Design Cafe. All rights reserved.
+// This shader was created using ShaderX, a shader framework by Visual Design Cafe.
+// https://www.visualdesigncafe.com/shaderx
+{% endcomment %}
+
+{% if pass.name == "ShadowCaster" %}
+    AlphaToMask Off
+{% endif %}
+
+{% standard %}
+    {% if pass.name == "FORWARD_DELTA" %}
+        Blend One One
+        ZWrite Off
+        Fog { Color (0,0,0,0) }
+        // ZTest LEqual
+        ZTest Equal
+    {% endif %}
+{% endstandard %}
+
+{% hd %}
+    // HDRP renders a depth prepass for materials that use clip.
+    // Clipping is disabled for the GBuffer and Forward passes and ZTest Equal is used instead.
+    {% if pass.name == "GBuffer" %}
+        ZTest [_ZTestGBuffer]
+    {% elseif pass.name == "Forward" %}
+        ZTest [_ZTestForward]
+    {% endif %}
+
+    {% if pass.name == "GBuffer" %}
+        Stencil
+        {
+            WriteMask [_StencilWriteMaskGBuffer]
+            Ref [_StencilRefGBuffer]
+            Comp Always
+            Pass Replace
+        }
+    {% elseif pass.name == "DepthOnly" %}
+        Stencil
+        {
+            WriteMask [_StencilWriteMaskDepth]
+            Ref [_StencilRefDepth]
+            Comp Always
+            Pass Replace
+        }
+    {% elseif pass.name == "Forward" %}
+        Stencil
+        {
+            WriteMask [_StencilWriteMask]
+            Ref [_StencilRef]
+            Comp Always
+            Pass Replace
+        }
+        // _ColorMaskTransparentVel is a global int
+        ColorMask [_ColorMaskTransparentVel] 1
+    {% elseif pass.name == "ShadowCaster" %}
+        ColorMask 0
+        ZClip [_ZClip]
+    {% elseif pass.name == "MotionVectors" %}
+        Stencil
+        {
+            WriteMask [_StencilWriteMaskMV]
+            Ref [_StencilRefMV]
+            Comp Always
+            Pass Replace
+        }
+    {% endif %}
+{% endhd %}

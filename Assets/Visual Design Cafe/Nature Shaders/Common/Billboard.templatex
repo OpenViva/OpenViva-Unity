@@ -1,0 +1,74 @@
+{% comment %}
+// Copyright 2020 Visual Design Cafe. All rights reserved.
+// This shader was created using ShaderX, a shader framework by Visual Design Cafe.
+// https://www.visualdesigncafe.com/shaderx
+
+// Package: Nature Shaders
+// Website: https://www.visualdesigncafe.com/nature-shaders
+// Documentation: https://support.visualdesigncafe.com/hc/categories/900000043503
+{% endcomment %}
+
+CBUFFER_START(UnityBillboardPerCamera)
+    float3 unity_BillboardNormal;
+    float3 unity_BillboardTangent;
+    float4 unity_BillboardCameraParams;
+    #define unity_BillboardCameraPosition (unity_BillboardCameraParams.xyz)
+    #define unity_BillboardCameraXZAngle (unity_BillboardCameraParams.w)
+CBUFFER_END
+
+CBUFFER_START(UnityBillboardPerBatch)
+    float4 unity_BillboardInfo; // x: num of billboard slices; y: 1.0f / (delta angle between slices)
+    float4 unity_BillboardSize; // x: width; y: height; z: bottom
+    float4 unity_BillboardImageTexCoords[16];
+CBUFFER_END
+
+void BillboardVert(
+    inout float3 vertex, 
+    out float3 normal, 
+    out float4 tangent, 
+    inout float4 uv0, 
+    inout float4 uv1)
+{
+    // assume no scaling & rotation
+    float3 worldPos = vertex.xyz + GetObjectPivot();
+
+    #ifdef BILLBOARD_FACE_CAMERA_POS
+        float3 eyeVec = normalize(unity_BillboardCameraPosition - worldPos);
+        float3 billboardTangent = normalize(float3(-eyeVec.z, 0, eyeVec.x));
+        float3 billboardNormal = float3(billboardTangent.z, 0, -billboardTangent.x);
+        float angle = atan2(billboardNormal.z, billboardNormal.x);
+        angle += angle < 0 ? 2 * PI : 0;
+    #else
+        float3 billboardTangent = unity_BillboardTangent;
+        float3 billboardNormal = unity_BillboardNormal;
+        float angle = unity_BillboardCameraXZAngle;
+    #endif
+
+    float widthScale = uv1.x;
+    float heightScale = uv1.y;
+    float rotation = uv1.z;
+
+    float2 percent = uv0.xy;
+    float3 billboardPos = (percent.x - 0.5f) * unity_BillboardSize.x * widthScale * billboardTangent;
+    billboardPos.y += (percent.y * unity_BillboardSize.y + unity_BillboardSize.z) * heightScale;
+
+    vertex.xyz += billboardPos;
+    normal = billboardNormal.xyz;
+
+    tangent = float4(billboardTangent.xyz,-1);
+
+    float slices = unity_BillboardInfo.x;
+    float invDelta = unity_BillboardInfo.y;
+    angle += rotation;
+
+    float imageIndex = fmod(floor(angle * invDelta + 0.5f), slices);
+    float4 imageTexCoords = unity_BillboardImageTexCoords[imageIndex];
+    if (imageTexCoords.w < 0)
+    {
+        uv0.xy = imageTexCoords.xy - imageTexCoords.zw * percent.yx;
+    }
+    else
+    {
+        uv0.xy = imageTexCoords.xy + imageTexCoords.zw * percent;
+    }
+}

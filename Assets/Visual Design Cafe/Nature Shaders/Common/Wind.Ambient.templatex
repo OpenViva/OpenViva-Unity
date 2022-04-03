@@ -1,0 +1,75 @@
+{% comment %}
+// Copyright 2020 Visual Design Cafe. All rights reserved.
+// This shader was created using ShaderX, a shader framework by Visual Design Cafe.
+// https://www.visualdesigncafe.com/shaderx
+
+// Package: Nature Shaders
+// Website: https://www.visualdesigncafe.com/nature-shaders
+// Documentation: https://support.visualdesigncafe.com/hc/categories/900000043503
+{% endcomment %}
+
+/// <summary>
+/// Returns the time for ambient wind.
+/// Smoothly adjusted for changes in wind speed.
+/// </summary>
+float GetSmoothAmbientOffset( float timeOffset )
+{
+    #if SHADERPASS == SHADERPASS_MOTION_VECTORS
+        // BUG:
+        // We should be able to use SHADERPASS_MOTION_VECTORS_PREV_FRAME here
+        // to return the previous time without having to check the time offset.
+        // However, the shader compiler does not recognize g_PrevSmoothTime as
+        // being used if we do that.
+        return timeOffset < 0 ? g_PrevSmoothTime.x : g_SmoothTime.x;
+    #else
+        return g_SmoothTime.x;
+    #endif
+}
+
+/// <summary>
+/// Calculates the wind frequency for the ambient wind.
+/// Returns a vector4 containing 4 different sine waves.
+/// </summary>
+float4 AmbientFrequency(
+    float3 objectPivot,         // The object pivot in world space.
+    float3 vertexWorldPosition, // The vertex position in world space.
+    float3 windDirection,       // The wind direction in world space.
+    float phaseOffset,          // The wind phase offset. (Range: 0-1)
+    float speed,                // The wind speed.
+    float time )                // The current time.
+{
+    float footprint = 3;
+    time -= phaseOffset * footprint;
+
+    #ifdef PER_OBJECT_VALUES_CALCULATED
+        float pivotOffset = g_PivotOffset;
+    #else
+        float pivotOffset = length( float3(objectPivot.x, 0, objectPivot.z) );
+    #endif
+
+    float scale = 0.5;
+    float frequency = pivotOffset * scale - time;
+    return FastSin(
+        float4(
+            frequency, 
+            frequency*0.5,
+            frequency*0.25, 
+            frequency*0.125) * speed );
+}
+
+/// <summary>
+/// Calculates the ambient wind.
+/// </summary>
+float3 AmbientWind( 
+    float3 objectPivot,         // The object pivot in world space.
+    float3 vertexWorldPosition, // The vertex position in world space.
+    float3 windDirection,       // The wind direction in world space.
+    float phaseOffset,          // The wind phase offset. (Range: 0-1)
+    float time )        
+{
+    float4 sine = AmbientFrequency( objectPivot, vertexWorldPosition, windDirection, phaseOffset, 1, time );
+    sine.w = abs(sine.w) + 0.5;
+    float xz = 1.5 * sine.x * sine.z + sine.w + 1;
+    float y  = 1 * sine.y * sine.z + sine.w;
+    return windDirection * float3(xz, 0, xz) + float3(0, y, 0);
+}

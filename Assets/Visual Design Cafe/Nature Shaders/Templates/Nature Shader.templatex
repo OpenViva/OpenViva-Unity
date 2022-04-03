@@ -1,0 +1,975 @@
+{% comment %}
+// Copyright 2020 Visual Design Cafe. All rights reserved.
+// This shader was created using ShaderX, a shader framework by Visual Design Cafe.
+// https://www.visualdesigncafe.com/shaderx
+
+// Package: Nature Shaders
+// Website: https://www.visualdesigncafe.com/nature-shaders
+// Documentation: https://support.visualdesigncafe.com/hc/categories/900000043503
+{% endcomment %}
+
+{% universal %}
+    {% assign name_prefix = "Universal Render Pipeline/" %}
+{% enduniversal %}
+{% hd %}
+    {% assign name_prefix = "HDRP/" %}
+{% endhd %}
+
+Shader "{{name_prefix}}Nature Shaders/{{shader.name}}"
+{
+    Properties
+    {
+        // Transparency
+            _AlphaTest("Alpha Test", Float) = 0
+            _AlphaTestThreshold("Alpha Test Threshold", Range(0.0, 1.0)) = 0.5
+
+        {% if fade %}
+            _ScaleFade ("Scale Fade", Vector) = (50, 20, 0, 0)
+            [HideInInspector]_NatureRendererDistanceControl ("", Float) = 1
+        {% endif %}
+
+        // Color
+            [Enum(Tint,0, HSL,1)]_ColorCorrection("Color Variation", Float) = 0
+            _HSL ("Hue, Saturation, Lightness", Vector) = (0.02, 0.05, 0.1, 0)
+            _HSLVariation ("Hue, Saturation, Lightness Variation", Vector) = (-0.02, -0.05, -0.1, 0)
+            _Tint ("Tint", Color) = (1, 1, 1, 1)
+            _TintVariation ("Tint Variation", Color) = (1, 1, 1, 1)
+            _ColorVariationSpread ("Color Variation Spread", Float) = 0.2
+
+        // Surface
+
+            // Surface Settings
+            {% if double_sided %}
+                [Enum(On, 0, Off, 2)] _DoubleSidedMode ("Double Sided", Float) = 2
+                [Enum(Same, 0, Flip, 1)] _DoubleSidedNormalMode ("Double sided normals", Float) = 1
+            {% endif %}
+            _VertexNormalStrength("Vertex Normal Strength", Range(0, 1)) = 1
+            [Enum(Off,0, MetallicGloss,1, Packed,2)]_SurfaceMapMethod("Surface Maps", Float) = 2
+
+            // Base Maps
+            [NoScaleOffset][HideInInspector]_MainTex("MainTex (legacy, use Albedo instead)", 2D) = "white" {}
+            [NoScaleOffset][MainTexture]_Albedo("Albedo", 2D) = "white" {}
+            [NoScaleOffset]_NormalMap("Normal Map", 2D) = "bump" {}
+            _NormalMapScale("Normal Map Strength", Range(0, 1)) = 1
+            _Glossiness("Smoothness", Range(0, 1)) = 0.2
+            _Metallic("Metallic", Range(0, 1)) = 0
+
+        {% if secondary_maps %}
+            [NoScaleOffset][HideInInspector]_SecondaryAlbedo("Secondary Albedo", 2D) = "white" {}
+            [NoScaleOffset]_SecondaryNormalMap("Secondary Normal Map", 2D) = "bump" {}
+            _SecondaryNormalMapScale("Secondary Normal Map Strength", Range(0, 1)) = 1
+            _SecondaryGlossiness("Secondary Smoothness", Range(0, 1)) = 0.2
+            _SecondaryMetallic("Secondary Metallic", Range(0, 1)) = 0
+        {% endif %}
+
+            // Surface Maps
+        {% if surface_map %}
+            [NoScaleOffset]_PackedMap("Packed Map", 2D) = "white" {}
+            [NoScaleOffset]_MetallicGlossMap("Metallic Gloss Map", 2D) = "black" {}
+            [NoScaleOffset]_OcclusionMap("Occlusion Map", 2D) = "white" {}
+            _GlossRemap("Remap Smoothness", Vector) = (0, 1, 0, 0)
+            _OcclusionRemap("Remap Occlusion", Vector) = (0, 1, 0, 0)
+
+            {% if secondary_maps %}
+                _SecondaryMaps("Secondary Maps", Range(0, 1)) = 0.0
+                [NoScaleOffset]_SecondaryPackedMap("Secondary Packed Map", 2D) = "white" {}
+                [NoScaleOffset]_SecondaryMetallicGlossMap("Secondary Metallic Gloss Map", 2D) = "black" {}
+                [NoScaleOffset]_SecondaryOcclusionMap("Secondary Occlusion Map", 2D) = "white" {}
+                _SecondaryGlossRemap("Remap Secondary Smoothness", Vector) = (0, 1, 0, 0)
+                _SecondaryOcclusionRemap("Remap Secondary Occlusion", Vector) = (0, 1, 0, 0)
+            {% endif %}
+        {% endif %}
+        {% if emission %}
+            _EmissionColor("Color", Color) = (1,1,1)
+            _EmissionMap("Emission", 2D) = "white" {}
+            _EmissionIntensity("Intensity", Float) = 0.0
+            {% hd %}
+                _EmissionExposureWeight("Emissive Pre Exposure", Range(0.0, 1.0)) = 1.0
+                [ToggleOff]_EmissionAffectedByAlbedo("Albedo Affect Emissive", Float) = 0.0
+            {% endhd %}
+        {% endif %}
+
+        // Mesh Data
+        [ToggleOff]_BakedMeshData("Baked Mesh Data", Float) = 0
+        _ObjectHeight("Object Height", Float) = 0.5
+        _ObjectRadius("Object Radius", Float) = 0.5
+
+        // Wind
+        {% if wind %}
+            _Wind("Wind", Float) = 1
+            _WindVariation("Wind Variation", Range(0, 1)) = 0.3
+            _WindStrength("Wind Strength", Range(0, 2)) = 1
+            _TurbulenceStrength("Turbulence Strength", Range(0, 2)) = 1
+            _RecalculateWindNormals("Recalculate Normals", Range(0,1)) = 0.5
+            _WindFade("Wind Fade", Vector) = (50, 20, 0, 0)
+            _TrunkBendFactor("Trunk Bending", Vector) = (1, 0, 0, 0)
+        {% endif %}
+
+        // Interaction
+        {% if interaction %}
+            _Interaction("Interaction", Float) = 0
+            _InteractionDuration("Interaction Duration", Range(0, 5)) = 1.5
+            _InteractionStrength("Interaction Strength", Range(0, 1)) = 1
+            _InteractionPushDown("Interaction PushDown", Range(0,1)) = 1
+        {% endif %}
+
+        // Translucency
+        {% if translucent %}
+            [ToggleOff]_Translucency("Translucency", Float) = 0
+            {% standard or universal %}
+                [Enum(Add,0,Overlay,1)]_TranslucencyBlendMode("Blend Mode", Float) = 0
+                _TranslucencyStrength("Translucency Strength", Range(0, 2)) = 1
+                _TranslucencyDistortion("Translucency Distortion", Range(0, 1)) = 0.5
+                _TranslucencyScattering("Translucency Scattering", Range(0, 3)) = 2
+                _TranslucencyColor("Translucency Color", Color) = (1, 1, 1, 1)
+                _TranslucencyAmbient("Translucency Ambient", Range(0, 1)) = 0.5
+                {% universal %}
+                    _TranslucencyShadow("Translucency Shadow", Range(0,1)) = 0.8
+                {% enduniversal %}
+            {% endstandard %}
+            [NoScaleOffset]_ThicknessMap("Thickness Map", 2D) = "black" {}
+            _ThicknessRemap("Thickness Remap", Vector) = (0, 1, 0, 0)
+        {% endif %}
+
+        // Overlay
+        {% if overlay %}
+            [ToggleOff]_Overlay("Overlay", Float) = 0
+            _SampleAlphaOverlay("Sample Alpha Overlay", Float) = 1.0
+            _SampleColorOverlay("Sample Color Overlay", Float) = 1.0
+        {% endif %}
+
+        // Perspective Correction
+        {% if perspective_correction %}
+            _PerspectiveCorrection("Perspective Correction", Range(0,1)) = 0.5
+        {% endif %}
+
+        // Rendering
+            [Enum(High, 0, Low, 1)] _LightingQuality ("Lighting Quality", Float) = 0
+            [ToggleOff] _SpecularHighlights ("Specular Highlights", Float) = 1.0
+            _MotionVectors("Calculate Motion Vectors", Float) = 1.0
+            _TemporalAntiAliasing("Temporal Anti-Aliasing", Float) = 0.0
+
+        {% hd %}
+            [HideInInspector] _DiffusionProfileAsset("Diffusion Profile Asset", Vector) = (0, 0, 0, 0)
+            [HideInInspector] _DiffusionProfileHash("Diffusion Profile Hash", Float) = 0
+        {% endhd %}
+
+        // Default Properties
+        {% embed "Lit.Properties.templatex" %}
+    }
+
+    SubShader
+    {
+        Tags
+        {
+            {% universal %}
+                "RenderPipeline"="UniversalPipeline"
+            {% enduniversal %}
+            {% hd %}
+                "RenderPipeline"="HDRenderPipeline"
+            {% endhd %}
+            "Queue" = "{{ queue | default:"AlphaTest+0" }}"
+            "RenderType"= "{{ render_type | default:"TransparentCutout" }}"
+			"DisableBatching" = "True"
+            {% if config.local.rendering_engine != "Vegetation Studio" and config.local.rendering_engine != "GPU Instancer" %}
+			    "NatureRendererInstancing" = "True"
+            {% endif %}
+        }
+        LOD 0
+
+        {% for pass in render_pipeline.passes %}
+
+        {% if config.local.exclude_forward %}
+            {% if pass.name == "FORWARD" or pass.name == "FORWARD_DELTA" or pass.name == "Universal Forward" or pass.name == "Forward" %}
+                {% continue %}
+            {% endif %}
+        {% endif %}
+
+        {% if config.local.exclude_deferred %}
+            {% if pass.name == "DEFERRED" or pass.name == "GBuffer" %}
+                {% continue %}
+            {% endif %}
+        {% endif %}
+
+        Pass
+        {
+            Name "{{pass.name}}"
+            Tags
+            {
+                "LightMode" = "{{pass.light_mode}}"
+            }
+
+            Blend One Zero, One Zero
+            ZWrite On
+
+            {% if double_sided %}
+                Cull [_DoubleSidedMode]
+            {% else %}
+                Cull Back
+            {% endif %}
+
+            ZTest LEqual
+
+            // TODO: Make sure this works on all platforms.
+            {% if alpha_to_coverage %}
+                AlphaToMask On
+            {% endif %}
+
+            // Embed the default pass setup. 
+            // This will overwrite any values that need to be different for specifc passes.
+            {% embed "Lit.pass.templatex" %}
+
+            HLSLPROGRAM
+
+            // Local keywords are only supported since Unity 2019, 
+            // so for earlier versions of Unity we need to use global keywords.
+            {% if unity.version.major >= 2019 %}
+                {% assign multi_compile_local = "multi_compile_local" %}
+                {% assign shader_feature_local = "shader_feature_local" %}
+            {% else %}
+                {% assign multi_compile_local = "multi_compile" %}
+                {% assign shader_feature_local = "shader_feature" %}
+            {% endif %}
+
+            // Nature Shaders Settings
+
+            #define NATURE_SHADERS
+
+            {% if type %}
+                #define _TYPE_{{type}}
+            {% endif %}
+
+            // Shader Features
+            #ifdef _ALPHATEST
+                #define _ALPHA_CLIP_ON
+                #define _ALPHATEST_ON // HDRP
+            #else
+                #define _ALPHA_CLIP_OFF
+                #define _ALPHATEST_OFF // HDRP
+                #define _ALPHA_CLIP_DISABLED
+            #endif 
+
+            #pragma {{shader_feature_local}} _COLOR_TINT _COLOR_HSL
+
+            #pragma {{shader_feature_local}} _BAKED_MESH_DATA
+
+            {% if wind %}
+                #pragma {{shader_feature_local}}_vertex _WIND_OFF _WIND
+                #if defined(_WIND)
+                    #define _WIND_ON
+                #endif
+            {% else %}
+                #ifndef _WIND_OFF
+                    #define _WIND_OFF
+                #endif
+            {% endif %}
+
+            {% if surface_map %}
+                // Already defined in Lit template.
+                // #pragma {{shader_feature_local}} _SURFACE_MAP_OFF _SURFACE_MAP_PACKED _SURFACE_MAP_METALLIC_GLOSS
+            {% else %}
+                #ifndef _SURFACE_MAP_OFF
+                    #define _SURFACE_MAP_OFF
+                #endif
+            {% endif %}
+
+            {% if secondary_maps %}
+                #pragma {{shader_feature_local}} _SECONDARY_MAPS
+            {% endif %}
+
+            {% if emission %}
+                // Already defined in Lit template.
+                //#pragma {{shader_feature_local}} _EMISSION
+            {% endif %}
+
+            {% if config.global.interaction.supported and interaction %}
+                // Uses a global keyword to enable/disable interaction in project quality settings.
+                #pragma multi_compile_vertex _INTERACTION_OFF _INTERACTION
+                #if defined(_INTERACTION)
+                    #define _INTERACTION_ON
+                #endif
+            {% else %}
+                #ifndef _INTERACTION_OFF
+                    #define _INTERACTION_OFF
+                #endif
+            {% endif %}
+
+            {% if config.global.overlay.supported and overlay %}
+                #pragma {{shader_feature_local}} _OVERLAY
+            {% endif %}
+
+            {% if translucent %}
+                #pragma {{shader_feature_local}} _TRANSLUCENCY _TRANSLUCENCY_MAP
+                #if defined(_TRANSLUCENCY) || defined(_TRANSLUCENCY_MAP)
+                    #define _TRANSLUCENCY_ON
+                    #define _MATERIAL_FEATURE_SUBSURFACE_SCATTERING 1
+                    #define _MATERIAL_FEATURE_TRANSMISSION 1
+                    {% if pass.name == "Forward" %}
+                        #define OUTPUT_SPLIT_LIGHTING
+                    {% endif %}
+                #endif
+            {% endif %}
+
+            {% if billboard %}
+                #pragma multi_compile_vertex _ BILLBOARD_FACE_CAMERA_POS
+            {% endif %}
+
+            #pragma target 4.0
+
+            {% if config.local.rendering_engine == "Vegetation Studio" %}
+                #pragma multi_compile_instancing
+                #pragma instancing_options procedural:setup forwardadd
+                #pragma multi_compile _ GPU_FRUSTUM_ON
+            {% elseif config.local.rendering_engine == "GPU Instancer" %}
+                #pragma multi_compile_instancing
+                #pragma instancing_options procedural:setupGPUI
+            {% else %}
+                // Nature Renderer integration
+                #pragma multi_compile_instancing
+                #pragma instancing_options procedural:SetupNatureRenderer nolightmap forwardadd renderinglayer
+
+                // BUG: 
+                // This define needs to be put BEFORE embedding the Lit.Config file below, 
+                // even though this define is not used there. If it is put after then the
+                // camera-relative rendering is broken in HDRP when using procedural instancing.
+
+                // Nature Renderer calculates values that are the same for all vertices once
+                // for each object. This is a nice optimization that reduces per-vertex calculations.
+                // This only works if Procedural Instancing is enabled.
+                #if defined(UNITY_PROCEDURAL_INSTANCING_ENABLED)
+                    #define PER_OBJECT_VALUES_CALCULATED
+                #endif
+            {% endif %}
+
+            // Include the default cginc files and configurations 
+            // that are required for the current render pipeline.
+            {% embed "Lit.config.templatex" %}
+
+            // Input
+            struct VertexAttributes
+            {
+                {% embed "Lit.input.vertex.templatex" %}
+            };
+
+            struct SurfaceInput
+            {
+                {% if config.global.overlay.supported and overlay %}
+                    #ifdef _OVERLAY
+                        float4 overlay : TEXCOORD10;
+                    #endif
+                {% endif %}
+                float noise : TEXCOORD11; // TODO: pack noise into positionWS.w or normalWS.w
+                {% embed "Lit.input.surface.templatex" %}
+
+                SHADERX_VFACE
+            };
+
+            // Properties
+            CBUFFER_START( UnityPerMaterial )
+                //
+                float _AlphaTest;
+                float _AlphaTestThreshold;
+
+                // Fade
+                {% if fade %}
+                    float2 _ScaleFade;
+                {% endif %}
+
+                // Color Correction
+                float3 _HSL;
+                float3 _HSLVariation;
+                float4 _Tint;
+                float4 _TintVariation;
+                float _ColorVariationSpread;
+
+                // Surface Settings
+                {% if double_sided %}
+                    float _DoubleSidedMode;
+                    float _DoubleSidedNormalMode;
+                {% endif %}
+                float _VertexNormalStrength;
+                float _SurfaceMapMethod;
+
+                // Base Maps
+                float _NormalMapScale;
+                float _Metallic;
+                float _Glossiness;
+
+                {% if secondary_maps %}
+                    #ifdef _SECONDARY_MAPS
+                        float _SecondaryNormalMapScale;
+                        float _SecondaryMetallic;
+                        float _SecondaryGlossiness;
+                    #endif
+                {% endif %}
+
+                // Surface Maps
+                {% if secondary_maps %}
+                    float _SecondaryMaps;
+                {% endif %}
+                {% if surface_map %}
+                    float2 _GlossRemap;
+                    float2 _OcclusionRemap;
+                    {% if secondary_maps %}
+                        #ifdef _SECONDARY_MAPS
+                            float2 _SecondaryGlossRemap;
+                            float2 _SecondaryOcclusionRemap;
+                        #endif
+                    {% endif %}
+                {% endif %}
+                {% if emission %}
+                    float4 _EmissionColor;
+                    float _EmissionIntensity;
+                    float _EmissionExposureWeight;
+                    float _EmissionAffectedByAlbedo;
+                {% endif %}
+
+                // Wind
+                float _ObjectHeight;
+                float _ObjectRadius;
+                {% if wind %}
+                    float _Wind;
+                    float _WindVariation;
+                    float _WindStrength;
+                    float _TurbulenceStrength;
+                    float _RecalculateWindNormals;
+                    float4 _TrunkBendFactor;
+                {% endif %}
+                {% if fade %}
+                    float2 _WindFade;
+                {% endif %}
+
+                // Interaction
+                {% if config.global.interaction.supported %}
+                    float _Interaction;
+                    float _InteractionDuration;
+                    float _InteractionStrength;
+                    float _InteractionPushDown;
+                {% endif %}
+
+                // Translucency
+                {% if translucent %}
+                    float _Translucency; 
+                    {% standard or universal %}
+                        float _TranslucencyBlendMode;
+                        float _TranslucencyStrength;
+                        float _TranslucencyDistortion; 
+                        float _TranslucencyScattering; 
+                        float4 _TranslucencyColor; 
+                        float _TranslucencyAmbient;
+                        float _TranslucencyShadow;
+                    {% endstandard %}
+                    float2 _ThicknessRemap;
+                    {% hd %}
+                        float _DiffusionProfileHash;
+                    {% endhd %}
+                {% endif %}
+
+                // Overlay
+                {% if config.global.overlay.supported and overlay %}
+                    float _Overlay;
+                    float _SampleAlphaOverlay;
+                    float _SampleColorOverlay;
+                {% endif %}
+
+                {% if perspective_correction and config.global.perspective_correction.supported %}
+                    float _PerspectiveCorrection;
+                {% endif %}
+
+                // Rendering
+                float _LightingQuality;
+                float _SpecularHighlights;
+                float _EnvironmentReflections;
+                {% hd %}
+                    float _ZTestForward;
+                    float _ZTestGBuffer;
+                    //
+                    float _StencilRef;
+                    float _StencilWriteMask;
+                    float _StencilRefDepth;
+                    float _StencilWriteMaskDepth;
+                    float _StencilRefGBuffer;
+                    float _StencilWriteMaskGBuffer;
+                {% endhd %}
+            CBUFFER_END
+
+            {% hd %}
+                #ifdef _ALPHATEST
+                    SAMPLER( sampler_Albedo );
+                    #define SAMPLER_ALBEDO sampler_Albedo
+                    #define SAMPLER_NORMAL sampler_Albedo
+                    #define SAMPLER_PACKED sampler_Albedo
+                    #define SAMPLER_GLOSS sampler_Albedo
+                    #define SAMPLER_OCCLUSION sampler_Albedo
+                    #define SAMPLER_EMISSION sampler_Albedo
+                    #define SAMPLER_THICKNESS sampler_Albedo
+                #else
+                    // BUG:
+                    // The sampler/texture name is not recognized by the shader compiler when 
+                    // using HDRP with forward rendering and no alpha test, if the sampler is
+                    // shared between multiple textures. As a workaround we create a separate
+                    // sampler for each texture.
+                    SAMPLER( sampler_Albedo );
+                    SAMPLER( sampler_NormalMap );
+                    SAMPLER( sampler_PackedMap );
+                    SAMPLER( sampler_MetallicGlossMap );
+                    SAMPLER( sampler_OcclusionMap );
+                    SAMPLER( sampler_EmissionMap );
+                    SAMPLER( sampler_ThicknessMap );
+                    #define SAMPLER_ALBEDO sampler_Albedo
+                    #define SAMPLER_NORMAL sampler_NormalMap
+                    #define SAMPLER_PACKED sampler_PackedMap
+                    #define SAMPLER_GLOSS sampler_MetallicGlossMap
+                    #define SAMPLER_OCCLUSION sampler_OcclusionMap
+                    #define SAMPLER_EMISSION sampler_EmissionMap
+                    #define SAMPLER_THICKNESS sampler_ThicknessMap
+                #endif
+            {% endhd %}
+            {% standard or universal %}
+                SAMPLER( sampler_Albedo );
+                #define SAMPLER_ALBEDO sampler_Albedo
+                #define SAMPLER_NORMAL sampler_Albedo
+                #define SAMPLER_PACKED sampler_Albedo
+                #define SAMPLER_GLOSS sampler_Albedo
+                #define SAMPLER_OCCLUSION sampler_Albedo
+                #define SAMPLER_EMISSION sampler_Albedo
+                #define SAMPLER_THICKNESS sampler_Albedo
+            {% endstandard %}
+            TEXTURE2D( _Albedo );
+            {% if secondary_maps %}
+                #ifdef _SECONDARY_MAPS
+                    TEXTURE2D( _SecondaryAlbedo );
+                #endif
+            {% endif %}
+            #ifdef _NORMALMAP
+                TEXTURE2D( _NormalMap );
+                {% if secondary_maps %}
+                    #ifdef _SECONDARY_MAPS
+                        TEXTURE2D( _SecondaryNormalMap );
+                    #endif
+                {% endif %}
+            #endif
+            {% if surface_map %}
+                #ifdef _SURFACE_MAP_PACKED
+                    TEXTURE2D( _PackedMap );
+                    {% if secondary_maps %}
+                        #ifdef _SECONDARY_MAPS
+                            TEXTURE2D( _SecondaryPackedMap );
+                        #endif
+                    {% endif %}
+                #endif
+                #ifdef _SURFACE_MAP_METALLIC_GLOSS
+                    TEXTURE2D( _MetallicGlossMap );
+                    TEXTURE2D( _OcclusionMap );
+                    {% if secondary_maps %}
+                        #ifdef _SECONDARY_MAPS
+                            TEXTURE2D( _SecondaryMetallicGlossMap );
+                            TEXTURE2D( _SecondaryOcclusionMap );
+                        #endif
+                    {% endif %}
+                #endif
+            {% endif %}
+            {% if emission %}
+                #ifdef _EMISSION
+                    TEXTURE2D( _EmissionMap );
+                #endif
+            {% endif %}
+            {% if translucent %}
+                #ifdef _TRANSLUCENCY_MAP
+                    TEXTURE2D( _ThicknessMap );
+                #endif
+            {% endif %}
+
+            // Include common features.
+            {% embed "Common.Uniform.templatex" %}
+
+            {% standard or universal %}
+                {% if translucent %}
+                    {% embed "../Common/Translucency.templatex" %}
+                {% endif %}
+            {% endstandard %}
+
+            {% embed "../Common/Color Correction.templatex" %}
+            {% if wind %}
+                {% embed "../Common/Wind.templatex" %}
+            {% endif %}
+
+            {% if config.global.interaction.supported and interaction %}
+                #ifdef _INTERACTION
+                    {% embed "../Common/Interaction.templatex" %}
+                #endif
+            {% endif %}
+
+            {% if config.global.overlay.supported and overlay %}
+                #ifdef _OVERLAY
+                    {% embed "../Common/Overlay.templatex" %}
+                #endif
+            {% endif %}
+
+            {% if perspective_correction and config.global.perspective_correction.supported %}
+                {% embed "../Common/Perspective Correction.templatex" %}
+            {% endif %}
+
+            {% if billboard %}
+                {% embed "../Common/Billboard.templatex" %}
+            {% endif %}
+            
+            {% embed "Common.templatex" %}
+
+            {% if config.local.rendering_engine == "Vegetation Studio" %}
+                {% embed "../Integrations/Vegetation Studio.templatex" %}
+            {% elseif config.local.rendering_engine == "GPU Instancer" %}
+                {% embed "../Integrations/GPU Instancer.templatex" %}
+            {% else %}
+                {% embed "../Integrations/Nature Renderer.templatex" %}
+            {% endif %}
+
+            // Called with raw vertex data before doing any kind of calculations or transformations.
+            // Useful to modify the vertex data in object space.
+            {% assign PreVertexMethod = "PreVertexMethod" %}
+            void PreVertexMethod( inout VertexAttributes vertex )
+            {
+                {% if billboard %}
+                    BillboardVert( 
+                        vertex.positionOS,
+                        vertex.normalOS,
+                        vertex.tangentOS, 
+                        vertex.uv0, 
+                        vertex.uv1);
+                {% endif %}
+            }
+
+            // The main vertex method. Is used to modify the vertex data and 
+            // the input for the surface (fragment) method.
+            {% assign VertexMethod = "VertexMethod" %}
+            void VertexMethod(
+                VertexAttributes vertex,
+                inout SurfaceInput surface,
+                float4 timeOffset )
+            {
+                float3 objectPivot = GetObjectPivot();
+                float3 positionWS = GetAbsolutePositionWS( surface.positionWS.xyz );
+                float3 positionWSOriginal = positionWS;
+
+                {% if config.global.overlay.supported and overlay %}
+                    #ifdef _OVERLAY
+                        surface.overlay = SampleOverlay( positionWS );
+                        surface.overlay.rgb = 
+                            lerp(float3(1,1,1), surface.overlay.rgb, _SampleColorOverlay);
+                        surface.overlay.a = 
+                            lerp(1, surface.overlay.a, _SampleAlphaOverlay);
+                    #endif
+                {% endif %}
+
+                {% pass "Forward" or "ForwardAdd" or "Universal Forward" or "GBuffer" or "Deferred" or "Meta" %}
+                    surface.noise = PerVertexPerlinNoise( objectPivot );
+                {% endpass %}
+
+                {% if fade %}
+                    float windFade;
+                    float scaleFade;
+                    PerVertexFade( objectPivot, windFade, scaleFade );
+                {% else %}
+                    float windFade = 1;
+                    float scaleFade = 1;
+                {% endif %}
+
+                float heightMask = 
+                    GetHeightMask( 
+                        vertex.positionOS.xyz, 
+                        vertex.color, 
+                        vertex.uv1.xy );
+
+                float phaseOffset = 
+                    GetPhaseOffset( 
+                        vertex.color, 
+                        positionWS,
+                        objectPivot );
+
+                {% if config.global.interaction.supported and interaction %}
+                    #ifdef _INTERACTION
+                        Interact( 
+                            positionWS, 
+                            objectPivot, 
+                            heightMask,
+                            phaseOffset,
+                            _InteractionDuration,
+                            _InteractionStrength,
+                            _InteractionPushDown );
+                    #endif
+                {% endif %}
+                
+                {% if wind %}
+                    #ifdef _WIND
+                        UNITY_BRANCH
+                        if( windFade > HALF_EPS )
+                            Wind( 
+                                vertex, 
+                                surface, 
+                                positionWS,
+                                windFade, 
+                                scaleFade, 
+                                heightMask, 
+                                phaseOffset, 
+                                objectPivot,
+                                timeOffset.x );
+                    #endif
+                {% endif %}
+
+                {% if fade %}
+                    positionWS = 
+                        ApplyScaleFade( positionWS, objectPivot, scaleFade );
+                {% endif %}
+
+                {% if perspective_correction and config.global.perspective_correction.supported %}
+                    {% standard or universal %}
+                        float3 viewDirectionWS = surface.viewDirectionWS.xyz;
+                    {% endstandard %}
+                    {% hd %}
+                        // HD calculates the view direction in the fragment shader, 
+                        // so it is not available here in the vertex. We need to calculate it.
+                        float3 viewDirectionWS = normalize( _WorldSpaceCameraPos.xyz - positionWS );
+                    {% endhd %}
+
+                    UNITY_BRANCH
+                    if( _PerspectiveCorrection > 0 )
+                        CorrectPerspective( positionWS, viewDirectionWS, heightMask * _PerspectiveCorrection );
+                {% endif %}
+
+                surface.positionWS = GetCameraRelativePositionWS( positionWS );
+                
+                #ifdef PER_OBJECT_VALUES_CALCULATED
+                    surface.normalWS = lerp(g_ObjectUp, surface.normalWS, _VertexNormalStrength);
+                #else
+                    if( _VertexNormalStrength < 1 )
+                        surface.normalWS = lerp(TransformObjectToWorldNormal(float3(0,1,0)), surface.normalWS, _VertexNormalStrength);
+                #endif
+            }
+
+            void SurfaceMethod(
+                SurfaceInput input,
+                inout Surface output )
+            {
+                float2 uv0 = input.texCoord0.xy;
+
+                #ifdef _SECONDARY_MAPS
+                    float2 uv2 = input.texCoord2.xy;
+                    float secondaryMask = (1.0 - input.color.b) * _SecondaryMaps;
+                #endif
+
+                // Albedo
+                float4 albedo;
+                SampleAlbedo( uv0.xy, albedo );
+
+                // Overlay
+                {% if config.global.overlay.supported and overlay %}
+                    #ifdef _OVERLAY
+                        float4 overlay = input.overlay;
+                        albedo.a *= overlay.a;
+                    #endif
+                {% endif %}
+
+                // Alpha clip
+                #ifdef _ALPHATEST
+                    {% if alpha_to_coverage %}
+                        {% pass "ShadowCaster" or "GBuffer" %}
+                            AlphaTest( albedo.a, _AlphaTestThreshold );
+                        {% else %}
+                            albedo.a = (albedo.a - _AlphaTestThreshold) / max(fwidth(albedo.a), 0.0001) + 0.5;
+                        {% endpass %}
+                    {% else %}
+                        AlphaTest( albedo.a, _AlphaTestThreshold );
+                    {% endif %}
+                #else
+                    albedo.a = 1;
+                #endif
+
+                {% pass "Forward" or "ForwardAdd" or "Universal Forward" or "GBuffer" or "Deferred" or "Meta" %}
+                    
+                    // Normal Map
+                    #ifdef _NORMALMAP
+                        SampleNormalMap( uv0.xy, output.Normal );
+                    #endif
+                
+                    // Surface Map
+                    {% if surface_map %}
+                        #if defined(_SURFACE_MAP_PACKED)
+                            SamplePackedMap( 
+                                uv0.xy, output.Metallic, output.Smoothness, output.Occlusion );
+                        #elif defined(_SURFACE_MAP_METALLIC_GLOSS)
+                            SampleMetallicGlossMap( 
+                                uv0.xy, output.Metallic, output.Smoothness, output.Occlusion );
+                        #else
+                            SampleMetallicGlossConstants( 
+                                uv0.xy, output.Metallic, output.Smoothness, output.Occlusion );
+                        #endif
+                    {% else %}
+                        SampleMetallicGlossConstants( 
+                            uv0.xy, output.Metallic, output.Smoothness, output.Occlusion );
+                    {% endif %}
+
+                    // Secondary Maps
+                    {% if secondary_maps %}
+                        #ifdef _SECONDARY_MAPS
+                            UNITY_BRANCH
+                            if( secondaryMask > HALF_EPS )
+                            {
+                                // Albedo
+                                float4 secondaryAlbedo;
+                                SampleSecondaryAlbedo( uv2.xy, secondaryAlbedo );
+                                albedo = lerp( albedo, secondaryAlbedo, secondaryMask );
+
+                                // Normal
+                                #ifdef _NORMALMAP
+                                    float3 secondaryNormal;
+                                    SampleSecondaryNormalMap( uv2.xy, secondaryNormal );
+                                    output.Normal = 
+                                        lerp( output.Normal, secondaryNormal, secondaryMask );
+                                #endif
+
+                                // Surface
+                                float secondaryMetallic;
+                                float secondarySmoothness;
+                                float secondaryOcclusion;
+
+                                {% if surface_map %}
+                                    #if defined(_SURFACE_MAP_PACKED)
+                                        SampleSecondaryPackedMap( 
+                                            uv2.xy, secondaryMetallic, secondarySmoothness, secondaryOcclusion );
+                                    #elif defined(_SURFACE_MAP_METALLIC_GLOSS)
+                                        SampleSecondaryMetallicGlossMap( 
+                                            uv2.xy, secondaryMetallic, secondarySmoothness, secondaryOcclusion );
+                                    #else
+                                        SampleSecondaryMetallicGlossConstants( 
+                                            uv2.xy, secondaryMetallic, secondarySmoothness, secondaryOcclusion );
+                                    #endif
+                                {% else %}
+                                    SampleSecondaryMetallicGlossConstants( 
+                                        uv2.xy, secondaryMetallic, secondarySmoothness, secondaryOcclusion );
+                                {% endif %}
+
+                                output.Metallic = 
+                                    lerp( output.Metallic, secondaryMetallic, secondaryMask );
+                                output.Smoothness = 
+                                    lerp( output.Smoothness, secondarySmoothness, secondaryMask );
+                                output.Occlusion = 
+                                    lerp( output.Occlusion, secondaryOcclusion, secondaryMask );
+                            }
+                        #endif
+                    {% endif %}
+
+                    // Color correction
+                    ApplyColorCorrection( albedo, input.noise );
+                    output.Albedo = albedo.rgb;
+
+                    {% if config.global.overlay.supported and overlay %}
+                        #ifdef _OVERLAY
+                            output.Albedo.rgb *= overlay.rgb;
+                        #endif
+                    {% endif %}
+
+                    // Translucency
+                    {% if translucent %}
+                        #if defined(_TRANSLUCENCY) || defined(_TRANSLUCENCY_MAP)
+                            SampleThickness( uv0.xy, output.Thickness );
+                        #endif
+                    {% endif %}
+
+                    // Emission
+                    {% if emission %}
+                        #ifdef _EMISSION
+                            SampleEmission( uv0.xy, output.Albedo.rgb, output.Emission );
+                        #endif
+                    {% endif %}
+
+                {% endpass %}
+
+                output.Alpha = albedo.a;
+
+                // Flip double-sided normals
+                {% if double_sided %}
+                    #ifdef SHADER_STAGE_FRAGMENT
+                        FlipNormals( output.Normal, input.cullFace );
+                    #endif
+                {% endif %}
+            }
+
+            {% standard or universal %}
+                {% if translucent %}
+                    
+                    float3 Overlay(float3 a, float3 b)
+                    {
+                        return a < 0.5
+                            ? 2 * a * b 
+                            : 1 - 2 * (1-a) * (1-b);
+                    }
+                    
+                    {% assign PostLightingMethod = "PostLightingMethod" %}
+                    void PostLightingMethod( 
+                        SurfaceInput input, 
+                        Surface surface,
+                        SurfaceCommon surfaceCommon,
+                        LightingCommon lightingCommon,
+                        inout half4 color )
+                    {
+                        {% pass "Forward" or "Universal Forward" %}
+                            #if defined(_TRANSLUCENCY) || defined(_TRANSLUCENCY_MAP)
+                                #if defined(POINT) || defined(POINT_COOKIE) || defined(SPOT)
+                                    // Ignore these light types. Only directional is supported.
+                                #else
+                                    TranslucencyInput translucencyInput;
+                                    translucencyInput.Scale = _TranslucencyStrength;
+                                    translucencyInput.NormalDistortion = _TranslucencyDistortion;
+                                    translucencyInput.Scattering = _TranslucencyScattering;
+                                    translucencyInput.Thickness = surface.Thickness;
+                                    translucencyInput.Color = _TranslucencyColor.rgb;
+                                    translucencyInput.Ambient = _TranslucencyAmbient;
+                                    {% universal %}
+                                        translucencyInput.Shadow = _TranslucencyShadow;
+                                    {% enduniversal %}
+                                    {% standard %}
+                                        translucencyInput.Shadow = 1.0;
+                                    {% endstandard %}
+                                    
+                                    float3 translucency = 
+                                        Translucency( 
+                                            translucencyInput, 
+                                            lightingCommon.indirect.diffuse,
+                                            surfaceCommon.diffuse,
+                                            surfaceCommon.normalWS, 
+                                            -input.viewDirectionWS.xyz,
+                                            lightingCommon.light ).rgb;
+
+                                    color.rgb += 
+                                        _TranslucencyBlendMode == 0 
+                                            ? translucency 
+                                            : Overlay(translucency, color.rgb);
+                                #endif
+                            #endif
+                        {% endpass %}
+                    }
+                {% endif %}
+            {% endstandard %}
+
+            // Embed the default shader template for the current render pipeline. These templates
+            // contains the actual shader code for the render-pipeline-specific lighting.
+            {% standard %}
+                {% embed "Lit.standard.templatex" %}
+            {% endstandard %}
+
+            {% universal %}
+                {% embed "Lit.universal.templatex" %}
+            {% enduniversal %}
+
+            {% hd %}
+                {% embed "Lit.HD.templatex" %}
+            {% endhd %}
+
+            ENDHLSL
+        }
+        {% endfor %}
+    }
+
+    Fallback Off
+    CustomEditor "VisualDesignCafe.Nature.Materials.Editor.NatureMaterialEditor"
+}

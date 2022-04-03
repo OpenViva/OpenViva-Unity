@@ -1,0 +1,298 @@
+{% comment %}
+// Copyright 2020 Visual Design Cafe. All rights reserved.
+// This shader was created using ShaderX, a shader framework by Visual Design Cafe.
+// https://www.visualdesigncafe.com/shaderx
+{% endcomment %}
+
+{% comment %}
+// This file is used to add support for the same API in all render pipelines.
+{% endcomment %}
+
+{% standard %}
+    // These are already defined in "HLSLSupport.cginc" and will be defined again
+    // in the API files below. Let's undef them here to remove the "macro redefinition" warning.
+    #undef UNITY_UV_STARTS_AT_TOP
+    #undef UNITY_NEAR_CLIP_VALUE
+    #undef UNITY_REVERSED_Z
+    #undef UNITY_RAW_FAR_CLIP_VALUE
+    #undef CBUFFER_START
+    #undef CBUFFER_END
+    #undef UNITY_BRANCH
+    #undef UNITY_FLATTEN
+    #undef UNITY_UNROLL
+    #undef UNITY_LOOP
+    #undef SAMPLE_DEPTH_TEXTURE
+    #undef SAMPLE_DEPTH_TEXTURE_LOD
+
+    #if defined(SHADER_API_XBOXONE)
+        {% embed "API/XBoxOne.hlsl" %}
+    #elif defined(SHADER_API_PSSL)
+        {% embed "API/PSSL.hlsl" %}
+    #elif defined(SHADER_API_D3D11)
+        {% embed "API/D3D11.hlsl" %}
+    #elif defined(SHADER_API_METAL)
+        {% embed "API/Metal.hlsl" %}
+    #elif defined(SHADER_API_VULKAN)
+        {% embed "API/Vulkan.hlsl" %}
+    #elif defined(SHADER_API_SWITCH)
+        {% embed "API/Switch.hlsl" %}
+    #elif defined(SHADER_API_GLCORE)
+        {% embed "API/GLCore.hlsl" %}
+    #elif defined(SHADER_API_GLES3)
+        {% embed "API/GLES3.hlsl" %}
+    #elif defined(SHADER_API_GLES)
+        {% embed "API/GLES2.hlsl" %}
+    #else
+        #error unsupported shader api
+    #endif
+{% endstandard %}
+
+{% standard %}
+    #define FLT_MIN  1.175494351e-38 // Minimum normalized positive floating-point number
+        
+    #define PI          3.14159265358979323846
+    #define TWO_PI      6.28318530717958647693
+    #define FOUR_PI     12.5663706143591729538
+    #define INV_PI      0.31830988618379067154
+    #define INV_TWO_PI  0.15915494309189533577
+    #define INV_FOUR_PI 0.07957747154594766788
+    #define HALF_PI     1.57079632679489661923
+    #define INV_HALF_PI 0.63661977236758134308
+    #define LOG2_E      1.44269504088896340736
+
+    #define FLT_INF  asfloat(0x7F800000)
+    #define FLT_EPS  5.960464478e-8  // 2^-24, machine epsilon: 1 + EPS = 1 (half of the ULP for 1.0f)
+    #define FLT_MIN  1.175494351e-38 // Minimum normalized positive floating-point number
+    #define FLT_MAX  3.402823466e+38 // Maximum representable floating-point number
+    #define HALF_EPS 4.8828125e-4    // 2^-11, machine epsilon: 1 + EPS = 1 (half of the ULP for 1.0f)
+    #define HALF_MIN 6.103515625e-5  // 2^-14, the same value for 10, 11 and 16-bit: https://www.khronos.org/opengl/wiki/Small_Float_Formats
+    #define HALF_MAX 65504.0
+    #define UINT_MAX 0xFFFFFFFFu
+{% endstandard %}
+
+{% standard %}
+    #ifndef INTRINSIC_BITFIELD_INSERT
+        // Inserts the bits indicated by 'mask' from 'src' into 'dst'.
+        uint BitFieldInsert(uint mask, uint src, uint dst)
+        {
+            return (src & mask) | (dst & ~mask);
+        }
+    #endif
+
+    // Composes a floating point value with the magnitude of 'x' and the sign of 's'.
+    // See the comment about FastSign() below.
+    float CopySign(float x, float s, bool ignoreNegZero = true)
+    {
+        #if !defined(SHADER_API_GLES)
+            if (ignoreNegZero)
+            {
+                return (s >= 0) ? abs(x) : -abs(x);
+            }
+            else
+            {
+                uint negZero = 0x80000000u;
+                uint signBit = negZero & asuint(s);
+                return asfloat(BitFieldInsert(negZero, signBit, asuint(x)));
+            }
+        #else
+            return (s >= 0) ? abs(x) : -abs(x);
+        #endif
+    }
+
+    // Ref: http://jcgt.org/published/0003/02/01/paper.pdf
+    // Encode with Oct, this function work with any size of output
+    // return float between [-1, 1]
+    float2 PackNormalOctQuadEncode(float3 n)
+    {
+        //float l1norm    = dot(abs(n), 1.0);
+        //float2 res0     = n.xy * (1.0 / l1norm);
+
+        //float2 val      = 1.0 - abs(res0.yx);
+        //return (n.zz < float2(0.0, 0.0) ? (res0 >= 0.0 ? val : -val) : res0);
+
+        // Optimized version of above code:
+        n *= rcp(dot(abs(n), 1.0));
+        float t = saturate(-n.z);
+        return n.xy + (n.xy >= 0.0 ? t : -t);
+    }
+
+    // Normalize that account for vectors with zero length
+    float3 SafeNormalize(float3 inVec)
+    {
+        float dp3 = max(FLT_MIN, dot(inVec, inVec));
+        return inVec * rsqrt(dp3);
+    }
+{% endstandard %}
+
+{% embed "Common.API.SpaceTransforms.templatex" %}
+{% embed "Common.API.Random.templatex" %}
+
+{% universal or standard %}
+    uint2 ComputeFadeMaskSeed(float3 V, uint2 positionSS)
+    {
+        uint2 fadeMaskSeed;
+        if (IsPerspectiveProjection())
+        {
+            float2 pv = PackNormalOctQuadEncode(V);
+            pv *= _ScreenParams.xy;
+            pv *= UNITY_MATRIX_P._m00_m11;
+            fadeMaskSeed = asuint((int2)pv);
+        }
+        else
+        {
+            fadeMaskSeed = positionSS;
+        }
+
+        return fadeMaskSeed;
+    }
+{% enduniversal %}
+
+{% standard %}
+    #if !defined(SHADER_API_GLES)
+        // LOD dithering transition helper
+        // LOD0 must use this function with ditherFactor 1..0
+        // LOD1 must use this function with ditherFactor -1..0
+        // This is what is provided by unity_LODFade
+        void LODDitheringTransition(uint2 fadeMaskSeed, float ditherFactor)
+        {
+            // Generate a spatially varying pattern.
+            // Unfortunately, varying the pattern with time confuses the TAA, increasing the amount of noise.
+            float p = GenerateHashedRandomFloat(fadeMaskSeed);
+
+            // This preserves the symmetry s.t. if LOD 0 has f = x, LOD 1 has f = -x.
+            float f = ditherFactor - CopySign(p, ditherFactor);
+            clip(f);
+        }
+    #endif
+{% endstandard %}
+
+{% universal or hd %}
+    half3 UnpackScaleNormalRGorAG(half4 packednormal, half bumpScale)
+    {
+        #if defined(UNITY_NO_DXT5nm)
+            half3 normal = packednormal.xyz * 2 - 1;
+            #if (SHADER_TARGET >= 30)
+                // SM2.0: instruction count limitation
+                // SM2.0: normal scaler is not supported
+                normal.xy *= bumpScale;
+            #endif
+            return normal;
+        #else
+            // This do the trick
+            packednormal.x *= packednormal.w;
+
+            half3 normal;
+            normal.xy = (packednormal.xy * 2 - 1);
+            #if (SHADER_TARGET >= 30)
+                // SM2.0: instruction count limitation
+                // SM2.0: normal scaler is not supported
+                normal.xy *= bumpScale;
+            #endif
+            normal.z = sqrt(1.0 - saturate(dot(normal.xy, normal.xy)));
+            return normal;
+        #endif
+    }
+
+    half3 UnpackScaleNormal(half4 packednormal, half bumpScale)
+    {
+        return UnpackScaleNormalRGorAG(packednormal, bumpScale);
+    }
+{% enduniversal %}
+
+{% standard or hd %}
+    struct Light
+	{
+		half3   direction;
+		half3   color;
+		half    distanceAttenuation;
+		half    shadowAttenuation;
+	};
+{% endstandard %}
+
+struct IndirectLightingCommon
+{
+    half3 diffuse;
+    half3 specular;
+};
+
+struct SurfaceCommon
+{
+    half3 diffuse;
+    half3 specular;
+    half3 normalWS;
+    half oneMinusReflectivity;
+    half smoothness;
+    half alpha;
+};
+
+struct LightingCommon
+{
+    Light light;
+    IndirectLightingCommon indirect;
+};
+
+{% standard %}
+    Light GetMainLight()
+    {
+        Light l = (Light)0;
+
+        l.color = _LightColor0.rgb;
+        l.direction = _WorldSpaceLightPos0.xyz;
+        l.distanceAttenuation = 1;
+        l.shadowAttenuation = 1;
+        return l;
+    }
+
+    Light GetDummyLight()
+    {
+        Light l = (Light)0;
+        l.color = 0;
+        l.direction = half3 (0,1,0);
+        l.distanceAttenuation = 0;
+        l.shadowAttenuation = 0;
+        return l;
+    }
+
+    Light GetAdditiveLight( half3 lightDir, half atten )
+    {
+        Light l = (Light)0;
+
+        l.color = _LightColor0.rgb;
+        l.direction = lightDir;
+        #ifndef USING_DIRECTIONAL_LIGHT
+            l.direction = normalize(l.direction);
+        #endif
+        l.distanceAttenuation = 1;
+        l.shadowAttenuation = atten;
+        // shadow the light
+        l.color *= atten;
+        return l;
+    }
+
+    UnityLight CastToUnityLight( Light light )
+    {
+        UnityLight l;
+        l.color = light.color;
+        l.dir = light.direction;
+        l.ndotl = 0;
+        return l;
+    }
+
+    Light CastFromUnityLight( UnityLight light )
+    {
+        Light l;
+        l.color = light.color;
+        l.direction = light.dir;
+        l.distanceAttenuation = 1;
+        l.shadowAttenuation = 1;
+        return l;
+    }
+
+    UnityIndirect CastToUnityIndirect( IndirectLightingCommon indirect )
+    {
+        UnityIndirect output;
+        output.diffuse = indirect.diffuse;
+        output.specular = indirect.specular;
+        return output;
+    }
+{% endstandard %}

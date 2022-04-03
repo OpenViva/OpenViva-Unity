@@ -1,0 +1,209 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1236654335, guid: da3a78c44cb604b4397d2fe6c9dfa81c, type: 3}
+  m_Name: Fallback
+  m_EditorClassIdentifier: 
+  _source: Fallback
+  _destination: (^|\/)Nature Shaders\/
+  _properties:
+  - _source:
+      _name: _Color
+      _type: 4
+    _destination:
+      _name: _Tint
+      _type: 4
+  - _source:
+      _name: _Color
+      _type: 4
+    _destination:
+      _name: _TintVariation
+      _type: 4
+  - _source:
+      _name: _BaseColor
+      _type: 4
+    _destination:
+      _name: _Tint
+      _type: 4
+  - _source:
+      _name: _BaseColor
+      _type: 4
+    _destination:
+      _name: _TintVariation
+      _type: 4
+  - _source:
+      _name: _MainTex
+      _type: 5
+    _destination:
+      _name: _Albedo
+      _type: 5
+  - _source:
+      _name: _BaseColorMap
+      _type: 5
+    _destination:
+      _name: _Albedo
+      _type: 5
+  - _source:
+      _name: _BaseColorMap
+      _type: 5
+    _destination:
+      _name: _MainTex
+      _type: 5
+  - _source:
+      _name: _BaseMap
+      _type: 5
+    _destination:
+      _name: _MainTex
+      _type: 5
+  - _source:
+      _name: _BaseMap
+      _type: 5
+    _destination:
+      _name: _Albedo
+      _type: 5
+  - _source:
+      _name: _BumpMap
+      _type: 5
+    _destination:
+      _name: _NormalMap
+      _type: 5
+  - _source:
+      _name: _BumpScale
+      _type: 1
+    _destination:
+      _name: _NormalMapScale
+      _type: 1
+  - _source:
+      _name: _NormalScale
+      _type: 1
+    _destination:
+      _name: _NormalMapScale
+      _type: 1
+  - _source:
+      _name: _MaskMap
+      _type: 5
+    _destination:
+      _name: _PackedMap
+      _type: 5
+  - _source:
+      _name: _Cutoff
+      _type: 1
+    _destination:
+      _name: _AlphaTestThreshold
+      _type: 1
+  - _source:
+      _name: _AlphaCutoff
+      _type: 1
+    _destination:
+      _name: _AlphaTestThreshold
+      _type: 1
+  - _source:
+      _name: _AlphaCutoffEnable
+      _type: 1
+    _destination:
+      _name: _AlphaTest
+      _type: 1
+  - _source:
+      _name: _AlphaClip
+      _type: 1
+    _destination:
+      _name: _AlphaTest
+      _type: 1
+  - _source:
+      _name: (1-_DoubleSidedEnable)*2
+      _type: 1
+    _destination:
+      _name: _DoubleSidedMode
+      _type: 1
+  - _source:
+      _name: _Cull
+      _type: 1
+    _destination:
+      _name: _DoubleSidedMode
+      _type: 1
+  - _source:
+      _name: _Glossiness
+      _type: 1
+    _destination:
+      _name: _Glossiness
+      _type: 1
+  - _source:
+      _name: _Glossiness
+      _type: 1
+    _destination:
+      _name: _GlossRemap.y
+      _type: 3
+  - _source:
+      _name: _Smoothness
+      _type: 1
+    _destination:
+      _name: _GlossRemap.y
+      _type: 3
+  - _source:
+      _name: _Smoothness
+      _type: 1
+    _destination:
+      _name: _Glossiness
+      _type: 3
+  - _source:
+      _name: _GlossMapScale
+      _type: 1
+    _destination:
+      _name: _GlossRemap.y
+      _type: 3
+  - _source:
+      _name: _SmoothnessRemapMin
+      _type: 1
+    _destination:
+      _name: _GlossRemap.x
+      _type: 3
+  - _source:
+      _name: _SmoothnessRemapMax
+      _type: 1
+    _destination:
+      _name: _GlossRemap.y
+      _type: 3
+  - _source:
+      _name: _AORemapMin
+      _type: 1
+    _destination:
+      _name: _OcclusionRemap.x
+      _type: 3
+  - _source:
+      _name: _AORemapMax
+      _type: 1
+    _destination:
+      _name: _OcclusionRemap.y
+      _type: 3
+  - _source:
+      _name: _EmissiveIntensity
+      _type: 1
+    _destination:
+      _name: _EmissionIntensity
+      _type: 1
+  - _source:
+      _name: _EmissiveColorMap
+      _type: 5
+    _destination:
+      _name: _EmissionMap
+      _type: 5
+  - _source:
+      _name: _EmissiveColor
+      _type: 4
+    _destination:
+      _name: _EmissionColor
+      _type: 4
+  - _source:
+      _name: _TransmissionEnable
+      _type: 1
+    _destination:
+      _name: _Translucency
+      _type: 1

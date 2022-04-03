@@ -1,0 +1,68 @@
+{% comment %}
+// Copyright 2020 Visual Design Cafe. All rights reserved.
+// This shader was created using ShaderX, a shader framework by Visual Design Cafe.
+// https://www.visualdesigncafe.com/shaderx
+{% endcomment %}
+
+float4 positionCS : SV_POSITION;
+float3 positionWS : {% semantic TEXCOORD0 %};
+float3 normalWS : {% semantic TEXCOORD1 %};
+float4 tangentWS : {% semantic TEXCOORD2 %};
+float4 color : COLOR;
+float4 texCoord0 : {% semantic TEXCOORD3 %};
+float4 texCoord1 : {% semantic TEXCOORD4 %};
+float4 texCoord2 : {% semantic TEXCOORD5 %};
+
+{% standard or universal %}
+    // Standard and Universal have the View Direction calculated in the vertex shader, and passed
+    // to the fragment shader. HD calculates the View Direction per-pixel in the fragment shader.
+    // .xyz = view direction (standard, universal)
+    // .w = fogCoord (standard)
+    float4 viewDirectionWS : {% semantic TEXCOORD6 %}; 
+
+    // SH or Lightmap UV 
+    half4 ambientOrLightmapUV : {% semantic TEXCOORD7 %}; 
+    
+    // Lighting and shadow coordinates. 
+    // These are different depending on the render pipeline, so they are wrapped in 
+    // render pipeline specific tags.
+    {% if pass.name == "FORWARD" or pass.name == "FORWARD_DELTA" or pass.name == "Universal Forward" %}
+        {% standard %}
+                // Adding the semantic in a comment to reset the internal TEXCOORD counter.
+                DECLARE_LIGHT_COORDS(8) // {% semantic TEXCOORD8 %}
+                UNITY_SHADOW_COORDS(9) // {% semantic TEXCOORD9 %}
+        {% endstandard %}
+        {% universal %}
+                float4 fogFactorAndVertexLight : {% semantic TEXCOORD8 %};
+                float4 shadowCoord : {% semantic TEXCOORD9 %};
+        {% enduniversal %}
+    {% endif %}
+
+    // Meta for editor visualization
+    {% standard %}
+        {% if pass.name == "META" %}
+            #ifdef EDITOR_VISUALIZATION
+                float2 vizUV : {% semantic TEXCOORD8 %};
+                float4 lightCoord : {% semantic TEXCOORD9 %};
+            #endif
+        {% endif %}
+    {% endstandard %}
+{% endstandard %}
+
+{% if pass.name == "MotionVectors" %}
+    float4 currentPositionCS : {% semantic TEXCOORD8 %};
+    float4 previousPositionCS : {% semantic TEXCOORD9 %};
+{% endif %}
+
+// Unity's default instancing settings.
+UNITY_VERTEX_INPUT_INSTANCE_ID
+UNITY_VERTEX_OUTPUT_STEREO
+
+// VFACE always needs to be the last semantic in the list, otherwise the compiler will throw
+// an error. So we define it here, and let the user add SHADERX_VFACE to the end of 
+// the SurfaceInput struct.
+#if defined(SHADER_STAGE_FRAGMENT)
+    #define SHADERX_VFACE FRONT_FACE_TYPE cullFace : FRONT_FACE_SEMANTIC;
+#else
+    #define SHADERX_VFACE
+#endif

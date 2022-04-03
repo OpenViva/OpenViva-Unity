@@ -1,0 +1,16 @@
+{% comment %}
+// Copyright 2020 Visual Design Cafe. All rights reserved.
+// This shader was created using ShaderX, a shader framework by Visual Design Cafe.
+// https://www.visualdesigncafe.com/shaderx
+{% endcomment %}
+
+float3 positionOS : POSITION;
+float3 normalOS : NORMAL;
+float4 tangentOS : TANGENT;
+float4 color : COLOR;
+float4 uv0 : {% semantic TEXCOORD0 %};
+float4 uv1 : {% semantic TEXCOORD %}; // optional
+float4 uv2 : {% semantic TEXCOORD %}; // optional
+float4 uv3 : {% semantic TEXCOORD %}; // optional
+
+DEFAULT_UNITY_VERTEX_INPUT_INSTANCE_ID

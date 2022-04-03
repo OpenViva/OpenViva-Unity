@@ -1,0 +1,119 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1236654335, guid: da3a78c44cb604b4397d2fe6c9dfa81c, type: 3}
+  m_Name: Unity - Standard
+  m_EditorClassIdentifier: 
+  _source: ^Standard( \(Specular Setup\)|)$
+  _destination: (^|\/)Nature Shaders\/
+  _properties:
+  - _source:
+      _name: _ALPHATEST_ON
+      _type: 6
+    _destination:
+      _name: _AlphaTest
+      _type: 1
+  - _source:
+      _name: _Cutoff
+      _type: 1
+    _destination:
+      _name: _AlphaTestThreshold
+      _type: 1
+  - _source:
+      _name: _Color
+      _type: 4
+    _destination:
+      _name: _Tint
+      _type: 4
+  - _source:
+      _name: _Color
+      _type: 4
+    _destination:
+      _name: _TintVariation
+      _type: 4
+  - _source:
+      _name: _MainTex
+      _type: 5
+    _destination:
+      _name: _MainTex
+      _type: 5
+  - _source:
+      _name: _MainTex
+      _type: 5
+    _destination:
+      _name: _Albedo
+      _type: 5
+  - _source:
+      _name: _BumpMap
+      _type: 5
+    _destination:
+      _name: _NormalMap
+      _type: 5
+  - _source:
+      _name: _BumpScale
+      _type: 1
+    _destination:
+      _name: _NormalMapScale
+      _type: 1
+  - _source:
+      _name: 1
+      _type: 1
+    _destination:
+      _name: _SurfaceMapMethod
+      _type: 1
+  - _source:
+      _name: _MetallicGlossMap
+      _type: 5
+    _destination:
+      _name: _MetallicGlossMap
+      _type: 5
+  - _source:
+      _name: _OcclusionMap
+      _type: 5
+    _destination:
+      _name: _OcclusionMap
+      _type: 5
+  - _source:
+      _name: _GlossMapScale
+      _type: 1
+    _destination:
+      _name: _GlossRemap.y
+      _type: 3
+  - _source:
+      _name: 1-_OcclusionStrength
+      _type: 1
+    _destination:
+      _name: _OcclusionRemap.x
+      _type: 3
+  - _source:
+      _name: _Glossiness
+      _type: 1
+    _destination:
+      _name: _Glossiness
+      _type: 1
+  - _source:
+      _name: _Metallic
+      _type: 1
+    _destination:
+      _name: _Metallic
+      _type: 1
+  - _source:
+      _name: _EmissionColor
+      _type: 4
+    _destination:
+      _name: _EmissionColor
+      _type: 4
+  - _source:
+      _name: _EmissionMap
+      _type: 5
+    _destination:
+      _name: _EmissionMap
+      _type: 5

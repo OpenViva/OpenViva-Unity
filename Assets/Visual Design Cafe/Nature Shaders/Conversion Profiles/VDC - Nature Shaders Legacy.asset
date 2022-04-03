@@ -1,0 +1,107 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1236654335, guid: da3a78c44cb604b4397d2fe6c9dfa81c, type: 3}
+  m_Name: VDC - Nature Shaders Legacy
+  m_EditorClassIdentifier: 
+  _source: ^Nature Shaders\/(\w+\s+)+\(Legacy\)$
+  _destination: (^|\/)Nature Shaders\/(?!.+\(Legacy\))
+  _properties:
+  - _source:
+      _name: _Cutoff
+      _type: 1
+    _destination:
+      _name: _AlphaTestThreshold
+      _type: 1
+  - _source:
+      _name: 1-_ALPHA_CLIP_DISABLED
+      _type: 6
+    _destination:
+      _name: _AlphaTest
+      _type: 1
+  - _source:
+      _name: _BumpMap
+      _type: 5
+    _destination:
+      _name: _NormalMap
+      _type: 5
+  - _source:
+      _name: _BumpScale
+      _type: 1
+    _destination:
+      _name: _NormalMapScale
+      _type: 1
+  - _source:
+      _name: _MaskMap
+      _type: 5
+    _destination:
+      _name: _PackedMap
+      _type: 5
+  - _source:
+      _name: _WIND_CONTROL
+      _type: 1
+    _destination:
+      _name: _Wind
+      _type: 1
+  - _source:
+      _name: _SURFACE_MAP
+      _type: 1
+    _destination:
+      _name: _SurfaceMapMethod
+      _type: 1
+  - _source:
+      _name: _COLOR_HSL
+      _type: 6
+    _destination:
+      _name: _ColorCorrection
+      _type: 1
+  - _source:
+      _name: _Translucency
+      _type: 1
+    _destination:
+      _name: _TranslucencyStrength
+      _type: 1
+  - _source:
+      _name: 1-_TRANSLUCENCY_OFF
+      _type: 6
+    _destination:
+      _name: _Translucency
+      _type: 1
+  - _source:
+      _name: 1-_SPECULARHIGHLIGHTS_OFF
+      _type: 6
+    _destination:
+      _name: _SpecularHighlights
+      _type: 1
+  - _source:
+      _name: 1-_GLOSSYREFLECTIONS_OFF
+      _type: 6
+    _destination:
+      _name: _EnvironmentReflections
+      _type: 1
+  - _source:
+      _name: _WIND_CONTROL_AUTO * 2 + _WIND_CONTROL_BAKED * 1
+      _type: 6
+    _destination:
+      _name: _Wind
+      _type: 1
+  - _source:
+      _name: _INTERACTION_ON + _INTERACTION_ON_VERTEX * 2
+      _type: 6
+    _destination:
+      _name: _Interaction
+      _type: 1
+  - _source:
+      _name: 1
+      _type: 1
+    _destination:
+      _name: _TranslucencyBlendMode
+      _type: 1

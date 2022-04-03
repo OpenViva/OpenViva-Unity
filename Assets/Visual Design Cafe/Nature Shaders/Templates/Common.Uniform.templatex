@@ -1,0 +1,279 @@
+// Properties
+
+#define GRASS_DEFAULT_HEIGHT 0.5
+#define PLANT_DEFAULT_HEIGHT 1.0
+#define TRUNK_DEFAULT_HEIGHT 20.0
+#define TRUNK_BASE_BEND_FACTOR 0.3
+#define TRUNK_BEND_MULTIPLIER 2.0
+
+uniform float4 g_SmoothTime;
+uniform float4 g_PrevSmoothTime;
+uniform float3 g_WindDirection;
+uniform float2 g_Wind;
+uniform float2 g_Turbulence;
+uniform sampler2D g_GustNoise;
+
+// Properties that are calculated per-object by Nature Renderer
+#ifdef PER_OBJECT_VALUES_CALCULATED
+    float g_WindFade;
+    float g_ScaleFade;
+    float g_WorldNoise;
+    float3 g_ObjectPivot;
+    float3 g_ConstantWindOffset;
+    float g_PivotOffset;
+    float3 g_ObjectUp;
+#endif
+
+float pow2( float x )
+{
+    return x*x;
+}
+
+
+/// <summary>
+/// Returns the height of the object.
+/// Is used when no baked data is available.
+/// </summary>
+float GetObjectHeight()
+{
+    return _ObjectHeight;
+}
+
+/// <summary>
+/// Returns the pivot of the object in world space.
+/// </summary>
+float3 GetObjectPivot()
+{
+    #if defined(PER_OBJECT_VALUES_CALCULATED)
+        return g_ObjectPivot;
+    #else
+        return GetAbsolutePositionWS( float3(UNITY_MATRIX_M[0].w, UNITY_MATRIX_M[1].w, UNITY_MATRIX_M[2].w) );
+    #endif
+}
+
+#define GRASS_DEFAULT_RADIUS 1.0
+#define PLANT_DEFAULT_RADIUS 1.0
+#define TREE_DEFAULT_RADIUS 6.0
+
+/// <summary>
+/// Returns the radius of the object.
+/// Is used when no baked data is available.
+/// </summary>
+float GetObjectRadius()
+{
+    return _ObjectRadius;
+}
+
+/// <summary>
+/// Returns the vertex normal in world space when vertex normals are anbled.
+/// Otherwise, returns the object's forward (Z+) direction.
+/// </summary>
+float3 GetWorldNormal( 
+    float3 normalWS, // The vertex normal in world space.
+    float3 objectPivot ) // The object pivot in world space.
+{
+    // New behavior, nice and simple.
+    return normalWS;
+
+    // Old behavior.
+    /*
+    #if defined(PER_OBJECT_VALUES_CALCULATED) && !defined(_TYPE_TREE_LEAVES)
+        return g_WorldNormal;
+    #else
+        #ifdef _TYPE_TREE_LEAVES
+            // Scramble the vertex normals in case they are projected onto spheres
+            // or other geometry for smooth lighting. Otherwise the wind turbulence will end
+            // up as weird expanding and shrinking spheres.
+            // Define DO_NOT_SCRAMBLE_VERTEX_NORMALS in the shader if the tree models have
+            // accurate normals.
+            #ifndef DO_NOT_SCRAMBLE_VERTEX_NORMALS
+                return normalWS.xzy;
+            #else
+                return normalWS.xyz;
+            #endif
+        #else
+            return TransformObjectToWorldDir( float3(0, 0, 1) );
+        #endif
+    #endif
+    */
+}
+
+/// <summary>
+/// Returns the mask for the vertex.
+/// Uses the red channel of the vertex color.
+/// </summary>
+float GetVertexMask( float4 vertexColor )
+{
+    #if defined(_TYPE_TREE_LEAVES) || defined(_TYPE_TREE_BARK)
+        return 1.0;
+    #else
+        #ifdef _BAKED_MESH_DATA
+            return vertexColor.r;
+        #else
+            return 1.0;
+        #endif
+    #endif
+}
+
+/// <summary>
+/// Calculates the phase offset for the branch, based on the baked data.
+/// If no baked data is available, it will calculate an approximation of the branch.
+/// Should only be called for trees.
+/// </summary>
+float GetBranchPhaseOffset( 
+    float4 vertexColor,         // The vertex color.
+    float3 vertexWorldPosition, // The vertex position in world space.
+    float3 objectPivot )        // The object pivot in world space.
+{
+    #if defined(_BAKED_MESH_DATA)
+        return vertexColor.r;
+    #else
+        #if defined(_TYPE_TREE_BARK)
+            return 0;
+        #else
+            float3 offset = vertexWorldPosition - objectPivot;
+            float randomOffset = ( offset.x + offset.y + offset.z ) * 0.005;
+            return randomOffset;
+        #endif
+    #endif
+}
+
+/// <summary>
+/// Returns the phase offset for the vertex.
+/// </summary>
+float GetPhaseOffset( 
+    float4 vertexColor,         // The vertex color.
+    float3 vertexWorldPosition, // The vertex position in world space.
+    float3 objectPivot )        // The object pivot in world space.
+{
+    #if defined(_TYPE_TREE_LEAVES) || defined(_TYPE_TREE_BARK)
+        return GetBranchPhaseOffset( vertexColor, vertexWorldPosition, objectPivot );
+    #else
+        #ifdef _BAKED_MESH_DATA
+            return 1.0 - vertexColor.g;
+        #else
+            return 0;
+        #endif
+    #endif
+}
+
+/// <summary>
+/// Returns the edge flutter for the vertex, 
+/// based either the vertex colors or UV (depending on the Wind Control settings).
+/// </summary>
+float GetEdgeFlutter( float4 vertexColor )
+{
+    #if defined(_TYPE_TREE_BARK)
+        return 0;
+    #else
+        #if defined(_BAKED_MESH_DATA) && defined(_TYPE_TREE_LEAVES)
+            return vertexColor.g;
+        #else
+            return 1;
+        #endif
+    #endif
+}
+
+float MaskFromHeightAndRadius( float3 vertex, float height, float radius )
+{
+    return pow2( saturate( max(vertex.y / height, length(vertex.xz) / radius) ));
+}
+
+/// <summary>
+/// Returns a mask based on the relative height of the vertex.
+/// </summary>
+float GetHeightMask( 
+    float3 vertex,      // The vertex position in object space.
+    float4 vertexColor, // The vertex color.
+    float2 uv1 )        // The second UV channel.
+{
+    #if defined(_BAKED_MESH_DATA)
+        #if defined(_TYPE_TREE_LEAVES) || defined(_TYPE_TREE_BARK)
+            return uv1.y;
+        #else
+            return vertexColor.a;
+        #endif
+    #else
+        #if defined(_TYPE_GRASS)
+            return saturate( vertex.y / GetObjectHeight() );
+        #else
+            return MaskFromHeightAndRadius( vertex, GetObjectHeight(), GetObjectRadius() );
+        #endif
+    #endif
+}
+
+float Remap( float value, float2 remap )
+{
+    return remap.x + value * (remap.y - remap.x);
+}
+
+float4 SmoothCurve( float4 x ) 
+{   
+    return x * x *( 3.0 - 2.0 * x ); 
+} 
+float4 TriangleWave( float4 x ) 
+{
+    return abs( frac( x + 0.5 ) * 2.0 - 1.0 ); 
+}
+float4 SmoothTriangleWave( float4 x ) 
+{   
+    return SmoothCurve( TriangleWave( x ) ); 
+}
+
+float4 FastSin( float4 x )
+{
+    #ifndef PI
+        #define PI 3.14159265
+    #endif
+    #define DIVIDE_BY_PI 1.0 / (2.0 * PI)
+    return (SmoothTriangleWave( x * DIVIDE_BY_PI ) - 0.5) * 2;
+}
+
+float3 FixStretching( float3 vertex, float3 original, float3 center )
+{
+    return center + SafeNormalize(vertex - center) * length(original - center);
+}
+
+float3 RotateAroundAxis( float3 center, float3 original, float3 u, float angle )
+{
+    original -= center;
+    float C = cos( angle );
+    float S = sin( angle );
+    float t = 1 - C;
+    float m00 = t * u.x * u.x + C;
+    float m01 = t * u.x * u.y - S * u.z;
+    float m02 = t * u.x * u.z + S * u.y;
+    float m10 = t * u.x * u.y + S * u.z;
+    float m11 = t * u.y * u.y + C;
+    float m12 = t * u.y * u.z - S * u.x;
+    float m20 = t * u.x * u.z - S * u.y;
+    float m21 = t * u.y * u.z + S * u.x;
+    float m22 = t * u.z * u.z + C;
+    float3x3 finalMatrix = float3x3( m00, m01, m02, m10, m11, m12, m20, m21, m22 );
+    return mul( finalMatrix, original ) + center;
+}
+
+float3 RotateAroundAxisFast( float3 center, float3 original, float3 direction )
+{
+    return original + direction;
+}
+
+uniform sampler2D g_PerlinNoise;
+uniform float g_PerlinNoiseScale;
+
+void PerlinNoise( float2 uv, float scale, out float noise )
+{
+    noise = 
+        tex2Dlod(
+            g_PerlinNoise, 
+            float4(uv.xy, 0, 0) * scale * g_PerlinNoiseScale).r;
+}
+
+void PerlinNoise_float( float2 uv, float scale, out float noise )
+{
+    #ifdef PER_OBJECT_VALUES_CALCULATED
+        noise = g_WorldNoise;
+    #else
+        PerlinNoise( uv, scale, noise );
+    #endif
+}

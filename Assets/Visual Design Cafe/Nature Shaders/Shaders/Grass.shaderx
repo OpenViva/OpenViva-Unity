@@ -1,0 +1,29 @@
+{% comment %}
+// Copyright 2020 Visual Design Cafe. All rights reserved.
+// This shader was created using ShaderX, a shader framework by Visual Design Cafe.
+// https://www.visualdesigncafe.com/shaderx
+
+// Package: Nature Shaders
+// Website: https://www.visualdesigncafe.com/nature-shaders
+// Documentation: https://support.visualdesigncafe.com/hc/categories/900000043503
+{% endcomment %}
+
+{% assign type = "GRASS" %}
+{% assign queue = "AlphaTest+0" %}
+{% assign render_type = "TransparentCutout" %}
+{% assign translucent = true %}
+{% assign interaction = true %}
+{% assign fade = true %}
+{% assign overlay = true %}
+{% assign perspective_correction = true %}
+{% assign double_sided = true %}
+{% assign surface_map = true %}
+{% assign wind = true %}
+{% assign emission = true %}
+{% assign alpha_to_coverage = false %}
+
+{% embed "../Templates/Nature Shader.templatex" %}
+
+// GPU Instancer needs this specific string in the shader file to let the plugin know that
+// instancing is supported. It does not work if this string is in an include file.
+// "GPUInstancerInclude.cginc"

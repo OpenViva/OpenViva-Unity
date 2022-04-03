@@ -1,0 +1,247 @@
+{% comment %}
+// Copyright 2020 Visual Design Cafe. All rights reserved.
+// This shader was created using ShaderX, a shader framework by Visual Design Cafe.
+// https://www.visualdesigncafe.com/shaderx
+{% endcomment %}
+
+// Local keywords are only supported since Unity 2019, 
+// so for earlier versions of Unity we need to use global keywords.
+{% if unity.version.major >= 2019 %}
+    {% assign multi_compile_local = "multi_compile_local" %}
+    {% assign shader_feature_local = "shader_feature_local" %}
+{% else %}
+    {% assign multi_compile_local = "multi_compile" %}
+    {% assign shader_feature_local = "shader_feature" %}
+{% endif %}
+
+// Default global keywords for material quality.
+// Don't really need them at the moment since there are no specific quality settings yet.
+// #pragma multi_compile MATERIAL_QUALITY_HIGH MATERIAL_QUALITY_MEDIUM MATERIAL_QUALITY_LOW  
+
+#pragma {{shader_feature_local}} _LIGHTING_QUALITY_HIGH _LIGHTING_QUALITY_LOW 
+#pragma multi_compile _ LOD_FADE_CROSSFADE
+
+#pragma {{shader_feature_local}} _SURFACE_MAP_OFF _SURFACE_MAP_PACKED _SURFACE_MAP_METALLIC_GLOSS
+#pragma {{shader_feature_local}} _ALPHATEST
+#pragma {{shader_feature_local}} _NORMALMAP
+#pragma {{shader_feature_local}} _SPECULARHIGHLIGHTS_OFF
+#pragma {{shader_feature_local}} _EMISSION
+
+#pragma multi_compile_instancing
+
+// Both the environment reflections and specular highlights are combined into a single
+// _SPECULARHIGHLIGHTS_OFF shader feature. This is to reduce shader variants. Since we 
+// currently only use this framework for vegetation rendering, and vegetation rarely needs 
+// these to be enable separately.
+#ifdef _SPECULARHIGHLIGHTS_OFF
+    #define _ENVIRONMENTREFLECTIONS_OFF
+    #define _GLOSSYREFLECTIONS_OFF
+#else
+    {% universal %}
+        #define _SPECULAR_COLOR
+    {% enduniversal %}
+#endif
+
+#pragma vertex vert
+#pragma fragment frag
+
+{% standard %}
+    #include "UnityCG.cginc"
+    #include "UnityShaderVariables.cginc"
+    #include "UnityStandardConfig.cginc"
+    #include "UnityPBSLighting.cginc"
+    #include "UnityStandardUtils.cginc"
+    #include "UnityGBuffer.cginc"
+    #include "UnityStandardBRDF.cginc"
+    #include "AutoLight.cginc"
+
+    #pragma target 3.0
+
+    // Variants
+    {% if pass.Name == "FORWARD" %}
+        #define SHADERPASS SHADERPASS_FORWARD
+        #pragma multi_compile_fwdbase
+        #pragma multi_compile_fog
+    {% elseif pass.Name == "FORWARD_DELTA" %}
+        #pragma multi_compile_fwdadd_fullshadows
+        #pragma multi_compile_fog
+    {% elseif pass.Name == "ShadowCaster" %}
+        #define SHADERPASS SHADERPASS_SHADOWS
+        #pragma multi_compile_shadowcaster
+    {% elseif pass.Name == "DEFERRED" %}
+        #define SHADERPASS SHADERPASS_GBUFFER
+        #pragma multi_compile_prepassfinal
+        #pragma exclude_renderers nomrt
+    {% elseif pass.name == "MotionVectors" %}
+        #define SHADERPASS SHADERPASS_MOTION_VECTORS
+    {% elseif pass.Name == "META" %}
+        #define SHADERPASS SHADERPASS_LIGHT_TRANSPORT
+        #pragma shader_feature EDITOR_VISUALIZATION
+        #include "UnityMetaPass.cginc"
+    {% endif %}
+{% endstandard %}
+
+{% universal %}
+    #include "Packages/com.unity.render-pipelines.core/ShaderLibrary/Color.hlsl"
+    #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Core.hlsl"
+    #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Lighting.hlsl"
+    #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Shadows.hlsl"
+    #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/ShaderGraphFunctions.hlsl"
+    //#include "Packages/com.unity.shadergraph/ShaderGraphLibrary/ShaderVariablesFunctions.hlsl"
+
+    #pragma target 3.0
+    #pragma prefer_hlslcc gles
+    #pragma exclude_renderers d3d11_9x
+    #pragma multi_compile_fog
+    
+    // Variants
+    {% if pass.name == "Universal Forward" %}
+        #pragma multi_compile _ LIGHTMAP_ON
+        #pragma multi_compile _ DIRLIGHTMAP_COMBINED
+        #pragma multi_compile _ _MAIN_LIGHT_SHADOWS
+        #pragma multi_compile _ _MAIN_LIGHT_SHADOWS_CASCADE
+        #pragma multi_compile _ADDITIONAL_LIGHTS_VERTEX _ADDITIONAL_LIGHTS _ADDITIONAL_OFF
+        #pragma multi_compile _ _ADDITIONAL_LIGHT_SHADOWS
+        #pragma multi_compile _ _SHADOWS_SOFT
+        #pragma multi_compile _ _MIXED_LIGHTING_SUBTRACTIVE
+    {% elseif pass.name == "Meta" %}
+        #pragma shader_feature _ _SMOOTHNESS_TEXTURE_ALBEDO_CHANNEL_A
+        #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/MetaInput.hlsl"
+    {% endif %}
+
+    #define _NORMAL_DROPOFF_TS 1
+    #define ATTRIBUTES_NEED_NORMAL
+    #define ATTRIBUTES_NEED_TANGENT
+    #define ATTRIBUTES_NEED_COLOR
+    #define VARYINGS_NEED_POSITION_WS 
+    #define VARYINGS_NEED_NORMAL_WS
+    #define VARYINGS_NEED_TANGENT_WS
+    #define VARYINGS_NEED_TEXCOORD0
+    #define VARYINGS_NEED_TEXCOORD1
+    #define VARYINGS_NEED_TEXCOORD2
+    #define VARYINGS_NEED_COLOR
+    //#define VARYINGS_NEED_FOG_AND_VERTEX_LIGHT
+    #define VARYINGS_NEED_CULLFACE
+    #ifdef _MAIN_LIGHT_SHADOWS
+        #define VARYINGS_NEED_SHADOWCOORDS
+    #endif
+
+    {% if pass.name == "Universal Forward" %}
+        #define SHADERPASS SHADERPASS_FORWARD
+        #define ATTRIBUTES_NEED_TEXCOORD1
+        #define VARYINGS_NEED_VIEWDIRECTION_WS
+        #define VARYINGS_NEED_FOG_AND_VERTEX_LIGHT
+    {% elseif pass.name == "ShadowCaster" %}
+        #define SHADERPASS SHADERPASS_SHADOWS
+        #define SHADERPASS_SHADOWCASTER
+    {% elseif pass.name == "DepthOnly" %}
+        #define SHADERPASS SHADERPASS_DEPTH_ONLY
+        #define SHADERPASS_DEPTHONLY
+    {% elseif pass.name == "Meta" %}
+        #define SHADERPASS SHADERPASS_LIGHT_TRANSPORT
+        #define ATTRIBUTES_NEED_TEXCOORD1
+        #define ATTRIBUTES_NEED_TEXCOORD2
+        #define SHADERPASS_META
+    {% elseif pass.name == "MotionVectors" %}
+        #define SHADERPASS SHADERPASS_MOTION_VECTORS
+    {% elseif pass.light_mode == "Universal2D" %}
+        #define SHADERPASS_2D
+    {% endif %}
+
+{% enduniversal %}
+
+{% hd %}
+    #pragma target 4.5
+    #pragma only_renderers d3d11 ps4 xboxone vulkan metal switch
+    #pragma instancing_options renderinglayer
+
+    #ifdef _ALPHATEST
+        #define _ALPHATEST_ON
+    #endif
+
+    #pragma multi_compile _ DEBUG_DISPLAY
+    #pragma multi_compile _ LIGHTMAP_ON
+    #pragma multi_compile _ DIRLIGHTMAP_COMBINED
+    #pragma multi_compile _ DYNAMICLIGHTMAP_ON
+    #pragma multi_compile _ SHADOWS_SHADOWMASK
+    #pragma multi_compile DECALS_OFF DECALS_3RT DECALS_4RT
+    #pragma multi_compile USE_FPTL_LIGHTLIST USE_CLUSTERED_LIGHTLIST
+    #pragma multi_compile SHADOW_LOW SHADOW_MEDIUM SHADOW_HIGH
+
+    {% if pass.name == "ShadowCaster" %}
+        #define SHADERPASS SHADERPASS_SHADOWS
+    {% elseif pass.name == "DepthOnly" %}
+        #define SHADERPASS SHADERPASS_DEPTH_ONLY
+        #pragma multi_compile _ WRITE_NORMAL_BUFFER
+        #pragma multi_compile _ WRITE_MSAA_DEPTH
+    {% elseif pass.name == "SceneSelectionPass" %}
+        #define SHADERPASS SHADERPASS_DEPTH_ONLY
+        #define SCENESELECTIONPASS
+        #pragma editor_sync_compilation
+        int _ObjectId;
+        int _PassValue;
+    {% elseif pass.name == "GBuffer" %}
+        #define SHADERPASS SHADERPASS_GBUFFER
+        #pragma multi_compile _ LIGHT_LAYERS
+    {% elseif pass.name == "Forward" %}
+        #define SHADERPASS SHADERPASS_FORWARD
+    {% elseif pass.name == "Meta" %}
+        #define SHADERPASS SHADERPASS_LIGHT_TRANSPORT
+    {% elseif pass.name == "MotionVectors" %}
+        #define SHADERPASS SHADERPASS_MOTION_VECTORS
+        #pragma multi_compile _ WRITE_NORMAL_BUFFER
+        #pragma multi_compile _ WRITE_MSAA_DEPTH
+    {% endif %}
+    
+    #if defined(_MATERIAL_FEATURE_SUBSURFACE_SCATTERING) && !defined(_SURFACE_TYPE_TRANSPARENT)
+        #define OUTPUT_SPLIT_LIGHTING
+    #endif
+
+    #if !defined(DEBUG_DISPLAY) && defined(_ALPHATEST_ON)
+        #define SHADERPASS_GBUFFER_BYPASS_ALPHA_TEST
+        #define SHADERPASS_FORWARD_BYPASS_ALPHA_TEST
+    #endif
+
+    {% assign srp_core_path = "Packages/com.unity.render-pipelines.core/ShaderLibrary" %}
+    {% assign hdrp_path = "Packages/com.unity.render-pipelines.high-definition/Runtime" %}
+
+    #include "{{srp_core_path}}/Common.hlsl"
+    #include "{{srp_core_path}}/NormalSurfaceGradient.hlsl"
+
+    #include "{{hdrp_path}}/RenderPipeline/ShaderPass/FragInputs.hlsl"
+    #include "{{hdrp_path}}/RenderPipeline/ShaderPass/ShaderPass.cs.hlsl"
+    #include "{{hdrp_path}}/ShaderLibrary/ShaderVariables.hlsl"
+    #ifdef DEBUG_DISPLAY
+        #include "{{hdrp_path}}/Debug/DebugDisplay.hlsl"
+    #endif
+    #include "{{hdrp_path}}/Material/Material.hlsl"
+    #include "{{hdrp_path}}/Lighting/Lighting.hlsl"
+    
+    // TODO: No need to include the light loop for every pass. Remove for the passes that don't need it.
+    #define HAS_LIGHTLOOP
+    #include "{{hdrp_path}}/Lighting/LightLoop/LightLoopDef.hlsl"
+    #include "{{hdrp_path}}/Material/Lit/Lit.hlsl"
+    #include "{{hdrp_path}}/Lighting/LightLoop/LightLoop.hlsl"
+    #include "{{hdrp_path}}/Material/BuiltinUtilities.hlsl"
+    #include "{{hdrp_path}}/Material/MaterialUtilities.hlsl"
+    #include "{{hdrp_path}}/Material/Decal/DecalUtilities.hlsl"
+    #include "{{hdrp_path}}/Material/Lit/LitDecalData.hlsl"
+    #include "{{hdrp_path}}/ShaderLibrary/ShaderGraphFunctions.hlsl"
+{% endhd %}
+
+{% embed "Common.API.templatex" %}
+
+// TODO: Maybe move this to the shader itself so that the user can edit the available variables?
+struct Surface
+{
+    float3 Albedo;      // base (diffuse or specular) color
+    float3 Normal;      // tangent space normal, if written
+    half3 Emission;
+    half Metallic;      // 0=non-metal, 1=metal
+    half Smoothness;    // 0=rough, 1=smooth
+    half Occlusion;     // occlusion (default 1)
+    float Alpha;        // alpha for transparencies
+    #if defined(_TRANSLUCENCY) || defined(_TRANSLUCENCY_MAP)
+        float Thickness; // 0 for full translucency, 1 for no translucency.
+    #endif
+};

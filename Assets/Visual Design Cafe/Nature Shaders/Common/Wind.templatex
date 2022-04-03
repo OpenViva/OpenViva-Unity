@@ -1,0 +1,307 @@
+{% comment %}
+// Copyright 2020 Visual Design Cafe. All rights reserved.
+// This shader was created using ShaderX, a shader framework by Visual Design Cafe.
+// https://www.visualdesigncafe.com/shaderx
+
+// Package: Nature Shaders
+// Website: https://www.visualdesigncafe.com/nature-shaders
+// Documentation: https://support.visualdesigncafe.com/hc/categories/900000043503
+{% endcomment %}
+
+struct WindInput
+{
+    // Global
+    float3 direction;
+    float speed;
+
+    // Per-Object
+    float3 objectPivot;
+    float fade;
+
+    // Per-Vertex
+    float phaseOffset;
+    float3 normalWS;
+    float mask;
+    float flutter;
+};
+
+/// <summary>
+/// Returns the global wind direction.
+/// </summary>
+float3 GetWindDirection()
+{
+    return g_WindDirection != 0 
+        ? normalize(float3(g_WindDirection.x, 0, g_WindDirection.z)) 
+        : float3(1, 0, 0);
+}
+
+/// <summary>
+/// Returns the global wind speed.
+/// </summary>
+float GetWindSpeed()
+{
+    return g_Wind.x;
+}
+
+/// <summary>
+/// Returns the global wind strength.
+/// </summary>
+float GetWindStrength()
+{
+    return g_Wind.y * _WindStrength;
+}
+
+/// <summary>
+/// Returns a random windVariation value based on the object pivot.
+/// </summary>
+float GetWindVariation( 
+    float3 objectPivot ) // The object pivot in world space.
+{
+    return 1.0 - frac( objectPivot.x * objectPivot.z * 10.0 ) * _WindVariation;
+}
+
+{% embed "Wind.Ambient.templatex" %}
+{% embed "Wind.Turbulence.templatex" %}
+{% embed "Wind.Gust.templatex" %}
+
+float3 CombineWind(
+    float3 ambient,     // Large constant ambient wind motion.
+    float3 gust,        // Local gust based on noise texture.
+    float3 turbulence,  // Constant turbulence.
+    float3 shiver,      // High frequency shivering during gust.
+    float4 strength     // The wind strength for each wind component.
+    )
+{
+    ambient *= strength.x;
+    gust *= strength.y;
+    turbulence *= strength.z;
+    shiver *= strength.w;
+
+    // Trees require more displacement for the wind to be visible because the objects are larger.
+    // These are magic numbers that give a nice balance between the grass/plants and trees,
+    // based on a common tree size.
+    #if defined(_TYPE_TREE_LEAVES) || defined(_TYPE_TREE_BARK)
+        ambient *= 3;
+        gust *= 1;
+        turbulence *= 3;
+        shiver *= 3;
+    #endif
+
+    float gustLength = length( gust );
+    float increaseTurbelenceWithGust = smoothstep(0, 1, gustLength) + 1;
+
+    // Calculate the balance between different wind types. 
+    // If we do it here then we can keep the input parameters in a 0-1 range.
+    ambient *= 0.1;
+    gust *= 1.5;
+    turbulence *= 0.15;
+    shiver *= 0.15;
+
+    #if defined(_DEBUG_AMBIENT)
+        return ambient;
+    #elif defined(_DEBUG_GUST)
+        return gust;
+    #elif defined(_DEBUG_TURBULENCE)
+        return lerp(
+            turbulence * increaseTurbelenceWithGust,
+            shiver * increaseTurbelenceWithGust,
+            gustLength);
+    #else
+        return
+            ambient
+                + gust
+                + lerp(
+                    turbulence * increaseTurbelenceWithGust,
+                    shiver * increaseTurbelenceWithGust,
+                    gustLength);
+    #endif
+}
+
+
+float3 ComputeWind( WindInput input, float3 positionWS, float timeOffset )
+{
+    #if defined(_TYPE_GRASS) || defined(_TYPE_PLANT)
+        input.phaseOffset += dot( input.direction, (positionWS - input.objectPivot) );
+        input.phaseOffset += input.mask * 0.3;
+    #endif
+
+    float3 ambient =
+        AmbientWind( 
+            input.objectPivot, 
+            positionWS, 
+            input.direction, 
+            input.phaseOffset,
+            GetSmoothAmbientOffset( timeOffset ) );
+
+    float3 gust = 
+        SampleGust(
+            input.objectPivot,
+            positionWS,
+            input.direction,
+            input.phaseOffset,
+            input.flutter,
+            0,
+            GetSmoothGustOffset( timeOffset ) );
+
+    // Add a bit of a random phase offset to the tree leaves. Phase Offset is calculated
+    // per-branch and we don't want to have the same turbulence for the entire branch.
+    #if defined(_TYPE_TREE_LEAVES)
+        input.phaseOffset += 
+            dot( input.direction, (positionWS - input.objectPivot) ) * input.flutter;
+    #endif
+
+    float3 turbulence1 = 
+        Turbulence(
+            input.objectPivot.xyz,
+            positionWS.xyz,
+            input.normalWS.xyz,
+            input.phaseOffset,
+            input.flutter,
+            1,
+            GetSmoothTurbulenceOffset( timeOffset ) );
+
+    float3 turbulence2 = 
+        Turbulence(
+            input.objectPivot.xyz,
+            positionWS.xyz,
+            input.normalWS.xyz,
+            input.phaseOffset,
+            input.flutter,
+            2,
+            GetSmoothTurbulenceOffset( timeOffset ) );
+
+    return CombineWind( 
+        ambient, 
+        gust, 
+        turbulence1, 
+        turbulence2, 
+        float4(GetWindStrength().xx, GetTurbulenceStrength().xx) );
+}
+
+float3 ApplyWind(
+    float3 positionWS, // Vertex position in world space.
+    float3 objectPivot,         // Object Pivot in world space.
+    float3 combinedWind,        // Combined Wind vector in world space.
+    float mask,                 // Wind mask. (Range: 0-1)
+    float distanceFade)         // Wind distance fade. (Range: 0-1)
+{
+    #if defined(_TYPE_GRASS)
+        return FixStretching( 
+                positionWS + combinedWind * mask * distanceFade, 
+                positionWS, 
+                float3( positionWS.x, objectPivot.y, positionWS.z ) ); // TODO: This does not work correctly if the grass is a larger patch and it is rotated. Ideally we would use  vertexOS.y transformed into world space instead of objectPivot.y.
+    #elif defined(_TYPE_TREE_LEAVES) || defined(_TYPE_TREE_BARK)
+        return FixStretching( 
+                positionWS + combinedWind * mask * distanceFade * 4, 
+                positionWS, 
+                objectPivot);
+    #else
+        return FixStretching( 
+                positionWS + combinedWind * mask * mask * distanceFade, 
+                positionWS, 
+                objectPivot);
+    #endif
+}
+
+void Wind( WindInput input, inout float3 positionWS, inout float3 normalWS, float timeOffset )
+{
+    // Adjust the pivot for grass to use the XZ position of the vertex.
+    // This is a decent workaround to get a per-grass-blade pivot until
+    // we have proper pivot support.
+    #ifdef _TYPE_GRASS
+        input.objectPivot = float3(positionWS.x, input.objectPivot.y, positionWS.z);
+    #endif
+
+    // Compute wind.
+    float3 wind = ComputeWind( input, positionWS, timeOffset );
+
+    // Apply wind to vertex.
+    float3 outputWS = 
+        ApplyWind( 
+            positionWS, 
+            input.objectPivot, 
+            wind, 
+            input.mask, 
+            input.fade );
+
+    // Recalculate normals for grass
+    #if defined(_TYPE_GRASS)
+        float3 delta = outputWS - positionWS;
+        normalWS = 
+            lerp(
+                normalWS, 
+                normalWS + SafeNormalize( delta + float3(0, 0.1, 0) ),
+                length(delta) * _RecalculateWindNormals * input.fade );
+    #endif
+
+    positionWS = outputWS;
+}
+
+/// <summary>
+/// Returns the bend factor for the tree trunk.
+/// X contains the bend factor for the entire tree, Y for the base.
+/// </summary>
+float2 GetTrunkBendFactor()
+{
+    return _TrunkBendFactor.xy;
+}
+
+float GetTrunkMask( 
+    float3 vertex, float2 uv1, float treeHeight, float bendFactor, float baseBendFactor )
+{
+    #ifdef _BAKED_MESH_DATA
+        float trunkMask = saturate( uv1.x * bendFactor );
+    #else
+        float trunkMask = pow2(saturate( vertex.y / treeHeight )) * bendFactor;
+    #endif
+
+    return saturate( trunkMask + saturate( vertex.y ) * baseBendFactor );
+}
+
+void Wind_Trunk( 
+    float3 vertex,              // The vertex position in object space.
+    float3 vertexWorldPosition, // The vertex position in world space.
+    float3 vertexWithWind,      // The vertex position with wind displacement in world space.
+    float2 uv1,                 // The second UV channel of the vertex. (UV1)
+    float3 objectPivot,         // The object pivot in world space.
+    float3 windDirection,       // The wind direction in world space. (normalized)
+    float timeOffset,
+    out float3 vertexOut )
+{
+    // Additional properties. Either global or baked.
+    float2 bendFactor = GetTrunkBendFactor();
+    float trunkMask = GetTrunkMask( vertex, uv1, GetObjectHeight(), bendFactor.x,  bendFactor.y );
+    float ambientStrength =  GetWindStrength();
+    
+    // Calculate Ambient Wind
+    float4 trunkAmbient = 
+        AmbientFrequency( 
+            objectPivot, 
+            vertexWorldPosition, 
+            windDirection, 
+            0, 
+            0.75,
+            GetSmoothAmbientOffset( timeOffset ) ) + ambientStrength;
+    trunkAmbient *= trunkMask;
+
+    // Calculate Gust
+    float3 trunkGust = 
+        SampleGust( 
+            objectPivot, vertexWorldPosition, windDirection, 0, 0, 7, GetSmoothGustOffset( timeOffset ));
+    trunkGust *= trunkMask;
+
+    // Apply
+    float gustFrequency = trunkAmbient.w * length(trunkGust);
+    float baseFrequency1 = trunkAmbient.x;
+    float baseFrequency2 = trunkAmbient.x + trunkAmbient.y;
+    float baseFrequency = 
+        lerp( baseFrequency1, baseFrequency2, (_SinTime.x + 1) * 0.5 * ambientStrength);
+    
+    // TODO: Use the "FixStretching" approach?
+    vertexOut =
+        RotateAroundAxis( 
+            objectPivot, 
+            vertexWithWind, 
+            normalize( cross( float3(0,1,0) , windDirection ) ), 
+            (baseFrequency * 0.75 + gustFrequency) * ambientStrength * 0.0375);
+}

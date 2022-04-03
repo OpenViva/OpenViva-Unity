@@ -1,0 +1,289 @@
+void AlphaTest( float alpha, float threshold )
+{
+    {% hd %}
+        {% if pass.name == "Forward" or pass.name == "GBuffer" %}
+            #if defined(SHADERPASS_FORWARD_BYPASS_ALPHA_TEST) \
+                || defined(SHADERPASS_GBUFFER_BYPASS_ALPHA_TEST)
+                // Ignore clip in forward and gbuffer passes. We already did the clip in the Depth Prepass, and we use ZTest Equal for this pass to discard the transparent pixels.
+            #else
+                clip( alpha - threshold );
+            #endif
+        {% else %}
+            clip( alpha - threshold );
+        {% endif %}
+    {% endhd %}
+    {% standard or universal %}
+        clip( alpha - threshold );
+    {% endstandard %}
+}
+
+{% if wind %}
+void GetFade(
+    float3 objectPivot, // The object pivot in world space.
+    out float windFade, 
+    out float scaleFade )
+{
+    #if defined(_TYPE_TREE_LEAVES) || defined(_TYPE_TREE_BARK)
+        windFade = 1.0;
+        scaleFade = 1.0;
+    #else
+        float distanceToCamera = distance( objectPivot, _WorldSpaceCameraPos );
+        windFade = 1.0 - saturate( (distanceToCamera - _WindFade.x) / _WindFade.y );
+        scaleFade = 1.0 - saturate( (distanceToCamera - _ScaleFade.x) / _ScaleFade.y  );
+    #endif
+}
+{% endif %}
+
+{% if fade %}
+    void PerVertexFade( float3 objectPivot, out float windFade, out float scaleFade )
+    {
+        #ifdef PER_OBJECT_VALUES_CALCULATED
+            windFade = g_WindFade;
+            scaleFade = g_ScaleFade;
+        #else
+            GetFade( 
+                objectPivot,
+                windFade,
+                scaleFade );
+        #endif
+    }
+{% endif %}
+
+{% if wind %}
+    void Wind(
+        inout VertexAttributes vertex,
+        inout SurfaceInput surface,
+        inout float3 positionWS,
+        float windFade,
+        float scaleFade,
+        float heightMask,
+        float phaseOffset,
+        float3 objectPivot,
+        float timeOffset )
+    {
+        WindInput input;
+
+        // Global
+        input.direction = GetWindDirection();
+        input.speed = GetWindSpeed();
+
+        // Per-Object
+        input.objectPivot = objectPivot;
+        input.fade = windFade;
+
+        // Per-Vertex
+        input.phaseOffset = phaseOffset;
+        input.normalWS = surface.normalWS;
+        float windVariation = GetWindVariation( input.objectPivot );
+        float vertexMask = GetVertexMask( vertex.color );
+        input.mask =  heightMask * vertexMask * windVariation;
+        input.flutter = GetEdgeFlutter( vertex.color );
+
+        float3 vertexOut = positionWS;
+        float3 normalOut = surface.normalWS;
+        Wind( 
+            input,
+            vertexOut, 
+            normalOut,
+            timeOffset );
+
+        #if defined(_TYPE_TREE_LEAVES) || defined( _TYPE_TREE_BARK )
+            Wind_Trunk( 
+                vertex.positionOS.xyz, 
+                positionWS.xyz, 
+                vertexOut.xyz, 
+                vertex.uv1.xy, 
+                input.objectPivot, 
+                input.direction, 
+                timeOffset,
+                vertexOut );
+        #endif
+
+        positionWS = vertexOut;
+        surface.normalWS = normalOut;
+    }
+{% endif %}
+
+float PerVertexPerlinNoise( float3 objectPivot )
+{
+    #ifdef PER_OBJECT_VALUES_CALCULATED
+        return g_WorldNoise;
+    #else
+        float noise;
+        PerlinNoise_float( objectPivot.xz, _ColorVariationSpread, noise );
+        return noise;
+    #endif
+}
+
+{% if fade %}
+    float3 ApplyScaleFade( 
+        float3 vertexWorldPosition, float3 objectPivot, float fade )
+    {
+        vertexWorldPosition.y = lerp(objectPivot.y, vertexWorldPosition.y, max(fade, 0.2));
+        return vertexWorldPosition;
+    }
+{% endif %}
+
+// Surface
+
+void SampleAlbedo( float2 uv0, out float4 albedo )
+{
+    albedo = SAMPLE_TEXTURE2D( _Albedo, SAMPLER_ALBEDO, uv0.xy );
+}
+
+{% if secondary_maps %}
+    #ifdef _SECONDARY_MAPS
+        void SampleSecondaryAlbedo( float2 uv, out float4 albedo )
+        {
+            albedo = SAMPLE_TEXTURE2D( _SecondaryAlbedo, SAMPLER_ALBEDO, uv.xy );
+        }
+    #endif
+{% endif %}
+
+void ApplyColorCorrection( inout float4 albedo, float noise )
+{
+    #ifdef _COLOR_HSL
+        float3 albedoHSV = Linear_to_HSV( albedo.rgb );
+        float3 albedo1;
+        float3 albedo2;
+        HSL_float( albedoHSV, _HSL, albedo1 );
+        HSL_float( albedoHSV, _HSLVariation, albedo2 );
+        albedo.rgb = lerp(albedo2, albedo1, noise);
+    #else
+        albedo *= lerp(_TintVariation, _Tint, noise);
+    #endif
+}
+
+#ifdef _NORMALMAP
+    void SampleNormalMap( float2 uv0, out float3 normal )
+    {
+        normal = 
+            UnpackScaleNormal( 
+                SAMPLE_TEXTURE2D( _NormalMap, SAMPLER_NORMAL, uv0.xy ), _NormalMapScale ).xyz;
+    }
+
+    {% if secondary_maps %}
+        #ifdef _SECONDARY_MAPS
+            void SampleSecondaryNormalMap( float2 uv, out float3 normal )
+            {
+                normal = 
+                    UnpackScaleNormal( 
+                        SAMPLE_TEXTURE2D( _SecondaryNormalMap, SAMPLER_NORMAL, uv.xy ), _SecondaryNormalMapScale ).xyz;
+            }
+        #endif
+    {% endif %}
+#endif
+
+{% if surface_map %}
+    #ifdef _SURFACE_MAP_PACKED
+        void SamplePackedMap(
+            float2 uv0, out float metallic, out float smoothness, out float occlusion)
+        {
+            float4 value = SAMPLE_TEXTURE2D(_PackedMap, SAMPLER_PACKED, uv0.xy);
+            metallic = value.r;
+            smoothness = Remap(value.a, _GlossRemap.xy);
+            occlusion = Remap(value.g, _OcclusionRemap.xy);
+        }
+
+        {% if secondary_maps %}
+            #ifdef _SECONDARY_MAPS
+                void SampleSecondaryPackedMap(
+                    float2 uv0, out float metallic, out float smoothness, out float occlusion)
+                {
+                    float4 value = SAMPLE_TEXTURE2D(_SecondaryPackedMap, SAMPLER_PACKED, uv0.xy);
+                    metallic = value.r;
+                    smoothness = Remap(value.a, _SecondaryGlossRemap.xy);
+                    occlusion = Remap(value.g, _SecondaryOcclusionRemap.xy);
+                }
+            #endif
+        {% endif %}
+    #endif
+
+    #ifdef _SURFACE_MAP_METALLIC_GLOSS
+        void SampleMetallicGlossMap(
+            float2 uv0, out float metallic, out float smoothness, out float occlusion)
+        {
+            float4 metallicGloss = SAMPLE_TEXTURE2D( _MetallicGlossMap, SAMPLER_GLOSS, uv0.xy );
+            metallic = metallicGloss.r;
+            smoothness = Remap(metallicGloss.a, _GlossRemap.xy);
+            occlusion = Remap(SAMPLE_TEXTURE2D( _OcclusionMap, SAMPLER_OCCLUSION, uv0.xy ).g, _OcclusionRemap.xy);
+        }
+
+        {% if secondary_maps %}
+            #ifdef _SECONDARY_MAPS
+                void SampleSecondaryMetallicGlossMap(
+                    float2 uv0, out float metallic, out float smoothness, out float occlusion)
+                {
+                    float4 metallicGloss = SAMPLE_TEXTURE2D( _SecondaryMetallicGlossMap, SAMPLER_GLOSS, uv0.xy );
+                    metallic = metallicGloss.r;
+                    smoothness = Remap(metallicGloss.a, _SecondaryGlossRemap.xy);
+                    occlusion = Remap(SAMPLE_TEXTURE2D( _SecondaryOcclusionMap, SAMPLER_OCCLUSION, uv0.xy ).g, _SecondaryOcclusionRemap.xy);
+                }
+            #endif
+        {% endif %}
+    #endif
+{% endif %}
+
+void SampleMetallicGlossConstants(
+    float2 uv0, out float metallic, out float smoothness, out float occlusion)
+{
+    metallic = _Metallic;
+    smoothness = _Glossiness;
+    occlusion = 1.0;
+}
+
+{% if secondary_maps %}
+    #ifdef _SECONDARY_MAPS
+        void SampleSecondaryMetallicGlossConstants(
+            float2 uv0, out float metallic, out float smoothness, out float occlusion)
+        {
+            metallic = _SecondaryMetallic;
+            smoothness = _SecondaryGlossiness;
+            occlusion = 1.0;
+        }
+    #endif
+{% endif %}
+
+{% if translucent %}
+    #if defined(_TRANSLUCENCY) || defined(_TRANSLUCENCY_MAP)
+        void SampleThickness( float2 uv0, out float thickness )
+        {
+            #ifdef _TRANSLUCENCY_MAP
+                thickness = SAMPLE_TEXTURE2D( _ThicknessMap, SAMPLER_THICKNESS, uv0.xy ).r;
+                thickness = Remap( thickness, _ThicknessRemap.xy );
+            #else
+                thickness = _ThicknessRemap.x;
+            #endif
+        }
+    #endif
+{% endif %}
+
+{% if emission %}
+    #ifdef _EMISSION
+        void SampleEmission( float2 uv0, float3 albedo, out float3 emission )
+        {
+            emission = SAMPLE_TEXTURE2D( _EmissionMap, SAMPLER_EMISSION, uv0.xy ).rgb;
+            emission *= _EmissionColor.rgb;
+            emission *= _EmissionIntensity;
+
+            {% hd %}
+                // Blend emission with albedo
+                emission *= lerp(float3(1.0, 1.0, 1.0), albedo.rgb, _EmissionAffectedByAlbedo);
+
+                // Inverse pre-expose using _EmissionExposureWeight weight
+                float3 emissiveRcpExposure = emission * GetInverseCurrentExposureMultiplier();
+                emission = lerp(emissiveRcpExposure, emission, _EmissionExposureWeight);
+            {% endhd %}
+        }
+    #endif
+{% endif %}
+
+{% if double_sided %}
+    void FlipNormals( inout float3 normals, FRONT_FACE_TYPE cullFace )
+    {
+        normals.z *=
+            _DoubleSidedNormalMode > 0 
+                ? IS_FRONT_VFACE(cullFace, 1, -1) 
+                : 1.0;
+    }
+{% endif %}

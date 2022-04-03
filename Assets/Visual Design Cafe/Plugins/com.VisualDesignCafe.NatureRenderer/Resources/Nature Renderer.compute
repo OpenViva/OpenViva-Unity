@@ -1,0 +1,363 @@
+﻿#pragma kernel AddInstances1 THREADS=32
+#pragma kernel AddInstances2 THREADS=32
+#pragma kernel AddInstances4 THREADS=32
+#pragma kernel AddInstances8 THREADS=32
+#pragma kernel AddInstances16 THREADS=32
+#pragma kernel AddInstances32 THREADS=32
+#pragma kernel UseDoubleBuffer COUNTER=1
+
+#ifdef COUNTER
+    RWStructuredBuffer<uint> ArgBuffer;
+
+    [numthreads(1, 1, 1)]
+    void UseDoubleBuffer(uint3 id : SV_DispatchThreadID)
+    {
+        ArgBuffer[1 + id.x * 5] *= 2;
+    }
+#else
+    #if defined(SHADER_API_GLCORE) \
+        || defined(SHADER_API_GLES) \
+        || defined(SHADER_API_GLES3) \
+        || defined(SHADER_API_METAL) \
+        || defined(SHADER_API_VULKAN) \
+        || defined(SHADER_API_SWITCH) \
+        || defined(SHADER_API_PSSL)
+        #define MAX_BUFFER_COUNT 14
+    #else
+        #define MAX_BUFFER_COUNT 32
+    #endif
+
+    struct CompressedFloat4x4
+    {
+        uint positionXY;
+        uint positionZ_scale;
+        uint rotationXY;
+        uint rotationZW;
+    };
+
+    float3 CompressionRange;
+    float3 CompressionBase;
+    float4 ReduceDensity;
+    float4 CameraPosition;
+    float4 CameraDirection;
+    float SplitDistance;
+    float2 CullDistance;
+    AppendStructuredBuffer<CompressedFloat4x4> Result;
+    AppendStructuredBuffer<CompressedFloat4x4> Result_Split;
+
+    StructuredBuffer<CompressedFloat4x4> Instances0;
+    StructuredBuffer<CompressedFloat4x4> Instances1;
+    StructuredBuffer<CompressedFloat4x4> Instances2;
+    StructuredBuffer<CompressedFloat4x4> Instances3;
+    StructuredBuffer<CompressedFloat4x4> Instances4;
+    StructuredBuffer<CompressedFloat4x4> Instances5;
+    StructuredBuffer<CompressedFloat4x4> Instances6;
+    StructuredBuffer<CompressedFloat4x4> Instances7;
+    StructuredBuffer<CompressedFloat4x4> Instances8;
+    StructuredBuffer<CompressedFloat4x4> Instances9;
+    StructuredBuffer<CompressedFloat4x4> Instances10;
+    StructuredBuffer<CompressedFloat4x4> Instances11;
+    #if MAX_BUFFER_COUNT > 14
+        StructuredBuffer<CompressedFloat4x4> Instances12;
+        StructuredBuffer<CompressedFloat4x4> Instances13;
+        StructuredBuffer<CompressedFloat4x4> Instances14;
+        StructuredBuffer<CompressedFloat4x4> Instances15;
+        StructuredBuffer<CompressedFloat4x4> Instances16;
+        StructuredBuffer<CompressedFloat4x4> Instances17;
+        StructuredBuffer<CompressedFloat4x4> Instances18;
+        StructuredBuffer<CompressedFloat4x4> Instances19;
+        StructuredBuffer<CompressedFloat4x4> Instances20;
+        StructuredBuffer<CompressedFloat4x4> Instances21;
+        StructuredBuffer<CompressedFloat4x4> Instances22;
+        StructuredBuffer<CompressedFloat4x4> Instances23;
+        StructuredBuffer<CompressedFloat4x4> Instances24;
+        StructuredBuffer<CompressedFloat4x4> Instances25;
+        StructuredBuffer<CompressedFloat4x4> Instances26;
+        StructuredBuffer<CompressedFloat4x4> Instances27;
+        StructuredBuffer<CompressedFloat4x4> Instances28;
+        StructuredBuffer<CompressedFloat4x4> Instances29;
+        StructuredBuffer<CompressedFloat4x4> Instances30;
+        StructuredBuffer<CompressedFloat4x4> Instances31;
+    #endif
+
+    uint Count0;
+    uint Count1;
+    uint Count2;
+    uint Count3;
+    uint Count4;
+    uint Count5;
+    uint Count6;
+    uint Count7;
+    uint Count8;
+    uint Count9;
+    uint Count10;
+    uint Count11;
+    #if MAX_BUFFER_COUNT > 14
+        uint Count12;
+        uint Count13;
+        uint Count14;
+        uint Count15;
+        uint Count16;
+        uint Count17;
+        uint Count18;
+        uint Count19;
+        uint Count20;
+        uint Count21;
+        uint Count22;
+        uint Count23;
+        uint Count24;
+        uint Count25;
+        uint Count26;
+        uint Count27;
+        uint Count28;
+        uint Count29;
+        uint Count30;
+        uint Count31;
+    #endif
+
+    uint CompressToUshort( float value, float precision )
+    {
+        return (uint)(value / precision * 65535.0);
+    }
+
+    uint CompressToByte( float value, float precision )
+    {
+        return (uint)(value / precision * 255.0);
+    }
+
+    float DecompressFromByte( uint value, float precision )
+    {
+        return value / 255.0 * precision;
+    }
+
+    float DecompressFromUshort( uint value, float precision )
+    {
+        return value / 65535.0 * precision;
+    }
+
+    void UnpackInt( uint packedInt, out uint a, out uint b )
+    {
+        a = ( (uint) (packedInt >> 16) );
+        b = ( (uint) ((packedInt << 16) >> 16) );
+    }
+
+    void UnpackShort( uint packedShort, out uint a, out uint b )
+    {
+        a = ( (uint) (packedShort >> 8) );
+        b = ( (uint) ((packedShort << 24) >> 24) );
+    }
+
+    uint PackInt( uint ushortA, uint ushortB )
+    {
+        return ushortA << 16 | ushortB;
+    }
+
+    uint PackShort( uint byteA, uint byteB )
+    {
+        return (byteA << 8) | byteB;
+    }
+
+    float4x4 QuaternionToMatrix(float4 quaternion)
+    {
+        float4x4 result = (float4x4)0;
+        float x = quaternion.x;
+        float y = quaternion.y;
+        float z = quaternion.z;
+        float w = quaternion.w;
+
+        float x2 = x + x;
+        float y2 = y + y;
+        float z2 = z + z;
+        float xx = x * x2;
+        float xy = x * y2;
+        float xz = x * z2;
+        float yy = y * y2;
+        float yz = y * z2;
+        float zz = z * z2;
+        float wx = w * x2;
+        float wy = w * y2;
+        float wz = w * z2;
+
+        result[0][0] = 1.0 - (yy + zz);
+        result[0][1] = xy - wz;
+        result[0][2] = xz + wy;
+
+        result[1][0] = xy + wz;
+        result[1][1] = 1.0 - (xx + zz);
+        result[1][2] = yz - wx;
+
+        result[2][0] = xz - wy;
+        result[2][1] = yz + wx;
+        result[2][2] = 1.0 - (xx + yy);
+
+        result[3][3] = 1.0;
+
+        return result;
+    }
+
+    void DecompressPosition( out float3 position, CompressedFloat4x4 compressedMatrix )
+    {
+        uint positionX, positionY, positionZ, scale;
+        UnpackInt( compressedMatrix.positionXY, positionX, positionY );
+        UnpackInt( compressedMatrix.positionZ_scale, positionZ, scale );
+        position = 
+            float3(
+                DecompressFromUshort(positionX, CompressionRange.x) + CompressionBase.x,
+                DecompressFromUshort(positionY, CompressionRange.y) + CompressionBase.y,
+                DecompressFromUshort(positionZ, CompressionRange.z) + CompressionBase.z );
+    }
+
+    void Scale( inout CompressedFloat4x4 compressedMatrix, float scale )
+    {
+        uint positionZ, scaleXYZ;
+        UnpackInt( compressedMatrix.positionZ_scale, positionZ, scaleXYZ );
+
+        uint scaleX, scaleY;
+        UnpackShort( scaleXYZ, scaleX, scaleY );
+
+        compressedMatrix.positionZ_scale = 
+            PackInt(
+                positionZ,
+                PackShort(
+                    CompressToByte(DecompressFromByte(scaleX, 16.0) * scale, 16.0),
+                    CompressToByte(DecompressFromByte(scaleY, 16.0) * scale, 16.0) ) );
+    }
+
+    void Add( uint id, StructuredBuffer<CompressedFloat4x4> buffer, uint count )
+    {
+        if( id >= count )
+            return;
+
+        CompressedFloat4x4 m = buffer[id];
+
+        // TODO: Compare compressed position to compressed camera position instead of decompressing the position
+        float3 position;
+        DecompressPosition( position, m );
+        float d = distance( position, CameraPosition.xyz );
+
+        if( d < CullDistance.x || d >= CullDistance.y )
+            return;
+
+        if( ReduceDensity.x < 1 )
+        {
+            float fadeStart = ReduceDensity.y;
+            float fadeRange = ReduceDensity.z;
+
+            // Calculate a dither pattern with range [0..1]
+            float dither = frac(dot(float3(position.xz * 16.0, 0), uint3(2, 7, 23) / 17.0f));
+
+            float densityThreshold = 1 - ReduceDensity.x;
+            float distanceNormalized = (d - fadeStart) / (fadeRange * dither + 0.001);
+            if( dither > ReduceDensity.x && distanceNormalized > 0 )
+            {
+                float scale = 1 - distanceNormalized;
+                if (scale < 0.2)
+                    return;
+
+                Scale(m, scale);
+            }
+        }
+        
+        Result.Append( m );
+
+        if( d < SplitDistance )
+            Result_Split.Append( m );
+    }
+
+    [numthreads(THREADS, 1, 1)]
+    void AddInstances1(uint3 id : SV_DispatchThreadID)
+    {
+        Add( id.x, Instances0, Count0 );
+    }
+
+    [numthreads(THREADS, 1, 1)]
+    void AddInstances2(uint3 id : SV_DispatchThreadID)
+    {
+        Add( id.x, Instances0, Count0 );
+        Add( id.x, Instances1, Count1 );
+    }
+
+    [numthreads(THREADS, 1, 1)]
+    void AddInstances4(uint3 id : SV_DispatchThreadID)
+    {
+        Add( id.x, Instances0, Count0 );
+        Add( id.x, Instances1, Count1 );
+        Add( id.x, Instances2, Count2 );
+        Add( id.x, Instances3, Count3 );
+    }
+
+    [numthreads(THREADS, 1, 1)]
+    void AddInstances8(uint3 id : SV_DispatchThreadID)
+    {
+        Add( id.x, Instances0, Count0 );
+        Add( id.x, Instances1, Count1 );
+        Add( id.x, Instances2, Count2 );
+        Add( id.x, Instances3, Count3 );
+        Add( id.x, Instances4, Count4 );
+        Add( id.x, Instances5, Count5 );
+        Add( id.x, Instances6, Count6 );
+        Add( id.x, Instances7, Count7 );
+    }
+
+    [numthreads(THREADS, 1, 1)]
+    void AddInstances16(uint3 id : SV_DispatchThreadID)
+    {
+        Add( id.x, Instances0, Count0 );
+        Add( id.x, Instances1, Count1 );
+        Add( id.x, Instances2, Count2 );
+        Add( id.x, Instances3, Count3 );
+        Add( id.x, Instances4, Count4 );
+        Add( id.x, Instances5, Count5 );
+        Add( id.x, Instances6, Count6 );
+        Add( id.x, Instances7, Count7 );
+        Add( id.x, Instances8, Count8 );
+        Add( id.x, Instances9, Count9 );
+        Add( id.x, Instances10, Count10 );
+        Add( id.x, Instances11, Count11 );
+        #if MAX_BUFFER_COUNT > 14
+            Add( id.x, Instances12, Count12 );
+            Add( id.x, Instances13, Count13 );
+            Add( id.x, Instances14, Count14 );
+            Add( id.x, Instances15, Count15 );
+        #endif
+    }
+
+    [numthreads(THREADS, 1, 1)]
+    void AddInstances32(uint3 id : SV_DispatchThreadID)
+    {
+        #if MAX_BUFFER_COUNT > 14
+            Add( id.x, Instances0, Count0 );
+            Add( id.x, Instances1, Count1 );
+            Add( id.x, Instances2, Count2 );
+            Add( id.x, Instances3, Count3 );
+            Add( id.x, Instances4, Count4 );
+            Add( id.x, Instances5, Count5 );
+            Add( id.x, Instances6, Count6 );
+            Add( id.x, Instances7, Count7 );
+            Add( id.x, Instances8, Count8 );
+            Add( id.x, Instances9, Count9 );
+            Add( id.x, Instances10, Count10 );
+            Add( id.x, Instances11, Count11 );
+            Add( id.x, Instances12, Count12 );
+            Add( id.x, Instances13, Count13 );
+            Add( id.x, Instances14, Count14 );
+            Add( id.x, Instances15, Count15 );
+            Add( id.x, Instances16, Count16 );
+            Add( id.x, Instances17, Count17 );
+            Add( id.x, Instances18, Count18 );
+            Add( id.x, Instances19, Count19 );
+            Add( id.x, Instances20, Count20 );
+            Add( id.x, Instances21, Count21 );
+            Add( id.x, Instances22, Count22 );
+            Add( id.x, Instances23, Count23 );
+            Add( id.x, Instances24, Count24 );
+            Add( id.x, Instances25, Count25 );
+            Add( id.x, Instances26, Count26 );
+            Add( id.x, Instances27, Count27 );
+            Add( id.x, Instances28, Count28 );
+            Add( id.x, Instances29, Count29 );
+            Add( id.x, Instances30, Count30 );
+            Add( id.x, Instances31, Count31 );
+        #endif
+    }
+#endif
