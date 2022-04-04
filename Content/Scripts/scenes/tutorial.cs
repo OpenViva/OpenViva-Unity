@@ -145,11 +145,12 @@ public class Tutorial: VivaScript{
     }
 
     private void OnPeachGrabbed( GrabContext grabContext){
-        if( phase == Phase.PLAYER_GRAB_PEACH ){
+        if(phase == Phase.PLAYER_GRAB_PEACH ){
             Viva.main.StartCoroutine( DelayNext() );
-        }else if( grabContext.grabber.character == merida && phase == Phase.GIVE_PEACH_TO_MERIDA ){
+        }else if(grabContext.grabber.character == merida && phase == Phase.GIVE_PEACH_TO_MERIDA ){
             MoveMerida(3);
-            OpenGate(3);
+            //OpenGate(3);
+            
         }
     }
 
@@ -166,11 +167,11 @@ public class Tutorial: VivaScript{
         switch( phase ){
         case Phase.HELLO:
             if( vr ){
-                return@"Welcome to Viva
+                return@"Welcome to Open Viva
 You can use gestures to interact with characters.
 Face the character and press (R) to gesture HELLO";
             }else{
-                return @"Welcome to Viva.
+                return @"Welcome to Open Viva.
 You can use gestures to interact with characters.
 Slowly wave your hand at the character to gesture HELLO";
             }

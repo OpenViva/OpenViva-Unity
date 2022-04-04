@@ -25,6 +25,7 @@ public partial class Character: VivaInstance{
         Character instance = null;
         instances._InternalSpawnAndLink( name, true, position, rotation, new CharacterCallbackWrapper( delegate( Character character ){
             instance = character;
+            onSpawn?.Invoke(character);
         } ), null );
         return instance;
     }
