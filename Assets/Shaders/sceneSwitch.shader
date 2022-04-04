@@ -38,11 +38,14 @@ Shader "UI/SceneSwitch"
             struct appdata_t
             {
                 float4 vertex   : POSITION;
+                UNITY_VERTEX_INPUT_INSTANCE_ID //Insert
             };
 
             struct v2f
             {
                 float4 vertex   : SV_POSITION;
+
+                UNITY_VERTEX_OUTPUT_STEREO //Insert
             };
 
             fixed4 _Color;
@@ -51,6 +54,7 @@ Shader "UI/SceneSwitch"
             {
                 v2f OUT;
                 UNITY_SETUP_INSTANCE_ID(v);
+                UNITY_INITIALIZE_OUTPUT(v2f, OUT);
                 UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO(OUT);
                 OUT.vertex = UnityObjectToClipPos(v.vertex);
                 return OUT;
