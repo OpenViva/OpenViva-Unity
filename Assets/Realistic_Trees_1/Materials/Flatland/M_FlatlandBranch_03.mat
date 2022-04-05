@@ -8,13 +8,14 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: M_FlatlandBranch_03
-  m_Shader: {fileID: 10751, guid: 0000000000000000f000000000000000, type: 0}
-  m_ShaderKeywords: _ALPHATEST _COLOR_TINT _INTERACTION_OFF _LIGHTING_QUALITY_LOW
-    _SURFACE_MAP_PACKED _WIND
+  m_Shader: {fileID: 4800000, guid: c06c91c9416ad0f4e8a67d6103e77fdc, type: 3}
+  m_ShaderKeywords: _ALPHATEST _BAKEDMESHDATA_OFF _COLOR_TINT _EMISSIONAFFECTEDBYALBEDO_OFF
+    _INTERACTION_OFF _LIGHTING_QUALITY_LOW _OVERLAY_OFF _SURFACE_MAP_PACKED _TRANSLUCENCY_OFF
+    _WIND
   m_LightmapFlags: 1
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
+  m_CustomRenderQueue: 2450
   stringTagMap: {}
   disabledShaderPasses:
   - DistortionVectors
@@ -103,13 +104,14 @@ Material:
     m_Floats:
     - _AO: 0.3
     - _AlphaTest: 1
-    - _AlphaTestThreshold: 0.5
+    - _AlphaTestThreshold: 0.459
     - _BakedMeshData: 0
     - _BaseLight: 0.36
     - _BillboardKwToggle: 0
     - _BillboardShadowFade: 0.5
     - _BumpScale: 1
     - _ColorCorrection: 0
+    - _ColorMask: 15
     - _ColorVariationSpread: 0.2
     - _Cull: 2
     - _Cutoff: 0.459
@@ -145,6 +147,10 @@ Material:
     - _SpecularHighlights: 1
     - _SquashAmount: 1
     - _SrcBlend: 1
+    - _Stencil: 0
+    - _StencilComp: 8
+    - _StencilOp: 0
+    - _StencilReadMask: 255
     - _StencilRef: 0
     - _StencilRefDepth: 0
     - _StencilRefDistortionVec: 4
@@ -163,6 +169,7 @@ Material:
     - _TurbulenceStrength: 1
     - _TwoSided: 2
     - _UVSec: 0
+    - _UseUIAlphaClip: 0
     - _VertexNormalStrength: 1
     - _Wind: 1
     - _WindQuality: 0
@@ -182,6 +189,7 @@ Material:
     - _HueVariation: {r: 1, g: 0.5, b: 0, a: 0.1}
     - _HueVariationColor: {r: 0.48825797, g: 0.7924528, b: 0.23549305, a: 0.50980395}
     - _OcclusionRemap: {r: 0.42494044, g: 1, b: 0, a: 0}
+    - _Specular: {r: 0, g: 0, b: 0, a: 0}
     - _SubsurfaceColor: {r: 0.5548552, g: 0.6037736, b: 0.39587042, a: 0}
     - _ThicknessRemap: {r: 0, g: 1, b: 0, a: 0}
     - _Tint: {r: 1, g: 1, b: 1, a: 1}
