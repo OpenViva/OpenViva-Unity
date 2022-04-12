@@ -45,7 +45,10 @@ public class Water : MonoBehaviour{
     [SerializeField]
     private bool m_disableSwimming = false;
     public bool disableSwimming { get{ return m_disableSwimming; } }
-
+    [SerializeField]
+    private bool m_buoyancy = true;
+    public bool buoyancy { get{ return m_buoyancy; } }
+    
     private int clearCounter = 0;
     public float surfaceY { get; private set; }
 
@@ -144,13 +147,18 @@ public class Water : MonoBehaviour{
                 continue;
             }
             var character = entry.instance as Character;
-            if( character ){
-
+            if( character ){            
                 foreach( var muscle in character.ragdoll.muscles ){ 
                     ApplyBuoyancy( entry, muscle.colliders[0], muscle.rigidBody, entry.totalVolume, 1.4f*characterBuoyancyAlpha );
                 }
-                ApplyBuoyancy( entry, character.ragdoll.capsuleCollider, character.ragdoll.movementBody, 0.5f, characterBuoyancyAlpha );
-                if( character.isBiped ) character.ragdoll.movementBody.AddForce( Vector3.up*(surfaceY-character.biped.upperSpine.rigidBody.worldCenterOfMass.y)*0.04f, ForceMode.VelocityChange );
+                if(buoyancy){
+                    if( character.isBiped ) character.ragdoll.movementBody.AddForce( Vector3.up*(surfaceY-character.biped.upperSpine.rigidBody.worldCenterOfMass.y)*0.04f, ForceMode.VelocityChange );
+                }
+                //Probably unnecessary
+                else{
+                    characterBuoyancyAlpha = 0;
+                }   
+                ApplyBuoyancy( entry, character.ragdoll.capsuleCollider, character.ragdoll.movementBody, 0.5f, characterBuoyancyAlpha );                   
             }
         }
     }
