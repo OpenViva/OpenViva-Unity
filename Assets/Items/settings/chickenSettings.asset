@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f829a57b73d1fc767aeb35858369cc4c, type: 3}
+  m_Name: chickenSettings
+  m_EditorClassIdentifier: 
+  standRecalculateThreshold: 0.002
+  standCheckDownDistance: 0.32
+  standCheckRandomRadius: 0.7
+  standingDistance: 0.02
+  standPositionLerpStrength: 16
+  standRotationLerpStrength: 10
+  maxTurnSpeedDecay: 0.7
+  randomChaseDirectionChange: 55
+  buk: {fileID: 11400000, guid: b3c502f01f0362a71a02f55071f63139, type: 2}
+  bukku: {fileID: 11400000, guid: f38c9ea2319268cd1881ccd00fdb2dc9, type: 2}
+  tamedChickenMaterial: {fileID: 2100000, guid: fde635bc0e82952ae9d6d093ee505b38,
+    type: 2}
+  eggPrefab: {fileID: 2456096039498472139, guid: 5232298a08e3366898f37af36ea114b7,
+    type: 3}
+  eggSpawnSound: {fileID: 8300000, guid: 00c55f7521012c2458900bd3143b3514, type: 3}
+  proxMin: 0.5
+  proxMax: 3
+  dropHeightMin: 0.7
+  maxSpeed: 3.3
+  accel: 2.5
+  turnSpeed: 12
+  maxAccel: 3.2
+  friction: 0.99
+  tameSound: {fileID: 8300000, guid: c8425c3089cb5440a9d08a983b5f185e, type: 3}

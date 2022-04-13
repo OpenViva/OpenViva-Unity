@@ -1,0 +1,71 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 1104675335900430}
+  m_IsPrefabParent: 1
+--- !u!1 &1104675335900430
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4729744350689266}
+  - component: {fileID: 114109392956539652}
+  m_Layer: 0
+  m_Name: hairGrabItem
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4729744350689266
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1104675335900430}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114109392956539652
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1104675335900430}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8bb967571481248f3a2c8ab5f481dfa8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lockDisableLogic: 1
+  type: 10
+  pickupTexture: {fileID: 0}
+  holdSpacingAdd: 0.05
+  rigidBody: {fileID: 0}
+  holdForms:
+  - {fileID: 11400000, guid: 994b23bce0de64bf786b376047913e3e, type: 2}
+  - {fileID: 11400000, guid: 3ca6595242dc14a6a8affaeac1c5622d, type: 2}
+  holdFormsVROnly: []
+  pickupSound: {fileID: 0}
+  pickupReasons: 0
+  attributes: 0
+  soundSource: {fileID: 0}
+  owner: {fileID: 0}
+  playerHeldAnimation: 1
+  holdType: 2
+  baseStaticPickupRotationOffset: {x: -90, y: 0, z: 0}
+  toggleHolding: 0

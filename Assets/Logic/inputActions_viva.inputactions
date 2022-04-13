@@ -1,0 +1,560 @@
+{
+    "name": "inputActions_viva",
+    "maps": [
+        {
+            "name": "keyboard",
+            "id": "eb459591-4014-468b-8cee-68a48cd78f73",
+            "actions": [
+                {
+                    "name": "movement",
+                    "type": "PassThrough",
+                    "id": "81f0c277-c2b6-4fe2-87f6-cf24b562bb6e",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "extendRight",
+                    "type": "Button",
+                    "id": "07bd9f8e-cd08-42d8-b2df-aa2716310bd8",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "extendLeft",
+                    "type": "Button",
+                    "id": "440233d2-e56e-463d-99be-8e23bba0a3b1",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "wave",
+                    "type": "Button",
+                    "id": "dad4c442-1e0e-4c8f-b06e-4392ddd7e04f",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "follow",
+                    "type": "Button",
+                    "id": "a6f37fa6-b8c2-4b6d-97a5-520d20239f53",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "pauseButton",
+                    "type": "Button",
+                    "id": "129a5773-95ca-458a-9933-461d91e93a65",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "keyboardAlt",
+                    "type": "Button",
+                    "id": "8d9a8e1c-0186-4840-b785-4b1d45c9be46",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "rightInteract",
+                    "type": "Button",
+                    "id": "1d6323e7-1a6f-448f-88f0-d726d9b06948",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "leftInteract",
+                    "type": "Button",
+                    "id": "cb20c011-5e2b-4e0d-a1e5-5b507c8a76e3",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "mouseVelocity",
+                    "type": "PassThrough",
+                    "id": "d1c82cfb-895e-4756-86cb-2dd12e7d8fb6",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "mousePosition",
+                    "type": "PassThrough",
+                    "id": "7d724695-8d56-4a17-a3e3-9b11a01fe9fa",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "crouch",
+                    "type": "Button",
+                    "id": "5594723d-bfd5-4c74-a507-bd20037de005",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "w",
+                    "type": "Button",
+                    "id": "154b3263-5503-4ad5-97ae-a1d670f64399",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "a",
+                    "type": "Button",
+                    "id": "79877d24-6410-4e62-b9cd-ce217371c73e",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "s",
+                    "type": "Button",
+                    "id": "371d95be-9bf4-49cc-9133-331acd5884e6",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "d",
+                    "type": "Button",
+                    "id": "291b99e9-23cf-4f74-9f87-7c92343cf01a",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "WASD",
+                    "id": "795be110-47fe-4754-892c-77c0cdf291ac",
+                    "path": "2DVector",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "movement",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "up",
+                    "id": "1b82e536-12ab-48ee-9d14-8553f20eade4",
+                    "path": "<Keyboard>/w",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "movement",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "down",
+                    "id": "562bda70-779d-4fd6-9125-6fbf2a7ccec3",
+                    "path": "<Keyboard>/s",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "movement",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "left",
+                    "id": "3a150b00-cbf9-47a4-95fb-4b0538168722",
+                    "path": "<Keyboard>/a",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "movement",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "right",
+                    "id": "d2ca818c-1d03-45bc-8e68-d076636f621a",
+                    "path": "<Keyboard>/d",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "movement",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "0a46f3dc-d408-4419-b78a-a3bbf9a5679f",
+                    "path": "<Keyboard>/q",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "extendLeft",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "8ed4bc1b-fa83-438e-9b6e-8c0523d566f4",
+                    "path": "<Keyboard>/r",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "wave",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "6033d847-c899-4be4-9717-fa730ac4dd02",
+                    "path": "<Keyboard>/f",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "follow",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "3c009b2a-ed3a-4557-a526-c793a9e560ea",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "extendRight",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "49dc878c-6bae-4e2d-8fc6-22b4f35ceab3",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "pauseButton",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "eb808b91-5e22-4e2a-b902-787b6f387fd3",
+                    "path": "<Keyboard>/leftShift",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "keyboardAlt",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f7e14871-e7cc-4eb1-af46-c4f5098b0412",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "rightInteract",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b54c15f6-4427-41ba-bed0-7399e2e6bad6",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "leftInteract",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "243891fa-c80c-4620-85b4-060ef95c274f",
+                    "path": "<Mouse>/delta",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "mouseVelocity",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d2b96229-72b9-4793-948f-02fd583e0698",
+                    "path": "<Mouse>/position",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "mousePosition",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e0aec2d5-106c-41e3-8b59-5b507f244731",
+                    "path": "<Keyboard>/leftCtrl",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "crouch",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ab4cabfa-f357-46da-b82e-d7ed7b1f78de",
+                    "path": "<Keyboard>/w",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "w",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "8a0330cb-a74d-4d76-854e-16c11c3efa10",
+                    "path": "<Keyboard>/s",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "s",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a7a1e39c-774f-4e86-8537-87c0f69f04ad",
+                    "path": "<Keyboard>/d",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "d",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "27b5204e-f398-4f43-bd6b-ff90bdfd3f89",
+                    "path": "<Keyboard>/a",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "a",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "vr",
+            "id": "3cdc15a5-f698-4dd9-a620-f06dbea65896",
+            "actions": [
+                {
+                    "name": "rightTrackpad",
+                    "type": "PassThrough",
+                    "id": "2d70a984-2654-4d7f-9fbb-3416663f47e5",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "leftTrackpad",
+                    "type": "PassThrough",
+                    "id": "95e39184-ee92-4657-836d-6128f68f7a4c",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "rightTrackpadButton",
+                    "type": "Button",
+                    "id": "6700793e-43ee-44df-bd2f-e1945306c7b6",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "leftTrackpadButton",
+                    "type": "Button",
+                    "id": "ade0eb2f-ac26-41ea-88fa-cb36447a953c",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "rightGrip",
+                    "type": "Value",
+                    "id": "bb3ab885-f00f-439e-828d-79b82e254873",
+                    "expectedControlType": "Analog",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "leftGrip",
+                    "type": "Value",
+                    "id": "c4328b04-198d-40eb-af4c-fe87b6f6998b",
+                    "expectedControlType": "Analog",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "rightAction",
+                    "type": "Button",
+                    "id": "9fd7971e-16c8-46cc-8a55-3face60ed430",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "leftAction",
+                    "type": "Button",
+                    "id": "f3f8b25f-34c0-48d4-b927-9a872d7a9d3c",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "rightPauseButton",
+                    "type": "Button",
+                    "id": "4730eda3-98f8-46b6-823b-c3bd56253d62",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "leftPauseButton",
+                    "type": "Button",
+                    "id": "e9614f09-cf4a-4748-a023-ace798b9fe1e",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "a3e14343-a988-49f5-bbeb-9c6ec7e26b2e",
+                    "path": "<OpenVRControllerIndex>{RightHand}/gripGrab",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "rightGrip",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "0328f881-8e3f-40ff-8d3f-09f4fd6f5626",
+                    "path": "<OpenVRControllerIndex>{RightHand}/joystick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "rightTrackpad",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "88bb7524-fd9c-4dff-9ea8-37084358ba21",
+                    "path": "<OpenVRControllerIndex>{RightHand}/joystickClick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "rightTrackpadButton",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "88287ee7-b2dd-428f-ac68-e94d95b0a961",
+                    "path": "<OpenVRControllerIndex>{LeftHand}/joystickClick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "leftTrackpadButton",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "50b01fd7-5e5a-482f-9439-5f7ab433db5a",
+                    "path": "<OpenVRControllerIndex>{RightHand}/triggerButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "rightAction",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e5951063-fc6f-46ba-98ca-79d681ec8951",
+                    "path": "<OpenVRControllerIndex>{LeftHand}/triggerButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "leftAction",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "97d6e7ab-9acc-4520-9aff-9cc0ebc2b039",
+                    "path": "<OpenVRControllerIndex>{LeftHand}/gripGrab",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "leftGrip",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "5d0adc8f-013c-4709-94e3-863259d0445d",
+                    "path": "<OpenVRControllerIndex>{RightHand}/bButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "rightPauseButton",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "7ebf5a4a-b015-4c6b-963b-16e1f21ff4c3",
+                    "path": "<OpenVRControllerIndex>{LeftHand}/bButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "leftPauseButton",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "bb69a798-ccf6-49c2-8c9a-c78d9e7e05ce",
+                    "path": "<OpenVRControllerIndex>{LeftHand}/joystick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "leftTrackpad",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}

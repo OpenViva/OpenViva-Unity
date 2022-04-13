@@ -1,0 +1,133 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: clouds raymarching
+  m_Shader: {fileID: 4800000, guid: 7338a798929ea4da2b9f44ff47d7b756, type: 3}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _BaseVolume:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _BumpMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _CloudMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 0.91, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailAlbedoMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailMask:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailNormalMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailVolume:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _EmissionMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MetallicGlossMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _OcclusionMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _ParallaxMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _VolumeMap:
+        m_Texture: {fileID: 11700000, guid: 5506a74d8ff7847e2884ccea973f20ac, type: 2}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - DEBUG: 0.513
+    - DEBUG_CONE_LIGHT: 1
+    - DEBUG_COVERAGE: 1
+    - DEBUG_DIL: 1
+    - DEBUG_EROSION: 10
+    - DEBUG_HG: 0.43
+    - DEBUG_L_FUNC: 2.9
+    - DEBUG_MULT: 1
+    - DEBUG_OUTPUT: 1
+    - DEBUG_PRECIP: 2
+    - DEBUG_SOFT: 1
+    - DEBUG_SUN_MARCH: 1
+    - DEBUG_SUN_MULT: 1
+    - _Beer: 1
+    - _BeerConstant: 1
+    - _BeerK: 5.64
+    - _BillowScale: 0.0075
+    - _BumpScale: 1
+    - _CloudHeight: 160
+    - _CloudMapOffset: 0.5
+    - _CloudMapSize: 0.2
+    - _CloudScale: 1
+    - _Cutoff: 0.5
+    - _Density: 32
+    - _DetailNormalMapScale: 1
+    - _DstBlend: 0
+    - _ErodeHeight: 32
+    - _ErodeStrength: 0.052
+    - _GlossMapScale: 1
+    - _Glossiness: 0.5
+    - _GlossyReflections: 1
+    - _HGConstant: 2.65
+    - _HG_Constant: 0.49
+    - _Height: 32
+    - _Metallic: 0
+    - _Mode: 0
+    - _NoiseScale: 0.01
+    - _OcclusionStrength: 1
+    - _Parallax: 0.02
+    - _Powder: 1
+    - _PowderConstant: 1.67
+    - _ShadowDensity: 0.85
+    - _ShadowSampleLength: 1
+    - _Size: 0.01
+    - _SkyHeight: 100
+    - _SkyScale: 0.001
+    - _SmoothnessTextureChannel: 0
+    - _SpecularHighlights: 1
+    - _SrcBlend: 1
+    - _UVSec: 0
+    - _ZWrite: 1
+    m_Colors:
+    - _CloudColorA: {r: 0.73150176, g: 0.13714598, b: 0.14485821, a: 1}
+    - _CloudColorB: {r: 0.891451, g: 0.64995235, b: 0.44623834, a: 1}
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _ColorA: {r: 1, g: 1, b: 1, a: 1}
+    - _ColorB: {r: 0.6698113, g: 0.6698113, b: 0.6698113, a: 1}
+    - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+    - _SkyColor: {r: 0.5515239, g: 0.6645209, b: 0.797, a: 1}

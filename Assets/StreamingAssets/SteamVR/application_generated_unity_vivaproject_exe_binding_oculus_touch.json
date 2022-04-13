@@ -1,0 +1,161 @@
+{
+  "app_key": "application.generated.unity.vivaproject.exe",
+  "bindings": {
+    "/actions/player": {
+      "chords": [],
+      "poses": [
+        {
+          "output": "/actions/player/in/pose",
+          "path": "/user/hand/left/pose/raw"
+        },
+        {
+          "output": "/actions/player/in/pose",
+          "path": "/user/hand/right/pose/raw"
+        },
+        {
+          "output": "/actions/player/in/pose",
+          "path": "/user/hand/right/pose/gdc2015"
+        }
+      ],
+      "haptics": [],
+      "sources": [
+        {
+          "path": "/user/hand/left/input/trigger",
+          "mode": "button",
+          "parameters": {},
+          "inputs": {
+            "click": {
+              "output": "/actions/player/in/action"
+            }
+          }
+        },
+        {
+          "path": "/user/hand/left/input/thumbstick",
+          "mode": "joystick",
+          "parameters": {},
+          "inputs": {
+            "click": {
+              "output": "/actions/player/in/trackpadpress"
+            },
+            "position": {
+              "output": "/actions/player/in/trackpad"
+            }
+          }
+        },
+        {
+          "path": "/user/hand/left/input/grip",
+          "mode": "grab",
+          "parameters": {},
+          "inputs": {
+            "grab": {
+              "output": "/actions/player/in/grab"
+            }
+          }
+        },
+        {
+          "path": "/user/hand/left/input/b",
+          "mode": "button",
+          "parameters": {},
+          "inputs": {
+            "click": {
+              "output": "/actions/player/in/pause"
+            }
+          }
+        },
+        {
+          "path": "/user/hand/right/input/b",
+          "mode": "button",
+          "parameters": {},
+          "inputs": {
+            "click": {
+              "output": "/actions/player/in/pause"
+            }
+          }
+        },
+        {
+          "path": "/user/hand/right/input/grip",
+          "mode": "grab",
+          "parameters": {},
+          "inputs": {
+            "grab": {
+              "output": "/actions/player/in/grab"
+            }
+          }
+        },
+        {
+          "path": "/user/hand/right/input/thumbstick",
+          "mode": "joystick",
+          "parameters": {},
+          "inputs": {
+            "click": {
+              "output": "/actions/player/in/trackpadpress"
+            },
+            "position": {
+              "output": "/actions/player/in/trackpad"
+            }
+          }
+        },
+        {
+          "path": "/user/hand/right/input/trigger",
+          "mode": "button",
+          "parameters": {},
+          "inputs": {
+            "click": {
+              "output": "/actions/player/in/action"
+            }
+          }
+        },
+        {
+          "path": "/user/hand/left/input/joystick",
+          "mode": "joystick",
+          "parameters": {},
+          "inputs": {
+            "click": {
+              "output": "/actions/player/in/trackpadpress"
+            },
+            "position": {
+              "output": "/actions/player/in/trackpad"
+            }
+          }
+        },
+        {
+          "path": "/user/hand/right/input/joystick",
+          "mode": "joystick",
+          "parameters": {},
+          "inputs": {
+            "click": {
+              "output": "/actions/player/in/trackpadpress"
+            },
+            "position": {
+              "output": "/actions/player/in/trackpad"
+            }
+          }
+        },
+        {
+          "path": "/user/hand/left/input/x",
+          "mode": "button",
+          "parameters": {},
+          "inputs": {
+            "click": {
+              "output": "/actions/player/in/pause"
+            }
+          }
+        },
+        {
+          "path": "/user/hand/right/input/x",
+          "mode": "button",
+          "parameters": {},
+          "inputs": {
+            "click": {
+              "output": "/actions/player/in/pause"
+            }
+          }
+        }
+      ],
+      "skeleton": []
+    }
+  },
+  "controller_type": "oculus_touch",
+  "description": "",
+  "name": "Oculus Viva 0.8"
+}

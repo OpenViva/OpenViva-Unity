@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5190abca690cc1a394bc1da706e87aa, type: 3}
+  m_Name: passiveBehaviorSettings
+  m_EditorClassIdentifier: 
+  hugPlayerLoliPhysicsMaterial: {fileID: 13400000, guid: c2f9070bf2b6197af9f40887762dd596,
+    type: 2}
+  hugPlayerHeadMaxProximityDistance: 0.12
+  hugPlayerHeadMinProximityDistance: 0.203
+  hugPlayerPitchProximityOffset: 10
+  hugPlayerRollProximityOffset: 15
+  lolibasePhysicsMaterial: {fileID: 13400000, guid: 8c310f921079947afadee7caf215e8d1,
+    type: 2}
+  hugPlayerLoliDrag: 50
+  hugPlayerLoliAngularDrag: 30
+  hugPlayerDistance: 0.1
+  hugPlayerMinDistance: 0.1
+  hugPlayerMaxDistance: 0.325
+  hugPlayerSmoothLerpSpeed: 4
+  hugPlayerRotationForce: 64
+  hugPlayerAnimSideMinDistance: 0.15
+  hugPlayerAnimSideMaxDistance: 0.3
+  globalDirtTexture: {fileID: 2800000, guid: b372eef0eac0d994da4192ef8ee81d82, type: 3}

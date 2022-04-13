@@ -1,0 +1,125 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf9198d7496c14c278b0ea89100337ed, type: 3}
+  m_Name: Spring
+  m_EditorClassIdentifier: 
+  phases:
+  - ambience: {r: 0.24528301, g: 0.17378972, b: 0.03355287, a: 1}
+    sunColor: {r: 0.8207547, g: 0.56286824, b: 0.3445621, a: 1}
+    atmosphereThickness: 1.5
+    toonAmbience: {r: 0.497, g: 0.4170902, b: 0.26506668, a: 1}
+    exposure: 1.51
+    skyTint: {r: 0.6320754, g: 0.59577143, b: 0.56350124, a: 1}
+    nightSky: {r: 0, g: 0, b: 0, a: 1}
+    cloudColorA: {r: 0.7264151, g: 0.5679798, b: 0.119927004, a: 1}
+    cloudColorB: {r: 1, g: 0.96480983, b: 0.7783019, a: 1}
+    environmentMap: {fileID: 8900000, guid: db452397148a6d307b5d3f7c346841c3, type: 3}
+    fogColor: {r: 0.74509805, g: 0.6771253, b: 0.4969804, a: 0.3019608}
+  - ambience: {r: 0.8301887, g: 0.6660392, b: 0.49733, a: 0}
+    sunColor: {r: 1, g: 0.96247756, b: 0.8632076, a: 1}
+    atmosphereThickness: 1.59
+    toonAmbience: {r: 0.8962264, g: 0.836459, b: 0.6721698, a: 0}
+    exposure: 1.3
+    skyTint: {r: 0.31132078, g: 0.31132078, b: 0.31132078, a: 1}
+    nightSky: {r: 0, g: 0, b: 0, a: 1}
+    cloudColorA: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+    cloudColorB: {r: 1, g: 1, b: 1, a: 1}
+    environmentMap: {fileID: 8900000, guid: 9f787bc8a4442357993c6f9516e4a0bc, type: 3}
+    fogColor: {r: 0.8784314, g: 0.7897681, b: 0.59607846, a: 0.2}
+  - ambience: {r: 0.7830189, g: 0.6435027, b: 0.4986205, a: 0}
+    sunColor: {r: 1, g: 0.96247756, b: 0.8632076, a: 1}
+    atmosphereThickness: 1.3
+    toonAmbience: {r: 1, g: 1, b: 1, a: 0}
+    exposure: 1.5
+    skyTint: {r: 0, g: 0, b: 0, a: 1}
+    nightSky: {r: 0, g: 0, b: 0, a: 1}
+    cloudColorA: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+    cloudColorB: {r: 1, g: 1, b: 1, a: 1}
+    environmentMap: {fileID: 8900000, guid: 9f787bc8a4442357993c6f9516e4a0bc, type: 3}
+    fogColor: {r: 0.8082353, g: 0.84771866, b: 0.88235295, a: 0.14117648}
+  - ambience: {r: 0.308, g: 0.18546249, b: 0.058212005, a: 0}
+    sunColor: {r: 1, g: 0.7678194, b: 0.4575472, a: 1}
+    atmosphereThickness: 1.69
+    toonAmbience: {r: 1, g: 0.8802245, b: 0.7216981, a: 0}
+    exposure: 1.5
+    skyTint: {r: 0.7264151, g: 0.7264151, b: 0.7264151, a: 1}
+    nightSky: {r: 0, g: 0, b: 0, a: 1}
+    cloudColorA: {r: 0.30348876, g: 0.41509432, b: 0.3114628, a: 1}
+    cloudColorB: {r: 1, g: 0.9379239, b: 0.8443396, a: 1}
+    environmentMap: {fileID: 8900000, guid: 9f787bc8a4442357993c6f9516e4a0bc, type: 3}
+    fogColor: {r: 0.8784314, g: 0.6843651, b: 0.38123924, a: 0.3647059}
+  - ambience: {r: 0.34901962, g: 0.26037255, b: 0.10994118, a: 1}
+    sunColor: {r: 0.3018868, g: 0.16945532, b: 0.16945532, a: 0}
+    atmosphereThickness: 1
+    toonAmbience: {r: 0.8584906, g: 0.6284799, b: 0.5709772, a: 0}
+    exposure: 2
+    skyTint: {r: 1, g: 1, b: 1, a: 1}
+    nightSky: {r: 0.98039216, g: 0.39907727, b: 0.2745098, a: 1}
+    cloudColorA: {r: 0.819, g: 0.14332502, b: 0.14895555, a: 1}
+    cloudColorB: {r: 1, g: 0.7236213, b: 0.49, a: 1}
+    environmentMap: {fileID: 8900000, guid: 188fa5f1034c20212955e120e9d65116, type: 3}
+    fogColor: {r: 1, g: 0.3512258, b: 0.18199998, a: 0.09803922}
+  - ambience: {r: 0.050127003, g: 0.14987108, b: 0.21700001, a: 0}
+    sunColor: {r: 0.09656463, g: 0.09779006, b: 0.13207549, a: 0}
+    atmosphereThickness: 0.39
+    toonAmbience: {r: 0.23235296, g: 0.26094657, b: 0.29411766, a: 1}
+    exposure: 1
+    skyTint: {r: 1, g: 0.6073106, b: 0.0990566, a: 1}
+    nightSky: {r: 0.035279997, g: 0.07364, b: 0.111999996, a: 1}
+    cloudColorA: {r: 0.06666667, g: 0.09019608, b: 0.1137255, a: 1}
+    cloudColorB: {r: 0.06666667, g: 0.09019608, b: 0.1137255, a: 1}
+    environmentMap: {fileID: 8900000, guid: 58f9bb95df9c464c8addff8f02f6eadb, type: 3}
+    fogColor: {r: 0.10588236, g: 0.12941177, b: 0.15686275, a: 0.34117648}
+  - ambience: {r: 0, g: 0.07722213, b: 0.1882353, a: 0}
+    sunColor: {r: 0, g: 0, b: 0, a: 0}
+    atmosphereThickness: 0
+    toonAmbience: {r: 0.075712, g: 0.07938034, b: 0.091000006, a: 1}
+    exposure: 0
+    skyTint: {r: 1, g: 1, b: 1, a: 1}
+    nightSky: {r: 0.035279997, g: 0.07364, b: 0.111999996, a: 1}
+    cloudColorA: {r: 0.06666667, g: 0.09019608, b: 0.1137255, a: 1}
+    cloudColorB: {r: 0.06666667, g: 0.09019608, b: 0.1137255, a: 1}
+    environmentMap: {fileID: 8900000, guid: 58f9bb95df9c464c8addff8f02f6eadb, type: 3}
+    fogColor: {r: 0.03529412, g: 0.07450981, b: 0.10980393, a: 0.5647059}
+  - ambience: {r: 0, g: 0.07722213, b: 0.1882353, a: 0}
+    sunColor: {r: 0, g: 0, b: 0, a: 0}
+    atmosphereThickness: 0
+    toonAmbience: {r: 0.075712, g: 0.07938034, b: 0.091000006, a: 1}
+    exposure: 0
+    skyTint: {r: 1, g: 1, b: 1, a: 1}
+    nightSky: {r: 0.035279997, g: 0.07364, b: 0.111999996, a: 1}
+    cloudColorA: {r: 0.06666667, g: 0.09019608, b: 0.1137255, a: 1}
+    cloudColorB: {r: 0.06666667, g: 0.09019608, b: 0.1137255, a: 1}
+    environmentMap: {fileID: 8900000, guid: 58f9bb95df9c464c8addff8f02f6eadb, type: 3}
+    fogColor: {r: 0.03529412, g: 0.07450981, b: 0.10980393, a: 0.5647059}
+  - ambience: {r: 0, g: 0.07722213, b: 0.1882353, a: 0}
+    sunColor: {r: 0, g: 0, b: 0, a: 0}
+    atmosphereThickness: 0
+    toonAmbience: {r: 0.134862, g: 0.14664651, b: 0.18200001, a: 1}
+    exposure: 0
+    skyTint: {r: 1, g: 0.759434, b: 0.759434, a: 1}
+    nightSky: {r: 0.080703, g: 0.1348515, b: 0.189, a: 1}
+    cloudColorA: {r: 0.122352935, g: 0.14588232, b: 0.16, a: 1}
+    cloudColorB: {r: 0.122352935, g: 0.14588232, b: 0.16, a: 1}
+    environmentMap: {fileID: 8900000, guid: 58f9bb95df9c464c8addff8f02f6eadb, type: 3}
+    fogColor: {r: 0.16862746, g: 0.19957767, b: 0.2509804, a: 0.22745098}
+  - ambience: {r: 0.2264151, g: 0.1552562, b: 0.097187616, a: 0}
+    sunColor: {r: 1, g: 0.5949102, b: 0.09800005, a: 1}
+    atmosphereThickness: 1.59
+    toonAmbience: {r: 1, g: 0.6888827, b: 0.3443396, a: 1}
+    exposure: 3.02
+    skyTint: {r: 0.4737896, g: 0.5943396, b: 0.5285851, a: 1}
+    nightSky: {r: 0.98039216, g: 0.50855935, b: 0.18039218, a: 1}
+    cloudColorA: {r: 1, g: 0.9342, b: 0.671, a: 1}
+    cloudColorB: {r: 0.825, g: 0.6395244, b: 0.27719995, a: 1}
+    environmentMap: {fileID: 8900000, guid: 1407465720564473cbc9990881fe056e, type: 3}
+    fogColor: {r: 0.86, g: 0.56951594, b: 0.27692, a: 0.44705883}
