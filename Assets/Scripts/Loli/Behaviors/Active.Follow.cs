@@ -24,6 +24,10 @@ public class FollowBehavior : ActiveBehaviors.ActiveTask {
 		if( source == null ){
 			return false;
 		}
+		//if the player isint in view dont follow
+		if(!self.CanSeePoint(source.transform.position)){
+			return false;
+		}
 		if( self.IsHappy() || self.passive.tired.tired ){
 			
 			Character followTargetCharacter;

@@ -163,7 +163,7 @@ public class BathingBehavior : ActiveBehaviors.ActiveTask {
 		self.rightShoulderState.AttemptDrop();
 		self.leftShoulderState.AttemptDrop();
 
-		BeginActualBathing();	//DEBUG OVERRIDE
+		//BeginActualBathing();	//DEBUG OVERRIDE
 		
 		return true;
 	}
