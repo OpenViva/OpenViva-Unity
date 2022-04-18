@@ -63,7 +63,7 @@ Shader "Anime/AnimeClothing"
 			Tags{
 				"LightMode" = "ForwardBase"
 				"RenderType"="Transparent"
-				"Queue"="Transparent-1"
+				"Queue"="AlphaTest-1"
 			}
 			Cull off
 
