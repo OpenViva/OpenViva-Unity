@@ -114,7 +114,7 @@ public class GameSettings : VivaSessionAsset {
 
     public void CycleQualitySetting(){
         int currQuality = (int)QualitySettings.GetQualityLevel();
-        currQuality = (currQuality+1)%4;
+        currQuality = (currQuality+1)%5;
         QualitySettings.SetQualityLevel( currQuality );
         GameDirector.instance.ApplyAntiAliasingSettings();
     }

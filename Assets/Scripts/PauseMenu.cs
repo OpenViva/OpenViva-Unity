@@ -412,6 +412,7 @@ public partial class PauseMenu : UIMenu {
     private void UpdateToggleQualityText(){
         Text text = GetRightPageUIByMenu(Menu.OPTIONS).transform.Find( "Toggle Quality" ).GetChild(0).GetComponent(typeof(Text)) as Text;
         var qualities = new string[]{
+            "Potato",
             "Low",
             "Med",
             "High",
