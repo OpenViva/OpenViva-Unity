@@ -91,8 +91,7 @@ public class TutorialManager : VivaSessionAsset {
         }else{
             messageContainerAverage = Vector3.LerpUnclamped( messageContainerAverage.Value, pos, Time.deltaTime*8.0f );
         }
-        canvas.position = messageContainerAverage.Value;
-        canvas.rotation = Quaternion.LookRotation( canvas.position-GameDirector.instance.mainCamera.transform.position, Vector3.up );
+        canvas.position = messageContainerAverage.Value;       
     }
 
     public IEnumerator MessageCoroutine( Transform parent, Vector3 localPos, string message, Sprite messageSprite ){
@@ -113,11 +112,12 @@ public class TutorialManager : VivaSessionAsset {
         while( timer < 0.4f ){
             timer += Time.deltaTime;
             float alpha = Mathf.Min(1.0f,timer/0.4f);
-
+             
             UpdateMessageContainerPosition( parent, localPos );
             canvas.localScale = targetScale*Mathf.Lerp( 1.0f, 2.0f, 1.0f-Mathf.Abs( 0.5f-alpha )*2.0f );
             
             messageFrameImage.color = new Color( 1, 1, 1, alpha );
+            messageFrameImage.transform.rotation = Quaternion.LookRotation( messageFrameImage.transform.position-GameDirector.instance.mainCamera.transform.position, Vector3.up );
             messageText.color = new Color( 0, 0, 0, alpha );
             yield return null;
         }
@@ -136,6 +136,7 @@ public class TutorialManager : VivaSessionAsset {
         while( timer < length ){
             timer += Time.deltaTime;
             UpdateMessageContainerPosition( parent, localPos );
+            messageFrameImage.transform.rotation = Quaternion.LookRotation( messageFrameImage.transform.position-GameDirector.instance.mainCamera.transform.position, Vector3.up );
             yield return null;
         }
         StopHint();
