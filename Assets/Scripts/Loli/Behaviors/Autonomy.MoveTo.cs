@@ -219,10 +219,13 @@ public class AutonomyMoveTo : Autonomy.Task {
 			//run to target if far away
 			bool tooFarAway = targetDistance > 20.0f;
 			if( self.currentAnim != Loli.Animation.STAND_GIDDY_LOCOMOTION ){
-				if( tooFarAway && allowRunning ){
+				if( tooFarAway && allowRunning && !self.IsTired() ){
 					self.SetTargetAnimation( Loli.Animation.STAND_GIDDY_LOCOMOTION );
 				}
 			}else if( !tooFarAway ){
+				if( self.IsTired() ){
+					self.SetTargetAnimation( self.bodyStateAnimationSets[ (int)self.bodyState ].GetRandomAnimationSet( AnimationSet.IDLE_TIRED ) );
+				}
 				if( self.IsHappy() ){
 					self.SetTargetAnimation( self.bodyStateAnimationSets[ (int)self.bodyState ].GetRandomAnimationSet( AnimationSet.IDLE_HAPPY ) );
 				}else{

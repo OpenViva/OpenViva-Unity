@@ -142,7 +142,7 @@ public abstract class HandState: OccupyState{
 		}
 		OnPreApplyHoldingTransform( targetItem );
 		ApplyItemAnimationGrab( targetItem );
-		BeginRigidBodyGrab( targetItem.rigidBody, selfItem.rigidBody, false, HoldType.OBJECT, 0.6f );
+		BeginRigidBodyGrab( targetItem.rigidBody, selfItem.rigidBody, true, HoldType.OBJECT, 0.6f );
 		OnPostApplyHoldingTransform( targetItem.transform );
 
 		targetItem.rigidBody.position = targetItem.transform.position;

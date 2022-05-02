@@ -164,6 +164,9 @@ public class ChopsticksBehavior : ActiveBehaviors.ActiveTask {
 			switch( self.bodyState ){
 			case BodyState.STAND:
 				self.SetTargetAnimation(Loli.Animation.STAND_TO_SIT_FLOOR);
+				self.autonomy.SetAutonomy(new AutonomyFaceDirection( self.autonomy, "face direction", delegate(TaskTarget target){
+                        target.SetTargetPosition( GameDirector.player.floorPos );
+                    } ) );
 				// self.SetRootFacingTarget( GameDirector.player.floorPos, 130.0f, 15.0f, 20.0f );
 				break;
 			case BodyState.FLOOR_SIT:

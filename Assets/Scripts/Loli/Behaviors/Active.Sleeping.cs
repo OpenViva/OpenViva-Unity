@@ -26,6 +26,8 @@ public partial class SleepingBehavior : ActiveBehaviors.ActiveTask {
 	private const float minimumDayPercentSleep = 0.6f;
 	private const int botherResistanceCount = 10;
 	private const float awakeTimeTillSleep = 10;
+	private bool? layingOnRightSide = null;
+	private bool saidGoodnight;
 	private Vector3 sleepPos;
 
 
@@ -58,7 +60,7 @@ public partial class SleepingBehavior : ActiveBehaviors.ActiveTask {
 	}
 
 	public override void OnActivate(){
-		
+		saidGoodnight = false;
 		GameDirector.player.objectFingerPointer.selectedLolis.Remove( self );
 		self.characterSelectionTarget.OnUnselected();
 	}
@@ -66,6 +68,7 @@ public partial class SleepingBehavior : ActiveBehaviors.ActiveTask {
 	public override void OnDeactivate(){
 		bed.filterUse.RemoveOwner( self );
 		bed = null;
+		layingOnRightSide = null;
 	}
 
 	public override bool OnGesture( Item source, ObjectFingerPointer.Gesture gesture ){
@@ -124,27 +127,47 @@ public partial class SleepingBehavior : ActiveBehaviors.ActiveTask {
 
 	private void LayDownOnBed(){
 		Loli.Animation beforeSleepAnim;
+		Loli.Animation yawnAnim;
+		Loli.Animation goodNightAnim;		
 		switch( Random.Range(0,3) ){
 		case 0:
 			beforeSleepAnim = Loli.Animation.AWAKE_HAPPY_PILLOW_UP_IDLE;
+			yawnAnim = Loli.Animation.AWAKE_PILLOW_SIDE_YAWN_LONG_RIGHT;
+			goodNightAnim = Loli.Animation.AWAKE_PILLOW_SIDE_SOUND_GOODNIGHT_RIGHT;
 			break;
 		case 1:
 			beforeSleepAnim = Loli.Animation.AWAKE_PILLOW_SIDE_HAPPY_IDLE_LEFT;
+			yawnAnim = Loli.Animation.AWAKE_PILLOW_SIDE_YAWN_LONG_LEFT;
+			goodNightAnim = Loli.Animation.AWAKE_PILLOW_SIDE_SOUND_GOODNIGHT_LEFT;
 			break;
 		default:
 			beforeSleepAnim = Loli.Animation.AWAKE_PILLOW_SIDE_HAPPY_IDLE_RIGHT;
+			yawnAnim = Loli.Animation.AWAKE_PILLOW_SIDE_YAWN_LONG_RIGHT;
+			goodNightAnim = Loli.Animation.AWAKE_PILLOW_SIDE_SOUND_GOODNIGHT_RIGHT;
 			break;
 		}
 		
-		var awakeToSleeptimer = new AutonomyWait( self.autonomy, "time till sleep", 1.0f );
-		awakeToSleeptimer.onSuccess += FallAsleep;
+		var awakeToSleeptimer = new AutonomyWait( self.autonomy, "time till sleep", 2.0f );
 
-		var playLayDown = new AutonomyPlayAnimation( self.autonomy, "lay down anim", beforeSleepAnim );
-
+		var playLayDown = new AutonomyPlayAnimation( self.autonomy, "lay down anim", beforeSleepAnim );	
+	
+		var yawnanim = new AutonomyPlayAnimation(self.autonomy, "yawn", yawnAnim);
+		
+		var goodnightanim = new AutonomyPlayAnimation(self.autonomy, "say good night", goodNightAnim);
+		//this might be a shit way to do this but im kinda shit at coding so fuck it - SolidStone
 		awakeToSleeptimer.AddRequirement( playLayDown );
+		awakeToSleeptimer.AddRequirement( yawnanim );
+		//shinobu has no good night voice line
+		if( self.headModel.voiceIndex != (byte)Voice.VoiceType.SHINOBU ){
+			awakeToSleeptimer.AddRequirement( goodnightanim );
+		}	
 		awakeToSleeptimer.AddRequirement( GenerateEnsureNearBed() );
+
+		//yawnanim.AddRequirement(playLayDown);
+		//yawnanim.AddRequirement(goodnightanim);
 		
 		self.autonomy.SetAutonomy( awakeToSleeptimer );
+		awakeToSleeptimer.onSuccess += FallAsleep;		
 	}
 
 	private void FallAsleep(){
@@ -177,15 +200,51 @@ public partial class SleepingBehavior : ActiveBehaviors.ActiveTask {
 	}
 
 	private void WakeUp(){
-		var playSleepAnim = new AutonomyPlayAnimation( self.autonomy, "play wake up anim", Loli.Animation.AWAKE_HAPPY_PILLOW_UP_IDLE );
-		self.autonomy.SetAutonomy( playSleepAnim );
+		var playWakeAnim = new AutonomyPlayAnimation( self.autonomy, "play wake up anim", Loli.Animation.AWAKE_HAPPY_PILLOW_UP_IDLE );
+		self.autonomy.SetAutonomy( playWakeAnim );
 
-		playSleepAnim.onSuccess += EndSleeping;
+		playWakeAnim.onSuccess += EndSleeping;
 	}
 
 	private void EndSleeping(){
 		self.active.SetTask( self.active.idle );
+		self.active.idle.hasSaidGoodMorning = false;
+		self.Tired = false;
 	}
-}
 
+	public override void OnAnimationChange(Loli.Animation oldAnim, Loli.Animation newAnim){
+		
+		//change layingOnRightSide based on animation
+		switch( newAnim ){
+		case Loli.Animation.AWAKE_PILLOW_SIDE_HAPPY_IDLE_LEFT:
+		case Loli.Animation.SLEEP_PILLOW_SIDE_IDLE_LEFT:
+			layingOnRightSide = false;
+			Debug.Log("on left side");
+			break;
+		case Loli.Animation.AWAKE_PILLOW_SIDE_SOUND_GOODNIGHT_RIGHT:
+		case Loli.Animation.AWAKE_PILLOW_SIDE_SOUND_GOODNIGHT_LEFT:
+			saidGoodnight = true;
+			break;
+		case Loli.Animation.AWAKE_PILLOW_SIDE_HAPPY_IDLE_RIGHT:
+		case Loli.Animation.SLEEP_PILLOW_SIDE_IDLE_RIGHT:
+			layingOnRightSide = true;
+			Debug.Log("on right side");
+			break;
+		case Loli.Animation.SLEEP_PILLOW_UP_IDLE:
+		case Loli.Animation.SLEEP_PILLOW_SIDE_TO_SLEEP_PILLOW_UP_RIGHT:
+		case Loli.Animation.SLEEP_PILLOW_SIDE_TO_SLEEP_PILLOW_UP_LEFT:
+		case Loli.Animation.SLEEP_PILLOW_SIDE_TO_AWAKE_HAPPY_PILLOW_UP_RIGHT:
+		case Loli.Animation.SLEEP_PILLOW_SIDE_TO_AWAKE_HAPPY_PILLOW_UP_LEFT:
+		case Loli.Animation.SLEEP_PILLOW_SIDE_TO_AWAKE_ANGRY_PILLOW_UP_RIGHT:
+		case Loli.Animation.SLEEP_PILLOW_SIDE_TO_AWAKE_ANGRY_PILLOW_UP_LEFT:
+			layingOnRightSide = null;	//no longer laying on a side
+			break;
+		case Loli.Animation.AWAKE_PILLOW_UP_TO_CRAWL_TIRED:
+			self.outfitInstance.SetDynamicBoneModificationsStiffness(1.0f);
+			self.outfitInstance.SetDynamicBoneModificationsCollider( bed.GetDynamicBonePlane(), false );
+			break;
+		}
+	}
+
+}
 }

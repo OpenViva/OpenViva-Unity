@@ -78,6 +78,9 @@ public partial class PauseMenu: UIMenu{
 
         //resume game
         GameDirector.player.transform.position = lastPositionBeforeTutorial;
+        //reset music
+        GameDirector.instance.SetMusic( GameDirector.instance.GetDefaultMusic(), 3.0f );
+        GameDirector.instance.SetUserIsExploring(false);
     }
     private void checkIfExitedTutorialCircle(){
         if( Vector3.SqrMagnitude( transform.position-tutorialCircle.transform.position ) > 90.0f ){
@@ -86,9 +89,11 @@ public partial class PauseMenu: UIMenu{
     }
 
 	public void ContinueTutorial( MenuTutorial continuePhase ){
-        if( (MenuTutorial)( (int)menuTutorialPhase+1 ) == continuePhase ){
+        if(tutorialCoroutine != null){
+            if( (MenuTutorial)( (int)menuTutorialPhase+1 ) == continuePhase ){
             menuTutorialPhase = continuePhase;
             Debug.Log("Continued tutorial! Now at "+menuTutorialPhase);
+            }
         }
     }
 
@@ -97,54 +102,52 @@ public partial class PauseMenu: UIMenu{
     }
 
     private IEnumerator Tutorial(){
-
         tutorialCircle.SetActive( true );
-        
         Player player = GameDirector.player;
         yield return new WaitForSeconds(1.0f);
 
-        DisplayHUDMessage( "        Welcome to the Tutorial        ", HintType.HINT_NO_IMAGE );
-        DisplayHUDMessage( "Exit the tutorial by leaving the green circle.", HintType.HINT );
+        DisplayHUDMessage( "        Welcome to the Tutorial        ", true, HintType.HINT_NO_IMAGE );
+        DisplayHUDMessage( "Exit the tutorial by leaving the green circle.", true, HintType.HINT );
         
         while( !m_finishedDisplayHint ){
             checkIfExitedTutorialCircle();
             yield return null;
         }
         if( player.controls == Player.ControlType.KEYBOARD ){
-            DisplayHUDMessage( "Open the options menu with ESC", HintType.HINT, MenuTutorial.WAIT_TO_OPEN_PAUSE_MENU );
+            DisplayHUDMessage( "Open the options menu with ESC", true, HintType.HINT, MenuTutorial.WAIT_TO_OPEN_PAUSE_MENU );
             while( menuTutorialPhase <= MenuTutorial.NONE ){
                 checkIfExitedTutorialCircle();
                 yield return null;
             }
         }else{
-            DisplayHUDMessage( "Press the MENU controller button", HintType.HINT, MenuTutorial.WAIT_TO_OPEN_PAUSE_MENU );
+            DisplayHUDMessage( "Press the MENU controller button", true, HintType.HINT, MenuTutorial.WAIT_TO_OPEN_PAUSE_MENU );
             while( menuTutorialPhase <= MenuTutorial.NONE ){
                 checkIfExitedTutorialCircle();
                 yield return null;
             }
         }
-        DisplayHUDMessage( "You may switch to VR in Controls.", HintType.HINT_NO_IMAGE, MenuTutorial.WAIT_TO_ENTER_CHECKLIST );
-        DisplayHUDMessage( "It is recommended to calibrate VR hands.", HintType.HINT_NO_IMAGE, MenuTutorial.WAIT_TO_ENTER_CHECKLIST );
-        DisplayHUDMessage( "When you are ready to continue, click Checklist.", HintType.HINT, MenuTutorial.WAIT_TO_ENTER_CHECKLIST );
+        DisplayHUDMessage( "You may switch to VR in Controls.", true, HintType.HINT_NO_IMAGE, MenuTutorial.WAIT_TO_ENTER_CHECKLIST );
+        DisplayHUDMessage( "It is recommended to calibrate VR hands.", true, HintType.HINT_NO_IMAGE, MenuTutorial.WAIT_TO_ENTER_CHECKLIST );
+        DisplayHUDMessage( "When you are ready to continue, click Checklist.", true, HintType.HINT, MenuTutorial.WAIT_TO_ENTER_CHECKLIST );
         while( menuTutorialPhase <= MenuTutorial.WAIT_TO_OPEN_PAUSE_MENU ){
             checkIfExitedTutorialCircle();
             yield return null;
         }
-        DisplayHUDMessage( "Complete all tasks below as an objective.", HintType.HINT_NO_IMAGE, MenuTutorial.WAIT_TO_EXIT_CHECKLIST );
-        DisplayHUDMessage( "When you are ready to continue, exit all menus.", HintType.HINT, MenuTutorial.WAIT_TO_EXIT_CHECKLIST );
+        DisplayHUDMessage( "Complete all tasks below as an objective.", true, HintType.HINT_NO_IMAGE, MenuTutorial.WAIT_TO_EXIT_CHECKLIST );
+        DisplayHUDMessage( "When you are ready to continue, exit all menus.", true, HintType.HINT, MenuTutorial.WAIT_TO_EXIT_CHECKLIST );
         while( menuTutorialPhase <= MenuTutorial.WAIT_TO_ENTER_CHECKLIST ){
             checkIfExitedTutorialCircle();
             yield return null;
         }
 
         if( player.controls == Player.ControlType.KEYBOARD ){
-            DisplayHUDMessage( "WASD to walk around. Left Shift to run.", HintType.HINT );
+            DisplayHUDMessage( "WASD to walk around. Left Shift to run.", true, HintType.HINT );
         }else{
             if( GameDirector.settings.vrControls == Player.VRControlType.TRACKPAD ){
-                DisplayHUDMessage( "Use trackpad/thumbstick to walk around.", HintType.HINT_NO_IMAGE ); 
-                DisplayHUDMessage( "Press and hold to run faster.", HintType.HINT );
+                DisplayHUDMessage( "Use trackpad/thumbstick to walk around.", true, HintType.HINT_NO_IMAGE ); 
+                DisplayHUDMessage( "Press and hold to run faster.", true, HintType.HINT );
             }else{
-                DisplayHUDMessage( "Press trackpad/thumbstick to teleport.", HintType.HINT ); 
+                DisplayHUDMessage( "Press trackpad/thumbstick to teleport.", true, HintType.HINT ); 
             }
         }
         while( !m_finishedDisplayHint ){
@@ -152,9 +155,9 @@ public partial class PauseMenu: UIMenu{
             yield return null;
         }
         if( player.controls == Player.ControlType.KEYBOARD ){
-            DisplayHUDMessage( "If you sit down on the floor with the loli,", HintType.HINT_NO_IMAGE, MenuTutorial.WAIT_CROUCH );
-            DisplayHUDMessage( "you can play hand games with her.", HintType.HINT_NO_IMAGE, MenuTutorial.WAIT_CROUCH );
-            DisplayHUDMessage( "Try toggling crouch with Ctrl.", HintType.HINT, MenuTutorial.WAIT_CROUCH );
+            DisplayHUDMessage( "If you sit down on the floor with the loli,", true, HintType.HINT_NO_IMAGE, MenuTutorial.WAIT_CROUCH );
+            DisplayHUDMessage( "you can play hand games with her.", true, HintType.HINT_NO_IMAGE, MenuTutorial.WAIT_CROUCH );
+            DisplayHUDMessage( "Try toggling crouch with Ctrl.", true, HintType.HINT, MenuTutorial.WAIT_CROUCH );
             while( menuTutorialPhase <= MenuTutorial.WAIT_TO_EXIT_CHECKLIST ){
                 checkIfExitedTutorialCircle();
                 if( player.GetKeyboardCurrentHeight() < 1.0f ){
@@ -163,8 +166,8 @@ public partial class PauseMenu: UIMenu{
                 yield return null;
             }
         }else{
-            DisplayHUDMessage( "If you sit down on the floor with the loli,", HintType.HINT_NO_IMAGE );
-            DisplayHUDMessage( "You can play hand games with her.", HintType.HINT );
+            DisplayHUDMessage( "If you sit down on the floor with the loli,", true, HintType.HINT_NO_IMAGE );
+            DisplayHUDMessage( "You can play hand games with her.", true, HintType.HINT );
             float time = Time.time;
             while( Time.time-time < 5.0f ){
                 checkIfExitedTutorialCircle();
@@ -173,45 +176,45 @@ public partial class PauseMenu: UIMenu{
             menuTutorialPhase = MenuTutorial.WAIT_CROUCH;
         }
         
-        DisplayHUDMessage( "You can make gestures to interact with the loli.", HintType.HINT_NO_IMAGE, MenuTutorial.WAIT_TO_WAVE );
+        DisplayHUDMessage( "You can make gestures to interact with the loli.", true, HintType.HINT_NO_IMAGE, MenuTutorial.WAIT_TO_WAVE );
         if( player.controls == Player.ControlType.KEYBOARD ){
-            DisplayHUDMessage( "Say Hello with R", HintType.HINT, MenuTutorial.WAIT_TO_WAVE );
+            DisplayHUDMessage( "Say Hello with R", true, HintType.HINT, MenuTutorial.WAIT_TO_WAVE );
         }else{
-            DisplayHUDMessage( "Wave side to side with your hand", HintType.HINT_NO_IMAGE, MenuTutorial.WAIT_TO_WAVE );
-            DisplayHUDMessage( "until you see the wave icon appear", HintType.HINT, MenuTutorial.WAIT_TO_WAVE );
+            DisplayHUDMessage( "Wave side to side with your hand", true, HintType.HINT_NO_IMAGE, MenuTutorial.WAIT_TO_WAVE );
+            DisplayHUDMessage( "until you see the wave icon appear", true, HintType.HINT, MenuTutorial.WAIT_TO_WAVE );
         }
         while( menuTutorialPhase <= MenuTutorial.WAIT_CROUCH ){
             checkIfExitedTutorialCircle();
             yield return null;
         }
-        DisplayHUDMessage( "Good!", HintType.HINT );
+        DisplayHUDMessage( "Good!", true, HintType.HINT );
         while( !m_finishedDisplayHint ){
             checkIfExitedTutorialCircle();
             yield return null;
         }
-        DisplayHUDMessage( "Now gesture someone to come here.", HintType.HINT_NO_IMAGE, MenuTutorial.WAIT_TO_COME_HERE );
+        DisplayHUDMessage( "Now gesture someone to come here.", true, HintType.HINT_NO_IMAGE, MenuTutorial.WAIT_TO_COME_HERE );
         if( player.controls == Player.ControlType.KEYBOARD ){
-            DisplayHUDMessage( "Press F to Follow", HintType.HINT, MenuTutorial.WAIT_TO_COME_HERE );
+            DisplayHUDMessage( "Press F to Follow", true, HintType.HINT, MenuTutorial.WAIT_TO_COME_HERE );
         }else{
-            DisplayHUDMessage( "Swing your hand back and forth, palm facing you.", HintType.HINT, MenuTutorial.WAIT_TO_COME_HERE );
+            DisplayHUDMessage( "Swing your hand back and forth, palm facing you.", true, HintType.HINT, MenuTutorial.WAIT_TO_COME_HERE );
         }
         while( menuTutorialPhase <= MenuTutorial.WAIT_TO_WAVE ){
             checkIfExitedTutorialCircle();
             yield return null;
         }
-        DisplayHUDMessage( "Good! This will make your loli follow you.", HintType.HINT );
+        DisplayHUDMessage( "Good! This will make your loli follow you.", true, HintType.HINT );
         while( !m_finishedDisplayHint ){
             checkIfExitedTutorialCircle();
             yield return null;
         }
 
-        DisplayHUDMessage( "Pick up the rubber ducky in the center.", HintType.HINT_NO_IMAGE, MenuTutorial.WAIT_TO_START_PICKUP );
+        DisplayHUDMessage( "Pick up the rubber ducky in the center.", true, HintType.HINT_NO_IMAGE, MenuTutorial.WAIT_TO_START_PICKUP );
         GameObject duck = GameObject.Instantiate( tutorialDuckPrefab, tutorialCircle.transform.position+Vector3.up*0.1f, Quaternion.identity );
         if( player.controls == Player.ControlType.KEYBOARD ){
-            DisplayHUDMessage( "Left click left hand. Right click right hand.", HintType.HINT_NO_IMAGE, MenuTutorial.WAIT_TO_START_PICKUP );
-            DisplayHUDMessage( "Drop by holding SHIFT", HintType.HINT, MenuTutorial.WAIT_TO_START_PICKUP );
+            DisplayHUDMessage( "Left click left hand. Right click right hand.", true, HintType.HINT_NO_IMAGE, MenuTutorial.WAIT_TO_START_PICKUP );
+            DisplayHUDMessage( "Drop by holding SHIFT", true, HintType.HINT, MenuTutorial.WAIT_TO_START_PICKUP );
         }else{
-            DisplayHUDMessage( "Drop/Pickup :Grip Button (VIVE), Trigger (Oculus)", HintType.HINT, MenuTutorial.WAIT_TO_START_PICKUP );
+            DisplayHUDMessage( "Drop/Pickup :Grip Button (VIVE), Trigger (Oculus)", true, HintType.HINT, MenuTutorial.WAIT_TO_START_PICKUP );
         }
         while( menuTutorialPhase <= MenuTutorial.WAIT_TO_COME_HERE ){
             checkIfExitedTutorialCircle();
@@ -226,16 +229,16 @@ public partial class PauseMenu: UIMenu{
             }
             yield return null;
         }
-        DisplayHUDMessage( "Now extend the ducky out like an offering", HintType.HINT_NO_IMAGE, MenuTutorial.WAIT_TO_PRESENT );
+        DisplayHUDMessage( "Now extend the ducky out like an offering", true, HintType.HINT_NO_IMAGE, MenuTutorial.WAIT_TO_PRESENT );
         if( player.controls == Player.ControlType.KEYBOARD ){
-            DisplayHUDMessage( "Drop objects by holding SHIFT and clicking.", HintType.HINT_NO_IMAGE, MenuTutorial.WAIT_TO_PRESENT );
-            DisplayHUDMessage( "Extend left hand with Q and right with E", HintType.HINT, MenuTutorial.WAIT_TO_PRESENT );
+            DisplayHUDMessage( "Drop objects by holding SHIFT and clicking.", true, HintType.HINT_NO_IMAGE, MenuTutorial.WAIT_TO_PRESENT );
+            DisplayHUDMessage( "Extend left hand with Q and right with E", true, HintType.HINT, MenuTutorial.WAIT_TO_PRESENT );
         }
         while( menuTutorialPhase <= MenuTutorial.WAIT_TO_START_PICKUP ){
             checkIfExitedTutorialCircle();
             yield return null;
         }
-        DisplayHUDMessage( "You can give or request items from the loli like that.", HintType.HINT );
+        DisplayHUDMessage( "You can give or request items from the loli like that.", true, HintType.HINT );
         while( !m_finishedDisplayHint ){
             checkIfExitedTutorialCircle();
             yield return null;
@@ -243,12 +246,12 @@ public partial class PauseMenu: UIMenu{
 
         //polaroid frame tutorial section
         Item frame = GameObject.Instantiate( tutorialFramePrefab, tutorialCircle.transform.position+Vector3.up*0.1f, Quaternion.identity ).GetComponent( typeof(PolaroidFrame)) as PolaroidFrame;
-        DisplayHUDMessage( "Pick up the Polaroid frame in the center", HintType.HINT_NO_IMAGE, MenuTutorial.WAIT_TO_PICKUP_FRAME );
-        DisplayHUDMessage( "and drop the rest of the objects", HintType.HINT_NO_IMAGE, MenuTutorial.WAIT_TO_PICKUP_FRAME );
+        DisplayHUDMessage( "Pick up the Polaroid frame in the center", true, HintType.HINT_NO_IMAGE, MenuTutorial.WAIT_TO_PICKUP_FRAME );
+        DisplayHUDMessage( "and drop the rest of the objects", true, HintType.HINT_NO_IMAGE, MenuTutorial.WAIT_TO_PICKUP_FRAME );
         if( player.controls == Player.ControlType.KEYBOARD ){
-            DisplayHUDMessage( "Drop by holding SHIFT", HintType.HINT, MenuTutorial.WAIT_TO_PICKUP_FRAME );
+            DisplayHUDMessage( "Drop by holding SHIFT", true, HintType.HINT, MenuTutorial.WAIT_TO_PICKUP_FRAME );
         }else{
-            DisplayHUDMessage( "Drop/Pickup :Grip Button (VIVE), Trigger (Oculus)", HintType.HINT, MenuTutorial.WAIT_TO_START_PICKUP );
+            DisplayHUDMessage( "Drop/Pickup :Grip Button (VIVE), Trigger (Oculus)", true, HintType.HINT, MenuTutorial.WAIT_TO_START_PICKUP );
         }
         
         while( menuTutorialPhase <= MenuTutorial.WAIT_TO_PRESENT ){
@@ -265,12 +268,12 @@ public partial class PauseMenu: UIMenu{
         }
 
         if( player.controls == Player.ControlType.KEYBOARD ){
-            DisplayHUDMessage( "To delete the frame, click with the hand holding it", HintType.HINT_NO_IMAGE, MenuTutorial.WAIT_TO_RIP_FRAME );
-            DisplayHUDMessage( "then once it's held with both hands,", HintType.HINT_NO_IMAGE, MenuTutorial.WAIT_TO_RIP_FRAME );
-            DisplayHUDMessage( "click with both mouse clicks simultaneously", HintType.HINT, MenuTutorial.WAIT_TO_RIP_FRAME );
+            DisplayHUDMessage( "To Rip the frame, click with the hand holding it", true, HintType.HINT_NO_IMAGE, MenuTutorial.WAIT_TO_RIP_FRAME );
+            DisplayHUDMessage( "then once it's held with both hands,", true, HintType.HINT_NO_IMAGE, MenuTutorial.WAIT_TO_RIP_FRAME );
+            DisplayHUDMessage( "click with both mouse clicks simultaneously", true, HintType.HINT, MenuTutorial.WAIT_TO_RIP_FRAME );
         }else{
-            DisplayHUDMessage( "To delete the frame, move both hands close together", HintType.HINT_NO_IMAGE, MenuTutorial.WAIT_TO_RIP_FRAME );
-            DisplayHUDMessage( "then press both triggers and pull away", HintType.HINT, MenuTutorial.WAIT_TO_RIP_FRAME );
+            DisplayHUDMessage( "To Rip the frame, move both hands close together", true, HintType.HINT_NO_IMAGE, MenuTutorial.WAIT_TO_RIP_FRAME );
+            DisplayHUDMessage( "then press both triggers and pull away", true, HintType.HINT, MenuTutorial.WAIT_TO_RIP_FRAME );
         }
         while( menuTutorialPhase <= MenuTutorial.WAIT_TO_PICKUP_FRAME ){
             checkIfExitedTutorialCircle();
@@ -280,14 +283,16 @@ public partial class PauseMenu: UIMenu{
             yield return null;
         }
 
-        DisplayHUDMessage( "Game is in development. Hand gestures only for right hand.", HintType.HINT_NO_IMAGE );
-        DisplayHUDMessage( "Now go find the loli in your house!", HintType.HINT_NO_IMAGE );
-        DisplayHUDMessage( "Tutorial Finished!", HintType.HINT );
+        DisplayHUDMessage( "Game under development expect bugs!", true, HintType.HINT_NO_IMAGE );    
+        DisplayHUDMessage( "Tutorial Finished!", true, HintType.HINT );
+        DisplayHUDMessage( "You will now be sent back to your previous location.", true, HintType.HINT_NO_IMAGE );
+        
         ExitTutorial();
     }
 
-    public void DisplayHUDMessage( string message, HintType hintType, MenuTutorial waitForPhase = MenuTutorial.NONE ){
-        GameDirector.instance.StartCoroutine( HandleHUDMessage( message, hintType, waitForPhase ) );
+    //TODO: Move everything to do with Hints and Achievement Messages to its own class (GameDirector.Hud)
+    public void DisplayHUDMessage( string message, bool playsound, HintType hintType, MenuTutorial waitForPhase = MenuTutorial.NONE){
+        GameDirector.instance.StartCoroutine( HandleHUDMessage( message, playsound, hintType, waitForPhase ) );
     }
 
     private void OrientHUDToPlayer(){
@@ -322,17 +327,17 @@ public partial class PauseMenu: UIMenu{
         }
     }
 
-    public IEnumerator HandleHUDMessage( string message, HintType hintType, MenuTutorial waitForPhase ){
+    public IEnumerator HandleHUDMessage( string message, bool playsound, HintType hintType, MenuTutorial waitForPhase ){
         m_finishedDisplayHint = false;
 
         GameObject achievementPanel = Instantiate( achievementPrefab, Vector3.zero, HUD_canvas.rotation, HUD_canvas );
 
         Vector3 targetPos = new Vector3( 0.0f, achievementPanelsActive++*-40.0f+360.0f, 0.0f );
-
-        if( hintType == HintType.ACHIEVEMENT ){
+        if( playsound ){
+            if( hintType == HintType.ACHIEVEMENT )
             GameDirector.instance.PlayGlobalSound( achievementSound );
-        }else if( hintType == HintType.HINT ){
-            GameDirector.instance.PlayGlobalSound( menuSound );
+            else if( hintType == HintType.HINT )
+            GameDirector.instance.PlayGlobalSound( menuSound ); 
         }
 
         Image image = achievementPanel.GetComponent(typeof(Image)) as Image;

@@ -143,13 +143,7 @@ public partial class HeadpatBehavior: PassiveBehaviors.PassiveTask{
 		//hint that soapy hands are needed for bathing
 		if( self.active.bathing.GetBathingPhase() == BathingBehavior.BathingPhase.BATHING ){
 			if( newHeadpatSourceHoldState.HasAttribute( HandState.Attribute.SOAPY ) ){
-				TutorialManager.main.DisplayHint(
-					null,
-					self.head.position+Vector3.up*0.5f,
-					"Your hands must be soapy to wash her hair. Find a soap bar",
-					null,
-					0.6f
-				);
+				GameDirector.player.pauseMenu.DisplayHUDMessage("Your hands must be soapy to wash her hair. Find a soap bar", true, PauseMenu.HintType.HINT_NO_IMAGE);
 			}
 		}
 
@@ -173,14 +167,7 @@ public partial class HeadpatBehavior: PassiveBehaviors.PassiveTask{
 			headpatProperTotal = 0.0f;	//reset
 			//refuse going happy
 			if( refuseGoingHappy ){
-
-            	TutorialManager.main.DisplayHint(
-					null,
-					self.head.position+Vector3.up*0.5f,
-					"Keep trying. She will eventually give in and become happy",
-					null,
-					0.6f
-				);
+				GameDirector.player.pauseMenu.DisplayHUDMessage("Keep trying. She will eventually give in and become happy", true, PauseMenu.HintType.HINT_NO_IMAGE);
 				StopHeadpat( GetHeadpatCancelSuccessAnimation(), 1.0f );
 				//accept going happy and continue headpat
 			}else{

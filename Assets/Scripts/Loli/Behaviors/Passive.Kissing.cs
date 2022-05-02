@@ -58,8 +58,12 @@ public class KissingBehavior : PassiveBehaviors.PassiveTask {
 			kissAnim = self.bodyStateAnimationSets[ (int)self.bodyState ].GetAnimationSet( AnimationSet.CHEEK_KISS_ANGRY_RIGHT_LEFT, side );
 			if( Random.value > 0.5f ){
 				postKissAnim = self.bodyStateAnimationSets[ (int)self.bodyState ].GetAnimationSet( AnimationSet.CHEEK_KISS_ANGRY_TO_HAPPY_RIGHT_LEFT, side );
+				self.ShiftHappiness(2); //ACTUALLY MAKE HER HAPPY
+				GameDirector.player.CompleteAchievement(Player.ObjectiveType.KISS_MAKE_HAPPY); 
 			}else{
 				postKissAnim = self.bodyStateAnimationSets[ (int)self.bodyState ].GetAnimationSet( AnimationSet.CHEEK_KISS_ANGRY_TO_ANGRY_RIGHT_LEFT, side );
+				self.ShiftHappiness(-2);
+				GameDirector.player.CompleteAchievement(Player.ObjectiveType.KISS_ANGRY_WIPE);
 			}
 			if( postKissAnim == Loli.Animation.NONE ){
 				return;
@@ -105,7 +109,7 @@ public class KissingBehavior : PassiveBehaviors.PassiveTask {
 			Vector3 surprisePush = self.floorPos-sourceItem.transform.position;
 			surprisePush.y = 0.0f;
 			surprisePush = surprisePush.normalized*2.0f;
-			self.locomotion.PlayForce( surprisePush, 0.4f );
+			self.locomotion.PlayForce( surprisePush, 0.2f );
 		};
 
 		playStartleAnim.AddPassive( faceSource );
@@ -131,7 +135,7 @@ public class KissingBehavior : PassiveBehaviors.PassiveTask {
 		if( self.passive.headpat.IsHeadpatActive() ){
 			return false;
 		}
-		if( self.passive.tired.tired ){
+		if( self.IsTired() ){
 			return false;
 		}
 		return true;

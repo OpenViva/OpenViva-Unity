@@ -29,6 +29,7 @@ public enum BodyState{
 
 public enum AnimationSet{
 	IDLE_HAPPY,
+	IDLE_TIRED,
 	IDLE_ANGRY,
 	AGREE,
 	REFUSE,
@@ -126,6 +127,7 @@ public partial class Loli : Character{
 		stand.AddAnimation( AnimationSet.IDLE_HAPPY, Loli.Animation.STAND_HAPPY_IDLE1 );
 		stand.AddAnimation( AnimationSet.IDLE_HAPPY, Loli.Animation.STAND_HAPPY_IDLE2 );
 		stand.AddAnimation( AnimationSet.IDLE_HAPPY, Loli.Animation.STAND_HAPPY_IDLE3 );
+		stand.AddAnimation( AnimationSet.IDLE_TIRED, Loli.Animation.STAND_TIRED_LOCOMOTION );
 		stand.AddAnimation( AnimationSet.IDLE_ANGRY, Loli.Animation.STAND_ANGRY_IDLE1 );
 		stand.AddAnimation( AnimationSet.AGREE, Loli.Animation.STAND_AGREE );
 		stand.AddAnimation( AnimationSet.REFUSE, Loli.Animation.STAND_REFUSE );
@@ -168,6 +170,7 @@ public partial class Loli : Character{
 		var standingHug = new BodyStateAnimationSet( true );
 		bodyStateAnimationSets[ (int)BodyState.STANDING_HUG ] = standingHug;
 		standingHug.AddAnimation( AnimationSet.IDLE_HAPPY, Loli.Animation.STAND_HUG_HAPPY_LOOP );
+		standingHug.AddAnimation( AnimationSet.IDLE_TIRED, Loli.Animation.STAND_HUG_HAPPY_LOOP );
 		standingHug.AddAnimation( AnimationSet.IDLE_ANGRY, Loli.Animation.STAND_HUG_ANGRY_LOOP );
 		standingHug.bodyStateConnections[ BodyState.STAND ] = Animation.STAND_HAPPY_IDLE1;
 		
@@ -175,6 +178,9 @@ public partial class Loli : Character{
 		var floorSit = new BodyStateAnimationSet( true );
 		bodyStateAnimationSets[ (int)BodyState.FLOOR_SIT ] = floorSit;
 		floorSit.AddAnimation( AnimationSet.IDLE_HAPPY, Loli.Animation.FLOOR_SIT_LOCOMOTION_HAPPY );
+		floorSit.AddAnimation( AnimationSet.IDLE_HAPPY, Loli.Animation.FLOOR_SIT_LOCOMOTION_HAPPY );
+		//Create an Animation for this
+		//floorSit.AddAnimation( AnimationSet.IDLE_HAPPY, Loli.Animation.FLOOR_SIT_LOCOMOTION_TIRED );
 		floorSit.AddAnimation( AnimationSet.IDLE_ANGRY, Loli.Animation.FLOOR_SIT_LOCOMOTION_ANGRY );
 		floorSit.AddAnimation( AnimationSet.REFUSE, Loli.Animation.FLOOR_SIT_REFUSE );
 		floorSit.AddAnimation( AnimationSet.AGREE, Loli.Animation.FLOOR_SIT_AGREE );
@@ -218,6 +224,7 @@ public partial class Loli : Character{
 		var horseback = new BodyStateAnimationSet( false );
 		bodyStateAnimationSets[ (int)BodyState.HORSEBACK ] = horseback;
 		horseback.AddAnimation( AnimationSet.IDLE_ANGRY, Loli.Animation.HORSEBACK_IDLE_LOOP);
+		horseback.AddAnimation( AnimationSet.IDLE_TIRED, Loli.Animation.HORSEBACK_IDLE_LOOP);
 		horseback.AddAnimation( AnimationSet.IDLE_HAPPY, Loli.Animation.HORSEBACK_IDLE_LOOP);
 		horseback.bodyStateConnections[ BodyState.STAND ] = Animation.HORSEBACK_TO_STAND;
 
@@ -230,12 +237,16 @@ public partial class Loli : Character{
 		var floorFaceUp = new BodyStateAnimationSet( true );
 		bodyStateAnimationSets[ (int)BodyState.OFFBALANCE ] = floorFaceUp;
 		floorFaceUp.AddAnimation( AnimationSet.IDLE_HAPPY, Loli.Animation.FLOOR_FACE_UP_IDLE);
+		floorFaceUp.AddAnimation( AnimationSet.IDLE_TIRED, Loli.Animation.FLOOR_FACE_UP_IDLE);
 		floorFaceUp.AddAnimation( AnimationSet.IDLE_ANGRY, Loli.Animation.FLOOR_FACE_UP_IDLE);
 		
 		
 		var squat = new BodyStateAnimationSet( true );
 		bodyStateAnimationSets[ (int)BodyState.SQUAT ] = squat;
 		squat.AddAnimation( AnimationSet.IDLE_HAPPY, Loli.Animation.SQUAT_LOCOMOTION_HAPPY);
+		squat.AddAnimation( AnimationSet.IDLE_TIRED, Loli.Animation.SQUAT_LOCOMOTION_HAPPY);
+		//TODO: add an animation for this
+		//squat.AddAnimation( AnimationSet.IDLE_TIRED, Loli.Animation.SQUAT_LOCOMOTION_TIRED);
 		squat.AddAnimation( AnimationSet.IDLE_ANGRY, Loli.Animation.SQUAT_LOCOMOTION_ANGRY);
 		squat.AddAnimation( AnimationSet.IMPRESSED, Loli.Animation.SQUAT_IMPRESSED1);
 		squat.AddAnimation( AnimationSet.POKE_FACE_SOFT_RIGHT, Loli.Animation.SQUAT_FACE_POKE_1_RIGHT);
@@ -259,6 +270,7 @@ public partial class Loli : Character{
 		var relaxSquat = new BodyStateAnimationSet( true );
 		bodyStateAnimationSets[ (int)BodyState.RELAX ] = relaxSquat;
 		relaxSquat.AddAnimation( AnimationSet.IDLE_HAPPY, Loli.Animation.RELAX_IDLE_LOOP);
+		relaxSquat.AddAnimation( AnimationSet.IDLE_TIRED, Loli.Animation.RELAX_IDLE_LOOP);
 		relaxSquat.AddAnimation( AnimationSet.IDLE_ANGRY, Loli.Animation.RELAX_IDLE_LOOP);
 		relaxSquat.AddAnimation( AnimationSet.POKE_FACE_SOFT_RIGHT, Loli.Animation.RELAX_TO_SQUAT_STARTLE);
 		relaxSquat.AddAnimation( AnimationSet.POKE_FACE_HARD_RIGHT, Loli.Animation.RELAX_TO_SQUAT_STARTLE);
@@ -272,6 +284,7 @@ public partial class Loli : Character{
 		var crawlTired = new BodyStateAnimationSet( true );
 		bodyStateAnimationSets[ (int)BodyState.CRAWL_TIRED ] = crawlTired;
 		crawlTired.AddAnimation( AnimationSet.IDLE_HAPPY, Loli.Animation.CRAWL_TIRED_IDLE);
+		crawlTired.AddAnimation( AnimationSet.IDLE_TIRED, Loli.Animation.CRAWL_TIRED_IDLE);
 		crawlTired.AddAnimation( AnimationSet.IDLE_ANGRY, Loli.Animation.CRAWL_TIRED_IDLE);
 		crawlTired.bodyStateConnections[ BodyState.AWAKE_PILLOW_SIDE_RIGHT ] = Animation.CRAWL_TIRED_TO_LAY_PILLOW_SIDE_HAPPY_RIGHT;
 		crawlTired.bodyStateConnections[ BodyState.AWAKE_PILLOW_SIDE_LEFT ] = Animation.CRAWL_TIRED_TO_LAY_PILLOW_SIDE_HAPPY_LEFT;
@@ -281,6 +294,7 @@ public partial class Loli : Character{
 		var awakeSidePillowRight = new BodyStateAnimationSet( true );
 		bodyStateAnimationSets[ (int)BodyState.AWAKE_PILLOW_SIDE_RIGHT ] = awakeSidePillowRight;
 		awakeSidePillowRight.AddAnimation( AnimationSet.IDLE_HAPPY, Loli.Animation.AWAKE_PILLOW_SIDE_HAPPY_IDLE_RIGHT);
+		awakeSidePillowRight.AddAnimation( AnimationSet.IDLE_TIRED, Loli.Animation.AWAKE_PILLOW_SIDE_HAPPY_IDLE_RIGHT);
 		awakeSidePillowRight.AddAnimation( AnimationSet.IDLE_ANGRY, Loli.Animation.AWAKE_PILLOW_SIDE_HAPPY_IDLE_RIGHT);
 		awakeSidePillowRight.AddAnimation( AnimationSet.HEADPAT_START_HAPPY, Loli.Animation.AWAKE_PILLOW_SIDE_HAPPY_IDLE_RIGHT);
 		awakeSidePillowRight.bodyStateConnections[ BodyState.SLEEP_PILLOW_SIDE_RIGHT ] = Animation.AWAKE_PILLOW_SIDE_TO_SLEEP_PILLOW_SIDE_RIGHT;
@@ -290,6 +304,7 @@ public partial class Loli : Character{
 		var awakeSidePillowLeft = new BodyStateAnimationSet( true );
 		bodyStateAnimationSets[ (int)BodyState.AWAKE_PILLOW_SIDE_LEFT ] = awakeSidePillowLeft;
 		awakeSidePillowLeft.AddAnimation( AnimationSet.IDLE_HAPPY, Loli.Animation.AWAKE_PILLOW_SIDE_HAPPY_IDLE_LEFT);
+		awakeSidePillowLeft.AddAnimation( AnimationSet.IDLE_TIRED, Loli.Animation.AWAKE_PILLOW_SIDE_HAPPY_IDLE_LEFT);
 		awakeSidePillowLeft.AddAnimation( AnimationSet.IDLE_ANGRY, Loli.Animation.AWAKE_PILLOW_SIDE_HAPPY_IDLE_LEFT);
 		awakeSidePillowLeft.AddAnimation( AnimationSet.HEADPAT_START_HAPPY, Loli.Animation.AWAKE_PILLOW_SIDE_HAPPY_IDLE_LEFT);
 		awakeSidePillowLeft.bodyStateConnections[ BodyState.SLEEP_PILLOW_SIDE_LEFT ] = Animation.AWAKE_PILLOW_SIDE_TO_SLEEP_PILLOW_SIDE_LEFT;
@@ -298,6 +313,7 @@ public partial class Loli : Character{
 		var awakePillowUp = new BodyStateAnimationSet( true );
 		bodyStateAnimationSets[ (int)BodyState.AWAKE_PILLOW_UP ] = awakePillowUp;
 		awakePillowUp.AddAnimation( AnimationSet.IDLE_HAPPY, Loli.Animation.AWAKE_HAPPY_PILLOW_UP_IDLE);
+		awakePillowUp.AddAnimation( AnimationSet.IDLE_TIRED, Loli.Animation.AWAKE_HAPPY_PILLOW_UP_IDLE);
 		awakePillowUp.AddAnimation( AnimationSet.IDLE_ANGRY, Loli.Animation.AWAKE_ANGRY_PILLOW_UP_IDLE);
 		awakePillowUp.bodyStateConnections[ BodyState.CRAWL_TIRED ] = Animation.AWAKE_PILLOW_UP_TO_CRAWL_TIRED;
 		
@@ -305,6 +321,7 @@ public partial class Loli : Character{
 		var sleepSidePillowRight = new BodyStateAnimationSet( true );
 		bodyStateAnimationSets[ (int)BodyState.SLEEP_PILLOW_SIDE_RIGHT ] = sleepSidePillowRight;
 		sleepSidePillowRight.AddAnimation( AnimationSet.IDLE_HAPPY, Loli.Animation.SLEEP_PILLOW_SIDE_IDLE_RIGHT);
+		sleepSidePillowRight.AddAnimation( AnimationSet.IDLE_TIRED, Loli.Animation.SLEEP_PILLOW_SIDE_IDLE_RIGHT);
 		sleepSidePillowRight.AddAnimation( AnimationSet.IDLE_ANGRY, Loli.Animation.SLEEP_PILLOW_SIDE_IDLE_RIGHT);
 		sleepSidePillowRight.AddAnimation( AnimationSet.HEADPAT_START_HAPPY, Loli.Animation.SLEEP_PILLOW_SIDE_HEADPAT_START_RIGHT);
 		sleepSidePillowRight.AddAnimation( AnimationSet.HEADPAT_BRUSH_AWAY, Loli.Animation.SLEEP_PILLOW_SIDE_TO_AWAKE_ANGRY_PILLOW_UP_RIGHT);
@@ -316,6 +333,7 @@ public partial class Loli : Character{
 		var sleepSidePillowLeft = new BodyStateAnimationSet( true );
 		bodyStateAnimationSets[ (int)BodyState.SLEEP_PILLOW_SIDE_LEFT ] = sleepSidePillowLeft;
 		sleepSidePillowLeft.AddAnimation( AnimationSet.IDLE_HAPPY, Loli.Animation.SLEEP_PILLOW_SIDE_IDLE_LEFT);
+		sleepSidePillowLeft.AddAnimation( AnimationSet.IDLE_TIRED, Loli.Animation.SLEEP_PILLOW_SIDE_IDLE_LEFT);
 		sleepSidePillowLeft.AddAnimation( AnimationSet.IDLE_ANGRY, Loli.Animation.SLEEP_PILLOW_SIDE_IDLE_LEFT);
 		sleepSidePillowLeft.AddAnimation( AnimationSet.HEADPAT_START_HAPPY, Loli.Animation.SLEEP_PILLOW_SIDE_HEADPAT_START_LEFT);
 		sleepSidePillowLeft.AddAnimation( AnimationSet.HEADPAT_BRUSH_AWAY, Loli.Animation.SLEEP_PILLOW_SIDE_TO_AWAKE_ANGRY_PILLOW_UP_LEFT);
@@ -327,6 +345,7 @@ public partial class Loli : Character{
 		var sleepPillowUp = new BodyStateAnimationSet( true );
 		bodyStateAnimationSets[ (int)BodyState.SLEEP_PILLOW_UP ] = sleepPillowUp;
 		sleepPillowUp.AddAnimation( AnimationSet.IDLE_HAPPY, Loli.Animation.SLEEP_PILLOW_UP_IDLE);
+		sleepPillowUp.AddAnimation( AnimationSet.IDLE_TIRED, Loli.Animation.SLEEP_PILLOW_UP_IDLE);
 		sleepPillowUp.AddAnimation( AnimationSet.IDLE_ANGRY, Loli.Animation.SLEEP_PILLOW_UP_IDLE);
 		sleepPillowUp.bodyStateConnections[ BodyState.AWAKE_PILLOW_UP ] = Animation.SLEEP_PILLOW_UP_TO_AWAKE_HAPPY_PILLOW_UP;
 		// sleepPillowUp.bodyStateConnections[ BodyState.AWAKE_PILLOW_UP ] = Animation.SLEEP_PILLOW_UP_TO_AWAKE_ANGRY_PILLOW_UP;

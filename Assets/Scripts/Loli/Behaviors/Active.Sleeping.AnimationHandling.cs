@@ -8,7 +8,7 @@ namespace viva{
 
 
 public partial class SleepingBehavior : ActiveBehaviors.ActiveTask {
-    
+
     // public Loli.Animation GetLaySidePillowHeadpatStartAnimation(){
 		
 	// 	if( !layingOnRightSide.HasValue ){

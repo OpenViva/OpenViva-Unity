@@ -363,17 +363,17 @@ public partial class VivaModel{
             mesh = null;
         }
         //TODO: Handle memory cleanup
-        // if( texture != null ){
-        //     GameDirector.Destroy( texture );
-        // }
-        // if( rightEyeTexture != null ){
-        //     GameDirector.Destroy( rightEyeTexture );
-        //     rightEyeTexture = null;
-        // }
-        // if( leftEyeTexture != null ){
-        //     GameDirector.Destroy( leftEyeTexture );
-        //     leftEyeTexture = null;
-        // }
+        if( texture != null ){
+            GameDirector.Destroy( texture );
+        }
+        if( rightEyeTexture != null ){
+            GameDirector.Destroy( rightEyeTexture );
+            rightEyeTexture = null;
+        }
+        if( leftEyeTexture != null ){
+            GameDirector.Destroy( leftEyeTexture );
+            leftEyeTexture = null;
+        }
     }
 
     private static int FindBoneIndexByName( Transform[] bones, string name ){

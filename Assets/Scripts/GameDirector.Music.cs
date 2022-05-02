@@ -16,7 +16,9 @@ public partial class GameDirector : MonoBehaviour {
 		NIGHT,
 		EXPLORING,
 		EXPLORING_NIGHT,
-		SUSPENSE
+		SUSPENSE,
+		ONSEN,
+		TOWN
 	}
 
     [Header("Music")]
@@ -40,6 +42,9 @@ public partial class GameDirector : MonoBehaviour {
 	private bool m_userIsIndoors = false;
 	public bool userIsIndoors { get{ return m_userIsIndoors; } }
 	private bool userIsExploring = false;
+	private bool userInOnsen = false;
+
+	private bool userInTown = false;
 
 	public bool IsMusicMuted(){
 		return muteMusic;
@@ -90,6 +95,16 @@ public partial class GameDirector : MonoBehaviour {
 		ambienceDirector.FadeAmbience();
 	}
 
+	public void SetUserInOnsen( bool onsen ){
+		userInOnsen = onsen;
+		SetMusic( GetDefaultMusic() );
+	}
+
+	public void SetUserInTown( bool town ){
+		userInTown = town;
+		SetMusic( GetDefaultMusic() );
+	}
+
 	public void SetUserIsExploring( bool exploring ){
 		userIsExploring = exploring;
 		SetMusic( GetDefaultMusic() );
@@ -97,22 +112,32 @@ public partial class GameDirector : MonoBehaviour {
 
 	public Music GetDefaultMusic(){
 		switch( GameDirector.skyDirector.daySegment ){
+		case SkyDirector.DaySegment.MORNING:
 		case SkyDirector.DaySegment.DAY:
 		
 			if( userIsExploring ){
 				return Music.EXPLORING;
 			}
+			if( userInOnsen){
+				return Music.ONSEN;
+			}
+			if( userInTown ){
+				return Music.TOWN;
+			}
 			if( userIsIndoors ){
 				return Music.DAY_INDOOR;
 			}else{
 				return Music.DAY_OUTDOOR;
-			}
-		case SkyDirector.DaySegment.MORNING:
-			return Music.NONE;
+			}			
+		//case SkyDirector.DaySegment.MORNING:
+		//	return Music.NONE;
 		case SkyDirector.DaySegment.NIGHT:
 		
 			if( userIsExploring ){
 				return Music.EXPLORING_NIGHT;
+			}
+			if( userInOnsen){
+				return Music.ONSEN;
 			}
 			return Music.NIGHT;
 		}

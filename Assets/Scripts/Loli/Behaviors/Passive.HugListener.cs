@@ -130,8 +130,8 @@ public class HugListenerBehavior : PassiveBehaviors.PassiveTask {
 			float rollOffsetBlend = Mathf.Clamp( headBearing/90.0f, -1.0f, 1.0f );
 			//smooth lerp the head side!
 			Vector3 proximityOffset = new Vector3( self.passive.settings.hugPlayerPitchProximityOffset, 0.0f, rollOffsetBlend*self.passive.settings.hugPlayerRollProximityOffset )*pitchOffsetBlend;
-			// self.head.parent.localRotation *= Quaternion.Euler( proximityOffset );
-			// self.head.localRotation *= Quaternion.Euler( proximityOffset );
+			self.head.parent.localRotation *= Quaternion.Euler( proximityOffset );
+			self.head.localRotation *= Quaternion.Euler( proximityOffset );
 		}
 	}
 

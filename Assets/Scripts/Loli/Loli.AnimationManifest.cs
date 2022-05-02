@@ -2071,7 +2071,10 @@ public partial class Loli : Character{
 			new Loli.AnimationInfo(null,
 			"stand_react_perv_front_idle_loop","stand_react_perv_front_idle_loop","stand_react_perv_front_idle_loop",
 			Loli.Priority.HIGH,BodyState.STAND,BodyState.STAND,
-			0.2f,new Loli.AnimLogicInfo(1,0.5f,1.5f,12,1.0f),null));
+			0.2f,new Loli.AnimLogicInfo(1,0.5f,1.5f,12,1.0f),new LoliAnimationEvent[]{
+				new LoliAnimationEvent( 0.112f, (int)Loli.AnimationEventName.SPEAK, new float[]{ (float)Loli.VoiceLine.WHAT_YOU_DOING, 3.0f } ),
+			}
+		));
 
 		RegisterAnimation(Loli.Animation.STAND_REACT_PERV_FRONT_OUT,
 			new Loli.AnimationInfo(idleTransition,
@@ -2086,7 +2089,9 @@ public partial class Loli : Character{
 			0.15f,new Loli.AnimLogicInfo(3,0.5f,1.5f,7,1.0f),
 			new LoliAnimationEvent[]{
 				new LoliAnimationEvent( 0.0f, (int)Loli.AnimationEventName.BIND_ANIMATION_TO_VIEW_MODE, new float[]{ (float)Loli.AwarenessMode.TIRED } ),
-			}
+				
+			},
+			(int)Loli.AnimationInfo.Flag.IDLE_STATE
 		));
 		
 		RegisterAnimation(Loli.Animation.STAND_SCARED_LOCOMOTION,

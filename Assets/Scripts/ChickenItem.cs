@@ -35,7 +35,7 @@ public class ChickenItem : Item
             Player player = mainOwner as Player;
             if( player && !firstLoadHint ){
                 firstLoadHint = true;
-                player.pauseMenu.DisplayHUDMessage("Place the chicken on the ground for eggs",PauseMenu.HintType.HINT_NO_IMAGE);
+                player.pauseMenu.DisplayHUDMessage("Place the chicken on the ground for eggs", true, PauseMenu.HintType.HINT_NO_IMAGE);
             }
             m_tamed = true;
             tameFX.SetActive( true );

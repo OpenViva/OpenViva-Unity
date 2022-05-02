@@ -105,6 +105,12 @@ public partial class Loli : Character {
 		spine1RigidBody.transform.rotation = spine1.rotation;
 		puppetMaster.ClearVelocities();
 	}
+
+	public void TeleportToSpawn( Vector3 position, Quaternion rotation ){
+		spine1RigidBody.transform.position = position;
+		spine1RigidBody.transform.rotation = rotation;
+		puppetMaster.ClearVelocities();
+	}
 	
 	public void IncreaseDirt( float percent ){
 		dirt = Mathf.Clamp01( dirt+percent );
@@ -120,7 +126,6 @@ public partial class Loli : Character {
 			IncreaseDirt( 0.0001f );
 		}
 	}
-
     protected override void OnCharacterAwake(){
 		
 		if( outfit == null ){

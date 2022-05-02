@@ -84,14 +84,13 @@ public class OnsenGhostMiniGame : MonoBehaviour{
         }
     }
 
-    private void OnDisable(){
-        if( !alternateWin ){
-            GameDirector.instance.LockMusic( false );
-            GameDirector.instance.SetMusic( GameDirector.instance.GetDefaultMusic(), 3.0f );
-            GameDirector.skyDirector.SetSkyMaterial( null );    //restore
-            GameDirector.skyDirector.enabled = true;
-        }
+    private void OnDisable(){        
+        GameDirector.instance.LockMusic( false );
+        GameDirector.instance.SetMusic( GameDirector.instance.GetDefaultMusic(), 3.0f );
+        GameDirector.skyDirector.SetSkyMaterial( null );    //restore
+        GameDirector.skyDirector.enabled = true;   
         GameDirector.instance.postProcessing.RemoveFromQueue( ghostNearbyMat );
+        GameDirector.instance.postProcessing.DisableGhostEffect();
         nekoTimer.SetLookMode( true );
         nekoTimer.clockSpeed = 1.0f;
 

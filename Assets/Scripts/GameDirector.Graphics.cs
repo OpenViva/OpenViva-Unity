@@ -11,8 +11,7 @@ public partial class GameDirector : MonoBehaviour {
 
     public void ApplyAllQualitySettings(){
         int currQuality = QualitySettings.GetQualityLevel();
-        // GameDirector.skyDirector.RebuildCloudRendering( currQuality );
-
+        GameDirector.instance.RebuildCloudRendering();
         bool enableRealtimeReflections = currQuality >= 1;
         float refreshTimeout = currQuality>=2? 0:1;
         float maxRefreshTimeout = currQuality>=2? 0:8;

@@ -328,6 +328,8 @@ public partial class PauseMenu : UIMenu {
         }
     }
 
+
+    //TODO Make this work with selected Lolis
     public void clickRespawnShinobu(){
         // Loli loli = GameDirector.instance.loli;
         // if( loli != null ){
@@ -340,6 +342,10 @@ public partial class PauseMenu : UIMenu {
         //     loli.transform.position = player.head.position+player.head.forward*0.8f;
         //     loli.rigidBody.velocity = Vector3.zero;
         // }
+    }
+
+    public void clickDiscord(){
+        Application.OpenURL("https://discord.gg/openviva");
     }
 
     public void clickSaveAndQuitGame(){
@@ -408,7 +414,17 @@ public partial class PauseMenu : UIMenu {
 
         UpdateToggleQualityText();
     }
-
+    public void clickToggleClouds(){
+        bool currentCLD = GameDirector.instance.UseClouds();
+        Text text = GetRightPageUIByMenu(Menu.OPTIONS).transform.Find( "Toggle Clouds" ).GetChild(0).GetComponent(typeof(Text)) as Text;
+        currentCLD = !currentCLD;
+        if( currentCLD ){
+            text.text = "Turn Off Clouds";
+        }else{
+            text.text = "Turn On Clouds";
+        }
+        GameDirector.instance.SetCloud( currentCLD );
+    }
     private void UpdateToggleQualityText(){
         Text text = GetRightPageUIByMenu(Menu.OPTIONS).transform.Find( "Toggle Quality" ).GetChild(0).GetComponent(typeof(Text)) as Text;
         var qualities = new string[]{

@@ -60,6 +60,10 @@ public abstract class Service: Mechanism {
         if( targetLoli == null ){
             return false;
         }
+        if( !targetLoli.IsHappy() || targetLoli.IsTired() ){	//must be happy and not tired
+			targetLoli.active.idle.PlayAvailableRefuseAnimation();
+			return false;
+		}
         bool success = Employ( targetLoli );
         if( success ){
             targetLoli.active.SetTask( targetLoli.active.GetTask( targetBehavior ) );

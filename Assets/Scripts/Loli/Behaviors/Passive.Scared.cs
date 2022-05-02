@@ -10,6 +10,7 @@ public class ScaredBehaviour : PassiveBehaviors.PassiveTask {
 
 	public bool scared { get; private set; }
 	private List<Loli.Animation> oldHappyIdleAnimationSetList;
+	private List<Loli.Animation> oldTiredIdleAnimationSetList;
 	private List<Loli.Animation> oldAngryIdleAnimationSetList;
 
 	public ScaredBehaviour( Loli _self):base(_self,0.0f){
@@ -45,9 +46,11 @@ public class ScaredBehaviour : PassiveBehaviors.PassiveTask {
 
 			var bodyStateAnimationSet = self.bodyStateAnimationSets[ (int)BodyState.STAND ];
 			oldHappyIdleAnimationSetList = bodyStateAnimationSet.GetAnimationSetList( AnimationSet.IDLE_HAPPY );
+			oldTiredIdleAnimationSetList = bodyStateAnimationSet.GetAnimationSetList( AnimationSet.IDLE_TIRED );
 			oldAngryIdleAnimationSetList = bodyStateAnimationSet.GetAnimationSetList( AnimationSet.IDLE_ANGRY );
 
 			bodyStateAnimationSet.SetAnimationSetList( AnimationSet.IDLE_HAPPY, new List<Loli.Animation>(){ Loli.Animation.STAND_SCARED_LOCOMOTION } );
+			bodyStateAnimationSet.SetAnimationSetList( AnimationSet.IDLE_TIRED, new List<Loli.Animation>(){ Loli.Animation.STAND_SCARED_LOCOMOTION } );
 			bodyStateAnimationSet.SetAnimationSetList( AnimationSet.IDLE_ANGRY, new List<Loli.Animation>(){ Loli.Animation.STAND_SCARED_LOCOMOTION } );
 		}
 	}
@@ -57,6 +60,7 @@ public class ScaredBehaviour : PassiveBehaviors.PassiveTask {
 		
 		var bodyStateAnimationSet = self.bodyStateAnimationSets[ (int)BodyState.STAND ];
 		bodyStateAnimationSet.SetAnimationSetList( AnimationSet.IDLE_HAPPY, oldHappyIdleAnimationSetList );
+		bodyStateAnimationSet.SetAnimationSetList( AnimationSet.IDLE_TIRED, oldTiredIdleAnimationSetList );
 		bodyStateAnimationSet.SetAnimationSetList( AnimationSet.IDLE_ANGRY, oldAngryIdleAnimationSetList );
 
 		self.SetTargetAnimation( self.GetLastReturnableIdleAnimation() );

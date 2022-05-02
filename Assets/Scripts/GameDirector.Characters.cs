@@ -26,6 +26,8 @@ public partial class GameDirector : MonoBehaviour {
 	[SerializeField]
 	private Transform loliPool;
 	[SerializeField]
+	public Transform loliRespawnPoint;
+	[SerializeField]
 	private PoseCache m_loliBasePose;
 	public PoseCache loliBasePose { get{ return m_loliBasePose; } }
 	[SerializeField]
@@ -33,6 +35,7 @@ public partial class GameDirector : MonoBehaviour {
 	public LoliSettings loliSettings { get{ return m_allLoliSettings; } }
 	[SerializeField]
 	private Texture2D[] speechBubbleTextures = new Texture2D[ System.Enum.GetValues(typeof(SpeechBubble)).Length ];
+	
 	[SerializeField]
 	private PhysicMaterial m_stickyPhysicsMaterial;
 	public PhysicMaterial stickyPhysicsMaterial { get{ return m_stickyPhysicsMaterial; } }

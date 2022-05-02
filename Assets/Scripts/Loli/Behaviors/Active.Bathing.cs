@@ -144,7 +144,7 @@ public class BathingBehavior : ActiveBehaviors.ActiveTask {
 			return false;
 		}
 		//Cannot bathe her if she is tired
-		if( self.passive.tired.tired ){
+		if( self.IsTired() ){
 			self.active.idle.PlayAvailableRefuseAnimation();
 			return false;
 		}

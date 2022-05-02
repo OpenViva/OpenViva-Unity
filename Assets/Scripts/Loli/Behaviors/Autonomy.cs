@@ -36,7 +36,7 @@ public class Autonomy : Job {
 		
 		public void AddPassive( Task passive ){
 			if( passive.registered || passive.isAPassive || passive.isARequirement || passive == this ){
-				// Debug.LogError("[Task] Task already registered");
+				Debug.LogError("[Task] Task already registered");
 				return;
 			}
 			passives.Add( passive );

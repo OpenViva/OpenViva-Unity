@@ -44,6 +44,11 @@ public class GameSettings : VivaSessionAsset {
     [VivaFileAttribute]
     public int antiAliasing { get{return m_antiAliasing;} protected set{ m_antiAliasing = value; } }
 
+    [SerializeField]
+    private int m_shaderLOD = 2;
+    [VivaFileAttribute]
+    public int shaderLOD { get{return m_shaderLOD;} protected set{ m_shaderLOD = value; } }
+
 
     private string[] dayNightCycleSpeedDesc = new string[]{
         "12 minutes",

@@ -21,6 +21,8 @@ public class HintCollisionTrigger : MonoBehaviour
     private GameObject enableOnEnterTargetMenu = null;
     [SerializeField]
     private bool useHUD = false;
+    [SerializeField]
+    private bool useSound = true;
 
     private bool activated = false;
     
@@ -48,7 +50,10 @@ public class HintCollisionTrigger : MonoBehaviour
             message = vrHintText;
         }
         activated = true;
-        TutorialManager.main.DisplayHint(
+        if(useHUD){
+            GameDirector.player.pauseMenu.DisplayHUDMessage(message, useSound, PauseMenu.HintType.HINT);
+        }else{
+            TutorialManager.main.DisplayHint(
             parent,
             localSpawnPosition,
             message,
@@ -57,6 +62,8 @@ public class HintCollisionTrigger : MonoBehaviour
             source,
             exitFunction
         );
+        }
+        
         OnHintTrigger();
     }
 

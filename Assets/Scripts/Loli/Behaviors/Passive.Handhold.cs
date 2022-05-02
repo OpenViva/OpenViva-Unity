@@ -66,25 +66,28 @@ public partial class HandholdBehavior : PassiveBehaviors.PassiveTask {
 
 		HandState sourceHandState = targetHandState.selfItem.mainOccupyState as HandState;
 
-		// if( GameDirector.player.rigidBody.velocity.sqrMagnitude > 0.2f ){
-		// 	if( matchWalkEase.value != 0.0f ){
+		if( GameDirector.player.rigidBody.velocity.sqrMagnitude > 0.2f ){
+			if( matchWalkEase.value != 0.0f ){
 					
-		// 		Vector3 targetFaceYawDir = Vector3.Cross( (GameDirector.player.transform.position-self.floorPos).normalized, Vector3.up );
-		// 		self.SetRootFacingTarget( self.floorPos-targetFaceYawDir*matchWalkSide*matchWalkEase.value, 260.0f, 20.0f, 45.0f );
-		// 	}
+				Vector3 targetFaceYawDir = Vector3.Cross( (GameDirector.player.transform.position-self.floorPos).normalized, Vector3.up );
+				self.autonomy.SetAutonomy(new AutonomyFaceDirection( self.autonomy, "face direction", delegate(TaskTarget target){
+                        target.SetTargetPosition( self.floorPos-targetFaceYawDir*matchWalkSide*matchWalkEase.value );
+                    } ) );		
+				//self.SetRootFacingTarget( self.floorPos-targetFaceYawDir*matchWalkSide*matchWalkEase.value, 260.0f, 20.0f, 45.0f );
+			}
 			
-		// 	//pull Shinobu towards the GameDirector.player's side ortho angle
-		// 	if( matchWalkEase.value != 0.0f ){
-		// 		currentOrthoDirDeg = Mathf.MoveTowardsAngle( currentOrthoDirDeg, UpdateTargetMatchWalkOrthoDeg(), 120.0f*Time.deltaTime );
+			//pull Shinobu towards the GameDirector.player's side ortho angle
+			//if( matchWalkEase.value != 0.0f ){
+				//currentOrthoDirDeg = Mathf.MoveTowardsAngle( currentOrthoDirDeg, UpdateTargetMatchWalkOrthoDeg(), 120.0f*Time.deltaTime );
 
-		// 		Vector3 orthoDir = new Vector3( Mathf.Cos( currentOrthoDirDeg*Mathf.Deg2Rad ), 0.0f, Mathf.Sin( currentOrthoDirDeg*Mathf.Deg2Rad ) );
-		// 		Vector3 matchWalkTargetPos = hhInfo.sourcePullBody.transform.position;
-		// 		matchWalkTargetPos.y = GameDirector.player.floorPos.y;
-		// 		matchWalkTargetPos -= orthoDir*0.5f;
-		// 		Vector3 targetVel = ( matchWalkTargetPos-self.floorPos )+GameDirector.player.rigidBody.velocity;
-		// 		self.rigidBody.velocity = Vector3.LerpUnclamped( self.rigidBody.velocity, targetVel, matchWalkEase.value*0.4f );
-		// 	}
-		// }
+				//Vector3 orthoDir = new Vector3( Mathf.Cos( currentOrthoDirDeg*Mathf.Deg2Rad ), 0.0f, Mathf.Sin( currentOrthoDirDeg*Mathf.Deg2Rad ) );
+				//Vector3 matchWalkTargetPos = hhInfo.sourcePullBody.transform.position;
+				//matchWalkTargetPos.y = GameDirector.player.floorPos.y;
+				//matchWalkTargetPos -= orthoDir*0.5f;
+				//Vector3 targetVel = ( matchWalkTargetPos-self.floorPos )+GameDirector.player.rigidBody.velocity;
+				//self.rigidBody.velocity = Vector3.LerpUnclamped( self.rigidBody.velocity, targetVel, matchWalkEase.value*0.4f );
+			//}
+		}
 		CheckHandHoldIntegrity( targetHandState, sourceHandState );
 	}
 
@@ -169,6 +172,9 @@ public partial class HandholdBehavior : PassiveBehaviors.PassiveTask {
 				if( bothConstrained ){
 					Vector3 targetFaceYawPos = ( self.rightHandState.selfItem.transform.position+self.leftHandState.selfItem.transform.position )/2.0f;
 					targetFaceYawPos -= Vector3.Cross( Vector3.up, self.rightHandState.selfItem.transform.position-self.leftHandState.selfItem.transform.position );
+					self.autonomy.SetAutonomy(new AutonomyFaceDirection( self.autonomy, "face direction", delegate(TaskTarget target){
+                        target.SetTargetPosition( targetFaceYawPos );
+                    } ) );
 					// self.SetRootFacingTarget( targetFaceYawPos, 260.0f, 40.0f, 25.0f );
 					if( Time.time%1.0f > 0.8f ){	//Fire ~20% of the time
 						self.SetLookAtTarget( GameDirector.player.head );
@@ -176,6 +182,9 @@ public partial class HandholdBehavior : PassiveBehaviors.PassiveTask {
 				}
 			}else{
 				if( rightLimbGrabs>0 || leftLimbGrabs>0 ){
+					self.autonomy.SetAutonomy(new AutonomyFaceDirection( self.autonomy, "face direction", delegate(TaskTarget target){
+                        target.SetTargetPosition( sourceHandState.selfItem.rigidBody.position );
+                    } ) );
 					// self.SetRootFacingTarget( sourceHandState.selfItem.rigidBody.position, 260.0f, 40.0f, 25.0f );
 					if( Time.time%1.0f > 0.8f ){	//Fire ~20% of the time
 						self.SetLookAtTarget( sourceHandState.selfItem.transform );
@@ -220,7 +229,7 @@ public partial class HandholdBehavior : PassiveBehaviors.PassiveTask {
 	}
 
 	private void PlayHandholdAnimation( bool rightSide ){
-		if( self.passive.tired.tired ){
+		if( self.IsTired() ){
 			if( rightSide ){
 				self.SetTargetAnimation( Loli.Animation.STAND_TIRED_HANDHOLD_PULL_RIGHT );
 			}else{

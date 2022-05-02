@@ -24,7 +24,9 @@ float3 AnimeShade4PointLights (
 	ndotl = max(float4(0,0,0,0), ndotl * corr);
 	// attenuation
 	float4 atten = 1.0 / (1.0 + lengthSq * lightAttenSq);
+	//float4 diff = ( 0.3+smoothstep( 0.4, 0.8, ndotl )*0.7 ) * atten;
 	float4 diff = ( 0.7+ndotl*0.3 ) * atten;
+    //diff = saturate( diff*1.05-0.05 );
 	// final color
 	float3 col = 0;
 	col += lightColor0 * diff.x;
@@ -39,24 +41,17 @@ fixed screenChannel( fixed a, fixed b ){
 	b = 1.-b;
 	return 1.-a*b;
 }
+
 fixed3 screenColor( fixed3 a, fixed3 b ){
 	return fixed3( screenChannel( a.r, b.r ), screenChannel( a.g, b.g ), screenChannel( a.b, b.b ) );
 }
 
-fixed blendOverlay(fixed base, fixed blend) {
-	return base<0.5?(2.0*base*blend):(1.0-2.0*(1.0-base)*(1.0-blend));
-}
-
-fixed3 blendOverlay(fixed3 base, fixed3 blend) {
-	return fixed3(blendOverlay(base.r,blend.r),blendOverlay(base.g,blend.g),blendOverlay(base.b,blend.b));
-}
-
 fixed3 ApplyColorFromLight( fixed3 a, fixed3 b, fixed sun, fixed camRim, fixed worldRim ){
-    fixed lightRim = saturate(3.0-camRim*8.)*worldRim;
-	
-    camRim = 1.-camRim;
+    fixed lightRim = saturate(3.0-camRim*6.)*worldRim;
+    camRim = 1.-saturate(camRim+0.3);
     camRim *= camRim;
-	a = blendOverlay( a, saturate( fixed3(.5,.5,.5)+_LightColor0*(lightRim+sun)-camRim*0.4 ) ); //lights
+    a *= saturate(1.-camRim); //darkening
+	a = screenColor( a, _LightColor0*sun );	//lights
     a += _LightColor0*lightRim;	//lights
     return a;
 }

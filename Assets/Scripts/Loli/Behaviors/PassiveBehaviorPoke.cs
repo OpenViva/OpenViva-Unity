@@ -99,6 +99,11 @@ public partial class PokeBehavior : PassiveBehaviors.PassiveTask {
 			self.Speak( Loli.VoiceLine.STARTLE_SHORT );
 		}
 		if( self.active.RequestPermission( ActiveBehaviors.Permission.ALLOW_ROOT_FACING_TARGET_CHANGE ) ){
+			if( self.bodyState == BodyState.STAND){ //Make sure to only face direction when standing
+				self.autonomy.SetAutonomy(new AutonomyFaceDirection( self.autonomy, "face direction", delegate(TaskTarget target){
+                        target.SetTargetPosition(GameDirector.player.transform.position+lastPokeSource.position );
+                    } ) );
+			}		
 			// self.SetRootFacingTarget( ( GameDirector.player.transform.position+lastPokeSource.position )/2.0f, 160.0f, 5.0f, 10.0f );
 		}
 		return true;
@@ -136,32 +141,32 @@ public partial class PokeBehavior : PassiveBehaviors.PassiveTask {
 	}
 
 	private Loli.Animation GetFacePokedAnimation( int pokeSideIsLeft ){
-		return self.bodyStateAnimationSets[ (int)self.bodyState ].GetAnimationSet( AnimationSet.POKE_FACE_SOFT_RIGHT, pokeSideIsLeft );
-		// if( animations.)
-		// switch( self.bodyState ){
-		// case BodyState.STAND:
-		// 	if( self.passive.tired.tired ){
-		// 		return self.GetAnimationFromSet( Loli.Animation.STAND_TIRED_POKE_RIGHT, pokeSideIsLeft );
-		// 	}else{
-		// 		return self.GetAnimationFromSet( Loli.Animation.STAND_POKE_FACE_1_RIGHT, pokeSideIsLeft, 2 );
-		// 	}
-		// case BodyState.BATHING_RELAX:
-		// 	return self.GetAnimationFromSet( Loli.Animation.BATHTUB_RELAX_FACE_POKE_RIGHT, pokeSideIsLeft );
-		// case BodyState.BATHING_IDLE:
-		// 	return GetBathtubIdleFacePokedAnimation( pokeSideIsLeft );
-		// // case BodyState.SLEEP_PILLOW_SIDE:
-		// 	// return self.active.sleeping.GetSleepSidePillowFacePokeAnimation( pokeSideIsLeft );
-		// case BodyState.SLEEP_PILLOW_UP:
-		// 	return self.GetAnimationFromSet( Loli.Animation.SLEEP_PILLOW_UP_BOTHER_RIGHT, pokeSideIsLeft );
-		// case BodyState.AWAKE_PILLOW_UP:
-		// 	return self.GetAnimationFromSet( Loli.Animation.AWAKE_PILLOW_UP_FACE_POKE_RIGHT, pokeSideIsLeft );
-		// case BodyState.RELAX:
-		// 	return Loli.Animation.RELAX_TO_SQUAT_STARTLE;
-		// case BodyState.SQUAT:
-		// 	return self.GetAnimationFromSet( Loli.Animation.SQUAT_FACE_POKE_1_RIGHT, pokeSideIsLeft, 2 );
-		// default:
-		// 	return Loli.Animation.NONE;
-		// }
+		//return self.bodyStateAnimationSets[ (int)self.bodyState ].GetAnimationSet( AnimationSet.POKE_FACE_SOFT_RIGHT, pokeSideIsLeft );
+		//if( animations.)
+		switch( self.bodyState ){
+		case BodyState.STAND:
+			if( self.IsTired() ){
+				return self.GetAnimationFromSet( Loli.Animation.STAND_TIRED_POKE_RIGHT, pokeSideIsLeft );
+			}else{
+				return self.GetAnimationFromSet( Loli.Animation.STAND_POKE_FACE_1_RIGHT, pokeSideIsLeft, 2 );
+			}
+		case BodyState.BATHING_RELAX:
+			return self.GetAnimationFromSet( Loli.Animation.BATHTUB_RELAX_FACE_POKE_RIGHT, pokeSideIsLeft );
+		case BodyState.BATHING_IDLE:
+			return GetBathtubIdleFacePokedAnimation( pokeSideIsLeft );
+		// case BodyState.SLEEP_PILLOW_SIDE:
+			// return self.active.sleeping.GetSleepSidePillowFacePokeAnimation( pokeSideIsLeft );
+		case BodyState.SLEEP_PILLOW_UP:
+			return self.GetAnimationFromSet( Loli.Animation.SLEEP_PILLOW_UP_BOTHER_RIGHT, pokeSideIsLeft );
+		case BodyState.AWAKE_PILLOW_UP:
+			return self.GetAnimationFromSet( Loli.Animation.AWAKE_PILLOW_UP_FACE_POKE_RIGHT, pokeSideIsLeft );
+		case BodyState.RELAX:
+			return Loli.Animation.RELAX_TO_SQUAT_STARTLE;
+		case BodyState.SQUAT:
+			return self.GetAnimationFromSet( Loli.Animation.SQUAT_FACE_POKE_1_RIGHT, pokeSideIsLeft, 2 );
+		default:
+			return Loli.Animation.NONE;
+		}
 	}
 
 	private Loli.Animation GetPostFacePokeAnimation( int pokeSideIsLeft ){
@@ -182,10 +187,10 @@ public partial class PokeBehavior : PassiveBehaviors.PassiveTask {
 			return self.GetAnimationFromSet( Loli.Animation.BATHTUB_RELAX_FACE_POKE_RIGHT, pokeSideIsLeft );
 		case BodyState.BATHING_IDLE:
 			return GetBathtubIdlePostFacePokedAnimation( pokeSideIsLeft );
-		// case BodyState.SLEEP_PILLOW_SIDE:
-			// return self.active.sleeping.GetSleepSidePillowPostFacePokeAnimation();
-		// case BodyState.SLEEP_PILLOW_UP:
-			// return self.active.sleeping.GetSleepPillowUpPostFacePokeAnimation();
+		//case BodyState.SLEEP_PILLOW_SIDE_LEFT:
+			//return self.active.sleeping.GetSleepSidePillowPostFacePokeAnimation();
+		//case BodyState.SLEEP_PILLOW_UP:
+			//return self.active.sleeping.GetSleepPillowUpPostFacePokeAnimation();
 		}
 		return self.GetLastReturnableIdleAnimation();
 	}
@@ -232,6 +237,11 @@ public partial class PokeBehavior : PassiveBehaviors.PassiveTask {
 
 		if( pokeCount > 4 ){	//4 pokes and she becomes angry
 			if( self.active.RequestPermission( ActiveBehaviors.Permission.ALLOW_ROOT_FACING_TARGET_CHANGE ) ){
+				if( self.bodyState == BodyState.STAND){ //Make sure to only face direction when standing
+					self.autonomy.SetAutonomy(new AutonomyFaceDirection( self.autonomy, "face direction", delegate(TaskTarget target){
+                        target.SetTargetPosition( lastPokeSource.position );
+                    } ) );
+				}
 				// self.SetRootFacingTarget( lastPokeSource.position, 200.0f, 15.0f, 50.0f );
 			}
 			if( Random.value < 0.4f && Time.time-lastPokeBlockReactTime > 2.0f ){
@@ -366,9 +376,14 @@ public partial class PokeBehavior : PassiveBehaviors.PassiveTask {
 			}
 		}
 		if( self.active.RequestPermission( ActiveBehaviors.Permission.ALLOW_ROOT_FACING_TARGET_CHANGE ) ){
+			if( self.bodyState == BodyState.STAND){ //Make sure to only face direction when standing 
+					self.autonomy.SetAutonomy(new AutonomyFaceDirection( self.autonomy, "face direction", delegate(TaskTarget target){
+                        target.SetTargetPosition( GameDirector.player.transform.position+lastPokeSource.position );
+                    } ) );
+			}
 			// self.SetRootFacingTarget( ( GameDirector.player.transform.position+lastPokeSource.position )/2.0f, 160.0f, 5.0f, 10.0f );
 		}
-		viva.DevTools.LogExtended("", true, true);
+		//viva.DevTools.LogExtended("", true, true);
 		return true;
 	}
 }

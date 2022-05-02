@@ -28,7 +28,7 @@ public class FollowBehavior : ActiveBehaviors.ActiveTask {
 		if(!self.CanSeePoint(source.transform.position)){
 			return false;
 		}
-		if( self.IsHappy() || self.passive.tired.tired ){
+		if( self.IsHappy() || self.IsTired() ){
 			
 			Character followTargetCharacter;
 			if( source.settings.itemType == Item.Type.CHARACTER ){
@@ -63,6 +63,11 @@ public class FollowBehavior : ActiveBehaviors.ActiveTask {
 			return true;
 		}else{
 			self.active.idle.PlayAvailableRefuseAnimation();
+			if( self.bodyState == BodyState.STAND){ //Make sure to only face direction when standing
+				self.autonomy.SetAutonomy(new AutonomyFaceDirection( self.autonomy, "face direction", delegate(TaskTarget target){
+                    target.SetTargetPosition( source.transform.position );
+                } ) );
+			}
 			// self.SetRootFacingTarget( source.transform.position, 100.0f, 15.0f, 40.0f );
 		}
 		return false;

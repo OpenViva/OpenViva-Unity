@@ -226,7 +226,7 @@ public partial class ObjectFingerPointer : MonoBehaviour {
             foreach( Loli loli in selectedLolis ){
                 loli.active.OnGesture( sourceHand.playerHandState.selfItem, Gesture.FOLLOW );
             }
-            // pauseMenu.ContinueTutorial( PauseMenu.MenuTutorial.WAIT_TO_COME_HERE );
+            GameDirector.player.pauseMenu.ContinueTutorial( PauseMenu.MenuTutorial.WAIT_TO_COME_HERE );
             break;
 
         case Gesture.HELLO:
@@ -234,7 +234,7 @@ public partial class ObjectFingerPointer : MonoBehaviour {
             foreach( Loli loli in selectedLolis ){
 				loli.active.OnGesture( sourceHand.playerHandState.selfItem, Gesture.HELLO );
 			}
-            // pauseMenu.ContinueTutorial( PauseMenu.MenuTutorial.WAIT_TO_WAVE );
+            GameDirector.player.pauseMenu.ContinueTutorial( PauseMenu.MenuTutorial.WAIT_TO_WAVE );
             break;
             
         case Gesture.MECHANISM:
@@ -252,7 +252,7 @@ public partial class ObjectFingerPointer : MonoBehaviour {
                     loli.onBegItemCallstack.Call( sourceHand.playerHandState.heldItem );
                 }
             }
-            // pauseMenu.ContinueTutorial( PauseMenu.MenuTutorial.WAIT_TO_PRESENT );
+            GameDirector.player.pauseMenu.ContinueTutorial( PauseMenu.MenuTutorial.WAIT_TO_PRESENT );
             break;
             
         case Gesture.PRESENT_END:

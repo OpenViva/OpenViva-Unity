@@ -132,6 +132,9 @@ public partial class Loli : Character{
 	}
 
 	public Animation GetLastReturnableIdleAnimation(){
+		if( IsTired() ){
+			return bodyStateAnimationSets[ (int)bodyState ].GetRandomAnimationSet( AnimationSet.IDLE_TIRED );
+		}	
 		if( IsHappy() ){
 			return bodyStateAnimationSets[ (int)bodyState ].GetRandomAnimationSet( AnimationSet.IDLE_HAPPY );
 		}else{

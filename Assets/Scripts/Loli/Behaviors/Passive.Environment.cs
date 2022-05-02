@@ -32,9 +32,12 @@ public class EnvironmentBehavior : PassiveBehaviors.PassiveTask {
 		
 		Vector3 forceDir = self.floorPos-particlePosition;
 		forceDir.y = 0.0f;
-		// self.locomotion.BeginImpulseAnimation( forceDir.normalized, 0.8f );
+		self.locomotion.PlayForce( forceDir.normalized, 0.8f );
 		self.SetTargetAnimation( reactAnim );
 
+		self.autonomy.SetAutonomy(new AutonomyFaceDirection( self.autonomy, "face direction", delegate(TaskTarget target){
+                        target.SetTargetPosition( particlePosition );
+                    } ) );
 		// self.SetRootFacingTarget( particlePosition, 150.0f, 20.0f, 30.0f );
 		return true;
 	}

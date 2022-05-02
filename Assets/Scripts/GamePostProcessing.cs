@@ -6,15 +6,14 @@ using UnityEngine.Rendering;
 
 namespace viva{
 
-
+//TODO: Do this a better way?
 public class GamePostProcessing : MonoBehaviour {
 
     private delegate IEnumerator ScreenAnimCoroutine();
 
     public enum Effect{
         HURT,
-        SPLASH,
-        GHOST
+        SPLASH
     }
 
     [SerializeField]
@@ -23,7 +22,8 @@ public class GamePostProcessing : MonoBehaviour {
 	private Material playerHurtMat;
     [SerializeField]
     private Material playerSplashMat;
-    
+    [SerializeField]
+     private Material cloudCameraMaterial;
     private int alphaID = Shader.PropertyToID("_Alpha");
     private CommandBuffer renderTextureCommands;
     private RenderTexture m_screenTexture = null;
@@ -42,9 +42,18 @@ public class GamePostProcessing : MonoBehaviour {
 
     private void Start(){
         InitRenderTextureCommands( Screen.width/2, Screen.height/2 );
+        cloudCameraMaterial.SetTexture( "_CloudsRT", GameDirector.instance.GetCloudRT() );
+        screenMaterial = cloudCameraMaterial;
+    }
+
+    private void FixedUpdate(){
+        if( activeEffectCoroutine == null ){
+            screenMaterial = cloudCameraMaterial;
+        }
     }
 
     private void OnRenderImage(RenderTexture source, RenderTexture destination){
+        cloudCameraMaterial.SetTexture( "_CloudsRT", GameDirector.instance.GetCloudRT() );
         if( screenMaterial != null ){
             Graphics.Blit( source, destination, screenMaterial );
         }else{
@@ -60,6 +69,9 @@ public class GamePostProcessing : MonoBehaviour {
     }
     
     public void DisplayScreenEffect( Effect effect ){
+        if( screenMaterial != cloudCameraMaterial ){
+            return;
+        }
         if( usingUnderwater ){
             return;
         }
@@ -77,6 +89,7 @@ public class GamePostProcessing : MonoBehaviour {
             break;
         case Effect.SPLASH:
             AddToQueue( playerSplashMat );
+            //TODO: FIX
             activeEffectCoroutine = GameDirector.instance.StartCoroutine( AnimateSplashMaterial() );
             break;
         }
@@ -111,15 +124,20 @@ public class GamePostProcessing : MonoBehaviour {
     }
 
     public void EnableUnderwaterEffect(){
-        StopActiveEffectCoroutine();
+       
         AddToQueue( screenMaterials[0] );
         m_usingUnderwater = true;
     }
 
     public void DisableUnderwaterEffect(){
+        screenMaterial = cloudCameraMaterial;
         RemoveFromQueue( screenMaterials[0] );
         m_usingUnderwater = false;
         DisplayScreenEffect( Effect.SPLASH );
+    }
+
+    public void DisableGhostEffect(){
+        screenMaterial = cloudCameraMaterial;
     }
 
     public bool IncreaseScreenTextureUse( MeshRenderer[] targetMRs, Material targetMaterial ){
@@ -165,7 +183,7 @@ public class GamePostProcessing : MonoBehaviour {
             GameDirector.instance.mainCamera.AddCommandBuffer( CameraEvent.BeforeForwardAlpha, renderTextureCommands );
         }else{
             GameDirector.instance.mainCamera.RemoveCommandBuffer( CameraEvent.BeforeForwardAlpha, renderTextureCommands );
-            screenMaterial = null;
+            screenMaterial = cloudCameraMaterial;
         }
     }
     
@@ -179,11 +197,10 @@ public class GamePostProcessing : MonoBehaviour {
             screenMaterial.SetFloat( alphaID, ratio*ratio*ratio );
             timer += Time.deltaTime;
             yield return null;
-        }
-		activeEffectCoroutine = null;
-        UpdatePostProcessUsage();
-        
-        screenMaterial = null;
+        }	
+        activeEffectCoroutine = null;       
+        UpdatePostProcessUsage();    
+        screenMaterial = cloudCameraMaterial;     
     }
 
 	private IEnumerator AnimateHurtMaterial(){
@@ -207,7 +224,7 @@ public class GamePostProcessing : MonoBehaviour {
 		activeEffectCoroutine = null;
         UpdatePostProcessUsage();
 
-        screenMaterial = null;
+        screenMaterial = cloudCameraMaterial;
     }
 }
 

@@ -35,7 +35,7 @@ public class ChickenChaseBehavior : ActiveBehaviors.ActiveTask {
 			!self.active.IsTaskActive( self.active.follow ) ){
 			return false;
 		}
-		if( !self.IsHappy() || self.passive.tired.tired ){
+		if( !self.IsHappy() || self.IsTired() ){
 			self.active.idle.PlayAvailableRefuseAnimation();
 			return false;
 		}
@@ -73,6 +73,9 @@ public class ChickenChaseBehavior : ActiveBehaviors.ActiveTask {
 			break;
 		}
 		// self.SetRootFacingTarget( targetChicken.pelvis.position, 200.0f, 20.0f, 10.0f );
+		self.autonomy.SetAutonomy(new AutonomyFaceDirection( self.autonomy, "look chicken", delegate(TaskTarget target){
+                        target.SetTargetPosition( targetChicken.pelvis.position );
+                    } ) );
 		self.SetLookAtTarget( targetChicken.transform );
 	}
 

@@ -18,10 +18,10 @@ public partial class GameDirector : MonoBehaviour {
     private Material weatherSimGenerate;
     [SerializeField]
     private Texture weatherNoises;
-    // [SerializeField]
-    // private Material raymarchingCloudsMat;
-    // [SerializeField]
-    // private Material skyOnlyCloudsMat;
+    [SerializeField]
+    public Material raymarchingCloudsMat;
+    private bool Clouds = true;
+
 
     private GameObject clouds;
     private MeshRenderer cloudsMR;
@@ -35,6 +35,18 @@ public partial class GameDirector : MonoBehaviour {
     private const float weatherRenderWaitTime = 1.0f/20.0f; //20fps
     private float weatherRenderWaitTimer = 0.0f;
 
+    public bool UseClouds(){
+        return Clouds;
+    }
+
+    public void SetCloud( bool on ){
+        Clouds = on;
+        RebuildCloudRendering();
+    }
+
+    public RenderTexture GetCloudRT(){
+        return cloudRT;
+    }
 
     private void LateUpdateWeatherRendering(){
         
@@ -54,53 +66,56 @@ public partial class GameDirector : MonoBehaviour {
         }
     }
 
-    // private void RebuildCloudRendering( int quality ){
-    //     return; //disable
-        
-    //     if( clouds != null ){
-    //         Destroy( clouds );
-    //         cloudRT.Release();
-    //         GameDirector.instance.mainCamera.RemoveCommandBuffer( CameraEvent.BeforeForwardOpaque, cloudCommandBuffer );
-    //     }
+    private void RebuildCloudRendering(){
+        if( cloudsPrefab == null ){
+            Debug.LogError("Missing cloud prefab!");
+            return;
+        }
+        if( cloudRenderSettings == null ){
+            Debug.LogError("Missing cloud render settings!");
+            return;
+        }
+         if( clouds != null ){
+             Destroy( clouds );
+            cloudRT.Release();
+            GameDirector.instance.mainCamera.RemoveCommandBuffer( CameraEvent.BeforeForwardOpaque, cloudCommandBuffer );
+        }
 
-    //     clouds = GameObject.Instantiate( cloudsPrefab );
+        clouds = GameObject.Instantiate( cloudsPrefab );
 
-    //     //create raymarched cloud variables
-    //     int width;
-    //     int height;
-    //     if( m_player.controls == Player.ControlType.OPEN_VR ){
-    //         width = Screen.width/3;
-    //         height = Screen.height/3;
-    //     }else{
-    //         width = Screen.width/4;
-    //         height = Screen.height/4;
-    //     }
-    //     m_cloudRT = new RenderTexture( width, height, 0, RenderTextureFormat.ARGB32, RenderTextureReadWrite.Linear );
-    //     cloudRT.wrapMode = TextureWrapMode.Mirror;
+        //create raymarched cloud variables
+        int width;
+        int height;
+        if( m_player.controls == Player.ControlType.OPEN_VR ){
+            width = Screen.width/3;
+            height = Screen.height/3;
+        }else{
+            width = Screen.width/4;
+            height = Screen.height/4;
+        }
+        m_cloudRT = new RenderTexture( width, height, 0, RenderTextureFormat.ARGB32, RenderTextureReadWrite.Linear );
+        cloudRT.wrapMode = TextureWrapMode.Mirror;
 
-    //     cloudsMR = clouds.GetComponent(typeof(MeshRenderer)) as MeshRenderer;
-    //     cloudsMR.enabled = false; //dont render in the scene
+        cloudsMR = clouds.GetComponent(typeof(MeshRenderer)) as MeshRenderer;
+        cloudsMR.enabled = false; //dont render in the scene
 
-    //     //render in the buffer
-    //     cloudCommandBuffer = new CommandBuffer();
-    //     cloudCommandBuffer.SetRenderTarget( cloudRT );
-    //     if( quality >= 1 ){
-    //         cloudCommandBuffer.DrawRenderer( cloudsMR, raymarchingCloudsMat, 0 );
-    //     }else{
-    //         cloudCommandBuffer.DrawRenderer( cloudsMR, skyOnlyCloudsMat, 0 );
-    //     }
-    //     // cloudCommandBuffer.DrawRenderer( cloudsMR, skyOnlyCloudsMat, 1 );
-    //     cloudCommandBuffer.SetRenderTarget( null as RenderTexture );
+        //render in the buffer
+        cloudCommandBuffer = new CommandBuffer();
+        cloudCommandBuffer.SetRenderTarget( cloudRT );
+        if(Clouds){        
+            cloudCommandBuffer.DrawRenderer( cloudsMR, raymarchingCloudsMat, 0 );      
+        }
+        cloudCommandBuffer.SetRenderTarget( null as RenderTexture );
 
-    //     //initialize cloud rendering
-    //     GameDirector.instance.mainCamera.AddCommandBuffer( CameraEvent.BeforeForwardOpaque, cloudCommandBuffer );
-    //     cloudRenderSettings.Apply( cloudsMR );
+        //initialize cloud rendering
+        GameDirector.instance.mainCamera.AddCommandBuffer( CameraEvent.BeforeForwardOpaque, cloudCommandBuffer );
+        cloudRenderSettings.Apply( cloudsMR );
 
-    //     //create weather variables
-    //     weatherGenerateRT = new RenderTexture( weatherRTSize, weatherRTSize, 0, RenderTextureFormat.R8, RenderTextureReadWrite.Linear );
-    //     weatherGenerateRT.wrapMode = TextureWrapMode.Repeat;
-    //     cloudsMR.sharedMaterial.SetTexture( "_CloudMap", weatherGenerateRT );
-    // }
+        //create weather variables
+        weatherGenerateRT = new RenderTexture( weatherRTSize, weatherRTSize, 0, RenderTextureFormat.R8, RenderTextureReadWrite.Linear );
+        weatherGenerateRT.wrapMode = TextureWrapMode.Repeat;
+        cloudsMR.sharedMaterial.SetTexture( "_CloudMap", weatherGenerateRT );
+    }
 }
 
 }

@@ -135,6 +135,7 @@ public partial class SkyDirector : MonoBehaviour {
         GameDirector.instance.ambienceDirector.InitializeAmbience();
         UpdateDayNightCycleSpeed();
         GameDirector.lampDirector.UpdateDaySegmentLampState( true );
+        //m_currentDaySegment = DaySegment.DAY;
         // DebugModeInit();
 
         nightModeSet = !isNight;
@@ -181,7 +182,7 @@ public partial class SkyDirector : MonoBehaviour {
         c.keyboard.s.performed += ctx => DebugIncrease(-1);
     }
 
-    private void DebugIncrease( int shift ){
+    public void DebugIncrease( int shift ){
         float pieces = dayNightCycle.phases.Length/M_PI2;
         float time = Mathf.RoundToInt( GameDirector.settings.worldTime*pieces )/pieces+shift/pieces;
         if( time < 0.0f ){
@@ -248,8 +249,8 @@ public partial class SkyDirector : MonoBehaviour {
         sunMaterial.SetFloat( exposureID, Mathf.LerpUnclamped( prev.exposure, curr.exposure, blend ) );
         sunMaterial.SetColor( skyTintID, Color.LerpUnclamped( prev.skyTint, curr.skyTint, blend) );
         sunMaterial.SetColor( nightSkyID, Color.LerpUnclamped( prev.nightSky, curr.nightSky, blend) );
-        // raymarchingCloudsMat.SetColor( cloudColorAID, Color.LerpUnclamped( prev.cloudColorA, curr.cloudColorA, blend) );
-        // raymarchingCloudsMat.SetColor( cloudColorBID, Color.LerpUnclamped( prev.cloudColorB, curr.cloudColorB, blend) );
+        GameDirector.instance.raymarchingCloudsMat.SetColor( cloudColorAID, Color.LerpUnclamped( prev.cloudColorA, curr.cloudColorA, blend) );
+        GameDirector.instance.raymarchingCloudsMat.SetColor( cloudColorBID, Color.LerpUnclamped( prev.cloudColorB, curr.cloudColorB, blend) );
         baseToonAmbience = Color.LerpUnclamped( prev.toonAmbience, curr.toonAmbience, blend );
 
         float nightBlend = Tools.GetClampedRatio( 5.0f, 6.0f, phaseIndex )-Tools.GetClampedRatio( 9.0f, 10.0f, phaseIndex );

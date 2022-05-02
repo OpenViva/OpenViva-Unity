@@ -253,6 +253,9 @@ public partial class IdleBehavior : ActiveBehaviors.ActiveTask {
 			return;
 		}
 		if( self.CanSeePoint( GameDirector.player.head.position ) ){
+			self.autonomy.SetAutonomy(new AutonomyFaceDirection( self.autonomy, "face direction", delegate(TaskTarget target){
+                        target.SetTargetPosition( GameDirector.player.floorPos );
+                    } ) );
 			// self.SetRootFacingTarget( GameDirector.player.floorPos, 270.0f, 30.0f, 20.0f );
 			float bearing = Tools.Bearing( self.transform, GameDirector.player.floorPos );
 			if( Mathf.Abs( bearing ) < 20.0f ){	

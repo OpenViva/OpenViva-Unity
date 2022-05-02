@@ -25,6 +25,7 @@ public partial class Loli : Character{
 	[SerializeField]
 	public Animator animator = null;
 	public Happiness happiness = Happiness.VERY_HAPPY;
+	public bool Tired = false;
 	private int lastLegsAnimID = -1;
 	private int lastTorsoAnimID = -1;
 	private int lastFaceAnimID = -1;
@@ -32,6 +33,10 @@ public partial class Loli : Character{
 	private float lastTorsoChangeTime = 0.0f;
 	public float lastTorsoNormTimePlayed { get; private set; }
 
+	public bool IsTired()
+	{
+		return Tired;
+	}
 	public bool IsHappy(){
 		return (int)happiness>=0;
 	}
@@ -47,7 +52,7 @@ public partial class Loli : Character{
 		
 		if( newTargetAnim == Animation.NONE ){
 			Debug.LogError("ERROR ANIMATION IS NONE!");
-			Debug.Break();
+			//Debug.Break();
 		}
 		if( bodyState != newTargetAnimInfo.conditionBodyState || highestTargetAnimPriority > newTargetAnimInfo.priority ){
 			if( highestTargetAnimPriority > newTargetAnimInfo.priority ){
@@ -185,6 +190,8 @@ public partial class Loli : Character{
 			return animator.GetCurrentAnimatorStateInfo(layer).length;
 		}
 	}
+
+	
 
 	public bool IsCurrentAnimationIdle(){
 		return animationInfos[ m_currentAnim ].HasFlag( AnimationInfo.Flag.IDLE_STATE );

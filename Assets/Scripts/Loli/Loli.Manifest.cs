@@ -466,7 +466,8 @@ public partial class Loli : Character {
 		GOODNIGHT,
 		GOODNIGHT_LONG,
 		GOODMORNING,
-		GOODMORNING_LONG
+		GOODMORNING_LONG,
+		WHAT_YOU_DOING
 	}
 
 	public enum UtilityHoldForms{

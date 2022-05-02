@@ -27,7 +27,7 @@ public partial class IdleBehavior: ActiveBehaviors.ActiveTask{
 	}
 
 	public void PlayAvailableRefuseAnimation(){
-		if( self.passive.tired.tired ){
+		if( self.IsTired() ){
 			self.SetTargetAnimation( Loli.Animation.STAND_TIRED_REFUSE );
 		}else{
 			self.SetTargetAnimation( Loli.Animation.STAND_REFUSE );
@@ -58,7 +58,7 @@ public partial class IdleBehavior: ActiveBehaviors.ActiveTask{
 		self.SetViewAwarenessTimeout(1.0f);
 		switch( self.bodyState ){
 		case BodyState.STAND:
-			if( self.passive.tired.tired ){
+			if( self.IsTired() ){
 				self.SetTargetAnimation( Loli.Animation.STAND_TIRED_REFUSE );
 				return false;
 			}
@@ -112,6 +112,9 @@ public partial class IdleBehavior: ActiveBehaviors.ActiveTask{
 					self.SetTargetAnimation( waveAnimation );
 					self.SetLookAtTarget( source.transform );
 					// self.SetRootFacingTarget( source.transform.position, 100.0f, 10.0f, 15.0f );
+					self.autonomy.SetAutonomy(new AutonomyFaceDirection( self.autonomy, "face direction", delegate(TaskTarget target){
+                        target.SetTargetPosition( source.transform.position );
+                    } ) );
 					return true;
 				}
 			}
@@ -158,7 +161,8 @@ public partial class IdleBehavior: ActiveBehaviors.ActiveTask{
 		ignoreDesirableItemsTimer = duration;
 	}
 
-	public void CheckForVisibleNewInterests(){	//Debug.Log("V:"+self.getViewResultCount());
+	public void CheckForVisibleNewInterests(){	
+		//Debug.Log("V:"+self.GetViewResultCount());
 		if( self.bodyState != BodyState.STAND ){
 			return;
 		}
@@ -207,13 +211,18 @@ public partial class IdleBehavior: ActiveBehaviors.ActiveTask{
 					minDist = dist;
 					closest = candidates[i];
 				}
+			} 
+			//DO NOT ALLOW PICKING UP ALREADY HELD ITEMS
+			if( self.leftLoliHandState.heldItem == closest || self.rightLoliHandState.heldItem == closest){
+				return;
 			}
-			// self.active.pickup.AttemptGoAndPickup( closest, self.active.pickup.FindPreferredHandState( closest ) );
+			self.autonomy.SetAutonomy( new AutonomyPickup( self.autonomy, "pickup interest", closest, self.GetPreferredHandState( closest ), true ));
+			//self.active.pickup.AttemptGoAndPickup( closest, self.active.pickup.FindPreferredHandState( closest ) );
 		}
 	}
 
 	public Loli.Animation GetAvailableIdleAnimation(){
-		if( self.IsHappy() && !self.passive.tired.tired ){
+		if( self.IsHappy() && !self.IsTired() ){
 			idleVersion = (idleVersion+1)%3;	//cycle
 			switch( self.bodyState ){
 			case BodyState.STAND:
@@ -252,6 +261,9 @@ public partial class IdleBehavior: ActiveBehaviors.ActiveTask{
 			idleRootFacingTargetTimer -= Time.deltaTime*System.Convert.ToInt32( enableFaceTargetTimer );
 			if( idleRootFacingTargetTimer < 0.0f ){
 				idleRootFacingTargetTimer = 4.0f+Random.value*4.0f;
+				//self.autonomy.SetAutonomy(new AutonomyFaceDirection( self.autonomy, "face direction", delegate(TaskTarget target){
+                //        target.SetTargetPosition( self.currentLookAtTransform.position );
+                //    } ) );
 				// self.SetRootFacingTarget( self.currentLookAtTransform.position, 200.0f, 15.0f, 30.0f );
 			}
 		}

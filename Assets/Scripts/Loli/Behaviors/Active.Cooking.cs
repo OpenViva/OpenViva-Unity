@@ -28,6 +28,8 @@ public partial class CookingBehavior : ActiveBehaviors.ActiveTask {
         DROP_FLOUR_INTO_BATTER
 	}
 
+
+
 	private KitchenFacilities facilities;
 	private Phase phase = Phase.GRIND_WHEAT;
 	private List<Item.Type> priorityPickup = new List<Item.Type>();
@@ -48,6 +50,11 @@ public partial class CookingBehavior : ActiveBehaviors.ActiveTask {
 		if( Vector3.Distance( targetStartPos, self.floorPos ) > 10.0f ){
 			return false;
 		}
+		self.autonomy.SetAutonomy( new AutonomyFaceDirection( self.autonomy, "look kitchen", delegate( TaskTarget target ){
+					target.SetTargetPosition( newFacilities.transform.position );
+				}, 2.0f ));
+		
+		
 		switch( self.active.currentTask.type ){
 			case ActiveBehaviors.Behavior.IDLE:
 			case ActiveBehaviors.Behavior.FOLLOW:
@@ -55,7 +62,7 @@ public partial class CookingBehavior : ActiveBehaviors.ActiveTask {
 			default:	//not allowed with other behaviors
 				return false;
 		}
-		if( !self.IsHappy() || self.passive.tired.tired ){
+		if( !self.IsHappy() || self.IsTired() ){
 			self.active.idle.PlayAvailableRefuseAnimation();
 			return false;
 		}
@@ -79,20 +86,22 @@ public partial class CookingBehavior : ActiveBehaviors.ActiveTask {
 	
 	public override bool OnReturnPollTaskResult( ActiveBehaviors.ActiveTask returnSource, bool succeeded ){
 		
-		// if( phase == Phase.WAIT_TO_DROP_ITEM && returnSource==self.active.drop ){
-		// 	SetCookingPhase( Phase.SEARCH_COOKING_INGREDIENTS );
-		// 	return true;
-		// }else if( phase == Phase.WAIT_TO_PICKUP_ITEM && returnSource==self.active.pickup ){
-		// 	SetCookingPhase( Phase.SEARCH_COOKING_INGREDIENTS );
-		// 	return true;
-		// }
+		if( phase == Phase.WAIT_TO_DROP_ITEM /*&& returnSource==self.active.drop*/ ){
+			SetCookingPhase( Phase.SEARCH_COOKING_INGREDIENTS );
+			return true;
+		}else if( phase == Phase.WAIT_TO_PICKUP_ITEM /*&& returnSource==self.active.pickup*/ ){
+			SetCookingPhase( Phase.SEARCH_COOKING_INGREDIENTS );
+			return true;
+		}
 		return false;
 	}
 
-	// public override void OnActivate(){
-	// 	searchTimer = 0.0f;
-	// 	searches = 0;
-	// }
+	 public override void OnActivate(){
+		GameDirector.player.objectFingerPointer.selectedLolis.Remove( self );
+		self.characterSelectionTarget.OnUnselected();
+	 	searchTimer = 0.0f;
+	 	searches = 0;
+	}
 
 	public override void OnUpdate(){
 		if( facilities == null ){
@@ -130,13 +139,23 @@ public partial class CookingBehavior : ActiveBehaviors.ActiveTask {
 	private void UpdateGoToKitchen(){
 		Vector3 targetStartPos = facilities.transform.TransformPoint( facilities.centerLocalPos );
 		if( !self.locomotion.isMoveToActive() || Vector3.Distance( targetStartPos, self.floorPos ) > 2.0f ){
-			var path = self.locomotion.GetNavMeshPath( targetStartPos );
-			if( path == null ){
-				self.active.SetTask( self.active.idle, false );
-			}else{
-				self.locomotion.FollowPath( path, OnReachKitchen );
-			}
+			var goToKitchen = new AutonomyMoveTo( self.autonomy, "go to kitchen", delegate( TaskTarget target ){
+			target.SetTargetPosition( targetStartPos );
+			},
+			1.0f,
+			BodyState.STAND );
+			goToKitchen.onSuccess += OnReachKitchen;
+			goToKitchen.onFail += delegate{ self.active.SetTask( self.active.idle, false ); };
+			self.autonomy.SetAutonomy( goToKitchen );
+			//var path = self.locomotion.GetNavMeshPath( targetStartPos );
+			//if( path == null ){
+			//	self.active.SetTask( self.active.idle, false );
+			//}else{
+			//	self.locomotion.FollowPath( path, OnReachKitchen );
+			//}
 		}
+		
+
 	}
 
 	private void OnReachKitchen(){
@@ -347,6 +366,9 @@ public partial class CookingBehavior : ActiveBehaviors.ActiveTask {
         searchTimer += Time.deltaTime;
         if( searchTimer > timer ){
             searchTimer = 0.0f;
+			self.autonomy.SetAutonomy(new AutonomyFaceDirection( self.autonomy, "face direction", delegate(TaskTarget target){
+                        target.SetTargetPosition( self.floorPos-self.transform.forward );
+                    } ) );
             // self.SetRootFacingTarget( self.floorPos-self.transform.forward, 200.0f, 15.0f, 15.0f );
             self.SetTargetAnimation( Loli.Animation.STAND_SEARCH_RIGHT );
             searches++;
@@ -444,17 +466,29 @@ public partial class CookingBehavior : ActiveBehaviors.ActiveTask {
 			}
 			//drop item if pickupHand is curently busy
 			if( pickupHand.heldItem != null ){
-				// if( self.active.drop.AttemptDropItem( pickupHand, true, 1.0f, 0.1f, true ) ){
-				// 	self.active.PollNextTaskResult( this );
-				// 	SetCookingPhase( Phase.WAIT_TO_DROP_ITEM );
-				// 	return;
-				// }
+				var itemdrop = new AutonomyDrop( self.autonomy, "item pickup", pickupHand.heldItem, facilities.centerLocalPos );
+				self.autonomy.SetAutonomy(itemdrop);
+				itemdrop.onSuccess += delegate{
+					SetCookingPhase( Phase.WAIT_TO_DROP_ITEM );
+					self.active.PollNextTaskResult( this );
+				};
+				//if( self.active.drop.AttemptDropItem( pickupHand, true, 1.0f, 0.1f, true ) ){
+				//	self.active.PollNextTaskResult( this );
+				//	SetCookingPhase( Phase.WAIT_TO_DROP_ITEM );
+				//	return;
+				//}
 			}else{	//else use it to pick up missingItem
-				// if( self.active.pickup.AttemptGoAndPickup( item, self.active.pickup.FindPreferredHandState( item ), true, true ) ){
-				// 	self.active.PollNextTaskResult( this );
-				// 	SetCookingPhase( Phase.WAIT_TO_PICKUP_ITEM );
-				// 	return;
-				// }
+				var itempickup = new AutonomyPickup( self.autonomy, "item pickup", item, self.GetPreferredHandState( item ) );
+				self.autonomy.SetAutonomy(itempickup);
+				itempickup.onSuccess += delegate{
+					SetCookingPhase( Phase.WAIT_TO_PICKUP_ITEM );
+					self.active.PollNextTaskResult( this );
+				};
+				//if( self.active.pickup.AttemptGoAndPickup( item, self.active.pickup.FindPreferredHandState( item ), true, true ) ){
+				//	self.active.PollNextTaskResult( this );
+				//	SetCookingPhase( Phase.WAIT_TO_PICKUP_ITEM );
+				//	return;
+				//}
 			}
 			break;
 		}

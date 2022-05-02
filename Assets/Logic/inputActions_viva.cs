@@ -28,6 +28,15 @@ public partial class @InputActions_viva : IInputActionCollection2, IDisposable
             ""id"": ""eb459591-4014-468b-8cee-68a48cd78f73"",
             ""actions"": [
                 {
+                    ""name"": ""miniprofiler"",
+                    ""type"": ""Button"",
+                    ""id"": ""d839296e-6485-4f85-8646-6abe0065a4f7"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
                     ""name"": ""movement"",
                     ""type"": ""PassThrough"",
                     ""id"": ""81f0c277-c2b6-4fe2-87f6-cf24b562bb6e"",
@@ -392,6 +401,17 @@ public partial class @InputActions_viva : IInputActionCollection2, IDisposable
                     ""action"": ""a"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ef68b29c-2d40-44dc-a29e-cddb6d33b711"",
+                    ""path"": ""<Keyboard>/f8"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""miniprofiler"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -608,6 +628,7 @@ public partial class @InputActions_viva : IInputActionCollection2, IDisposable
 }");
         // keyboard
         m_keyboard = asset.FindActionMap("keyboard", throwIfNotFound: true);
+        m_keyboard_miniprofiler = m_keyboard.FindAction("miniprofiler", throwIfNotFound: true);
         m_keyboard_movement = m_keyboard.FindAction("movement", throwIfNotFound: true);
         m_keyboard_extendRight = m_keyboard.FindAction("extendRight", throwIfNotFound: true);
         m_keyboard_extendLeft = m_keyboard.FindAction("extendLeft", throwIfNotFound: true);
@@ -695,6 +716,7 @@ public partial class @InputActions_viva : IInputActionCollection2, IDisposable
     // keyboard
     private readonly InputActionMap m_keyboard;
     private IKeyboardActions m_KeyboardActionsCallbackInterface;
+    private readonly InputAction m_keyboard_miniprofiler;
     private readonly InputAction m_keyboard_movement;
     private readonly InputAction m_keyboard_extendRight;
     private readonly InputAction m_keyboard_extendLeft;
@@ -715,6 +737,7 @@ public partial class @InputActions_viva : IInputActionCollection2, IDisposable
     {
         private @InputActions_viva m_Wrapper;
         public KeyboardActions(@InputActions_viva wrapper) { m_Wrapper = wrapper; }
+        public InputAction @miniprofiler => m_Wrapper.m_keyboard_miniprofiler;
         public InputAction @movement => m_Wrapper.m_keyboard_movement;
         public InputAction @extendRight => m_Wrapper.m_keyboard_extendRight;
         public InputAction @extendLeft => m_Wrapper.m_keyboard_extendLeft;
@@ -740,6 +763,9 @@ public partial class @InputActions_viva : IInputActionCollection2, IDisposable
         {
             if (m_Wrapper.m_KeyboardActionsCallbackInterface != null)
             {
+                @miniprofiler.started -= m_Wrapper.m_KeyboardActionsCallbackInterface.OnMiniprofiler;
+                @miniprofiler.performed -= m_Wrapper.m_KeyboardActionsCallbackInterface.OnMiniprofiler;
+                @miniprofiler.canceled -= m_Wrapper.m_KeyboardActionsCallbackInterface.OnMiniprofiler;
                 @movement.started -= m_Wrapper.m_KeyboardActionsCallbackInterface.OnMovement;
                 @movement.performed -= m_Wrapper.m_KeyboardActionsCallbackInterface.OnMovement;
                 @movement.canceled -= m_Wrapper.m_KeyboardActionsCallbackInterface.OnMovement;
@@ -792,6 +818,9 @@ public partial class @InputActions_viva : IInputActionCollection2, IDisposable
             m_Wrapper.m_KeyboardActionsCallbackInterface = instance;
             if (instance != null)
             {
+                @miniprofiler.started += instance.OnMiniprofiler;
+                @miniprofiler.performed += instance.OnMiniprofiler;
+                @miniprofiler.canceled += instance.OnMiniprofiler;
                 @movement.started += instance.OnMovement;
                 @movement.performed += instance.OnMovement;
                 @movement.canceled += instance.OnMovement;
@@ -951,6 +980,7 @@ public partial class @InputActions_viva : IInputActionCollection2, IDisposable
     public VrActions @vr => new VrActions(this);
     public interface IKeyboardActions
     {
+        void OnMiniprofiler(InputAction.CallbackContext context);
         void OnMovement(InputAction.CallbackContext context);
         void OnExtendRight(InputAction.CallbackContext context);
         void OnExtendLeft(InputAction.CallbackContext context);

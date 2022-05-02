@@ -52,7 +52,6 @@ public partial class Player : Character {
     [SerializeField]
     private PauseMenu m_pauseMenu;
     public PauseMenu pauseMenu { get{ return m_pauseMenu; } }
-
     private InputController m_controller;
     public InputController controller { get{ return m_controller; } }
     private bool grabbingEnabled = true;
@@ -161,11 +160,16 @@ public partial class Player : Character {
         vivaControls.keyboard.follow.performed += ctx => OnInputFollowRightHand();
         vivaControls.keyboard.crouch.performed += ctx => FlipKeyboardHeight();
         vivaControls.keyboard.pauseButton.performed += ctx => TogglePauseMenu();
+         vivaControls.keyboard.miniprofiler.performed += ctx => TogglePerformanceUI();
     }
 
     public void SetControls( ControlType newControls ){
         controls = newControls;
         ReloadCurrentControlType();
+    }
+
+    public void TogglePerformanceUI(){
+        GameDirector.instance.performanceui.canvas.enabled = !GameDirector.instance.performanceui.canvas.enabled;
     }
 
     public void TogglePauseMenu(){

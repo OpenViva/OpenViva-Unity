@@ -65,6 +65,9 @@ public class CameraUseBehavior : ActiveBehaviors.ActiveTask {
 			UpdateCameraPitchDir( pitch/90.0f );
 
 			// self.SetRootFacingTarget( cameraTarget.transform.position, 200.0f, 12.0f, 10.0f );
+			self.autonomy.SetAutonomy(new AutonomyFaceDirection( self.autonomy, "face direction", delegate(TaskTarget target){
+                        target.SetTargetPosition( cameraTarget.transform.position );
+                    } ) );
 
 			if( IsCameraTargetPrepared( camera ) && stillTimerHasReset ){
 				
@@ -226,9 +229,12 @@ public class CameraUseBehavior : ActiveBehaviors.ActiveTask {
 		}
 
 		// self.SetRootFacingTarget( target.transform.position, 200.0f, 12.0f, 10.0f );
-		if( !self.IsHappy() || self.passive.tired.tired ){	//must be happy and not tired
+		self.autonomy.SetAutonomy(new AutonomyFaceDirection( self.autonomy, "face direction", delegate(TaskTarget tasktarget){
+                        tasktarget.SetTargetPosition( target.transform.position );
+                    } ) );
+		if( !self.IsHappy() || self.IsTired() ){	//must be happy and not tired
 			self.active.idle.PlayAvailableRefuseAnimation();
-			return true;
+			return false;
 		}
 
 		cameraTarget = target;

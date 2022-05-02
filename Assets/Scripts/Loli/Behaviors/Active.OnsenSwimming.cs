@@ -31,12 +31,15 @@ public class OnsenSwimming : ActiveBehaviors.ActiveTask {
 	public OnsenSwimming( Loli _self ):base(_self,ActiveBehaviors.Behavior.ONSEN_SWIMMING,new OnsenSwimmingSession()){
 	}
 
+	public bool isSwimming = false;
+
 	public override void OnDeactivate(){
 		if( currentClerkSession != null ){
 			currentClerkSession.FlagForFailure();
 			currentClerkSession = null;
 			Debug.LogError("FAILED CLERK SESSION");
 		}
+		isSwimming = false;
 	}
 
 	private bool IsWearingSwimmingClothes(){
@@ -174,6 +177,7 @@ public class OnsenSwimming : ActiveBehaviors.ActiveTask {
 			target.SetTargetPosition( self.floorPos+self.anchor.forward*0.8f );
 		}, 0.1f,
 		BodyState.SQUAT );
+		isSwimming = true;
 		swimAroundMove.onFixedUpdate += delegate{ CheckHitWall( swimAroundMove ); };
 		swimAroundMove.onFail += delegate{
 			var wait = new AutonomyWait( self.autonomy, "swim around reset wait", 1.0f );
@@ -204,7 +208,7 @@ public class OnsenSwimming : ActiveBehaviors.ActiveTask {
 		if( hits == 3 ){
 			wallNorm /= 3;
 			wallPos /= 3;
-
+			isSwimming = false;
 			var moveToRelax = new AutonomyMoveTo( self.autonomy, "move to relax",
 			delegate( TaskTarget target ){
 				target.SetTargetPosition( wallPos );
@@ -227,6 +231,7 @@ public class OnsenSwimming : ActiveBehaviors.ActiveTask {
 
 			var perpetuate = new AutonomyEmpty( self.autonomy, "perpetuate relax", delegate{ return null; } );
 			var relax = new AutonomyPlayAnimation( self.autonomy, "relax", Loli.Animation.SQUAT_TO_RELAX );
+			GameDirector.player.CompleteAchievement( Player.ObjectiveType.RELAX_ONSEN);
 
 			moveToRelax.onRegistered += delegate{ relax.Reset(); };
 

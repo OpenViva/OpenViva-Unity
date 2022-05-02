@@ -53,7 +53,6 @@ public partial class Loli : Character {
 			return;
 		}
 		onCharacterTriggerEnter?.Invoke( ccc, collider );
-
 		switch( ccc.collisionPart ){
 		case CharacterTriggerCallback.Type.VIEW:
 			OnEnterViewItem( item );
@@ -87,6 +86,11 @@ public partial class Loli : Character {
 			return;
 		}
 		onCharacterCollisionEnter?.Invoke( ccc, collision );
+		
+		if( collision.gameObject.layer == Instance.outofbounds ){
+			Debug.Log("TELEPORT CALLED");
+			TeleportToSpawn(GameDirector.instance.loliRespawnPoint.transform.position, transform.rotation);		
+		}
 
 		bool isNotFoot = ccc.collisionPart != CharacterCollisionCallback.Type.LEFT_FOOT && ccc.collisionPart != CharacterCollisionCallback.Type.RIGHT_FOOT;
 		if( !hasBalance || isNotFoot ){

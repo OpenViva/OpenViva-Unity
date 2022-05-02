@@ -107,6 +107,7 @@ public partial class GameDirector : MonoBehaviour {
 	}
 
 	private void Update () {
+		Performance.Frame();
 		for( int i=0; i<mechanisms.objects.Count; i++ ){
 			m_mechanisms.objects[i].OnMechanismUpdate();
 		}

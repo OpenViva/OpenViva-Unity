@@ -8,8 +8,8 @@ namespace viva{
 
 public class TiredBehavior : PassiveBehaviors.PassiveTask {
 
-	private bool m_tired = false;
-	public bool tired { get{ return m_tired; } }
+	
+	public bool tired { get{ return self.Tired; } }
 	private bool hasShownTired = false;
 	private float rubEyesTimer = 10.0f;
 	public const float tiredSunPitchRadianStart = 4.3f;
@@ -22,7 +22,9 @@ public class TiredBehavior : PassiveBehaviors.PassiveTask {
 		
 		if( !tired ){
 			if( GameDirector.skyDirector.sunPitchRadian > tiredSunPitchRadianStart && GameDirector.skyDirector.sunPitchRadian < tiredSunPitchRadianEnd ){
-				// SetTired( true );
+				//SetTired( true );
+				BecomeTired();
+
 			}
 		}else if( !hasShownTired ){
 			if( self.IsCurrentAnimationIdle() ){
@@ -51,19 +53,28 @@ public class TiredBehavior : PassiveBehaviors.PassiveTask {
 		}
 	}
 
-	public void SetTired( bool _tired ){
-		if( tired == _tired ){
+	public void BecomeTired(){
+
+		if( tired ){
 			return;
 		}
-		m_tired = _tired;
-		if( tired ){
-			self.ShiftHappiness(4);
-			hasShownTired = false;
-			// self.OverrideIdleAnimations( BodyState.STAND, Loli.Animation.STAND_TIRED_LOCOMOTION, Loli.Animation.STAND_TIRED_LOCOMOTION );
-		}else{
-			// self.OverrideIdleAnimations( BodyState.STAND, Loli.Animation.STAND_HAPPY_IDLE1, Loli.Animation.STAND_ANGRY_IDLE1 );
-		}
+		self.ShiftHappiness(4);	//treat as happy
+		self.Tired = true;
+		hasShownTired = false;
 	}
+	//public void SetTired( bool _tired ){
+	//	if( tired == _tired ){
+	//		return;
+	//	}
+	//	self.Tired = _tired;
+	//	if( tired ){
+	//		self.ShiftHappiness(4);
+	//		hasShownTired = false;
+	//		//self.OverrideIdleAnimations( BodyState.STAND, Loli.Animation.STAND_TIRED_LOCOMOTION, Loli.Animation.STAND_TIRED_LOCOMOTION );
+	//	}else{
+	//		// self.OverrideIdleAnimations( BodyState.STAND, Loli.Animation.STAND_HAPPY_IDLE1, Loli.Animation.STAND_ANGRY_IDLE1 );
+	//	}
+	//}
 
 	public override void OnAnimationChange( Loli.Animation oldAnim, Loli.Animation newAnim ){
 		

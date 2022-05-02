@@ -117,7 +117,7 @@ public partial class HeadpatBehavior: PassiveBehaviors.PassiveTask{
 
 		// switch( self.bodyState ){
 		// case BodyState.STAND:
-		// 	if( self.passive.tired.tired ){
+		// 	if( self.IsTired() ){
 		// 		return GetTiredHeadpatStartAnimation();
 		// 	}else{
 		// 		return GetStandHeadpatStartAnimation();
@@ -149,8 +149,8 @@ public partial class HeadpatBehavior: PassiveBehaviors.PassiveTask{
 
 		switch( self.bodyState ){
 		case BodyState.STAND:
-			if( self.passive.tired.tired ){
-				return GetTiredHeadpatIdleAnimation();
+			if( self.IsTired() ){
+				return Loli.Animation.STAND_TIRED_HEADPAT_IDLE;
 			}else{
 				return self.GetAnimationFromMood( Loli.Animation.STAND_HEADPAT_HAPPY_LOOP );
 			}

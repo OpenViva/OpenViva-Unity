@@ -63,6 +63,7 @@ public partial class IdleBehavior : ActiveBehaviors.ActiveTask {
 				targetHandState = self.leftLoliHandState;
 			}
 			if( bag.CanStoreItem( targetHandState.heldItem ) ){
+				self.autonomy.SetAutonomy( new AutonomyPickup( self.autonomy, "pickup bag item", targetHandState.heldItem, self.GetPreferredHandState( targetHandState.heldItem ), false ));
 				// self.active.pickup.AttemptGoAndPickup( targetHandState.heldItem, self.active.pickup.FindPreferredHandState( targetHandState.heldItem ) );
 			}
 		}
