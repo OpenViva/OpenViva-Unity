@@ -373,7 +373,7 @@ HingeJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 0, z: 1}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.056426592, y: 1.000998, z: -0.40379626}
+  m_ConnectedAnchor: {x: -0.056421585, y: 1.0009998, z: -0.4037947}
   m_UseSpring: 0
   m_Spring:
     spring: 0
@@ -1590,7 +1590,7 @@ HingeJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 1, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 158.85469, y: 102.557, z: 55.235706}
+  m_ConnectedAnchor: {x: 1.0419661, y: 0.057, z: -2.301453}
   m_UseSpring: 0
   m_Spring:
     spring: 0
@@ -2165,7 +2165,7 @@ HingeJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 0, z: 1}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.056421664, y: 1.0009979, z: -0.4037937}
+  m_ConnectedAnchor: {x: -0.056421664, y: 1.0009998, z: -0.40379477}
   m_UseSpring: 0
   m_Spring:
     spring: 0
@@ -2963,7 +2963,7 @@ HingeJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 1, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 158.85515, y: 102.557, z: 54.03467}
+  m_ConnectedAnchor: {x: 2.243, y: 0.057, z: -2.301}
   m_UseSpring: 0
   m_Spring:
     spring: 0
@@ -3200,6 +3200,8 @@ GameObject:
   - component: {fileID: 23541449485979756}
   - component: {fileID: 114895605047168408}
   - component: {fileID: 135111750788089582}
+  - component: {fileID: 6654259285175334331}
+  - component: {fileID: 3558580482389346463}
   m_Layer: 15
   m_Name: wardrobe
   m_TagString: Untagged
@@ -3335,6 +3337,32 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 1
   m_Center: {x: 0.0000002384186, y: 1.0297111, z: -0.66}
+--- !u!65 &6654259285175334331
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1954188264629166}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.07535878, y: 2.1794221, z: 0.63000065}
+  m_Center: {x: -0.63337916, y: 1.0297111, z: 0.11364832}
+--- !u!65 &3558580482389346463
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1954188264629166}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.07535878, y: 2.1794221, z: 0.63000065}
+  m_Center: {x: 0.6214067, y: 1.0297111, z: 0.11364832}
 --- !u!1 &1980239037612870
 GameObject:
   m_ObjectHideFlags: 0

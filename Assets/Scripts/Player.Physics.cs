@@ -22,8 +22,7 @@ public partial class Player : Character {
 	[SerializeField]
 	private AudioSource headSoundSource;
 	
-	public override void OnCharacterCollisionEnter( CharacterCollisionCallback ccc, Collision collision ){
-		
+	public override void OnCharacterCollisionEnter( CharacterCollisionCallback ccc, Collision collision ){	
 		Item colliderItem = collision.collider.gameObject.GetComponent(typeof(Item)) as Item;
 		if( colliderItem == null ){
 			return;
@@ -81,6 +80,11 @@ public partial class Player : Character {
 				leftPlayerHandState.AddToNearestItems( colliderItem, ccc.collisionPart );
 			}
 			break;
+		}
+	}
+	public override void OnCharacterTriggerStay(CharacterTriggerCallback ccc, Collider collider){
+		if( ccc.collisionPart == CharacterTriggerCallback.Type.ROOT ){
+			UpdateFootstepCheck();		
 		}
 	}
 	public override void OnCharacterTriggerExit(CharacterTriggerCallback ccc, Collider collider){

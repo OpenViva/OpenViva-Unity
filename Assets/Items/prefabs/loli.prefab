@@ -96,6 +96,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 335791a14cf022a48acec0a5162e9234, type: 2}
   animator: {fileID: 1221288143101194586}
   happiness: 1
+  Tired: 0
   ikAnimationTargets:
   - {fileID: 11400000, guid: 45554c258fa2a2e43920679200b8d3c4, type: 2}
   - {fileID: 11400000, guid: dba5ebd9398c2ed498acc1867669aaa2, type: 2}
@@ -730,6 +731,7 @@ SkinnedMeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -1017,6 +1019,7 @@ ConfigurableJoint:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 663049292560250917}
   m_ConnectedBody: {fileID: 0}
+  m_ConnectedArticulationBody: {fileID: 0}
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
@@ -1203,6 +1206,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 8059109563342906387}
+        m_TargetAssemblyTypeName: 
         m_MethodName: RegisterConstraint
         m_Mode: 1
         m_Arguments:
@@ -1217,6 +1221,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 8059109563342906387}
+        m_TargetAssemblyTypeName: 
         m_MethodName: UnregisterConstraint
         m_Mode: 1
         m_Arguments:
@@ -1350,6 +1355,7 @@ ConfigurableJoint:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 891094299990809449}
   m_ConnectedBody: {fileID: 4209953047998171920}
+  m_ConnectedArticulationBody: {fileID: 0}
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: -1, y: -0, z: -0}
   m_AutoConfigureConnectedAnchor: 1
@@ -1510,6 +1516,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 8059109563342906387}
+        m_TargetAssemblyTypeName: 
         m_MethodName: RegisterConstraint
         m_Mode: 1
         m_Arguments:
@@ -1524,6 +1531,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 8059109563342906387}
+        m_TargetAssemblyTypeName: 
         m_MethodName: UnregisterConstraint
         m_Mode: 1
         m_Arguments:
@@ -1580,6 +1588,7 @@ SkinnedMeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials: []
@@ -1783,6 +1792,7 @@ ConfigurableJoint:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 906477095629684990}
   m_ConnectedBody: {fileID: 2403582797264134237}
+  m_ConnectedArticulationBody: {fileID: 0}
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: -0, y: -0, z: -1}
   m_AutoConfigureConnectedAnchor: 1
@@ -1929,6 +1939,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 8059109563342906387}
+        m_TargetAssemblyTypeName: 
         m_MethodName: RegisterConstraint
         m_Mode: 1
         m_Arguments:
@@ -1943,6 +1954,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 8059109563342906387}
+        m_TargetAssemblyTypeName: 
         m_MethodName: UnregisterConstraint
         m_Mode: 1
         m_Arguments:
@@ -2916,6 +2928,7 @@ ConfigurableJoint:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2953396113185713158}
   m_ConnectedBody: {fileID: 688694918403615743}
+  m_ConnectedArticulationBody: {fileID: 0}
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
@@ -3065,6 +3078,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 8059109563342906387}
+        m_TargetAssemblyTypeName: 
         m_MethodName: RegisterConstraint
         m_Mode: 1
         m_Arguments:
@@ -3079,6 +3093,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 8059109563342906387}
+        m_TargetAssemblyTypeName: 
         m_MethodName: UnregisterConstraint
         m_Mode: 1
         m_Arguments:
@@ -3257,6 +3272,7 @@ ConfigurableJoint:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3072027410165413054}
   m_ConnectedBody: {fileID: 5269504556691052604}
+  m_ConnectedArticulationBody: {fileID: 0}
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: -1, y: -0, z: -0}
   m_AutoConfigureConnectedAnchor: 1
@@ -3389,6 +3405,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 8059109563342906387}
+        m_TargetAssemblyTypeName: 
         m_MethodName: RegisterConstraint
         m_Mode: 1
         m_Arguments:
@@ -3403,6 +3420,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 8059109563342906387}
+        m_TargetAssemblyTypeName: 
         m_MethodName: UnregisterConstraint
         m_Mode: 1
         m_Arguments:
@@ -3489,6 +3507,7 @@ ConfigurableJoint:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3093847927786251607}
   m_ConnectedBody: {fileID: 4301492182120162698}
+  m_ConnectedArticulationBody: {fileID: 0}
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
@@ -3663,6 +3682,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 8059109563342906387}
+        m_TargetAssemblyTypeName: 
         m_MethodName: RegisterConstraint
         m_Mode: 1
         m_Arguments:
@@ -3677,6 +3697,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 8059109563342906387}
+        m_TargetAssemblyTypeName: 
         m_MethodName: UnregisterConstraint
         m_Mode: 1
         m_Arguments:
@@ -3764,6 +3785,7 @@ SkinnedMeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -4188,6 +4210,7 @@ ConfigurableJoint:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3865439364589653568}
   m_ConnectedBody: {fileID: 1295932093887620273}
+  m_ConnectedArticulationBody: {fileID: 0}
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: -1, y: -0, z: -0}
   m_AutoConfigureConnectedAnchor: 1
@@ -4320,6 +4343,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 8059109563342906387}
+        m_TargetAssemblyTypeName: 
         m_MethodName: RegisterConstraint
         m_Mode: 1
         m_Arguments:
@@ -4334,6 +4358,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 8059109563342906387}
+        m_TargetAssemblyTypeName: 
         m_MethodName: UnregisterConstraint
         m_Mode: 1
         m_Arguments:
@@ -4825,6 +4850,7 @@ ConfigurableJoint:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4572272287724327221}
   m_ConnectedBody: {fileID: 1295932093887620273}
+  m_ConnectedArticulationBody: {fileID: 0}
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
@@ -4985,6 +5011,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 8059109563342906387}
+        m_TargetAssemblyTypeName: 
         m_MethodName: RegisterConstraint
         m_Mode: 1
         m_Arguments:
@@ -4999,6 +5026,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 8059109563342906387}
+        m_TargetAssemblyTypeName: 
         m_MethodName: UnregisterConstraint
         m_Mode: 1
         m_Arguments:
@@ -5479,6 +5507,7 @@ ConfigurableJoint:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5612466964843928373}
   m_ConnectedBody: {fileID: 5022478073786159304}
+  m_ConnectedArticulationBody: {fileID: 0}
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
@@ -5639,6 +5668,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 8059109563342906387}
+        m_TargetAssemblyTypeName: 
         m_MethodName: RegisterConstraint
         m_Mode: 1
         m_Arguments:
@@ -5653,6 +5683,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 8059109563342906387}
+        m_TargetAssemblyTypeName: 
         m_MethodName: UnregisterConstraint
         m_Mode: 1
         m_Arguments:
@@ -5971,6 +6002,7 @@ ConfigurableJoint:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6148157327516816241}
   m_ConnectedBody: {fileID: 8397432653659082314}
+  m_ConnectedArticulationBody: {fileID: 0}
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
@@ -6144,6 +6176,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 8059109563342906387}
+        m_TargetAssemblyTypeName: 
         m_MethodName: RegisterConstraint
         m_Mode: 1
         m_Arguments:
@@ -6158,6 +6191,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 8059109563342906387}
+        m_TargetAssemblyTypeName: 
         m_MethodName: UnregisterConstraint
         m_Mode: 1
         m_Arguments:
@@ -6304,6 +6338,7 @@ ConfigurableJoint:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6446886903383662374}
   m_ConnectedBody: {fileID: 5144162877359936365}
+  m_ConnectedArticulationBody: {fileID: 0}
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: -1, y: -0, z: -0}
   m_AutoConfigureConnectedAnchor: 1
@@ -6450,6 +6485,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 8059109563342906387}
+        m_TargetAssemblyTypeName: 
         m_MethodName: RegisterConstraint
         m_Mode: 1
         m_Arguments:
@@ -6464,6 +6500,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 8059109563342906387}
+        m_TargetAssemblyTypeName: 
         m_MethodName: UnregisterConstraint
         m_Mode: 1
         m_Arguments:
@@ -6730,6 +6767,7 @@ ConfigurableJoint:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6944980756416680034}
   m_ConnectedBody: {fileID: 688694918403615743}
+  m_ConnectedArticulationBody: {fileID: 0}
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
@@ -7021,6 +7059,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 8059109563342906387}
+        m_TargetAssemblyTypeName: 
         m_MethodName: RegisterConstraint
         m_Mode: 1
         m_Arguments:
@@ -7035,6 +7074,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 8059109563342906387}
+        m_TargetAssemblyTypeName: 
         m_MethodName: UnregisterConstraint
         m_Mode: 1
         m_Arguments:
@@ -7168,6 +7208,7 @@ ConfigurableJoint:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7171133796720205322}
   m_ConnectedBody: {fileID: 1295932093887620273}
+  m_ConnectedArticulationBody: {fileID: 0}
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: -1, y: -0, z: -0}
   m_AutoConfigureConnectedAnchor: 1
@@ -7300,6 +7341,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 8059109563342906387}
+        m_TargetAssemblyTypeName: 
         m_MethodName: RegisterConstraint
         m_Mode: 1
         m_Arguments:
@@ -7314,6 +7356,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 8059109563342906387}
+        m_TargetAssemblyTypeName: 
         m_MethodName: UnregisterConstraint
         m_Mode: 1
         m_Arguments:
@@ -7464,6 +7507,7 @@ ConfigurableJoint:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7598916357781268670}
   m_ConnectedBody: {fileID: 4333725469955987103}
+  m_ConnectedArticulationBody: {fileID: 0}
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 0, z: 1}
   m_AutoConfigureConnectedAnchor: 1
@@ -7610,6 +7654,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 8059109563342906387}
+        m_TargetAssemblyTypeName: 
         m_MethodName: RegisterConstraint
         m_Mode: 1
         m_Arguments:
@@ -7624,6 +7669,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 8059109563342906387}
+        m_TargetAssemblyTypeName: 
         m_MethodName: UnregisterConstraint
         m_Mode: 1
         m_Arguments:
@@ -7948,6 +7994,7 @@ ConfigurableJoint:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8145904912262427572}
   m_ConnectedBody: {fileID: 688694918403615743}
+  m_ConnectedArticulationBody: {fileID: 0}
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
@@ -8097,6 +8144,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 8059109563342906387}
+        m_TargetAssemblyTypeName: 
         m_MethodName: RegisterConstraint
         m_Mode: 1
         m_Arguments:
@@ -8111,6 +8159,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 8059109563342906387}
+        m_TargetAssemblyTypeName: 
         m_MethodName: UnregisterConstraint
         m_Mode: 1
         m_Arguments:
@@ -8208,6 +8257,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -8232,6 +8282,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!114 &2060431801450243014
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8531,6 +8582,7 @@ ConfigurableJoint:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8975409848463957927}
   m_ConnectedBody: {fileID: 7295782423820661353}
+  m_ConnectedArticulationBody: {fileID: 0}
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: -1, y: -0, z: -0}
   m_AutoConfigureConnectedAnchor: 1
@@ -8663,6 +8715,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 8059109563342906387}
+        m_TargetAssemblyTypeName: 
         m_MethodName: RegisterConstraint
         m_Mode: 1
         m_Arguments:
@@ -8677,6 +8730,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 8059109563342906387}
+        m_TargetAssemblyTypeName: 
         m_MethodName: UnregisterConstraint
         m_Mode: 1
         m_Arguments:
@@ -8805,6 +8859,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -8829,6 +8884,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!114 &1338452146050941479
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9068,6 +9124,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -4216859302048453862, guid: 91cd8be877278e04789e27cd26c4ad7f,
         type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -4216859302048453862, guid: 91cd8be877278e04789e27cd26c4ad7f,
+        type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.03589
       objectReference: {fileID: 0}
@@ -9083,6 +9144,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 91cd8be877278e04789e27cd26c4ad7f,
         type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.9887336
+      objectReference: {fileID: 0}
+    - target: {fileID: -4216859302048453862, guid: 91cd8be877278e04789e27cd26c4ad7f,
+        type: 3}
       propertyPath: m_LocalRotation.x
       value: -0.14258134
       objectReference: {fileID: 0}
@@ -9095,16 +9161,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalRotation.z
       value: 0.00044221178
-      objectReference: {fileID: 0}
-    - target: {fileID: -4216859302048453862, guid: 91cd8be877278e04789e27cd26c4ad7f,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.9887336
-      objectReference: {fileID: 0}
-    - target: {fileID: -4216859302048453862, guid: 91cd8be877278e04789e27cd26c4ad7f,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 91cd8be877278e04789e27cd26c4ad7f,
         type: 3}

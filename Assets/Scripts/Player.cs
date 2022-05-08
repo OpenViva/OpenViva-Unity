@@ -19,7 +19,6 @@ public partial class Player : Character {
 	public Vector3 mousePosition { get; private set; } = Vector2.zero;
     public bool keyboardAlt { get; private set; } = false;
 
-
 	[SerializeField]
 	private ObjectFingerPointer m_objectFingerPointer;
 	public ObjectFingerPointer objectFingerPointer { get{ return m_objectFingerPointer; } }
@@ -166,6 +165,18 @@ public partial class Player : Character {
     public void SetControls( ControlType newControls ){
         controls = newControls;
         ReloadCurrentControlType();
+    }
+
+    public void SetCrosshair( bool enabled ){
+        if( enabled ){
+            if( controls == ControlType.OPEN_VR ){
+                return;
+            }else{
+                crosshair.SetActive(true);
+            }         
+        }else{
+            crosshair.SetActive(false);
+        }
     }
 
     public void TogglePerformanceUI(){

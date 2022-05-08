@@ -36,6 +36,10 @@ public class CharacterCollisionCallback : MonoBehaviour {
 		owner.OnCharacterCollisionEnter( this, collision );
 	}
 
+	private void OnCollisionStay( Collision collision ){
+		owner.OnCharacterCollisionStay( this, collision );
+	}
+
 	private void OnCollisionExit( Collision collision ){
 		owner.OnCharacterCollisionExit( this, collision );
 	}

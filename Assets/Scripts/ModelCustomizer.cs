@@ -90,10 +90,10 @@ public partial class ModelCustomizer : UITabMenu
         ValidateAllowTweakTab();
         this.enabled = false;
     }
-
+    
     private void Start(){
         #if UNITY_EDITOR
-        if( !DEBUG_BOOL ){
+        if( !DEBUG_BOOL ){ //This is a Hardcoded Way to Load Viva Files Since you cant drag and drop into unity editor
             DEBUG_BOOL = true;
             GameDirector.player.vivaControls.keyboard.wave.performed += delegate{
                 ClickCreateTab();

@@ -10,9 +10,9 @@ public partial class Player : Character {
 
     
     public float keyboardCurrentHeight = 1.4f;
-    private float keyboardTargetHeight = 1.4f;
+    public float keyboardTargetHeight = 1.4f;
     public float keyboardStandingHeight = 1.4f;
-    private float keyboardFloorHeight = 0.5f;
+    public float keyboardFloorHeight = 0.5f;
     private float keyboardMaxHeightOverride = 1.4f;
     private float enableMouseRotationMult = 1.0f;
     private Coroutine halfCrouchCoroutine = null;
@@ -21,7 +21,7 @@ public partial class Player : Character {
     private void SetEnableKeyboardControls( bool enable ){
         if( enable ){
             vivaControls.keyboard.Enable();
-            cursor.SetActive( true );
+            crosshair.SetActive( true );
             head.localPosition = Vector3.up*keyboardCurrentHeight;
             GameDirector.instance.mainCamera.stereoTargetEye = StereoTargetEyeMask.None;
             GameDirector.instance.mainCamera.fieldOfView = 65.0f;

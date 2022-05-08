@@ -31,6 +31,10 @@ public class CharacterTriggerCallback : MonoBehaviour {
 		owner.OnCharacterTriggerEnter( this, collider );
 	}
 
+	private void OnTriggerStay(Collider collider){
+		owner.OnCharacterTriggerStay( this, collider );
+	}
+
 	private void OnTriggerExit( Collider collider ){
 		owner.OnCharacterTriggerExit( this, collider );
 	}

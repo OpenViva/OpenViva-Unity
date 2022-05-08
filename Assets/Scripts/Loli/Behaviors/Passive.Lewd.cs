@@ -83,7 +83,8 @@ public class LewdBehavior : PassiveBehaviors.PassiveTask {
 		switch( newAnim ){
 		case Loli.Animation.STAND_REACT_PERV_FRONT_IN:
 			GameDirector.player.CompleteAchievement(Player.ObjectiveType.LOOK_UP_SKIRT);
-			// self.hold.dropAllHandObjectsIfAvailable();
+			self.rightHandState.AttemptDrop();
+			self.leftHandState.AttemptDrop();
 			self.ShiftHappiness(-2);
 			self.SetViewAwarenessTimeout( 5.0f );
 			break;

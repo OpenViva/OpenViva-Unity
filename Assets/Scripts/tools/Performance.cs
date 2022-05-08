@@ -22,7 +22,7 @@ using System.Diagnostics;
     private static int[] frameBuckets = new int[6];
     private static float[] frameBucketFractions = new float[6];
 
-    public static FrameRateCategory frameRateCategory => Performance.CategorizeFrameRate(Performance.FrameCountLastSecond);
+    public static FrameRateCategory FramerateCategory => Performance.CategorizeFrameRate(Performance.FrameCountLastSecond);
 
     public static int FrameCountLastSecond { get; private set; }
 
@@ -55,7 +55,7 @@ using System.Diagnostics;
       Performance.UpdateFrameBuckets();
     }
 
-    private static FrameRateCategory CategorizeFrameRate(int i)
+    public static FrameRateCategory CategorizeFrameRate(int i)
     {
       if (i < Performance.TargetFrameRate / 4)
         return FrameRateCategory.Unplayable;
@@ -70,7 +70,7 @@ using System.Diagnostics;
 
     private static void UpdateFrameBuckets()
     {
-      ++Performance.frameBuckets[(int) frameRateCategory];
+      ++Performance.frameBuckets[(int) FramerateCategory];
       int frameR = 0;
       for (int i = 0; i < Performance.frameBuckets.Length; ++i)
         frameR += Performance.frameBuckets[i];

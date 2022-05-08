@@ -72,6 +72,7 @@
      <Compile Include="Assets\Scripts\Loli\BlendController.cs" />
      <Compile Include="Assets\Scripts\Loli\FirstServeCallStack.cs" />
      <Compile Include="Assets\Scripts\Fuse.cs" />
+     <Compile Include="Assets\3rd Party\Terrain Stitch\Terrain Stitch Scripts\IntArrayComparer.cs" />
      <Compile Include="Assets\Packages\UnityFBXExporter\FBXUnityMaterialGetter.cs" />
      <Compile Include="Assets\Scripts\tools\ScriptableObjectsSources\Voice.cs" />
      <Compile Include="Assets\Scripts\PhysicsSound.cs" />
@@ -98,6 +99,7 @@
      <Compile Include="Assets\Packages\UnityFBXExporter\FBXExporter.cs" />
      <Compile Include="Assets\Scripts\UI\VRSlider.cs" />
      <Compile Include="Assets\Scripts\GameDirector.Graphics.cs" />
+     <Compile Include="Assets\3rd Party\Terrain Stitch\Terrain Stitch Scripts\TerrainNeighbours.cs" />
      <Compile Include="Assets\Scripts\Horse.VRControls.cs" />
      <Compile Include="Assets\Scripts\TowelClip.cs" />
      <Compile Include="Assets\Scripts\GameDirector.Highlight.cs" />
@@ -106,6 +108,7 @@
      <Compile Include="Assets\Scripts\Loli\ClothingPresetBinding.cs" />
      <Compile Include="Assets\Scripts\3rd party\UnityWindowsFileDrag-Drop-master\FileDragAndDrop.cs" />
      <Compile Include="Assets\Scripts\Loli\Behaviors\Active.Chopsticks.cs" />
+     <Compile Include="Assets\3rd Party\Terrain Stitch\Terrain Stitch Scripts\Third Party\Matrix.cs" />
      <Compile Include="Assets\Scripts\Loli\Behaviors\Active.Beg.cs" />
      <Compile Include="Assets\Scripts\ByteStream.cs" />
      <Compile Include="Assets\Scripts\Player.Objective.cs" />
@@ -178,6 +181,7 @@
      <Compile Include="Assets\Scripts\Loli\Behaviors\Autonomy.Pickup.cs" />
      <Compile Include="Assets\Scripts\Loli\Behaviors\Active.Idle.Items.cs" />
      <Compile Include="Assets\Scripts\tools\ScriptableObjectsSources\SoundSet.cs" />
+     <Compile Include="Assets\3rd Party\Terrain Stitch\Terrain Stitch Scripts\Third Party\Complex.cs" />
      <Compile Include="Assets\Scripts\Horse.cs" />
      <Compile Include="Assets\Scripts\BagUIMenu.cs" />
      <Compile Include="Assets\Scripts\ManekiNeko.cs" />
@@ -1117,8 +1121,14 @@
     <Reference Include="Unity.XR.OpenVR.Editor">
         <HintPath>E:\GitHub\OpenViva\Library\ScriptAssemblies\Unity.XR.OpenVR.Editor.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.TerrainTools">
+        <HintPath>E:\GitHub\OpenViva\Library\ScriptAssemblies\Unity.TerrainTools.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEngine.XR.LegacyInputHelpers">
         <HintPath>E:\GitHub\OpenViva\Library\ScriptAssemblies\UnityEngine.XR.LegacyInputHelpers.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.TerrainTools.Editor">
+        <HintPath>E:\GitHub\OpenViva\Library\ScriptAssemblies\Unity.TerrainTools.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.XR.OpenXR.Editor">
         <HintPath>E:\GitHub\OpenViva\Library\ScriptAssemblies\Unity.XR.OpenXR.Editor.dll</HintPath>

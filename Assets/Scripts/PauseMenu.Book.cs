@@ -54,11 +54,13 @@ public partial class PauseMenu : UIMenu {
 
     private void OnOpenBookFinished(){
         SetPauseMenu( targetOnOpenMenuTab );
+        GameDirector.player.SetCrosshair(false); //disable crosshair
         targetOnOpenMenuTab = PauseMenu.Menu.ROOT;  //reset target
     }
 
     private void OnCloseBookFinished(){
         ContinueTutorial( MenuTutorial.WAIT_TO_EXIT_CHECKLIST );
+        GameDirector.player.SetCrosshair(true); //enable crosshair
         SetMenuActive(Menu.NONE,false);
         gameObject.SetActive( false );
     }

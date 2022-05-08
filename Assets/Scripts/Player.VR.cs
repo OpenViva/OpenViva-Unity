@@ -26,8 +26,7 @@ public partial class Player : Character {
     private Texture2D validTeleportTex;
     [SerializeField]
     private Texture2D invalidTeleportTex;
-    [SerializeField]
-    private GameObject cursor;
+    public GameObject crosshair;
     
     private const int teleportMaxQuads = 20;
     [SerializeField]
@@ -62,7 +61,7 @@ public partial class Player : Character {
             rightPlayerHandState.StartDeprecatedXRInput();
             leftPlayerHandState.StartDeprecatedXRInput();
 
-            cursor.SetActive( false );
+            crosshair.SetActive( false );
             InitVRTeleportVariables();
             GameDirector.instance.mainCamera.stereoTargetEye = StereoTargetEyeMask.Both;
         }else{

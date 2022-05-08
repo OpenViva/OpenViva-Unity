@@ -63,10 +63,11 @@ HingeJoint:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1234034087227404}
   m_ConnectedBody: {fileID: 0}
+  m_ConnectedArticulationBody: {fileID: 0}
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 1, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0, y: 0, z: 0}
+  m_ConnectedAnchor: {x: 161.15614, y: 102.5, z: 56.27767}
   m_UseSpring: 0
   m_Spring:
     spring: 0
@@ -138,6 +139,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -162,6 +164,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!33 &33496051611898958
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -229,6 +232,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -253,6 +257,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!114 &114234594600293038
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -270,21 +275,16 @@ MonoBehaviour:
   assetName: 
   m_settings: {fileID: 11400000, guid: 93184aad9db24575abdd40bc1614c75c, type: 2}
   m_rigidBody: {fileID: 54616457197988366}
-  m_soundSource: {fileID: 0}
-  m_owner: {fileID: 0}
+  m_owners: []
   spawnSleepMode: 1
   m_indicatorOffset: {x: -0.09, y: 0, z: 0}
-  collisionSoundsSoft: {fileID: 0}
-  collisionSoundsHard: {fileID: 0}
   statusBar: {fileID: 0}
   m_colliders: []
   partOfHeldItemHierarchy: 0
   parentMechanism: {fileID: 114878416515546340}
   maxRotation: 360
   disableTwist: 1
-  twistForReposition: Infinity
   disablePlayerMouseLookRotation: 1
-  playerRepositionAnimation: 16
 --- !u!135 &135283642208737514
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -322,6 +322,7 @@ FixedJoint:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1502462748226112}
   m_ConnectedBody: {fileID: 54044173639764390}
+  m_ConnectedArticulationBody: {fileID: 0}
   m_BreakForce: Infinity
   m_BreakTorque: Infinity
   m_EnableCollision: 0
@@ -514,6 +515,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -538,6 +540,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!114 &114161712267418864
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -555,21 +558,16 @@ MonoBehaviour:
   assetName: 
   m_settings: {fileID: 11400000, guid: 93184aad9db24575abdd40bc1614c75c, type: 2}
   m_rigidBody: {fileID: 54765827063187004}
-  m_soundSource: {fileID: 0}
-  m_owner: {fileID: 0}
+  m_owners: []
   spawnSleepMode: 1
   m_indicatorOffset: {x: -0.09, y: 0, z: 0}
-  collisionSoundsSoft: {fileID: 0}
-  collisionSoundsHard: {fileID: 0}
   statusBar: {fileID: 0}
   m_colliders: []
   partOfHeldItemHierarchy: 0
   parentMechanism: {fileID: 114878416515546340}
   maxRotation: 360
   disableTwist: 1
-  twistForReposition: Infinity
   disablePlayerMouseLookRotation: 1
-  playerRepositionAnimation: 16
 --- !u!135 &135554064292069052
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -607,6 +605,7 @@ FixedJoint:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1977956803785620}
   m_ConnectedBody: {fileID: 54044173639764390}
+  m_ConnectedArticulationBody: {fileID: 0}
   m_BreakForce: Infinity
   m_BreakTorque: Infinity
   m_EnableCollision: 0

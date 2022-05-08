@@ -84,9 +84,13 @@ public abstract partial class Character: VivaSessionAsset {
 
 	public virtual void OnCharacterCollisionEnter( CharacterCollisionCallback ccc, Collision collision ){
 	}
+	public virtual void OnCharacterCollisionStay( CharacterCollisionCallback ccc, Collision collision ){
+	}
 	public virtual void OnCharacterCollisionExit( CharacterCollisionCallback ccc, Collision collision ){
 	}
 	public virtual void OnCharacterTriggerEnter( CharacterTriggerCallback ccc, Collider collider ){
+	}
+	public virtual void OnCharacterTriggerStay( CharacterTriggerCallback ccc, Collider collider ){
 	}
 	public virtual void OnCharacterTriggerExit( CharacterTriggerCallback ccc, Collider collider ){
 	}

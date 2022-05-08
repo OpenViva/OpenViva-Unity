@@ -6,6 +6,8 @@ namespace viva
   public class PerformanceUI : MonoBehaviour
   {
     [SerializeField]
+    private LayoutElement[] rainbow;
+    [SerializeField]
     private Text fps;
     [SerializeField]
     private Text ms;
@@ -35,6 +37,13 @@ namespace viva
       ms.text = Performance.AvgFrameTimeLastSecond.ToString("0.00");
       mb.text = Performance.MemoryUsage.ToString("N0");
       gc.text = Performance.GarbageCollections.ToString("N0");
+      this.UpdateRainbow();
+    }
+
+    private void UpdateRainbow()
+    {
+      for (int category = 0; category < 6; ++category)
+        this.rainbow[category].flexibleWidth = Performance.GetFrameFraction((Performance.FrameRateCategory) category) * 1000f;
     }
   }
 }

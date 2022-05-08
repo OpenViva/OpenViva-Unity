@@ -18,14 +18,18 @@ public class KeyboardController : InputController {
     }
 
     public override void OnFixedUpdateControl( Player player ){
-        if( GameDirector.instance.controlsAllowed != GameDirector.ControlsAllowed.NONE ){
-            
+        if( GameDirector.instance.controlsAllowed != GameDirector.ControlsAllowed.NONE ){       
             Vector3 accel = new Vector3( player.movement.x, 0.0f, player.movement.y );
             if( accel != Vector3.zero ){
                 Vector3 headPlaneXZ = player.head.TransformDirection( accel );
                 headPlaneXZ.y = 0.0f;
-
-                float speed = player.walkSpeed*( 1.0f+System.Convert.ToInt32( player.keyboardAlt )*2.0f );
+                float speed;
+                if(GameDirector.player.keyboardTargetHeight == GameDirector.player.keyboardFloorHeight){
+                    speed = player.walkSpeed;
+                }else{
+                    speed = player.walkSpeed*( 1.0f+System.Convert.ToInt32( player.keyboardAlt )*2.0f );
+                }            
+                Debug.LogError(speed);
                 player.moveVel += headPlaneXZ.normalized*speed;
             }
         }
@@ -40,8 +44,6 @@ public class KeyboardController : InputController {
 
         player.FixedUpdatePlayerCapsule( player.keyboardCurrentHeight );
         player.ApplyHeadTransformToArmature();
-
-        player.UpdateFootstepCheck();
 
         if( GameDirector.instance.controlsAllowed <= GameDirector.ControlsAllowed.HAND_INPUT_ONLY ){
             
