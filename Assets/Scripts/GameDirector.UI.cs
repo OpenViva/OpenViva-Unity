@@ -119,7 +119,7 @@ public partial class GameDirector : MonoBehaviour {
             lastMenu.OnExitUIInput();
         }
         SetLastNewMenu( newMenu );
-
+        player.SetCrosshair( false ); //disable crosshair
         sourcePlayer = newSourcePlayer;
         UpdateSourcePlayerUIControlType();
         lastMenu.OnBeginUIInput();
@@ -200,6 +200,7 @@ public partial class GameDirector : MonoBehaviour {
         aimingAtUI = false;
         raycastLaserMF.gameObject.SetActive(false);
         SetEnableControls( ControlsAllowed.ALL );
+        player.SetCrosshair(true); //enable crosshair
 
         ///TODO: RETURN TO CURRENT ITEMS ANIMATION NOT IDLE!
         sourcePlayer.rightPlayerHandState.animSys.SetTargetAndIdleOverrideAnimation( Player.Animation.NONE );
