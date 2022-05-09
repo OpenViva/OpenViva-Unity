@@ -368,7 +368,7 @@ public partial class CookingBehavior : ActiveBehaviors.ActiveTask {
             searchTimer = 0.0f;
 			self.autonomy.SetAutonomy(new AutonomyFaceDirection( self.autonomy, "face direction", delegate(TaskTarget target){
                         target.SetTargetPosition( self.floorPos-self.transform.forward );
-                    } ) );
+                    }, 15.0f ) );
             // self.SetRootFacingTarget( self.floorPos-self.transform.forward, 200.0f, 15.0f, 15.0f );
             self.SetTargetAnimation( Loli.Animation.STAND_SEARCH_RIGHT );
             searches++;

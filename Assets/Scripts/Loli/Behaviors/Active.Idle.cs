@@ -114,7 +114,7 @@ public partial class IdleBehavior: ActiveBehaviors.ActiveTask{
 					// self.SetRootFacingTarget( source.transform.position, 100.0f, 10.0f, 15.0f );
 					self.autonomy.SetAutonomy(new AutonomyFaceDirection( self.autonomy, "face direction", delegate(TaskTarget target){
                         target.SetTargetPosition( source.transform.position );
-                    } ) );
+                    }, 10.0f ) );
 					return true;
 				}
 			}

@@ -37,7 +37,7 @@ public class EnvironmentBehavior : PassiveBehaviors.PassiveTask {
 
 		self.autonomy.SetAutonomy(new AutonomyFaceDirection( self.autonomy, "face direction", delegate(TaskTarget target){
                         target.SetTargetPosition( particlePosition );
-                    } ) );
+                    }, 20.0f ) );
 		// self.SetRootFacingTarget( particlePosition, 150.0f, 20.0f, 30.0f );
 		return true;
 	}

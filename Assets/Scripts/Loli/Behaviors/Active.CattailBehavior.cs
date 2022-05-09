@@ -54,7 +54,7 @@ public class CattailBehavior : ActiveBehaviors.ActiveTask {
 			// self.SetRootFacingTarget( GameDirector.player.floorPos, 140.0f, 25.0f, 20.0f );
 			self.autonomy.SetAutonomy(new AutonomyFaceDirection( self.autonomy, "face direction", delegate(TaskTarget target){
                         target.SetTargetPosition( GameDirector.player.floorPos );
-                    } ) );
+                    }, 25.0f ) );
 
 			//if facing player under 35 degrees bearing
 			if( Mathf.Abs( Tools.Bearing( self.transform, GameDirector.player.floorPos ) ) < 35.0f &&

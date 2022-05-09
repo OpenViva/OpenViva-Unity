@@ -67,7 +67,7 @@ public class CameraUseBehavior : ActiveBehaviors.ActiveTask {
 			// self.SetRootFacingTarget( cameraTarget.transform.position, 200.0f, 12.0f, 10.0f );
 			self.autonomy.SetAutonomy(new AutonomyFaceDirection( self.autonomy, "face direction", delegate(TaskTarget target){
                         target.SetTargetPosition( cameraTarget.transform.position );
-                    } ) );
+                    }, 12.0f ) );
 
 			if( IsCameraTargetPrepared( camera ) && stillTimerHasReset ){
 				
