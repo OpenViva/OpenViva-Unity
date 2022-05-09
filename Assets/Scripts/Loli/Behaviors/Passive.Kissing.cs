@@ -7,14 +7,18 @@ namespace viva{
 
 
 public class KissingBehavior : PassiveBehaviors.PassiveTask {
-
+	
+	private Vector3 cheekOffset = Vector3.zero;
 	public Loli.Animation postKissAnim = Loli.Animation.NONE;
-	private readonly float minStartleSqSpeed = 16.0f;
+	private bool animBusy = false;
+	private float waitToFaceTimer = 0.0f;
+	private bool kissDisableFaceYaw = false;
 
 	public KissingBehavior( Loli _self ):base(_self,0.0f){
-
-		self.onCharacterCollisionEnter += OnCharacterCollisionEnter;
+			
+		cheekOffset = new Vector3( 0.019f, 0.016f, 0.018f );
 	}
+
 
 	public class TransitionToPostKiss: Loli.TransitionHandle{
 		
@@ -25,120 +29,118 @@ public class KissingBehavior : PassiveBehaviors.PassiveTask {
 		}
 	}
 
+	private bool IsNearCheek( float side ){
+		cheekOffset.x = Mathf.Abs( cheekOffset.x )*side;
+		Vector3 cheekPos = self.head.TransformPoint( cheekOffset );
 
-	public override void OnFixedUpdate(){
-		foreach( var itemEntry in self.passive.nearbyItems ){
-			Item item = itemEntry._1;
-			if( item == null || item.mainOwner == self || item.rigidBody == null ){
-				continue;
-			}
-			var sqSpeed = item.rigidBody.velocity.sqrMagnitude;
-			if( sqSpeed > minStartleSqSpeed ){
-				//check if coming into opposite direction
-				if( Vector3.Dot( item.rigidBody.velocity, self.head.forward ) < 0.0f ){
-					if( self.CanSeePoint( item.transform.position ) ){
-						Startle( item );
-					}
-				}
-			}
+		if( Vector3.Distance( GameDirector.player.head.transform.position, cheekPos ) < 0.22f ){
+			return true;
 		}
+		return false;
 	}
 
-	private void Kiss( bool rightCheek, Character source ){
-
-		if( source.characterType == self.characterType ){
+	private void checkKissingProximity(){
+		if( animBusy ){
 			return;
 		}
-
-		int side = System.Convert.ToInt32( rightCheek );
-		Loli.Animation kissAnim;
-		if( self.IsHappy() ){
-			kissAnim = self.bodyStateAnimationSets[ (int)self.bodyState ].GetAnimationSet( AnimationSet.CHEEK_KISS_HAPPY_RIGHT_LEFT, side );
-		}else{
-			kissAnim = self.bodyStateAnimationSets[ (int)self.bodyState ].GetAnimationSet( AnimationSet.CHEEK_KISS_ANGRY_RIGHT_LEFT, side );
-			if( Random.value > 0.5f ){
-				postKissAnim = self.bodyStateAnimationSets[ (int)self.bodyState ].GetAnimationSet( AnimationSet.CHEEK_KISS_ANGRY_TO_HAPPY_RIGHT_LEFT, side );
-				self.ShiftHappiness(2); //ACTUALLY MAKE HER HAPPY
-				GameDirector.player.CompleteAchievement(Player.ObjectiveType.KISS_MAKE_HAPPY); 
+		if( self.bodyState != BodyState.STAND ){
+			return;
+		}
+		if( IsNearCheek( -1.0f ) ){
+			if( self.IsHappy() ){
+				self.SetTargetAnimation( Loli.Animation.STAND_KISS_HAPPY_CHEEK_LEFT );
+				facePlayer(2.0f);
 			}else{
-				postKissAnim = self.bodyStateAnimationSets[ (int)self.bodyState ].GetAnimationSet( AnimationSet.CHEEK_KISS_ANGRY_TO_ANGRY_RIGHT_LEFT, side );
-				self.ShiftHappiness(-2);
-				GameDirector.player.CompleteAchievement(Player.ObjectiveType.KISS_ANGRY_WIPE);
-			}
-			if( postKissAnim == Loli.Animation.NONE ){
-				return;
-			}
-		}
-		if( kissAnim == Loli.Animation.NONE ){
-			return;
-		}
-		var playKissAnim = new AutonomyPlayAnimation( self.autonomy, "play kiss anim", kissAnim );
-
-		var faceSource = new AutonomyFaceDirection( self.autonomy, "face startle", delegate( TaskTarget target ){
-			target.SetTargetPosition( source.head.position );
-		} );
-		bool kissDisableFaceYaw = false;
-		faceSource.onRegistered += delegate{ self.ApplyDisableFaceYaw( ref kissDisableFaceYaw ); };
-		faceSource.onRegistered += delegate{ self.RemoveDisableFaceYaw( ref kissDisableFaceYaw ); };
-		playKissAnim.AddPassive( faceSource );
-		self.autonomy.Interrupt( playKissAnim );
-	}
-
-	private void Startle( Item sourceItem ){
-		
-		Loli.Animation startleAnim;
-		if( self.IsHappy() ){
-			startleAnim = self.bodyStateAnimationSets[ (int)self.bodyState ].GetRandomAnimationSet( AnimationSet.STARTLED_HAPPY );
-		}else{
-			startleAnim = self.bodyStateAnimationSets[ (int)self.bodyState ].GetRandomAnimationSet( AnimationSet.STARTLED_ANGRY );
-		}
-		if( startleAnim == Loli.Animation.NONE ){
-			return;
-		}
-
-		var playStartleAnim = new AutonomyPlayAnimation( self.autonomy, "play startle", startleAnim );
-
-		var faceSource = new AutonomyFaceDirection( self.autonomy, "face startle", delegate( TaskTarget target ){
-			target.SetTargetItem( sourceItem );
-		} );
-		bool kissDisableFaceYaw = false;
-		faceSource.onRegistered += delegate{ self.ApplyDisableFaceYaw( ref kissDisableFaceYaw ); };
-		faceSource.onRegistered += delegate{ self.RemoveDisableFaceYaw( ref kissDisableFaceYaw ); };
-
-		playStartleAnim.onAnimationEnter += delegate{
-			Vector3 surprisePush = self.floorPos-sourceItem.transform.position;
-			surprisePush.y = 0.0f;
-			surprisePush = surprisePush.normalized*2.0f;
-			self.locomotion.PlayForce( surprisePush, 0.2f );
-		};
-
-		playStartleAnim.AddPassive( faceSource );
-		self.autonomy.Interrupt( playStartleAnim );
-	}
-
-	private void OnCharacterCollisionEnter( CharacterCollisionCallback ccc, Collision collision ){
-		Item item = collision.collider.GetComponent<Item>();
-		if( item != null && item.settings.itemType == Item.Type.CHARACTER && item.mainOwner.headItem == item ){
-			var kissAveragePos = GamePhysics.AverageContactPosition( collision, 2 );
-			if( kissAveragePos.HasValue ){
-				Vector3 localKissPos = self.headItem.transform.InverseTransformPoint( kissAveragePos.Value );
-				if( localKissPos.z > 0.0f ){
-					Kiss( localKissPos.x > 0, item.mainOwner );
+				self.SetTargetAnimation( Loli.Animation.STAND_KISS_ANGRY_CHEEK_LEFT );
+				if( Random.value > 0.95 ){
+					postKissAnim = Loli.Animation.STAND_KISS_ANGRY_RIGHT_TO_ANGRY;
+				}else{
+					postKissAnim = Loli.Animation.STAND_KISS_ANGRY_RIGHT_TO_HAPPY;
 				}
+				facePlayer(1.0f);
+			}
+		}else if( IsNearCheek( 1.0f ) ){
+			if( self.IsHappy() ){
+				self.SetTargetAnimation( Loli.Animation.STAND_KISS_HAPPY_CHEEK_RIGHT );
+				facePlayer(2.0f);
+			}else{
+				self.SetTargetAnimation( Loli.Animation.STAND_KISS_ANGRY_CHEEK_RIGHT );
+				if( Random.value > 0.95 ){
+					postKissAnim = Loli.Animation.STAND_KISS_ANGRY_LEFT_TO_ANGRY;
+				}else{
+					postKissAnim = Loli.Animation.STAND_KISS_ANGRY_LEFT_TO_HAPPY;
+				}
+				facePlayer(1.0f);
 			}
 		}
 	}
 
+	public override void OnUpdate(){
 
-	private bool BehaviorIsAllowed(){
-		//disable during headpat
-		if( self.passive.headpat.IsHeadpatActive() ){
-			return false;
+		//disable during hugging
+		if( self.active.IsTaskActive( self.passive.hug ) ){
+			return;
 		}
-		if( self.IsTired() ){
-			return false;
+		checkKissingProximity();
+		
+	}
+
+	private void facePlayer( float faceDirSpeedMult ){
+		//self.SetRootFacingTarget( GameDirector.player.head.transform.position, 100.0f*faceDirSpeedMult, 20.0f*faceDirSpeedMult, 10.0f );
+		//self.autonomy.SetAutonomy(new AutonomyFaceDirection( self.autonomy, "face direction", delegate(TaskTarget target){
+        //                target.SetTargetPosition( GameDirector.player.head.transform.position );
+        //            }, 100.0f*faceDirSpeedMult ) );
+
+		self.SetLookAtTarget( GameDirector.player.head );
+	}
+	
+	public override void OnAnimationChange( Loli.Animation oldAnim, Loli.Animation newAnim ){
+		switch( newAnim ){
+		case Loli.Animation.STAND_KISS_ANGRY_LEFT_TO_HAPPY:
+		case Loli.Animation.STAND_KISS_ANGRY_RIGHT_TO_HAPPY:
+			self.ShiftHappiness(2);
+			break;
 		}
-		return true;
+		switch( oldAnim ){
+		case Loli.Animation.STAND_KISS_ANGRY_LEFT_TO_HAPPY:
+		case Loli.Animation.STAND_KISS_ANGRY_LEFT_TO_ANGRY:
+		case Loli.Animation.STAND_KISS_ANGRY_RIGHT_TO_ANGRY:
+		case Loli.Animation.STAND_KISS_ANGRY_RIGHT_TO_HAPPY:
+		case Loli.Animation.STAND_KISS_ANGRY_CHEEK_RIGHT:
+		case Loli.Animation.STAND_KISS_ANGRY_CHEEK_LEFT:
+			animBusy = false;
+			break;
+		case Loli.Animation.STAND_KISS_HAPPY_CHEEK_RIGHT:
+		case Loli.Animation.STAND_KISS_HAPPY_CHEEK_LEFT:
+			animBusy = false;
+			self.RemoveDisableFaceYaw( ref kissDisableFaceYaw );
+			break;
+		}
+		switch( newAnim ){
+		case Loli.Animation.STAND_KISS_ANGRY_LEFT_TO_HAPPY:
+		case Loli.Animation.STAND_KISS_ANGRY_LEFT_TO_ANGRY:
+		case Loli.Animation.STAND_KISS_ANGRY_RIGHT_TO_ANGRY:
+		case Loli.Animation.STAND_KISS_ANGRY_RIGHT_TO_HAPPY:
+		case Loli.Animation.STAND_KISS_ANGRY_CHEEK_RIGHT:
+		case Loli.Animation.STAND_KISS_ANGRY_CHEEK_LEFT:
+			animBusy = true;
+			break;
+		case Loli.Animation.STAND_KISS_HAPPY_CHEEK_RIGHT:
+		case Loli.Animation.STAND_KISS_HAPPY_CHEEK_LEFT:
+			animBusy = true;
+			self.ApplyDisableFaceYaw( ref kissDisableFaceYaw );
+			break;
+		}
+		switch( newAnim ){
+		case Loli.Animation.STAND_KISS_ANGRY_LEFT_TO_ANGRY:
+		case Loli.Animation.STAND_KISS_ANGRY_RIGHT_TO_ANGRY:
+			GameDirector.player.CompleteAchievement(Player.ObjectiveType.KISS_ANGRY_WIPE);
+			break;
+		case Loli.Animation.STAND_KISS_ANGRY_LEFT_TO_HAPPY:
+		case Loli.Animation.STAND_KISS_ANGRY_RIGHT_TO_HAPPY:
+			GameDirector.player.CompleteAchievement(Player.ObjectiveType.KISS_MAKE_HAPPY);
+			break;
+		}
 	}
 }
 

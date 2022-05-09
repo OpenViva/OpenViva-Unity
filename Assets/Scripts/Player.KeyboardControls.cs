@@ -29,7 +29,6 @@ public class KeyboardController : InputController {
                 }else{
                     speed = player.walkSpeed*( 1.0f+System.Convert.ToInt32( player.keyboardAlt )*2.0f );
                 }            
-                Debug.LogError(speed);
                 player.moveVel += headPlaneXZ.normalized*speed;
             }
         }

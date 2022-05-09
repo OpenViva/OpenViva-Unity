@@ -19,7 +19,8 @@ public partial class PassiveBehaviors : Job{
 		TIRED,
 		HUG_LISTENER,
 		POKER_LISTENER,
-		SCARED
+		SCARED,
+		PROXIMITY
 	}
 	
 
@@ -67,6 +68,7 @@ public partial class PassiveBehaviors : Job{
 		passives[ (int)Behavior.HUG_LISTENER ] = new HugListenerBehavior( self );
 		passives[ (int)Behavior.POKER_LISTENER ] = new PokerListenerBehavior( self );
 		passives[ (int)Behavior.SCARED ] = new ScaredBehaviour( self );
+		passives[ (int)Behavior.PROXIMITY ] = new ProximityBehavior( self );
 	}
 	
 	public KissingBehavior kissing { get{ return passives[(int)Behavior.KISSING] as KissingBehavior; } }
@@ -77,7 +79,9 @@ public partial class PassiveBehaviors : Job{
 	public EnvironmentBehavior environment { get{ return passives[(int)Behavior.ENVIRONMENT] as EnvironmentBehavior; } }
 	public ClothingBehavior clothing { get{ return passives[(int)Behavior.CLOTHING] as ClothingBehavior; } }
 	public TiredBehavior tired { get{ return passives[(int)Behavior.TIRED] as TiredBehavior; } }
+	public HugListenerBehavior hug { get{ return passives[(int)Behavior.HUG_LISTENER] as HugListenerBehavior; } }
 	public ScaredBehaviour scared { get{ return passives[(int)Behavior.SCARED] as ScaredBehaviour; } }
+	public ProximityBehavior proximity { get{ return passives[(int)Behavior.PROXIMITY] as ProximityBehavior; } }
 
 	private List<PassiveTask> passiveTasksToExecute = new List<PassiveTask>();
 

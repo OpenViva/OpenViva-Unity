@@ -240,7 +240,7 @@ public partial class PokeBehavior : PassiveBehaviors.PassiveTask {
 				if( self.bodyState == BodyState.STAND){ //Make sure to only face direction when standing
 					self.autonomy.SetAutonomy(new AutonomyFaceDirection( self.autonomy, "face direction", delegate(TaskTarget target){
                         target.SetTargetPosition( lastPokeSource.position );
-                    } ) );
+                    }, 5.0f ) );
 				}
 				// self.SetRootFacingTarget( lastPokeSource.position, 200.0f, 15.0f, 50.0f );
 			}
@@ -253,7 +253,7 @@ public partial class PokeBehavior : PassiveBehaviors.PassiveTask {
 					self.ShiftHappiness(-2);
 					GameDirector.player.CompleteAchievement(Player.ObjectiveType.POKE_ANGRY);
 
-					if( self.active.RequestPermission( ActiveBehaviors.Permission.ALLOW_IMPULSE_ANIMATION ) ){
+					if( self.active.RequestPermission( ActiveBehaviors.Permission.ALLOW_IMPULSE_ANIMATION) && self.bodyState == BodyState.STAND ){
 						Vector3 push = self.head.position-lastPokeSource.position;
 						push.y = 0.0f;
 						self.locomotion.PlayForce( push.normalized*(0.2f+Random.value*0.8f), 0.2f+Random.value*0.3f );
@@ -379,7 +379,7 @@ public partial class PokeBehavior : PassiveBehaviors.PassiveTask {
 			if( self.bodyState == BodyState.STAND){ //Make sure to only face direction when standing 
 					self.autonomy.SetAutonomy(new AutonomyFaceDirection( self.autonomy, "face direction", delegate(TaskTarget target){
                         target.SetTargetPosition( GameDirector.player.transform.position+lastPokeSource.position );
-                    } ) );
+                    }, 5.0f ) );
 			}
 			// self.SetRootFacingTarget( ( GameDirector.player.transform.position+lastPokeSource.position )/2.0f, 160.0f, 5.0f, 10.0f );
 		}
