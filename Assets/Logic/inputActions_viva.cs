@@ -508,6 +508,60 @@ public partial class @InputActions_viva : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""centerEyePos"",
+                    ""type"": ""Value"",
+                    ""id"": ""788a2901-0cbf-4f2e-952b-73729f7e503b"",
+                    ""expectedControlType"": ""Vector3"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""centerEyeRot"",
+                    ""type"": ""Value"",
+                    ""id"": ""6e055eda-8e7f-4658-a3fc-e9ac751cb798"",
+                    ""expectedControlType"": ""Quaternion"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""rightHandPos"",
+                    ""type"": ""Value"",
+                    ""id"": ""3d4b68df-2d8e-4860-acb9-9dcf6ed1dda5"",
+                    ""expectedControlType"": ""Vector3"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""rightHandRot"",
+                    ""type"": ""Value"",
+                    ""id"": ""1f30183c-bc68-4176-89f6-ef251c5ef5b2"",
+                    ""expectedControlType"": ""Quaternion"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""leftHandPos"",
+                    ""type"": ""Value"",
+                    ""id"": ""6f5b7871-557c-4524-a6b5-4a28d13bac5e"",
+                    ""expectedControlType"": ""Vector3"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""leftHandRot"",
+                    ""type"": ""Value"",
+                    ""id"": ""8830c36f-310e-4993-9d76-46bd4bd13d9b"",
+                    ""expectedControlType"": ""Quaternion"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -620,6 +674,72 @@ public partial class @InputActions_viva : IInputActionCollection2, IDisposable
                     ""action"": ""leftTrackpad"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4de20e89-e11e-4d4c-9b6f-90f5f99a28b4"",
+                    ""path"": ""<XRHMD>/centerEyePosition"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""centerEyePos"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""48d00a79-b04f-4a55-a584-ef163667d580"",
+                    ""path"": ""<XRHMD>/centerEyeRotation"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""centerEyeRot"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""98cd9776-ee2e-4544-8696-c79090755927"",
+                    ""path"": ""<XRController>{RightHand}/devicePosition"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""rightHandPos"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""da42b62c-db58-4f59-833b-92d777126645"",
+                    ""path"": ""<XRController>{RightHand}/deviceRotation"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""rightHandRot"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""212e0d2b-7e62-4ce5-a464-ebfc6346dddb"",
+                    ""path"": ""<XRController>{LeftHand}/devicePosition"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""leftHandPos"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9006f47e-22ff-499e-9103-52c3533a8669"",
+                    ""path"": ""<XRController>{LeftHand}/deviceRotation"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""leftHandRot"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -657,6 +777,12 @@ public partial class @InputActions_viva : IInputActionCollection2, IDisposable
         m_vr_leftAction = m_vr.FindAction("leftAction", throwIfNotFound: true);
         m_vr_rightPauseButton = m_vr.FindAction("rightPauseButton", throwIfNotFound: true);
         m_vr_leftPauseButton = m_vr.FindAction("leftPauseButton", throwIfNotFound: true);
+        m_vr_centerEyePos = m_vr.FindAction("centerEyePos", throwIfNotFound: true);
+        m_vr_centerEyeRot = m_vr.FindAction("centerEyeRot", throwIfNotFound: true);
+        m_vr_rightHandPos = m_vr.FindAction("rightHandPos", throwIfNotFound: true);
+        m_vr_rightHandRot = m_vr.FindAction("rightHandRot", throwIfNotFound: true);
+        m_vr_leftHandPos = m_vr.FindAction("leftHandPos", throwIfNotFound: true);
+        m_vr_leftHandRot = m_vr.FindAction("leftHandRot", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -887,6 +1013,12 @@ public partial class @InputActions_viva : IInputActionCollection2, IDisposable
     private readonly InputAction m_vr_leftAction;
     private readonly InputAction m_vr_rightPauseButton;
     private readonly InputAction m_vr_leftPauseButton;
+    private readonly InputAction m_vr_centerEyePos;
+    private readonly InputAction m_vr_centerEyeRot;
+    private readonly InputAction m_vr_rightHandPos;
+    private readonly InputAction m_vr_rightHandRot;
+    private readonly InputAction m_vr_leftHandPos;
+    private readonly InputAction m_vr_leftHandRot;
     public struct VrActions
     {
         private @InputActions_viva m_Wrapper;
@@ -901,6 +1033,12 @@ public partial class @InputActions_viva : IInputActionCollection2, IDisposable
         public InputAction @leftAction => m_Wrapper.m_vr_leftAction;
         public InputAction @rightPauseButton => m_Wrapper.m_vr_rightPauseButton;
         public InputAction @leftPauseButton => m_Wrapper.m_vr_leftPauseButton;
+        public InputAction @centerEyePos => m_Wrapper.m_vr_centerEyePos;
+        public InputAction @centerEyeRot => m_Wrapper.m_vr_centerEyeRot;
+        public InputAction @rightHandPos => m_Wrapper.m_vr_rightHandPos;
+        public InputAction @rightHandRot => m_Wrapper.m_vr_rightHandRot;
+        public InputAction @leftHandPos => m_Wrapper.m_vr_leftHandPos;
+        public InputAction @leftHandRot => m_Wrapper.m_vr_leftHandRot;
         public InputActionMap Get() { return m_Wrapper.m_vr; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -940,6 +1078,24 @@ public partial class @InputActions_viva : IInputActionCollection2, IDisposable
                 @leftPauseButton.started -= m_Wrapper.m_VrActionsCallbackInterface.OnLeftPauseButton;
                 @leftPauseButton.performed -= m_Wrapper.m_VrActionsCallbackInterface.OnLeftPauseButton;
                 @leftPauseButton.canceled -= m_Wrapper.m_VrActionsCallbackInterface.OnLeftPauseButton;
+                @centerEyePos.started -= m_Wrapper.m_VrActionsCallbackInterface.OnCenterEyePos;
+                @centerEyePos.performed -= m_Wrapper.m_VrActionsCallbackInterface.OnCenterEyePos;
+                @centerEyePos.canceled -= m_Wrapper.m_VrActionsCallbackInterface.OnCenterEyePos;
+                @centerEyeRot.started -= m_Wrapper.m_VrActionsCallbackInterface.OnCenterEyeRot;
+                @centerEyeRot.performed -= m_Wrapper.m_VrActionsCallbackInterface.OnCenterEyeRot;
+                @centerEyeRot.canceled -= m_Wrapper.m_VrActionsCallbackInterface.OnCenterEyeRot;
+                @rightHandPos.started -= m_Wrapper.m_VrActionsCallbackInterface.OnRightHandPos;
+                @rightHandPos.performed -= m_Wrapper.m_VrActionsCallbackInterface.OnRightHandPos;
+                @rightHandPos.canceled -= m_Wrapper.m_VrActionsCallbackInterface.OnRightHandPos;
+                @rightHandRot.started -= m_Wrapper.m_VrActionsCallbackInterface.OnRightHandRot;
+                @rightHandRot.performed -= m_Wrapper.m_VrActionsCallbackInterface.OnRightHandRot;
+                @rightHandRot.canceled -= m_Wrapper.m_VrActionsCallbackInterface.OnRightHandRot;
+                @leftHandPos.started -= m_Wrapper.m_VrActionsCallbackInterface.OnLeftHandPos;
+                @leftHandPos.performed -= m_Wrapper.m_VrActionsCallbackInterface.OnLeftHandPos;
+                @leftHandPos.canceled -= m_Wrapper.m_VrActionsCallbackInterface.OnLeftHandPos;
+                @leftHandRot.started -= m_Wrapper.m_VrActionsCallbackInterface.OnLeftHandRot;
+                @leftHandRot.performed -= m_Wrapper.m_VrActionsCallbackInterface.OnLeftHandRot;
+                @leftHandRot.canceled -= m_Wrapper.m_VrActionsCallbackInterface.OnLeftHandRot;
             }
             m_Wrapper.m_VrActionsCallbackInterface = instance;
             if (instance != null)
@@ -974,6 +1130,24 @@ public partial class @InputActions_viva : IInputActionCollection2, IDisposable
                 @leftPauseButton.started += instance.OnLeftPauseButton;
                 @leftPauseButton.performed += instance.OnLeftPauseButton;
                 @leftPauseButton.canceled += instance.OnLeftPauseButton;
+                @centerEyePos.started += instance.OnCenterEyePos;
+                @centerEyePos.performed += instance.OnCenterEyePos;
+                @centerEyePos.canceled += instance.OnCenterEyePos;
+                @centerEyeRot.started += instance.OnCenterEyeRot;
+                @centerEyeRot.performed += instance.OnCenterEyeRot;
+                @centerEyeRot.canceled += instance.OnCenterEyeRot;
+                @rightHandPos.started += instance.OnRightHandPos;
+                @rightHandPos.performed += instance.OnRightHandPos;
+                @rightHandPos.canceled += instance.OnRightHandPos;
+                @rightHandRot.started += instance.OnRightHandRot;
+                @rightHandRot.performed += instance.OnRightHandRot;
+                @rightHandRot.canceled += instance.OnRightHandRot;
+                @leftHandPos.started += instance.OnLeftHandPos;
+                @leftHandPos.performed += instance.OnLeftHandPos;
+                @leftHandPos.canceled += instance.OnLeftHandPos;
+                @leftHandRot.started += instance.OnLeftHandRot;
+                @leftHandRot.performed += instance.OnLeftHandRot;
+                @leftHandRot.canceled += instance.OnLeftHandRot;
             }
         }
     }
@@ -1010,5 +1184,11 @@ public partial class @InputActions_viva : IInputActionCollection2, IDisposable
         void OnLeftAction(InputAction.CallbackContext context);
         void OnRightPauseButton(InputAction.CallbackContext context);
         void OnLeftPauseButton(InputAction.CallbackContext context);
+        void OnCenterEyePos(InputAction.CallbackContext context);
+        void OnCenterEyeRot(InputAction.CallbackContext context);
+        void OnRightHandPos(InputAction.CallbackContext context);
+        void OnRightHandRot(InputAction.CallbackContext context);
+        void OnLeftHandPos(InputAction.CallbackContext context);
+        void OnLeftHandRot(InputAction.CallbackContext context);
     }
 }

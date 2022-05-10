@@ -486,6 +486,60 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "centerEyePos",
+                    "type": "Value",
+                    "id": "788a2901-0cbf-4f2e-952b-73729f7e503b",
+                    "expectedControlType": "Vector3",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "centerEyeRot",
+                    "type": "Value",
+                    "id": "6e055eda-8e7f-4658-a3fc-e9ac751cb798",
+                    "expectedControlType": "Quaternion",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "rightHandPos",
+                    "type": "Value",
+                    "id": "3d4b68df-2d8e-4860-acb9-9dcf6ed1dda5",
+                    "expectedControlType": "Vector3",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "rightHandRot",
+                    "type": "Value",
+                    "id": "1f30183c-bc68-4176-89f6-ef251c5ef5b2",
+                    "expectedControlType": "Quaternion",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "leftHandPos",
+                    "type": "Value",
+                    "id": "6f5b7871-557c-4524-a6b5-4a28d13bac5e",
+                    "expectedControlType": "Vector3",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "leftHandRot",
+                    "type": "Value",
+                    "id": "8830c36f-310e-4993-9d76-46bd4bd13d9b",
+                    "expectedControlType": "Quaternion",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
                 }
             ],
             "bindings": [
@@ -596,6 +650,72 @@
                     "processors": "",
                     "groups": "",
                     "action": "leftTrackpad",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "4de20e89-e11e-4d4c-9b6f-90f5f99a28b4",
+                    "path": "<XRHMD>/centerEyePosition",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "centerEyePos",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "48d00a79-b04f-4a55-a584-ef163667d580",
+                    "path": "<XRHMD>/centerEyeRotation",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "centerEyeRot",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "98cd9776-ee2e-4544-8696-c79090755927",
+                    "path": "<XRController>{RightHand}/devicePosition",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "rightHandPos",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "da42b62c-db58-4f59-833b-92d777126645",
+                    "path": "<XRController>{RightHand}/deviceRotation",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "rightHandRot",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "212e0d2b-7e62-4ce5-a464-ebfc6346dddb",
+                    "path": "<XRController>{LeftHand}/devicePosition",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "leftHandPos",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "9006f47e-22ff-499e-9103-52c3533a8669",
+                    "path": "<XRController>{LeftHand}/deviceRotation",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "leftHandRot",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

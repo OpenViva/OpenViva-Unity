@@ -1567,7 +1567,9 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   keyboardCurrentHeight: 1.4
+  keyboardTargetHeight: 1.4
   keyboardStandingHeight: 1.4
+  keyboardFloorHeight: 0.5
   handRigidBodyPrefab: {fileID: 4593641065835188907, guid: 8a2089c73e2cb7c43a31a9410a580d0c,
     type: 3}
   lowPassFilter: {fileID: 5043715924624442236}
@@ -1582,6 +1584,9 @@ MonoBehaviour:
   teleportMR: {fileID: 23321366847445360}
   m_absoluteVRPositionOffset: {x: 0, y: 0, z: 0}
   m_absoluteVRRotationEulerOffset: {x: 0, y: -270, z: 90}
+  m_headTPD: {fileID: 4557274380076882803}
+  m_rightHandTPD: {fileID: 0}
+  m_leftHandTPD: {fileID: 0}
   debugVar: {x: 0, y: 0, z: 0}
   m_controls: 0
   walkSpeed: 0.24
@@ -2333,6 +2338,7 @@ GameObject:
   - component: {fileID: 663834502}
   - component: {fileID: 3533212736833762749}
   - component: {fileID: 8269990464080395460}
+  - component: {fileID: 4557274380076882803}
   - component: {fileID: 2299373935706507637}
   - component: {fileID: 5922770914765990496}
   - component: {fileID: 1662573847208963235}
@@ -2588,6 +2594,65 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &4557274380076882803
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2786009176743095549}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2fadf230d1919748a9aa21d40f74619, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_TrackingType: 0
+  m_UpdateType: 0
+  m_PositionInput:
+    m_UseReference: 1
+    m_Action:
+      m_Name: Position Input
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: 2bcb8072-313d-4ed3-bda9-88c25b66bfa6
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_Reference: {fileID: -509152086682105853, guid: 6277521aad8c3d441abf8a8f0c5122b4,
+      type: 3}
+  m_RotationInput:
+    m_UseReference: 1
+    m_Action:
+      m_Name: Rotation Input
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: 774dae46-3bd7-4f45-8a1f-7d0b68e48026
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_Reference: {fileID: 7128257780576800009, guid: 6277521aad8c3d441abf8a8f0c5122b4,
+      type: 3}
+  m_PositionAction:
+    m_Name: 
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+  m_RotationAction:
+    m_Name: 
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+  m_HasMigratedActions: 1
 --- !u!114 &2299373935706507637
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3327,12 +3392,6 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 2018148353058669618, guid: c20568f52a6fda3898c772bd7911382b, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: c20568f52a6fda3898c772bd7911382b, type: 3}
---- !u!4 &683579428843013815 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 5662408205590398199, guid: c20568f52a6fda3898c772bd7911382b,
-    type: 3}
-  m_PrefabInstance: {fileID: 5181503097423970880}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1766282760485463519 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6875727050392151967, guid: c20568f52a6fda3898c772bd7911382b,
@@ -3345,6 +3404,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f9134b05444b4c25be5fe8184616085, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!4 &683579428843013815 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5662408205590398199, guid: c20568f52a6fda3898c772bd7911382b,
+    type: 3}
+  m_PrefabInstance: {fileID: 5181503097423970880}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6532274191598934966
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3609,14 +3674,18 @@ PrefabInstance:
       propertyPath: m_owner
       value: 
       objectReference: {fileID: 114905459291063156}
+    - target: {fileID: 8090493626439031464, guid: 8a2089c73e2cb7c43a31a9410a580d0c,
+        type: 3}
+      propertyPath: m_PositionInput.m_Action.m_Name
+      value: Position Input
+      objectReference: {fileID: 0}
+    - target: {fileID: 8090493626439031464, guid: 8a2089c73e2cb7c43a31a9410a580d0c,
+        type: 3}
+      propertyPath: m_RotationInput.m_Action.m_Name
+      value: Rotation Input
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8a2089c73e2cb7c43a31a9410a580d0c, type: 3}
---- !u!4 &6087601644097621837 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 1070956991216686331, guid: 8a2089c73e2cb7c43a31a9410a580d0c,
-    type: 3}
-  m_PrefabInstance: {fileID: 6532274191598934966}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &6783437384754274149 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 325614428489172179, guid: 8a2089c73e2cb7c43a31a9410a580d0c,
@@ -3632,6 +3701,12 @@ MonoBehaviour:
 --- !u!4 &4523715617502066061 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7232846587379854907, guid: 8a2089c73e2cb7c43a31a9410a580d0c,
+    type: 3}
+  m_PrefabInstance: {fileID: 6532274191598934966}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &6087601644097621837 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1070956991216686331, guid: 8a2089c73e2cb7c43a31a9410a580d0c,
     type: 3}
   m_PrefabInstance: {fileID: 6532274191598934966}
   m_PrefabAsset: {fileID: 0}
