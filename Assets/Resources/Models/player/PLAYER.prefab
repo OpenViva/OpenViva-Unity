@@ -1585,8 +1585,8 @@ MonoBehaviour:
   m_absoluteVRPositionOffset: {x: 0, y: 0, z: 0}
   m_absoluteVRRotationEulerOffset: {x: 0, y: -270, z: 90}
   m_headTPD: {fileID: 4557274380076882803}
-  m_rightHandTPD: {fileID: 0}
-  m_leftHandTPD: {fileID: 0}
+  m_rightHandTPD: {fileID: 1471705802608027873}
+  m_leftHandTPD: {fileID: 735524949276098135}
   debugVar: {x: 0, y: 0, z: 0}
   m_controls: 0
   walkSpeed: 0.24
@@ -3202,24 +3202,87 @@ PrefabInstance:
       objectReference: {fileID: 114905459291063156}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8a2089c73e2cb7c43a31a9410a580d0c, type: 3}
---- !u!114 &432383036755986058 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 325614428489172179, guid: 8a2089c73e2cb7c43a31a9410a580d0c,
+--- !u!1 &4412145248691081458 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4593641065835188907, guid: 8a2089c73e2cb7c43a31a9410a580d0c,
     type: 3}
   m_PrefabInstance: {fileID: 181536569040568921}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c1a617f7e8a933a7ebeffe4c01698aeb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &7414272070206631010 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7232846587379854907, guid: 8a2089c73e2cb7c43a31a9410a580d0c,
     type: 3}
   m_PrefabInstance: {fileID: 181536569040568921}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &432383036755986058 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 325614428489172179, guid: 8a2089c73e2cb7c43a31a9410a580d0c,
+    type: 3}
+  m_PrefabInstance: {fileID: 181536569040568921}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4412145248691081458}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1a617f7e8a933a7ebeffe4c01698aeb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1471705802608027873
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4412145248691081458}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2fadf230d1919748a9aa21d40f74619, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_TrackingType: 0
+  m_UpdateType: 0
+  m_PositionInput:
+    m_UseReference: 0
+    m_Action:
+      m_Name: Position Input
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: dc8a0818-93af-451f-a39c-45f596662a69
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_Reference: {fileID: 0}
+  m_RotationInput:
+    m_UseReference: 0
+    m_Action:
+      m_Name: Rotation Input
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: c579e12a-01d8-449c-97db-bd16cb4317c5
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_Reference: {fileID: 0}
+  m_PositionAction:
+    m_Name: 
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+  m_RotationAction:
+    m_Name: 
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+  m_HasMigratedActions: 1
 --- !u!1001 &5181503097423970880
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3686,13 +3749,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8a2089c73e2cb7c43a31a9410a580d0c, type: 3}
+--- !u!4 &6087601644097621837 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1070956991216686331, guid: 8a2089c73e2cb7c43a31a9410a580d0c,
+    type: 3}
+  m_PrefabInstance: {fileID: 6532274191598934966}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &6783437384754274149 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 325614428489172179, guid: 8a2089c73e2cb7c43a31a9410a580d0c,
     type: 3}
   m_PrefabInstance: {fileID: 6532274191598934966}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 7284758157282511133}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c1a617f7e8a933a7ebeffe4c01698aeb, type: 3}
@@ -3704,9 +3773,66 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 6532274191598934966}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &6087601644097621837 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 1070956991216686331, guid: 8a2089c73e2cb7c43a31a9410a580d0c,
+--- !u!1 &7284758157282511133 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4593641065835188907, guid: 8a2089c73e2cb7c43a31a9410a580d0c,
     type: 3}
   m_PrefabInstance: {fileID: 6532274191598934966}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &735524949276098135
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7284758157282511133}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2fadf230d1919748a9aa21d40f74619, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_TrackingType: 0
+  m_UpdateType: 0
+  m_PositionInput:
+    m_UseReference: 0
+    m_Action:
+      m_Name: Position Input
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: dc8a0818-93af-451f-a39c-45f596662a69
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_Reference: {fileID: 0}
+  m_RotationInput:
+    m_UseReference: 0
+    m_Action:
+      m_Name: Rotation Input
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: c579e12a-01d8-449c-97db-bd16cb4317c5
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_Reference: {fileID: 0}
+  m_PositionAction:
+    m_Name: 
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+  m_RotationAction:
+    m_Name: 
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+  m_HasMigratedActions: 1
