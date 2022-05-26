@@ -125,15 +125,7 @@ namespace viva.console
         private void CreateCommands()
         {
             CommandHelp.CreateCommand();
-            
-            CommandGetKeyValue.CreateCommand();
-
-            CommandLoadScene.CreateCommand();
-
             CommandRagdoll.CreateCommand();
-
-            CommandSceneList.CreateCommand();
-
             CommandSetPlayerSpeed.CreateCommand();
 
             var commandClearList = CommandClearConsole.CreateCommand();
