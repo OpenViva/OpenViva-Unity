@@ -18,8 +18,7 @@ public partial class GameDirector : MonoBehaviour {
     private GameObject[] itemPrefabManifest;
     [SerializeField]
     private GameSettings m_settings;
-    [SerializeField]
-    private FileLoadStatus fileLoadStatus;
+    public FileLoadStatus fileLoadStatus;
 
 
     public GameObject FindItemPrefabByName( string name ){

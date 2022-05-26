@@ -59,7 +59,7 @@ public partial class Player: Character {
 		case ObjectiveType.WATER_REED_SMACK:
 			return "Make a loli hit you with a water reed";
 		case ObjectiveType.FIND_HAT:
-			return "Find and give a loli, Her sunhat";
+			return "Find and give a loli, A sunhat";
 		case ObjectiveType.POUR_FLOUR_ON_HEAD:
 			return "Pour Flour on your loli's Head";
 		case ObjectiveType.BAKE_A_PASTRY:

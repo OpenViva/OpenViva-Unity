@@ -71,6 +71,15 @@ public partial class SleepingBehavior : ActiveBehaviors.ActiveTask {
 		layingOnRightSide = null;
 	}
 
+	public override bool RequestPermission( ActiveBehaviors.Permission permission){
+		switch( permission ){
+		case ActiveBehaviors.Permission.ALLOW_ROOT_FACING_TARGET_CHANGE:
+		case ActiveBehaviors.Permission.ALLOW_IMPULSE_ANIMATION:
+			return false;
+		}
+		return true;
+	}
+
 	public override bool OnGesture( Item source, ObjectFingerPointer.Gesture gesture ){
 		// if( gesture == ObjectFingerPointer.Gesture.FOLLOW ){
 		// 	if( phase == SleepingPhase.AWAKE_ON_BED ){
@@ -151,10 +160,9 @@ public partial class SleepingBehavior : ActiveBehaviors.ActiveTask {
 
 		var playLayDown = new AutonomyPlayAnimation( self.autonomy, "lay down anim", beforeSleepAnim );	
 	
-		var yawnanim = new AutonomyPlayAnimation(self.autonomy, "yawn", yawnAnim);
+		var yawnanim = new AutonomyPlayAnimation(self.autonomy, "yawn anim", yawnAnim);
 		
 		var goodnightanim = new AutonomyPlayAnimation(self.autonomy, "say good night", goodNightAnim);
-		//this might be a shit way to do this but im kinda shit at coding so fuck it - SolidStone
 		awakeToSleeptimer.AddRequirement( playLayDown );
 		awakeToSleeptimer.AddRequirement( yawnanim );
 		//shinobu has no good night voice line

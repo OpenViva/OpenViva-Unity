@@ -17,6 +17,10 @@ public abstract partial class Character: VivaSessionAsset {
     }
 
     public void UpdateFootstepCheck(){
+        //Return if player is on horse
+        if( GameDirector.player.controller as HorseControls != null ){
+            return;
+        }
 
         if( Vector3.SqrMagnitude( floorPos-footstepInfo.lastFloorPos ) > 1.0f ){
             footstepInfo.lastFloorPos = floorPos;

@@ -25,6 +25,7 @@ public class AmbienceDirector : MonoBehaviour {
     private Ambience defaultAmbience = null;
     [SerializeField]
     private List<AudioSource> globalAmbienceSourcesA = new List<AudioSource>();
+    [SerializeField]
     private List<AudioSource> globalAmbienceSourcesB = new List<AudioSource>();
 
     private Coroutine ambienceChangeCoroutine = null;

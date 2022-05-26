@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -171,7 +171,7 @@ public class Bag : Item {
 
 		bagUI.transform.localPosition = uiSide;
 		bool useVROrientation = false;
-		if( mainOwner && mainOwner.characterType == Character.Type.PLAYER && (mainOwner as Player ).controls == Player.ControlType.OPEN_VR ){
+		if( mainOwner && mainOwner.characterType == Character.Type.PLAYER && (mainOwner as Player ).controls == Player.ControlType.VR ){
 			useVROrientation = true;
 		}
 		if( useVROrientation ){
@@ -248,16 +248,16 @@ public class Bag : Item {
 
 		//ensure bag is fully parented before triggering animation so blends look right
 		// if( !loli.active.IsTaskActive( loli.active.give ) ){
-			// if( loli.leftHandState.heldItem == this && !loli.rightShoulderState.occupied ){
+		// 	if( loli.leftHandState.heldItem == this && !loli.rightShoulderState.occupied ){
 
-			// 	if( loli.leftHandState.finishedBlending ){
-			// 		loli.SetTargetAnimation( Loli.Animation.STAND_WEAR_BAG_RIGHT );
-			// 	}
-			// }else if( !loli.leftShoulderState.occupied ){
-			// 	if( loli.rightHandState.finishedBlending ){
-			// 		loli.SetTargetAnimation( Loli.Animation.STAND_WEAR_BAG_LEFT );
-			// 	}
-			// }
+		// 	 	if( loli.leftHandState.finishedBlending ){
+		// 			loli.SetTargetAnimation( Loli.Animation.STAND_WEAR_BAG_RIGHT );
+		// 		}
+		// 	}else if( !loli.leftShoulderState.occupied ){
+		// 		if( loli.rightHandState.finishedBlending ){
+		// 			loli.SetTargetAnimation( Loli.Animation.STAND_WEAR_BAG_LEFT );
+		// 		}
+		// 	}
 		// }
 	}
 

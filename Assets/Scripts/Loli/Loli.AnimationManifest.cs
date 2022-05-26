@@ -1602,6 +1602,13 @@ public partial class Loli : Character{
 			0.2f,new Loli.AnimLogicInfo(0,1.0f,0.0f,0,0.0f)
 		));
 
+		RegisterAnimation(Loli.Animation.PHOTOSHOOT_3,
+			new Loli.AnimationInfo(null,
+			"photoshoot_3","photoshoot_3","photoshoot_3",
+			Loli.Priority.VERY_HIGH,BodyState.STAND,BodyState.STAND,
+			0.2f,new Loli.AnimLogicInfo(0,1.0f,0.0f,0,0.0f)
+		));
+
 		RegisterAnimation(Loli.Animation.STAND_OUTFIT_LIKE,
 			new Loli.AnimationInfo(idleTransition,
 			"stand_outfit_like","stand_outfit_like","stand_outfit_like",

@@ -109,12 +109,15 @@ public partial class HeadpatBehavior: PassiveBehaviors.PassiveTask{
 	}
 
 	private Loli.Animation GetHeadpatStartAnimation(){
+		if( self.IsTired() ){
+			return self.bodyStateAnimationSets[ (int)self.bodyState ].GetRandomAnimationSet( AnimationSet.HEADPAT_START_TIRED );
+		}
 		if( self.IsHappy() ){
 			return self.bodyStateAnimationSets[ (int)self.bodyState ].GetRandomAnimationSet( AnimationSet.HEADPAT_START_HAPPY );
 		}else{
 			return self.bodyStateAnimationSets[ (int)self.bodyState ].GetRandomAnimationSet( AnimationSet.HEADPAT_START_ANGRY );
 		}
-
+		
 		// switch( self.bodyState ){
 		// case BodyState.STAND:
 		// 	if( self.IsTired() ){
@@ -150,7 +153,7 @@ public partial class HeadpatBehavior: PassiveBehaviors.PassiveTask{
 		switch( self.bodyState ){
 		case BodyState.STAND:
 			if( self.IsTired() ){
-				return Loli.Animation.STAND_TIRED_HEADPAT_IDLE;
+				return GetTiredHeadpatIdleAnimation();
 			}else{
 				return self.GetAnimationFromMood( Loli.Animation.STAND_HEADPAT_HAPPY_LOOP );
 			}

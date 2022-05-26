@@ -32,10 +32,6 @@ public partial class GameDirector : MonoBehaviour {
     private EventSystem eventSystem;    //there should be 1 in the entire scene
 
     [SerializeField]
-    private PerformanceUI m_performanceui;
-    public PerformanceUI performanceui { get{ return m_performanceui; } }
-
-    [SerializeField]
     private MeshFilter raycastLaserMF;
 
     private Mesh laserMesh;

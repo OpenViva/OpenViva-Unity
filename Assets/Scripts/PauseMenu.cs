@@ -403,7 +403,7 @@ public partial class PauseMenu : UIMenu {
     public void clickSwitchControlScheme(){
         Player player = GameDirector.player;
         if( player.controls == Player.ControlType.KEYBOARD ){
-            player.SetControls( Player.ControlType.OPEN_VR );
+            player.SetControls( Player.ControlType.VR );
         }else{
             player.SetControls( Player.ControlType.KEYBOARD );
         }

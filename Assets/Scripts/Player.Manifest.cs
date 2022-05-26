@@ -10,7 +10,7 @@ public partial class Player : Character {
 
     public enum ControlType{
         KEYBOARD,
-        OPEN_VR
+        VR
     }
 
 	public enum UtilityHoldForms{

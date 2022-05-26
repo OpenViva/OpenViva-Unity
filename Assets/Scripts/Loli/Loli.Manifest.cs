@@ -403,7 +403,8 @@ public partial class Loli : Character {
 		SQUAT_FACE_POKE_2_LEFT,
 		SQUAT_IMPRESSED1,
 		STAND_SCARED_LOCOMOTION,
-		STAND_SCARED_STARTLE
+		STAND_SCARED_STARTLE,
+		PHOTOSHOOT_3,
 	};
 
 	public enum VoiceLine{

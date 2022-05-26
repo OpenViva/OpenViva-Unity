@@ -121,15 +121,6 @@ public partial class ModelCustomizer : UITabMenu{
         UpdateProperty( VivaModelProperty.VOICE );
     }
 
-    public void clickInitializeEyesSubTab(){
-        modelPreviewer.SetPreviewMode( ModelPreviewViewport.PreviewMode.EYES );
-    }
-
-    public void clickInitializeBoneSubTab(){
-        modelPreviewer.SetPreviewMode( ModelPreviewViewport.PreviewMode.BONES );
-        UpdateBoneSelectionText();
-    }
-
     public void clickInitializeSkinSubTab(){
         modelPreviewer.SetPreviewMode( ModelPreviewViewport.PreviewMode.NONE );
         activeSkinColor = modelPreviewer.modelDefault.headModel.skinColor;
@@ -190,6 +181,18 @@ public partial class ModelCustomizer : UITabMenu{
         }
     }
 
+    public void clickInitializeEyesSubTab(){
+        modelPreviewer.SetPreviewMode( ModelPreviewViewport.PreviewMode.EYES );
+    }
+
+    public void clickInitializeBoneSubTab(){
+        modelPreviewer.SetPreviewMode( ModelPreviewViewport.PreviewMode.BONES );
+        UpdateBoneSelectionText();
+    }  
+
+    public void clickInitializePoseSubTab(){
+        modelPreviewer.SetPreviewMode( ModelPreviewViewport.PreviewMode.POSE );
+    }
     private void SetActiveSkinColor( Color color ){
 
         activeSkinColor = color;

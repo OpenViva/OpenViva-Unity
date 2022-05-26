@@ -20,7 +20,7 @@ public partial class Player : Character {
     private bool pressToTurnReset = true;
     private Vector3 lastTouchpadAccel = Vector3.zero;
     private Vector2 lastTouchpadPos = Vector2.zero;
-    
+    [Header("VR")]
     [SerializeField]
     private GameObject teleportRing;
     [SerializeField]
@@ -29,8 +29,7 @@ public partial class Player : Character {
     private Texture2D validTeleportTex;
     [SerializeField]
     private Texture2D invalidTeleportTex;
-    public GameObject crosshair;
-    
+  
     private const int teleportMaxQuads = 20;
     [SerializeField]
     private MeshFilter teleportMF;
@@ -54,64 +53,41 @@ public partial class Player : Character {
     [VivaFileAttribute]
 	public Vector3 absoluteVRRotationEulerOffset { get{return m_absoluteVRRotationEulerOffset;} protected set{ m_absoluteVRRotationEulerOffset = value; } }
 
-    [SerializeField]
-    private TrackedPoseDriver m_headTPD;
-    public TrackedPoseDriver headTPD { get{ return m_headTPD;} }
-    [SerializeField]
-    private TrackedPoseDriver m_rightHandTPD;
-    public TrackedPoseDriver rightHandTPD { get{ return m_rightHandTPD;} }
-    [SerializeField]
-    private TrackedPoseDriver m_leftHandTPD;
-    public TrackedPoseDriver leftHandTPD { get{ return m_leftHandTPD;} }
-
-
-    private void SetEnableVRControls( bool enable ){
-
+    //Note: Goodluck FunMaker :D
+    private void SetEnableVRControls( bool enable ){      
         if( enable ){
             if( XRGeneralSettings.Instance.Manager.activeLoader == null ){
-            Debug.Log("#VR Enabled "+(XRGeneralSettings.Instance.Manager.activeLoader == null));
-            XRGeneralSettings.Instance.Manager.InitializeLoaderSync();
+                Debug.Log("#VR Enabled "+(XRGeneralSettings.Instance.Manager.activeLoader == null));
+                XRGeneralSettings.Instance.Manager.InitializeLoaderSync();
             
-            if( XRGeneralSettings.Instance.Manager.activeLoader == null ){
-                Debug.LogError("Failed to initialize VR");
-                return;
-            }else{
-                XRGeneralSettings.Instance.Manager.StartSubsystems();
-            }
+                if( XRGeneralSettings.Instance.Manager.activeLoader == null ){
+                    Debug.LogError("Failed to initialize VR");
+                    return;
+                }else{
+                    XRGeneralSettings.Instance.Manager.StartSubsystems();
+                }
             }
             head.localPosition = Vector3.zero;
             head.localRotation = Quaternion.identity;
-            //SteamVR.enabled = true;
-            headTPD.enabled = true;
-            headTPD.positionAction = vivaControls.vr.centerEyePos;
-            headTPD.rotationAction = vivaControls.vr.centerEyeRot;
-            rightHandTPD.positionAction = vivaControls.vr.rightHandPos;
-            rightHandTPD.rotationAction = vivaControls.vr.rightHandRot;
-            leftHandTPD.positionAction = vivaControls.vr.leftHandPos;
-            leftHandTPD.rotationAction = vivaControls.vr.leftHandRot;
-            rightHandTPD.enabled = true;
-            leftHandTPD.enabled = true;
-            //rightPlayerHandState.StartDeprecatedXRInput();
-            //leftPlayerHandState.StartDeprecatedXRInput();
+            SteamVR.enabled = true;
+            rightPlayerHandState.StartDeprecatedXRInput();
+            leftPlayerHandState.StartDeprecatedXRInput();
 
             crosshair.SetActive( false );
             InitVRTeleportVariables();
             GameDirector.instance.mainCamera.stereoTargetEye = StereoTargetEyeMask.Both;
         }else{
             if( XRGeneralSettings.Instance.Manager.isInitializationComplete ){
-            Debug.LogError("#VR Disabled "+XRGeneralSettings.Instance.Manager.isInitializationComplete);
-            XRGeneralSettings.Instance.Manager.StopSubsystems();
-            XRGeneralSettings.Instance.Manager.DeinitializeLoader();
+                Debug.LogError("#VR Disabled "+XRGeneralSettings.Instance.Manager.isInitializationComplete);
+                XRGeneralSettings.Instance.Manager.StopSubsystems();
+                XRGeneralSettings.Instance.Manager.DeinitializeLoader();
             }
-            //SteamVR.enabled = false;
-            headTPD.enabled = false;
-            rightHandTPD.enabled = false;
-            leftHandTPD.enabled = false;
+            SteamVR.enabled = false;
             rightPlayerHandState.UnbindSteamVRInput();
             leftPlayerHandState.UnbindSteamVRInput();
         }
-        //rightPlayerHandState.behaviourPose.enabled = enable;
-        //leftPlayerHandState.behaviourPose.enabled = enable;
+        rightPlayerHandState.behaviourPose.enabled = enable;
+        leftPlayerHandState.behaviourPose.enabled = enable;
     }
 
     public void SetFreezeVRHandTransforms( bool freeze ){

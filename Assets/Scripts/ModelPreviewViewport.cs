@@ -13,6 +13,7 @@ public class ModelPreviewViewport : MonoBehaviour
     public enum PreviewMode{
         EYES,
         BONES,
+        POSE,
         NONE
     }
 
@@ -22,6 +23,8 @@ public class ModelPreviewViewport : MonoBehaviour
     private Material modelPreviewMaterial;
     [SerializeField]
     private Button playButton;
+    [SerializeField]
+    private Dropdown posedropdown;
 
     public Camera renderCamera { get; private set; }
     private Material[] cachedMeshRendererMaterials;
@@ -42,6 +45,7 @@ public class ModelPreviewViewport : MonoBehaviour
     private PreviewMode previewMode = PreviewMode.NONE;
     private LineRenderer lineRenderer;
     private Coroutine highlightBoneChainCoroutine = null;
+    public Loli.Animation modelDefaultPoseAnim;
 
     private void Awake(){
 
@@ -62,6 +66,17 @@ public class ModelPreviewViewport : MonoBehaviour
                 0.1f,
                 0.7f
             );
+        }else{
+            PanCamera(
+                modelDefault.head.transform.position,
+                Quaternion.LookRotation( -Vector3.forward, Vector3.up ),
+                0.0f,
+                1.3f
+            );
+        }
+        if( previewMode != PreviewMode.POSE ){
+            modelDefault.ForceImmediatePose( modelDefault.GetLastReturnableIdleAnimation() );
+            
         }
         if( previewMode != PreviewMode.BONES ){
             StopHighlightingBoneChain();
@@ -160,6 +175,18 @@ public class ModelPreviewViewport : MonoBehaviour
                 0.0f
             );
             modelDefault.SetEyeRotations( spinDir, spinDir );
+            break;
+        case PreviewMode.POSE:
+            if(posedropdown.value == 0){
+                modelDefaultPoseAnim = Loli.Animation.PHOTOSHOOT_1;
+            }
+            if(posedropdown.value == 1){
+                modelDefaultPoseAnim = Loli.Animation.PHOTOSHOOT_2;
+            }
+            // if(posedropdown.value == 2){
+            //     modelDefaultPoseAnim = Loli.Animation.PHOTOSHOOT_3;
+            // }
+            modelDefault.ForceImmediatePose(modelDefaultPoseAnim);
             break;
         }
     }

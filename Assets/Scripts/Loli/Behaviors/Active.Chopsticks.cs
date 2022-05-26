@@ -164,9 +164,9 @@ public class ChopsticksBehavior : ActiveBehaviors.ActiveTask {
 			switch( self.bodyState ){
 			case BodyState.STAND:
 				self.SetTargetAnimation(Loli.Animation.STAND_TO_SIT_FLOOR);
-				self.autonomy.SetAutonomy(new AutonomyFaceDirection( self.autonomy, "face direction", delegate(TaskTarget target){
+				self.autonomy.Interrupt(new AutonomyFaceDirection( self.autonomy, "face direction chopsticks", delegate(TaskTarget target){
                         target.SetTargetPosition( GameDirector.player.floorPos );
-                    }, 15.0f ) );
+                    }, 2.0f ) );
 				// self.SetRootFacingTarget( GameDirector.player.floorPos, 130.0f, 15.0f, 20.0f );
 				break;
 			case BodyState.FLOOR_SIT:
@@ -586,11 +586,11 @@ public class ChopsticksBehavior : ActiveBehaviors.ActiveTask {
 		tappingFinger.localRotation = tappingFinger.localRotation*Quaternion.Euler( 8.0f*offsetBlend, 0.0f, -12.0f*animIKSide*offsetBlend );
 	}
 
-	private void taskChopsticksCallback( Character self, Occupation oldReg, OccupyState action ){
-		// if( action == HoldType.NONE ){
-			StartFinishingChopsticksBehavior();
-		// }
-	}
+	// private void taskChopsticksCallback( Character self, Occupation oldReg, OccupyState action ){
+	// 	if( action == HoldType.NONE ){
+	// 		StartFinishingChopsticksBehavior();
+	// 	}
+	// }
 
 
 	public void PlayReachToPlayerHandAnim( bool shinobuRightHand, bool playerRightHand ){

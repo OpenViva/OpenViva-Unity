@@ -64,9 +64,9 @@ public class LewdBehavior : PassiveBehaviors.PassiveTask {
 		float side = Mathf.Floor( Random.value*2.0f )*2.0f-1.0f;	//-1 or 1
 		Vector3 facingPosition = self.floorPos+forward+right*side;
 		// self.SetRootFacingTarget( facingPosition, 200.0f, 40.0f, 10.0f );
-		self.autonomy.SetAutonomy(new AutonomyFaceDirection( self.autonomy, "face direction", delegate(TaskTarget target){
+		self.autonomy.Interrupt(new AutonomyFaceDirection( self.autonomy, "face direction", delegate(TaskTarget target){
                         target.SetTargetPosition( facingPosition );
-                    }, 40.0f ) );
+                    }, 2.0f ) );
 		
 		self.SetTargetAnimation(Loli.Animation.STAND_REACT_PERV_FRONT_IN);
 		pervTimer = 2.0f;

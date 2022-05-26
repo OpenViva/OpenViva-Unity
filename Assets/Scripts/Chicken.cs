@@ -65,6 +65,7 @@ public class Chicken : Mechanism{
         //will no longer run away
         avoidTransforms.Clear();
         untamedItemCollisionExpansion.SetActive( false );
+        SetAnimation( idleID, 0.4f );
     }
 
     public void OnPickedUp(){

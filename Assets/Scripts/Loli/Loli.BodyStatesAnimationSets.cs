@@ -37,6 +37,7 @@ public enum AnimationSet{
 	POKE_FACE_SOFT_RIGHT,
 	POKE_FACE_HARD_RIGHT,
 	HEADPAT_START_HAPPY,
+	HEADPAT_START_TIRED,
 	HEADPAT_START_ANGRY,
 	HEADPAT_END_WANTED_MORE,
 	HEADPAT_END_FULFILL,
@@ -136,6 +137,7 @@ public partial class Loli : Character{
 		stand.AddAnimation( AnimationSet.POKE_FACE_HARD_RIGHT, Loli.Animation.STAND_POKE_FACE_2_RIGHT );
 		stand.AddAnimation( AnimationSet.POKE_FACE_HARD_RIGHT, Loli.Animation.STAND_POKE_FACE_3_RIGHT );
 		stand.AddAnimation( AnimationSet.HEADPAT_START_HAPPY, Loli.Animation.STAND_HEADPAT_HAPPY_START );
+		stand.AddAnimation( AnimationSet.HEADPAT_START_TIRED, Loli.Animation.STAND_TIRED_HEADPAT_IDLE );
 		stand.AddAnimation( AnimationSet.HEADPAT_START_ANGRY, Loli.Animation.STAND_HEADPAT_ANGRY_LOOP );
 		stand.AddAnimation( AnimationSet.HEADPAT_END_WANTED_MORE, Loli.Animation.STAND_HEADPAT_HAPPY_WANTED_MORE );
 		stand.AddAnimation( AnimationSet.HEADPAT_END_FULFILL, Loli.Animation.STAND_HEADPAT_HAPPY_WANTED_MORE );

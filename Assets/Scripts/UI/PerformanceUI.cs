@@ -1,7 +1,8 @@
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.InputSystem;
 
-namespace viva
+namespace viva.profiler
 {
   public class PerformanceUI : MonoBehaviour
   {
@@ -22,12 +23,19 @@ namespace viva
     {
       this.canvas = this.GetComponent<Canvas>();
     }
+    private void ToggleUI(){
+      if(GameDirector.player.controls == Player.ControlType.VR){ return; }
+      canvas.enabled = !canvas.enabled;
+    }
     private void Update()
     {
-      if (!canvas.enabled || updateTime-Time.realtimeSinceStartup > 0.0)
+      if(Keyboard.current[Key.F8].wasPressedThisFrame){
+        ToggleUI();
+      }
+      if( !canvas.enabled || updateTime-Time.realtimeSinceStartup > 0.0 )
         return;
       updateTime = Time.realtimeSinceStartup + 0.5f;
-      if (Performance.FrameCountLastSecond < 30)
+      if(Performance.FrameCountLastSecond < 30)
         fps.color = Color.red;
       else if (Performance.FrameCountLastSecond < 50)
         fps.color = Color.yellow;
@@ -42,7 +50,7 @@ namespace viva
 
     private void UpdateRainbow()
     {
-      for (int category = 0; category < 6; ++category)
+      for( int category = 0; category < 6; ++category )
         this.rainbow[category].flexibleWidth = Performance.GetFrameFraction((Performance.FrameRateCategory) category) * 1000f;
     }
   }

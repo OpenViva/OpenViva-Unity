@@ -25,7 +25,7 @@ public abstract class HorseControls: InputController{
         if( !firstControlsHint ){
             firstControlsHint = true;
             player.pauseMenu.DisplayHUDMessage("You only need to grab one rein to control the horse.", true, PauseMenu.HintType.HINT_NO_IMAGE);
-            if( player.controls == Player.ControlType.OPEN_VR ){
+            if( player.controls == Player.ControlType.VR ){
                 player.pauseMenu.DisplayHUDMessage("Press the trackpad's up/down to shift horse speed", true, PauseMenu.HintType.HINT_NO_IMAGE);
             }else{
                 player.pauseMenu.DisplayHUDMessage("Press W and S to shift horse speed", true, PauseMenu.HintType.HINT_NO_IMAGE);

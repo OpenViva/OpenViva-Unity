@@ -51,6 +51,7 @@ public partial class Player : Character {
     [SerializeField]
     private PauseMenu m_pauseMenu;
     public PauseMenu pauseMenu { get{ return m_pauseMenu; } }
+    public GameObject crosshair;
     private InputController m_controller;
     public InputController controller { get{ return m_controller; } }
     private bool grabbingEnabled = true;
@@ -159,7 +160,6 @@ public partial class Player : Character {
         vivaControls.keyboard.follow.performed += ctx => OnInputFollowRightHand();
         vivaControls.keyboard.crouch.performed += ctx => FlipKeyboardHeight();
         vivaControls.keyboard.pauseButton.performed += ctx => TogglePauseMenu();
-         vivaControls.keyboard.miniprofiler.performed += ctx => TogglePerformanceUI();
     }
 
     public void SetControls( ControlType newControls ){
@@ -169,7 +169,7 @@ public partial class Player : Character {
 
     public void SetCrosshair( bool enabled ){
         if( enabled ){
-            if( controls == ControlType.OPEN_VR ){
+            if( controls == ControlType.VR ){
                 return;
             }else{
                 crosshair.SetActive(true);
@@ -177,11 +177,7 @@ public partial class Player : Character {
         }else{
             crosshair.SetActive(false);
         }
-    }
-
-    public void TogglePerformanceUI(){
-        GameDirector.instance.performanceui.canvas.enabled = !GameDirector.instance.performanceui.canvas.enabled;
-    }
+    }   
 
     public void TogglePauseMenu(){
         if( !GameDirector.instance.isUIMenuActive(pauseMenu) ){
@@ -204,7 +200,7 @@ public partial class Player : Character {
         animator.Update( Time.fixedDeltaTime );
         FixedUpdateKeyboardHandAnimationEvents();
         FixedUpdateHandAnimationSystems();
-        if( controls == ControlType.OPEN_VR ){
+        if( controls == ControlType.VR ){
             UpdateVRAnimationSystems();
         }
 

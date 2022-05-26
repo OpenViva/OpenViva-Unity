@@ -33,8 +33,7 @@ public partial class Loli : Character{
 	private float lastTorsoChangeTime = 0.0f;
 	public float lastTorsoNormTimePlayed { get; private set; }
 
-	public bool IsTired()
-	{
+	public bool IsTired(){
 		return Tired;
 	}
 	public bool IsHappy(){

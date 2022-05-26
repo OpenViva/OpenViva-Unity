@@ -68,6 +68,9 @@ public partial class Loli : Character {
 			faceYawDisableSum--;
 		}
 	}
+	public bool IsFaceYawAnimationEnabled(){
+		return faceYawDisableSum <= 0;
+	}
 
 	public void AnchorSpineUntilTransitionEnds( Transform reference ){
 

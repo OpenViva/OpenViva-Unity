@@ -67,12 +67,12 @@ public partial class HandholdBehavior : PassiveBehaviors.PassiveTask {
 		HandState sourceHandState = targetHandState.selfItem.mainOccupyState as HandState;
 
 		if( GameDirector.player.rigidBody.velocity.sqrMagnitude > 0.2f ){
-			if( matchWalkEase.value != 0.0f ){
+			if( matchWalkEase.value != 0.0f && self.bodyState == BodyState.STAND ){
 					
 				Vector3 targetFaceYawDir = Vector3.Cross( (GameDirector.player.transform.position-self.floorPos).normalized, Vector3.up );
-				self.autonomy.SetAutonomy(new AutonomyFaceDirection( self.autonomy, "face direction", delegate(TaskTarget target){
+				self.autonomy.Interrupt(new AutonomyFaceDirection( self.autonomy, "face direction", delegate(TaskTarget target){
                         target.SetTargetPosition( self.floorPos-targetFaceYawDir*matchWalkSide*matchWalkEase.value );
-                    }, 20.0f ) );		
+                    }, 2.0f ) );		
 				//self.SetRootFacingTarget( self.floorPos-targetFaceYawDir*matchWalkSide*matchWalkEase.value, 260.0f, 20.0f, 45.0f );
 			}
 			
@@ -172,19 +172,23 @@ public partial class HandholdBehavior : PassiveBehaviors.PassiveTask {
 				if( bothConstrained ){
 					Vector3 targetFaceYawPos = ( self.rightHandState.selfItem.transform.position+self.leftHandState.selfItem.transform.position )/2.0f;
 					targetFaceYawPos -= Vector3.Cross( Vector3.up, self.rightHandState.selfItem.transform.position-self.leftHandState.selfItem.transform.position );
-					self.autonomy.SetAutonomy(new AutonomyFaceDirection( self.autonomy, "face direction", delegate(TaskTarget target){
+					if( self.bodyState == BodyState.STAND ){
+						self.autonomy.Interrupt(new AutonomyFaceDirection( self.autonomy, "face direction", delegate(TaskTarget target){
                         target.SetTargetPosition( targetFaceYawPos );
-                    }, 40.0f ) );
-					// self.SetRootFacingTarget( targetFaceYawPos, 260.0f, 40.0f, 25.0f );
+                    	}, 4.0f ) );
+						// self.SetRootFacingTarget( targetFaceYawPos, 260.0f, 40.0f, 25.0f );
+					}
 					if( Time.time%1.0f > 0.8f ){	//Fire ~20% of the time
 						self.SetLookAtTarget( GameDirector.player.head );
 					}
 				}
 			}else{
 				if( rightLimbGrabs>0 || leftLimbGrabs>0 ){
-					self.autonomy.SetAutonomy(new AutonomyFaceDirection( self.autonomy, "face direction", delegate(TaskTarget target){
-                        target.SetTargetPosition( sourceHandState.selfItem.rigidBody.position );
-                    }, 40.0f ) );
+					if( self.bodyState == BodyState.STAND ){
+						self.autonomy.Interrupt(new AutonomyFaceDirection( self.autonomy, "face direction", delegate(TaskTarget target){
+                    	    target.SetTargetPosition( sourceHandState.selfItem.rigidBody.position );
+                    	}, 4.0f ) );
+					}
 					// self.SetRootFacingTarget( sourceHandState.selfItem.rigidBody.position, 260.0f, 40.0f, 25.0f );
 					if( Time.time%1.0f > 0.8f ){	//Fire ~20% of the time
 						self.SetLookAtTarget( sourceHandState.selfItem.transform );

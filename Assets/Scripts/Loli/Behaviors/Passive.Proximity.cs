@@ -32,9 +32,9 @@ public class ProximityBehavior : PassiveBehaviors.PassiveTask {
 			return;
 		}
 		//disable during hugging
-		//if( self.active.IsTaskActive( self.active.hug ) ){
-		//	return;
-		//}
+		if( self.active.IsTaskActive( self.passive.hug ) ){
+			return;
+		}
 		//disable during headpat
 		if( self.passive.headpat.IsHeadpatActive() ){
 			endStartleProximity( false );
@@ -93,7 +93,6 @@ public class ProximityBehavior : PassiveBehaviors.PassiveTask {
 	}
 
 	private void StartProximityBehaviorFast( Item item ){
-		
 		proximityActive = true;
 		if( self.IsHappy() ){
 			self.SetTargetAnimation( Loli.Animation.STAND_FACE_PROX_HAPPY_SURPRISE );
@@ -101,9 +100,9 @@ public class ProximityBehavior : PassiveBehaviors.PassiveTask {
 			self.SetTargetAnimation( Loli.Animation.STAND_FACE_PROX_ANGRY_SURPRISE );
 		}
 		//self.SetRootFacingTarget( item.transform.position, 200.0f, 40.0f, 10.0f );
-		self.autonomy.SetAutonomy(new AutonomyFaceDirection( self.autonomy, "face direction", delegate(TaskTarget target){
+		self.autonomy.Interrupt(new AutonomyFaceDirection( self.autonomy, "face direction", delegate(TaskTarget target){
                         target.SetTargetPosition( item.transform.position );
-                    }, 40.0f ) );
+                    }, 2.0f ) );
 
 
 		Vector3 surprisePush = self.transform.position-item.transform.position;
@@ -120,9 +119,9 @@ public class ProximityBehavior : PassiveBehaviors.PassiveTask {
 			self.SetTargetAnimation( Loli.Animation.STAND_FACE_PROX_ANGRY_LOOP );
 		}
 		//self.SetRootFacingTarget( item.transform.position, 200.0f, 10.0f, 10.0f );
-		self.autonomy.SetAutonomy(new AutonomyFaceDirection( self.autonomy, "face direction", delegate(TaskTarget target){
+		self.autonomy.Interrupt(new AutonomyFaceDirection( self.autonomy, "face direction", delegate(TaskTarget target){
                         target.SetTargetPosition( item.transform.position );
-                    }, 10.0f ) );
+                    }, 1.0f ) );
 
 	}
 

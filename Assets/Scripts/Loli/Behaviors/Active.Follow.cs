@@ -64,9 +64,9 @@ public class FollowBehavior : ActiveBehaviors.ActiveTask {
 		}else{
 			self.active.idle.PlayAvailableRefuseAnimation();
 			if( self.bodyState == BodyState.STAND){ //Make sure to only face direction when standing
-				self.autonomy.SetAutonomy(new AutonomyFaceDirection( self.autonomy, "face direction", delegate(TaskTarget target){
+				self.autonomy.Interrupt(new AutonomyFaceDirection( self.autonomy, "face direction", delegate(TaskTarget target){
                     target.SetTargetPosition( source.transform.position );
-                }, 15.0f ) );
+                }, 2.0f ) );
 			}
 			// self.SetRootFacingTarget( source.transform.position, 100.0f, 15.0f, 40.0f );
 		}

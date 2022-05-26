@@ -29,6 +29,10 @@ public partial class PauseMenu: UIMenu{
     [SerializeField]
     private GameObject achievementPrefab;
 
+    GameObject duck;
+
+    Item frame;
+
     public enum HintType{
         ACHIEVEMENT,
         HINT,
@@ -75,7 +79,9 @@ public partial class PauseMenu: UIMenu{
         menuTutorialPhase = MenuTutorial.FINISHED_ALL;
         GameDirector.instance.StopCoroutine( tutorialCoroutine );
         tutorialCoroutine = null;
-
+        //destroy tutorial objects
+        Destroy(frame);
+        Destroy(duck);
         //resume game
         GameDirector.player.transform.position = lastPositionBeforeTutorial;
         //reset music
@@ -209,7 +215,7 @@ public partial class PauseMenu: UIMenu{
         }
 
         DisplayHUDMessage( "Pick up the rubber ducky in the center.", true, HintType.HINT_NO_IMAGE, MenuTutorial.WAIT_TO_START_PICKUP );
-        GameObject duck = GameObject.Instantiate( tutorialDuckPrefab, tutorialCircle.transform.position+Vector3.up*0.1f, Quaternion.identity );
+        duck = GameObject.Instantiate( tutorialDuckPrefab, tutorialCircle.transform.position+Vector3.up*0.1f, Quaternion.identity );
         if( player.controls == Player.ControlType.KEYBOARD ){
             DisplayHUDMessage( "Left click left hand. Right click right hand.", true, HintType.HINT_NO_IMAGE, MenuTutorial.WAIT_TO_START_PICKUP );
             DisplayHUDMessage( "Drop by holding SHIFT", true, HintType.HINT, MenuTutorial.WAIT_TO_START_PICKUP );
@@ -245,7 +251,7 @@ public partial class PauseMenu: UIMenu{
         }
 
         //polaroid frame tutorial section
-        Item frame = GameObject.Instantiate( tutorialFramePrefab, tutorialCircle.transform.position+Vector3.up*0.1f, Quaternion.identity ).GetComponent( typeof(PolaroidFrame)) as PolaroidFrame;
+        frame = GameObject.Instantiate( tutorialFramePrefab, tutorialCircle.transform.position+Vector3.up*0.1f, Quaternion.identity ).GetComponent( typeof(PolaroidFrame)) as PolaroidFrame;
         DisplayHUDMessage( "Pick up the Polaroid frame in the center", true, HintType.HINT_NO_IMAGE, MenuTutorial.WAIT_TO_PICKUP_FRAME );
         DisplayHUDMessage( "and drop the rest of the objects", true, HintType.HINT_NO_IMAGE, MenuTutorial.WAIT_TO_PICKUP_FRAME );
         if( player.controls == Player.ControlType.KEYBOARD ){

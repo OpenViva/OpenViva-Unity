@@ -72,7 +72,7 @@ public partial class ModelCustomizer : UITabMenu
     [SerializeField]
     private Button hatPreviewButtonContainer = null;
 
-    private GameObject activeHat = null;
+    private GameObject activeHat;
 
 
     private void InitializeCreateTab(){
@@ -100,6 +100,7 @@ public partial class ModelCustomizer : UITabMenu
             return;
         }
         if( activeHat != null ){
+            Debug.LogError("Hat already exists");
             GameDirector.Destroy( activeHat );
             return;
         }
@@ -248,7 +249,7 @@ public partial class ModelCustomizer : UITabMenu
             new Vector2Int( Steganography.PACK_SIZE, Steganography.CARD_HEIGHT ),
             characterPhotoshootPose,
             characterBackground,
-            Loli.Animation.PHOTOSHOOT_2
+            modelPreviewer.modelDefaultPoseAnim
         );
         yield return GameDirector.instance.StartCoroutine( GameDirector.instance.RenderPhotoshoot( loli, photoshoot ) );
     
@@ -267,7 +268,7 @@ public partial class ModelCustomizer : UITabMenu
             new Vector2Int( Steganography.PACK_SIZE, Steganography.CARD_HEIGHT ),
             characterPhotoshootPose,
             skinBackground,
-            Loli.Animation.PHOTOSHOOT_2
+            modelPreviewer.modelDefaultPoseAnim
         );
         yield return GameDirector.instance.StartCoroutine( GameDirector.instance.RenderPhotoshoot( loli, photoshoot ) );
 

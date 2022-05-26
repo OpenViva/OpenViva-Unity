@@ -60,7 +60,7 @@ public abstract class UIMenu : MonoBehaviour {
 		while( true ){	//keep checking if UI is inactive
 
 			if( !GameDirector.instance.IsAnyUIMenuActive() ){
-				if( player.controls == Player.ControlType.OPEN_VR ){
+				if( player.controls == Player.ControlType.VR ){
 					GameDirector.instance.BeginUIInput( this, player );
 					break;
 				}else{

@@ -27,6 +27,10 @@ public class Town : VivaSessionAsset{
     private void OnPostLoad(){
 		var cardsAvailable = ModelCustomizer.main.characterCardBrowser.FindAllExistingCardsInFolders();
 
+		if(cardsAvailable.Length == 0){
+			GameDirector.instance.fileLoadStatus.description.text = "No Cards Found!";
+		}
+
 		BuildTownLolis( cardsAvailable, maxResidents-( GameDirector.characters.Count-1 ), null );
 	}
 

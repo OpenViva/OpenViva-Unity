@@ -86,7 +86,7 @@ public partial class GameDirector : MonoBehaviour {
         //create raymarched cloud variables
         int width;
         int height;
-        if( m_player.controls == Player.ControlType.OPEN_VR ){
+        if( m_player.controls == Player.ControlType.VR ){
             width = Screen.width/3;
             height = Screen.height/3;
         }else{

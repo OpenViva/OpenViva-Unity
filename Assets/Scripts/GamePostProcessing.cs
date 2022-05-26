@@ -46,12 +46,6 @@ public class GamePostProcessing : MonoBehaviour {
         screenMaterial = cloudCameraMaterial;
     }
 
-    private void FixedUpdate(){
-        if( activeEffectCoroutine == null ){
-            screenMaterial = cloudCameraMaterial;
-        }
-    }
-
     private void OnRenderImage(RenderTexture source, RenderTexture destination){
         cloudCameraMaterial.SetTexture( "_CloudsRT", GameDirector.instance.GetCloudRT() );
         if( screenMaterial != null ){
@@ -69,9 +63,6 @@ public class GamePostProcessing : MonoBehaviour {
     }
     
     public void DisplayScreenEffect( Effect effect ){
-        if( screenMaterial != cloudCameraMaterial ){
-            return;
-        }
         if( usingUnderwater ){
             return;
         }
@@ -89,7 +80,6 @@ public class GamePostProcessing : MonoBehaviour {
             break;
         case Effect.SPLASH:
             AddToQueue( playerSplashMat );
-            //TODO: FIX
             activeEffectCoroutine = GameDirector.instance.StartCoroutine( AnimateSplashMaterial() );
             break;
         }
@@ -124,7 +114,6 @@ public class GamePostProcessing : MonoBehaviour {
     }
 
     public void EnableUnderwaterEffect(){
-       
         AddToQueue( screenMaterials[0] );
         m_usingUnderwater = true;
     }
@@ -223,7 +212,6 @@ public class GamePostProcessing : MonoBehaviour {
         }
 		activeEffectCoroutine = null;
         UpdatePostProcessUsage();
-
         screenMaterial = cloudCameraMaterial;
     }
 }

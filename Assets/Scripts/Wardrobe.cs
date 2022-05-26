@@ -40,7 +40,7 @@ public partial class Wardrobe : UITabMenu{
 		this.enabled = true;
 		Text text = createTabButton.transform.GetChild(0).GetComponent<Text>();
 		
-		if( GameDirector.player.controls == Player.ControlType.OPEN_VR ){
+		if( GameDirector.player.controls == Player.ControlType.VR ){
 			createTabButton.interactable = false;
 			text.text = "Cannot Create in VR";
 		}else{

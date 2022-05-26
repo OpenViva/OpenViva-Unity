@@ -112,9 +112,9 @@ public partial class IdleBehavior: ActiveBehaviors.ActiveTask{
 					self.SetTargetAnimation( waveAnimation );
 					self.SetLookAtTarget( source.transform );
 					// self.SetRootFacingTarget( source.transform.position, 100.0f, 10.0f, 15.0f );
-					self.autonomy.SetAutonomy(new AutonomyFaceDirection( self.autonomy, "face direction", delegate(TaskTarget target){
+					self.autonomy.Interrupt(new AutonomyFaceDirection( self.autonomy, "face direction", delegate(TaskTarget target){
                         target.SetTargetPosition( source.transform.position );
-                    }, 10.0f ) );
+                    }, 2.0f ) );
 					return true;
 				}
 			}
@@ -212,10 +212,10 @@ public partial class IdleBehavior: ActiveBehaviors.ActiveTask{
 					closest = candidates[i];
 				}
 			} 
-			//DO NOT ALLOW PICKING UP ALREADY HELD ITEMS
-			if( self.leftLoliHandState.heldItem == closest || self.rightLoliHandState.heldItem == closest){
-				return;
-			}
+			//cannot be interested of an already owned item
+ 			if( closest.mainOwner == self ){
+ 				return;
+	 		}
 			self.autonomy.SetAutonomy( new AutonomyPickup( self.autonomy, "pickup interest", closest, self.GetPreferredHandState( closest ), true ));
 			//self.active.pickup.AttemptGoAndPickup( closest, self.active.pickup.FindPreferredHandState( closest ) );
 		}
@@ -261,10 +261,12 @@ public partial class IdleBehavior: ActiveBehaviors.ActiveTask{
 			idleRootFacingTargetTimer -= Time.deltaTime*System.Convert.ToInt32( enableFaceTargetTimer );
 			if( idleRootFacingTargetTimer < 0.0f ){
 				idleRootFacingTargetTimer = 4.0f+Random.value*4.0f;
-				//self.autonomy.SetAutonomy(new AutonomyFaceDirection( self.autonomy, "face direction", delegate(TaskTarget target){
-                //        target.SetTargetPosition( self.currentLookAtTransform.position );
-                //    } ) );
-				// self.SetRootFacingTarget( self.currentLookAtTransform.position, 200.0f, 15.0f, 30.0f );
+				if( self.active.RequestPermission( ActiveBehaviors.Permission.ALLOW_ROOT_FACING_TARGET_CHANGE ) ){
+					self.autonomy.Interrupt(new AutonomyFaceDirection( self.autonomy, "face direction", delegate(TaskTarget target){
+                	       target.SetTargetPosition( self.currentLookAtTransform.position );
+                    } ) );
+					//self.SetRootFacingTarget( self.currentLookAtTransform.position, 200.0f, 15.0f, 30.0f );
+				}
 			}
 		}
 	}

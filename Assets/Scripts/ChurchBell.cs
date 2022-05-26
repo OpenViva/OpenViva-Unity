@@ -22,8 +22,8 @@ public class ChurchBell : MonoBehaviour {
 	}
 
     public void OnTriggerEnter( Collider collider ){
-		Camera camera = collider.GetComponent<Camera>();
-		if( camera && waitCoroutine == null ){
+		Player player = collider.GetComponent<Player>();
+		if( player && waitCoroutine == null ){
 			waitCoroutine = GameDirector.instance.StartCoroutine( WaitForBell() );
 		}
     }
@@ -34,6 +34,7 @@ public class ChurchBell : MonoBehaviour {
 			if( AllowedToPlayBell() ){
 				bellSource.Play();
 				bellTimer = Time.time+200.0f;
+				Debug.Log("Played Bell");
 			}
 			yield return new WaitForSeconds(200.0f);
 		}

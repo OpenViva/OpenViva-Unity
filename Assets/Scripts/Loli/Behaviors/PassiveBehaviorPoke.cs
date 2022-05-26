@@ -99,12 +99,12 @@ public partial class PokeBehavior : PassiveBehaviors.PassiveTask {
 			self.Speak( Loli.VoiceLine.STARTLE_SHORT );
 		}
 		if( self.active.RequestPermission( ActiveBehaviors.Permission.ALLOW_ROOT_FACING_TARGET_CHANGE ) ){
-			if( self.bodyState == BodyState.STAND){ //Make sure to only face direction when standing
-				self.autonomy.SetAutonomy(new AutonomyFaceDirection( self.autonomy, "face direction", delegate(TaskTarget target){
-                        target.SetTargetPosition(GameDirector.player.transform.position+lastPokeSource.position );
-                    } ) );
-			}		
-			// self.SetRootFacingTarget( ( GameDirector.player.transform.position+lastPokeSource.position )/2.0f, 160.0f, 5.0f, 10.0f );
+			if( self.bodyState == BodyState.STAND ){ //Make sure to only face direction when standing
+				self.autonomy.Interrupt(new AutonomyFaceDirection( self.autonomy, "face direction", delegate(TaskTarget target){
+            	        target.SetTargetPosition(GameDirector.player.transform.position+lastPokeSource.position/2.0f );
+            	} ) );	
+				// self.SetRootFacingTarget( ( GameDirector.player.transform.position+lastPokeSource.position )/2.0f, 160.0f, 5.0f, 10.0f );
+			}
 		}
 		return true;
 	}
@@ -144,12 +144,13 @@ public partial class PokeBehavior : PassiveBehaviors.PassiveTask {
 		//return self.bodyStateAnimationSets[ (int)self.bodyState ].GetAnimationSet( AnimationSet.POKE_FACE_SOFT_RIGHT, pokeSideIsLeft );
 		//if( animations.)
 		switch( self.bodyState ){
+		
 		case BodyState.STAND:
 			if( self.IsTired() ){
 				return self.GetAnimationFromSet( Loli.Animation.STAND_TIRED_POKE_RIGHT, pokeSideIsLeft );
 			}else{
-				return self.GetAnimationFromSet( Loli.Animation.STAND_POKE_FACE_1_RIGHT, pokeSideIsLeft, 2 );
-			}
+				return self.GetAnimationFromSet( Loli.Animation.STAND_POKE_FACE_1_RIGHT, pokeSideIsLeft, 3 );	
+			}	
 		case BodyState.BATHING_RELAX:
 			return self.GetAnimationFromSet( Loli.Animation.BATHTUB_RELAX_FACE_POKE_RIGHT, pokeSideIsLeft );
 		case BodyState.BATHING_IDLE:
@@ -173,6 +174,9 @@ public partial class PokeBehavior : PassiveBehaviors.PassiveTask {
 		
 		switch( self.bodyState ){
 		case BodyState.STAND:
+			if( self.IsTired() ){
+				return self.GetLastReturnableIdleAnimation();
+			}
 			if( pokeCount >= 2 && Time.time-lastPokeCheekWipeReactTime > 15.0f ){
 				if( pokeSideIsLeft == 0 ){
 					if( self.rightHandState.holdType == HoldType.NULL ){
@@ -236,15 +240,13 @@ public partial class PokeBehavior : PassiveBehaviors.PassiveTask {
 		newFacePokedAnimation = Loli.Animation.NONE;
 
 		if( pokeCount > 4 ){	//4 pokes and she becomes angry
-			if( self.active.RequestPermission( ActiveBehaviors.Permission.ALLOW_ROOT_FACING_TARGET_CHANGE ) ){
-				if( self.bodyState == BodyState.STAND){ //Make sure to only face direction when standing
-					self.autonomy.SetAutonomy(new AutonomyFaceDirection( self.autonomy, "face direction", delegate(TaskTarget target){
-                        target.SetTargetPosition( lastPokeSource.position );
-                    }, 5.0f ) );
-				}
+			if( self.active.RequestPermission( ActiveBehaviors.Permission.ALLOW_ROOT_FACING_TARGET_CHANGE ) ){				
+				self.autonomy.Interrupt(new AutonomyFaceDirection( self.autonomy, "face direction", delegate(TaskTarget target){
+                    target.SetTargetPosition( lastPokeSource.position );
+                }, 2.0f ) );
 				// self.SetRootFacingTarget( lastPokeSource.position, 200.0f, 15.0f, 50.0f );
 			}
-			if( Random.value < 0.4f && Time.time-lastPokeBlockReactTime > 2.0f ){
+			if( Random.value < 0.4f && Time.time-lastPokeBlockReactTime > 2.0f && !self.IsTired() ){
 				newFacePokedAnimation = GetBlockFacePokeAnimation( pokeSideIsLeft );
 				if( newFacePokedAnimation == Loli.Animation.NONE ){	//if no block poke animation
 					newFacePokedAnimation = GetFacePokedAnimation( pokeSideIsLeft );
@@ -253,7 +255,7 @@ public partial class PokeBehavior : PassiveBehaviors.PassiveTask {
 					self.ShiftHappiness(-2);
 					GameDirector.player.CompleteAchievement(Player.ObjectiveType.POKE_ANGRY);
 
-					if( self.active.RequestPermission( ActiveBehaviors.Permission.ALLOW_IMPULSE_ANIMATION) && self.bodyState == BodyState.STAND ){
+					if( self.active.RequestPermission( ActiveBehaviors.Permission.ALLOW_IMPULSE_ANIMATION) ){
 						Vector3 push = self.head.position-lastPokeSource.position;
 						push.y = 0.0f;
 						self.locomotion.PlayForce( push.normalized*(0.2f+Random.value*0.8f), 0.2f+Random.value*0.3f );
@@ -365,7 +367,7 @@ public partial class PokeBehavior : PassiveBehaviors.PassiveTask {
 				self.SetTargetAnimation( Loli.Animation.STAND_POKED_TUMMY_IN );
 				self.Speak( Loli.VoiceLine.STARTLE_SHORT );
 			}
-		}else if(self.bodyState == BodyState.STAND){
+		}else if( self.bodyState == BodyState.STAND ){
 			self.SetTargetAnimation( Loli.Animation.STAND_POKED_TUMMY_IN );
 			postTummyPokeAnim = Loli.Animation.STAND_POKED_TUMMY_OUT;
 			self.Speak( Loli.VoiceLine.STARTLE_SHORT );
@@ -375,13 +377,11 @@ public partial class PokeBehavior : PassiveBehaviors.PassiveTask {
 				UpdateTummyPokeX();
 			}
 		}
-		if( self.active.RequestPermission( ActiveBehaviors.Permission.ALLOW_ROOT_FACING_TARGET_CHANGE ) ){
-			if( self.bodyState == BodyState.STAND){ //Make sure to only face direction when standing 
-					self.autonomy.SetAutonomy(new AutonomyFaceDirection( self.autonomy, "face direction", delegate(TaskTarget target){
-                        target.SetTargetPosition( GameDirector.player.transform.position+lastPokeSource.position );
-                    }, 5.0f ) );
-			}
-			// self.SetRootFacingTarget( ( GameDirector.player.transform.position+lastPokeSource.position )/2.0f, 160.0f, 5.0f, 10.0f );
+		if( self.active.RequestPermission( ActiveBehaviors.Permission.ALLOW_ROOT_FACING_TARGET_CHANGE ) ){			
+				self.autonomy.Interrupt(new AutonomyFaceDirection( self.autonomy, "face direction", delegate(TaskTarget target){
+                    target.SetTargetPosition( GameDirector.player.transform.position+lastPokeSource.position );
+                } ) );			
+				// self.SetRootFacingTarget( ( GameDirector.player.transform.position+lastPokeSource.position )/2.0f, 160.0f, 5.0f, 10.0f );
 		}
 		//viva.DevTools.LogExtended("", true, true);
 		return true;

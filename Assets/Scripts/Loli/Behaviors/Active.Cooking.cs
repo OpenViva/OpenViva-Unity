@@ -366,9 +366,9 @@ public partial class CookingBehavior : ActiveBehaviors.ActiveTask {
         searchTimer += Time.deltaTime;
         if( searchTimer > timer ){
             searchTimer = 0.0f;
-			self.autonomy.SetAutonomy(new AutonomyFaceDirection( self.autonomy, "face direction", delegate(TaskTarget target){
+			self.autonomy.Interrupt(new AutonomyFaceDirection( self.autonomy, "face direction search cooking", delegate(TaskTarget target){
                         target.SetTargetPosition( self.floorPos-self.transform.forward );
-                    }, 15.0f ) );
+                    }, 2.0f ) );
             // self.SetRootFacingTarget( self.floorPos-self.transform.forward, 200.0f, 15.0f, 15.0f );
             self.SetTargetAnimation( Loli.Animation.STAND_SEARCH_RIGHT );
             searches++;
@@ -466,11 +466,12 @@ public partial class CookingBehavior : ActiveBehaviors.ActiveTask {
 			}
 			//drop item if pickupHand is curently busy
 			if( pickupHand.heldItem != null ){
-				var itemdrop = new AutonomyDrop( self.autonomy, "item pickup", pickupHand.heldItem, facilities.centerLocalPos );
+				var itemdrop = new AutonomyDrop( self.autonomy, "item drop", pickupHand.heldItem, facilities.centerLocalPos );
 				self.autonomy.SetAutonomy(itemdrop);
 				itemdrop.onSuccess += delegate{
-					SetCookingPhase( Phase.WAIT_TO_DROP_ITEM );
 					self.active.PollNextTaskResult( this );
+					SetCookingPhase( Phase.WAIT_TO_DROP_ITEM );					
+					return;
 				};
 				//if( self.active.drop.AttemptDropItem( pickupHand, true, 1.0f, 0.1f, true ) ){
 				//	self.active.PollNextTaskResult( this );
@@ -481,8 +482,9 @@ public partial class CookingBehavior : ActiveBehaviors.ActiveTask {
 				var itempickup = new AutonomyPickup( self.autonomy, "item pickup", item, self.GetPreferredHandState( item ) );
 				self.autonomy.SetAutonomy(itempickup);
 				itempickup.onSuccess += delegate{
-					SetCookingPhase( Phase.WAIT_TO_PICKUP_ITEM );
 					self.active.PollNextTaskResult( this );
+					SetCookingPhase( Phase.WAIT_TO_PICKUP_ITEM );			
+					return;
 				};
 				//if( self.active.pickup.AttemptGoAndPickup( item, self.active.pickup.FindPreferredHandState( item ), true, true ) ){
 				//	self.active.PollNextTaskResult( this );

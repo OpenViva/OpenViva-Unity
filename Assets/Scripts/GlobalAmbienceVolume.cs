@@ -11,15 +11,15 @@ public class GlobalAmbienceVolume : MonoBehaviour{
     private Ambience ambience;
 
     public void OnTriggerEnter( Collider collider ){
-        Camera camera = collider.GetComponent<Camera>();
-        if( camera != null ){
+        Player player = collider.GetComponent<Player>();
+        if( player != null ){
             GameDirector.instance.ambienceDirector.EnterAmbience( ambience );
         }
     }
     
     public void OnTriggerExit( Collider collider ){
-        Camera camera = collider.GetComponent<Camera>();
-        if( camera != null ){
+        Player player = collider.GetComponent<Player>();
+        if( player != null ){
             GameDirector.instance.ambienceDirector.ExitAmbience( ambience );
         }
     }

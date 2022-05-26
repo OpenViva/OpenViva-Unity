@@ -88,7 +88,7 @@ public class FireworkExplosion: MonoBehaviour {
             float sqDist = diff.x*diff.x+diff.z*diff.z;
             if( sqDist < 50 ){ //10
                 loli.passive.scared.Scare( 4.0f );
-                Debug.LogError(sqDist);
+                //Debug.LogError(sqDist);
             }else if( sqDist < 62500 ){ //250
                 var impressedAnim = Loli.Animation.NONE;
                 switch( loli.bodyState ){
