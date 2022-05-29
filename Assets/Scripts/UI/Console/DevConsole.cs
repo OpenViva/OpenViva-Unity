@@ -151,16 +151,19 @@ namespace viva.console
             }
             if (Keyboard.current[Key.F1].wasPressedThisFrame)
             {
-                _consoleCanvas.gameObject.SetActive
-                    (!_consoleCanvas.gameObject.activeInHierarchy);
-
-                _consoleInput.ActivateInputField();
-                _consoleInput.Select();
+                if(!_consoleCanvas.gameObject.activeInHierarchy) {
+                    GameDirector.instance.SetEnableControls( GameDirector.ControlsAllowed.NONE );
+                    _consoleCanvas.gameObject.SetActive(true);
+                    _consoleInput.ActivateInputField();
+                    _consoleInput.Select();
+                } else {
+                    GameDirector.instance.SetEnableControls( GameDirector.ControlsAllowed.ALL );
+                    _consoleCanvas.gameObject.SetActive(false);
+                }
             }
 
             if (_consoleCanvas.gameObject.activeInHierarchy)
             {
-                GameDirector.instance.SetEnableControls( GameDirector.ControlsAllowed.NONE );
                 if (Keyboard.current[Key.Enter].wasPressedThisFrame)
                 {
                     if (string.IsNullOrEmpty(_inputText.text) == false)
