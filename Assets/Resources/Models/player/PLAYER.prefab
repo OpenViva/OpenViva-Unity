@@ -1583,9 +1583,6 @@ MonoBehaviour:
   teleportMR: {fileID: 23321366847445360}
   m_absoluteVRPositionOffset: {x: 0, y: 0, z: 0}
   m_absoluteVRRotationEulerOffset: {x: 0, y: -270, z: 90}
-  m_headTPD: {fileID: 0}
-  m_rightHandTPD: {fileID: 0}
-  m_leftHandTPD: {fileID: 0}
   debugVar: {x: 0, y: 0, z: 0}
   m_controls: 0
   walkSpeed: 0.24
@@ -3329,8 +3326,7 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.x
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 2018148353058669618, guid: c20568f52a6fda3898c772bd7911382b, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c20568f52a6fda3898c772bd7911382b, type: 3}
 --- !u!4 &683579428843013815 stripped
 Transform:
