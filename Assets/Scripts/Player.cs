@@ -43,6 +43,9 @@ public partial class Player : Character {
     private RealtimeReflectionController m_realtimeReflectionController;
     public RealtimeReflectionController realtimeReflectionController { get{ return m_realtimeReflectionController; } }
     [SerializeField]
+    private PlayerHeadState m_playerHeadState;
+    public PlayerHeadState playerHeadState { get{ return m_playerHeadState; } }
+    [SerializeField]
     private PlayerHandState m_rightPlayerHandState;
     public PlayerHandState rightPlayerHandState { get{ return m_rightPlayerHandState; } }
     [SerializeField]

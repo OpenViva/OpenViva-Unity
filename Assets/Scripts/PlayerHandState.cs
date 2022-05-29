@@ -1,9 +1,7 @@
 using UnityEngine;
-using UnityEditor;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine.XR;
-using Valve.VR;
+using UnityEngine.SpatialTracking;
 
 namespace viva{
  
@@ -30,8 +28,8 @@ public partial class PlayerHandState: HandState{
     [SerializeField]
     private Texture2D defaultPickupTexture;
     [SerializeField]
-    private SteamVR_Behaviour_Pose m_behaviourPose;
-    public SteamVR_Behaviour_Pose behaviourPose { get{ return m_behaviourPose; } }
+    private TrackedPoseDriver m_behaviourPose;
+    public TrackedPoseDriver behaviourPose { get{ return m_behaviourPose; } }
     [SerializeField]
 	private Transform m_absoluteHandTransform;
 	public Transform absoluteHandTransform { get{ return m_absoluteHandTransform; } }
@@ -79,45 +77,45 @@ public partial class PlayerHandState: HandState{
     }
 
     private int buggySteamVRMultipleFiringFix = 0;
-    private void SteamVRTogglePauseMenu( SteamVR_Action_Boolean fromAction, SteamVR_Input_Sources fromSource ){
-        if( Time.frameCount != buggySteamVRMultipleFiringFix ){
-            buggySteamVRMultipleFiringFix = Time.frameCount;
-            if( fromSource == SteamVR_Input_Sources.RightHand && !GameDirector.settings.trackpadMovementUseRight ){
-                player.TogglePauseMenu(); 
-            }else if( fromSource == SteamVR_Input_Sources.LeftHand && GameDirector.settings.trackpadMovementUseRight ){
-                player.TogglePauseMenu();
-            }
-        }
-    }
+    // private void SteamVRTogglePauseMenu( SteamVR_Action_Boolean fromAction, SteamVR_Input_Sources fromSource ){
+    //     if( Time.frameCount != buggySteamVRMultipleFiringFix ){
+    //         buggySteamVRMultipleFiringFix = Time.frameCount;
+    //         if( fromSource == SteamVR_Input_Sources.RightHand && !GameDirector.settings.trackpadMovementUseRight ){
+    //             player.TogglePauseMenu(); 
+    //         }else if( fromSource == SteamVR_Input_Sources.LeftHand && GameDirector.settings.trackpadMovementUseRight ){
+    //             player.TogglePauseMenu();
+    //         }
+    //     }
+    // }
 
     public void UpdateSteamVRInput(){
-        if( SteamVR.active ){
+        // if( SteamVR.active ){
             
-            // SteamVR_Actions.player_Grab.onStateDown += delegate{ gripState.UpdateState( true ); };
-            // SteamVR_Actions.player_Grab.onStateUp += delegate{ gripState.UpdateState( false ); };
-            // SteamVR_Actions.player_Action.onStateDown += delegate{ actionState.UpdateState( true ); };
-            // SteamVR_Actions.player_Action.onStateUp += delegate{ actionState.UpdateState( false ); };
-            // SteamVR_Actions.player_TrackpadPress.onStateDown += delegate{ trackpadButtonState.UpdateState( true ); };
-            // SteamVR_Actions.player_TrackpadPress.onStateUp += delegate{ trackpadButtonState.UpdateState( false ); };
-            // SteamVR_Actions.player_Trackpad.onUpdate += delegate{ trackpadPos = SteamVR_Actions.player_Trackpad.GetAxis( behaviourPose.inputSource ); };
+        //     // SteamVR_Actions.player_Grab.onStateDown += delegate{ gripState.UpdateState( true ); };
+        //     // SteamVR_Actions.player_Grab.onStateUp += delegate{ gripState.UpdateState( false ); };
+        //     // SteamVR_Actions.player_Action.onStateDown += delegate{ actionState.UpdateState( true ); };
+        //     // SteamVR_Actions.player_Action.onStateUp += delegate{ actionState.UpdateState( false ); };
+        //     // SteamVR_Actions.player_TrackpadPress.onStateDown += delegate{ trackpadButtonState.UpdateState( true ); };
+        //     // SteamVR_Actions.player_TrackpadPress.onStateUp += delegate{ trackpadButtonState.UpdateState( false ); };
+        //     // SteamVR_Actions.player_Trackpad.onUpdate += delegate{ trackpadPos = SteamVR_Actions.player_Trackpad.GetAxis( behaviourPose.inputSource ); };
             
-            if( SteamVR_Actions.player_grab.GetStateDown( behaviourPose.inputSource ) ){
-                gripState.UpdateState( true );
-            }else if( SteamVR_Actions.player_grab.GetStateUp( behaviourPose.inputSource ) ){
-                gripState.UpdateState( false );
-            }
-            if( SteamVR_Actions.player_action.GetStateDown( behaviourPose.inputSource ) ){
-                actionState.UpdateState( true );
-            }else if( SteamVR_Actions.player_action.GetStateUp( behaviourPose.inputSource ) ){
-                actionState.UpdateState( false );
-            }
-            if( SteamVR_Actions.player_trackpadpress.GetStateDown( behaviourPose.inputSource ) ){
-                trackpadButtonState.UpdateState( true );
-            }else if( SteamVR_Actions.player_trackpadpress.GetStateUp( behaviourPose.inputSource ) ){
-                trackpadButtonState.UpdateState( false );
-            }
-            trackpadPos = SteamVR_Actions.player_trackpad.GetAxis( behaviourPose.inputSource );
-        }
+        //     if( SteamVR_Actions.player_grab.GetStateDown( behaviourPose.inputSource ) ){
+        //         gripState.UpdateState( true );
+        //     }else if( SteamVR_Actions.player_grab.GetStateUp( behaviourPose.inputSource ) ){
+        //         gripState.UpdateState( false );
+        //     }
+        //     if( SteamVR_Actions.player_action.GetStateDown( behaviourPose.inputSource ) ){
+        //         actionState.UpdateState( true );
+        //     }else if( SteamVR_Actions.player_action.GetStateUp( behaviourPose.inputSource ) ){
+        //         actionState.UpdateState( false );
+        //     }
+        //     if( SteamVR_Actions.player_trackpadpress.GetStateDown( behaviourPose.inputSource ) ){
+        //         trackpadButtonState.UpdateState( true );
+        //     }else if( SteamVR_Actions.player_trackpadpress.GetStateUp( behaviourPose.inputSource ) ){
+        //         trackpadButtonState.UpdateState( false );
+        //     }
+        //     trackpadPos = SteamVR_Actions.player_trackpad.GetAxis( behaviourPose.inputSource );
+        // }
     }
 
     public void UnbindSteamVRInput(){
@@ -190,7 +188,7 @@ public partial class PlayerHandState: HandState{
 
         behaviourPose.transform.SetParent( player.transform, true );
 
-        SteamVR_Actions.player_pause.AddOnStateDownListener( SteamVRTogglePauseMenu, behaviourPose.inputSource );
+        // SteamVR_Actions.player_pause.AddOnStateDownListener( SteamVRTogglePauseMenu, behaviourPose.inputSource );
     }
 
 	protected override void GetRigidBodyBlendConnectedAnchor( out Vector3 targetLocalPos, out Quaternion targetLocalRot ){

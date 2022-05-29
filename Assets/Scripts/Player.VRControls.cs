@@ -1,8 +1,4 @@
 using UnityEngine;
-using UnityEditor;
-using System.Collections;
-using UnityEngine.UI;
-using Valve.VR;
 
 namespace viva{
 

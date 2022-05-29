@@ -1,10 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
-using System.Collections.Generic;
-using UnityEngine.InputSystem.XR;
-using UnityEngine.InputSystem;
 using UnityEngine.XR.Management;
-using Valve.VR;
+using UnityEngine.SpatialTracking;
 
 
 namespace viva{
@@ -53,7 +50,6 @@ public partial class Player : Character {
     [VivaFileAttribute]
 	public Vector3 absoluteVRRotationEulerOffset { get{return m_absoluteVRRotationEulerOffset;} protected set{ m_absoluteVRRotationEulerOffset = value; } }
 
-    //Note: Goodluck FunMaker :D
     private void SetEnableVRControls( bool enable ){      
         if( enable ){
             if( XRGeneralSettings.Instance.Manager.activeLoader == null ){
@@ -69,9 +65,9 @@ public partial class Player : Character {
             }
             head.localPosition = Vector3.zero;
             head.localRotation = Quaternion.identity;
-            SteamVR.enabled = true;
-            rightPlayerHandState.StartDeprecatedXRInput();
-            leftPlayerHandState.StartDeprecatedXRInput();
+            // SteamVR.enabled = true;
+            // rightPlayerHandState.StartDeprecatedXRInput();
+            // leftPlayerHandState.StartDeprecatedXRInput();
 
             crosshair.SetActive( false );
             InitVRTeleportVariables();
@@ -82,12 +78,13 @@ public partial class Player : Character {
                 XRGeneralSettings.Instance.Manager.StopSubsystems();
                 XRGeneralSettings.Instance.Manager.DeinitializeLoader();
             }
-            SteamVR.enabled = false;
-            rightPlayerHandState.UnbindSteamVRInput();
-            leftPlayerHandState.UnbindSteamVRInput();
+            // SteamVR.enabled = false;
+            // rightPlayerHandState.UnbindSteamVRInput();
+            // leftPlayerHandState.UnbindSteamVRInput();
         }
         rightPlayerHandState.behaviourPose.enabled = enable;
         leftPlayerHandState.behaviourPose.enabled = enable;
+        playerHeadState.behaviourPose.enabled = enable;
     }
 
     public void SetFreezeVRHandTransforms( bool freeze ){
