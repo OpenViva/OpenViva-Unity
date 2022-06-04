@@ -3,7 +3,7 @@
 // using System.Collections;
 
 // using UnityEngine.XR;
- 
+
 // namespace viva{
 
 // public enum Occupation{
@@ -71,7 +71,7 @@
 // 	}
 
 //     public string toString(){
-		
+
 // 		string t = "";
 // 		for( int i=0; i<4; i++ ){
 // 			t += (occupiesBitMask>>i)&1;
@@ -117,7 +117,7 @@
 // 		}
 // 		//unregister previously occupying
 // 		Unregister( self, bit_mask, newState );
-		
+
 // 		//register bit
 // 		occupiesBitMask |= bit_mask;
 // 		for( int i=0; i<4; i++ ){

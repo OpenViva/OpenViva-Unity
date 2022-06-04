@@ -1,42 +1,49 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 
-namespace viva{
+namespace viva
+{
 
 
-public partial class ClothProximityCamera : MonoBehaviour {
-	
-	[SerializeField]
-	private Cloth[] targets;
-	
+    public partial class ClothProximityCamera : MonoBehaviour
+    {
 
-	private void OnTriggerEnter( Collider collider ){
+        [SerializeField]
+        private Cloth[] targets;
 
-		Camera camera = collider.GetComponent<Camera>();
-		if( camera == null ){
-			return;
-		}
-		foreach( var target in targets ){
-			if( target ){
-				target.enabled = true;
-			}
-		}
-	}
 
-	private void OnTriggerExit( Collider collider ){
-		Camera camera = collider.GetComponent<Camera>();
-		if( camera == null ){
-			return;
-		}
-		foreach( var target in targets ){
-			if( target ){
-				target.enabled = false;
-			}
-		}
-	}
-}
+        private void OnTriggerEnter(Collider collider)
+        {
+
+            Camera camera = collider.GetComponent<Camera>();
+            if (camera == null)
+            {
+                return;
+            }
+            foreach (var target in targets)
+            {
+                if (target)
+                {
+                    target.enabled = true;
+                }
+            }
+        }
+
+        private void OnTriggerExit(Collider collider)
+        {
+            Camera camera = collider.GetComponent<Camera>();
+            if (camera == null)
+            {
+                return;
+            }
+            foreach (var target in targets)
+            {
+                if (target)
+                {
+                    target.enabled = false;
+                }
+            }
+        }
+    }
 
 }

@@ -1,111 +1,130 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 
-namespace viva{
+namespace viva
+{
 
 
-public class MerchantBehavior : ActiveBehaviors.ActiveTask {
-	
-	[System.Serializable]
-	public class MerchantSession : SerializedTaskData{
-		[VivaFileAttribute]
-		public VivaSessionAsset merchantSpotAsset { get; set; }
+    public class MerchantBehavior : ActiveBehaviors.ActiveTask
+    {
 
-		public MerchantSpot merchantSpot { get{ return merchantSpotAsset as MerchantSpot; } }
-	}
+        [System.Serializable]
+        public class MerchantSession : SerializedTaskData
+        {
+            [VivaFileAttribute]
+            public VivaSessionAsset merchantSpotAsset { get; set; }
 
-
-	public MerchantSession merchantSession { get{ return session as MerchantSession; } }
-	public Set<Character> clients = new Set<Character>();
-	public List<Character> alreadyAttended = new List<Character>();
-	public AutonomyPlayAnimation comeCloserPlayAnim;
-	private float lastBeginSellingTime;
+            public MerchantSpot merchantSpot { get { return merchantSpotAsset as MerchantSpot; } }
+        }
 
 
-	public MerchantBehavior( Loli _self ):base(_self,ActiveBehaviors.Behavior.MERCHANT,new MerchantSession()){
-	}
+        public MerchantSession merchantSession { get { return session as MerchantSession; } }
+        public Set<Character> clients = new Set<Character>();
+        public List<Character> alreadyAttended = new List<Character>();
+        public AutonomyPlayAnimation comeCloserPlayAnim;
+        private float lastBeginSellingTime;
 
-	public override void OnActivate(){
-		BeginSelling();
-	}
 
-	public void BeginSelling(){
-		
-		//must be employed to call this function
-		if( merchantSession.merchantSpot == null ){
-			return;
-		}
-		self.active.SetTask( this, null );
+        public MerchantBehavior(Loli _self) : base(_self, ActiveBehaviors.Behavior.MERCHANT, new MerchantSession())
+        {
+        }
 
-		var playSellAnim = new AutonomyPlayAnimation(
-			self.autonomy, "play sell anim", Loli.Animation.STAND_MERCHANT_IDLE1
-		);
-		playSellAnim.loop = true;
-		playSellAnim.AddRequirement( merchantSession.merchantSpot.CreateGoToEmploymentPosition( self ) );
-		playSellAnim.onRegistered += delegate{
-			self.onEnterVisibleItem += OnEnterVisibleItem;
-			self.onExitVisibleItem += OnExitVisibleItem;
-		};
-		playSellAnim.onUnregistered += delegate{
-			self.onEnterVisibleItem -= OnEnterVisibleItem;
-			self.onExitVisibleItem -= OnExitVisibleItem;
-		};
-		var playWaitTimer = new AutonomyWait( self.autonomy, "check clients", 1.0f );
-		playWaitTimer.loop = true;
-		playWaitTimer.onSuccess += delegate{ CheckClients(); };
+        public override void OnActivate()
+        {
+            BeginSelling();
+        }
 
-		playSellAnim.AddPassive( playWaitTimer );
+        public void BeginSelling()
+        {
 
-		self.autonomy.SetAutonomy( playSellAnim );
-	}
+            //must be employed to call this function
+            if (merchantSession.merchantSpot == null)
+            {
+                return;
+            }
+            self.active.SetTask(this, null);
 
-	private void CheckClients(){
-		
-		if( comeCloserPlayAnim != null ){
-			return;
-		}
-		if( Time.time-lastBeginSellingTime > 40.0f ){
-			lastBeginSellingTime = Time.time;
-			alreadyAttended.Clear();
-		}
-		foreach( var client in clients.objects ){
-			float sqDist = ( client.headItem.transform.position-self.headItem.transform.position ).sqrMagnitude;
-			if( sqDist < 12.0f ){
-				if( !alreadyAttended.Contains( client ) ){
-					alreadyAttended.Add( client );
+            var playSellAnim = new AutonomyPlayAnimation(
+                self.autonomy, "play sell anim", Loli.Animation.STAND_MERCHANT_IDLE1
+            );
+            playSellAnim.loop = true;
+            playSellAnim.AddRequirement(merchantSession.merchantSpot.CreateGoToEmploymentPosition(self));
+            playSellAnim.onRegistered += delegate
+            {
+                self.onEnterVisibleItem += OnEnterVisibleItem;
+                self.onExitVisibleItem += OnExitVisibleItem;
+            };
+            playSellAnim.onUnregistered += delegate
+            {
+                self.onEnterVisibleItem -= OnEnterVisibleItem;
+                self.onExitVisibleItem -= OnExitVisibleItem;
+            };
+            var playWaitTimer = new AutonomyWait(self.autonomy, "check clients", 1.0f);
+            playWaitTimer.loop = true;
+            playWaitTimer.onSuccess += delegate { CheckClients(); };
 
-					var comeAnimation = self.rightHandState.occupied ? Loli.Animation.STAND_FOLLOW_ME_LEFT : Loli.Animation.STAND_FOLLOW_ME_RIGHT;
-					comeCloserPlayAnim = new AutonomyPlayAnimation( self.autonomy, "play come closer", comeAnimation );
+            playSellAnim.AddPassive(playWaitTimer);
 
-					var waitForIdle = new AutonomyWaitForIdle( self.autonomy, "wait for idle");
-					comeCloserPlayAnim.AddRequirement( waitForIdle );
+            self.autonomy.SetAutonomy(playSellAnim);
+        }
 
-					var faceClient = new AutonomyFaceDirection( self.autonomy, "face client", delegate( TaskTarget target ){
-						target.SetTargetPosition( client.headItem.transform.position );
-					}, 1.0f, 20.0f );
-					comeCloserPlayAnim.AddRequirement( faceClient );
-					comeCloserPlayAnim.onFail += delegate{ comeCloserPlayAnim = null; BeginSelling(); };
-					comeCloserPlayAnim.onSuccess += delegate{ comeCloserPlayAnim = null; BeginSelling(); };
+        private void CheckClients()
+        {
 
-					self.autonomy.SetAutonomy( comeCloserPlayAnim );
-					break;
-				}
-			}
-		}
-	}
+            if (comeCloserPlayAnim != null)
+            {
+                return;
+            }
+            if (Time.time - lastBeginSellingTime > 40.0f)
+            {
+                lastBeginSellingTime = Time.time;
+                alreadyAttended.Clear();
+            }
+            foreach (var client in clients.objects)
+            {
+                float sqDist = (client.headItem.transform.position - self.headItem.transform.position).sqrMagnitude;
+                if (sqDist < 12.0f)
+                {
+                    if (!alreadyAttended.Contains(client))
+                    {
+                        alreadyAttended.Add(client);
 
-	private void OnEnterVisibleItem( Item item ){
-		if( item.settings.itemType == Item.Type.CHARACTER ){
-			clients.Add( item.mainOwner );
-		}
-	}
-	private void OnExitVisibleItem( Item item ){
-		if( item.settings.itemType == Item.Type.CHARACTER ){
-			clients.Remove( item.mainOwner );
-		}
-	}
-}
+                        var comeAnimation = self.rightHandState.occupied ? Loli.Animation.STAND_FOLLOW_ME_LEFT : Loli.Animation.STAND_FOLLOW_ME_RIGHT;
+                        comeCloserPlayAnim = new AutonomyPlayAnimation(self.autonomy, "play come closer", comeAnimation);
+
+                        var waitForIdle = new AutonomyWaitForIdle(self.autonomy, "wait for idle");
+                        comeCloserPlayAnim.AddRequirement(waitForIdle);
+
+                        var faceClient = new AutonomyFaceDirection(self.autonomy, "face client", delegate (TaskTarget target)
+                        {
+                            target.SetTargetPosition(client.headItem.transform.position);
+                        }, 1.0f, 20.0f);
+                        comeCloserPlayAnim.AddRequirement(faceClient);
+                        comeCloserPlayAnim.onFail += delegate { comeCloserPlayAnim = null; BeginSelling(); };
+                        comeCloserPlayAnim.onSuccess += delegate { comeCloserPlayAnim = null; BeginSelling(); };
+
+                        self.autonomy.SetAutonomy(comeCloserPlayAnim);
+                        break;
+                    }
+                }
+            }
+        }
+
+        private void OnEnterVisibleItem(Item item)
+        {
+            if (item.settings.itemType == Item.Type.CHARACTER)
+            {
+                clients.Add(item.mainOwner);
+            }
+        }
+        private void OnExitVisibleItem(Item item)
+        {
+            if (item.settings.itemType == Item.Type.CHARACTER)
+            {
+                clients.Remove(item.mainOwner);
+            }
+        }
+    }
 
 }

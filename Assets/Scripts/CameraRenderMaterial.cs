@@ -1,29 +1,35 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-namespace viva{
+namespace viva
+{
 
 
-public class CameraRenderMaterial : MonoBehaviour {
-	
-	[SerializeField]
-	private Material filmSepia;
+    public class CameraRenderMaterial : MonoBehaviour
+    {
 
-	void OnRenderImage(RenderTexture source, RenderTexture destination){
+        [SerializeField]
+        private Material filmSepia;
 
-		if( filmSepia != null ){
-			Graphics.Blit(source, destination, filmSepia);
-		}else{
-			Graphics.Blit(source,destination);
-		}
-	}
-	public void setEffectMaterial( Material effectMat ){
-		filmSepia = effectMat;
-	}
-	public Material getEffectMat(){
-		return filmSepia;
-	}
-}
+        void OnRenderImage(RenderTexture source, RenderTexture destination)
+        {
+
+            if (filmSepia != null)
+            {
+                Graphics.Blit(source, destination, filmSepia);
+            }
+            else
+            {
+                Graphics.Blit(source, destination);
+            }
+        }
+        public void setEffectMaterial(Material effectMat)
+        {
+            filmSepia = effectMat;
+        }
+        public Material getEffectMat()
+        {
+            return filmSepia;
+        }
+    }
 
 }

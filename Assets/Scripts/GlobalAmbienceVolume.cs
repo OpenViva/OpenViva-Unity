@@ -1,28 +1,32 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 
-namespace viva{
+namespace viva
+{
 
-public class GlobalAmbienceVolume : MonoBehaviour{
+    public class GlobalAmbienceVolume : MonoBehaviour
+    {
 
-    [SerializeField]
-    private Ambience ambience;
+        [SerializeField]
+        private Ambience ambience;
 
-    public void OnTriggerEnter( Collider collider ){
-        Player player = collider.GetComponent<Player>();
-        if( player != null ){
-            GameDirector.instance.ambienceDirector.EnterAmbience( ambience );
+        public void OnTriggerEnter(Collider collider)
+        {
+            Player player = collider.GetComponent<Player>();
+            if (player != null)
+            {
+                GameDirector.instance.ambienceDirector.EnterAmbience(ambience);
+            }
+        }
+
+        public void OnTriggerExit(Collider collider)
+        {
+            Player player = collider.GetComponent<Player>();
+            if (player != null)
+            {
+                GameDirector.instance.ambienceDirector.ExitAmbience(ambience);
+            }
         }
     }
-    
-    public void OnTriggerExit( Collider collider ){
-        Player player = collider.GetComponent<Player>();
-        if( player != null ){
-            GameDirector.instance.ambienceDirector.ExitAmbience( ambience );
-        }
-    }
-}
 
 }

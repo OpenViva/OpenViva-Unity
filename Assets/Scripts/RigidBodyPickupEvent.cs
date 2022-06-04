@@ -1,13 +1,14 @@
-using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace viva{
+namespace viva
+{
 
 
-public class RigidBodyPickupEvent: MonoBehaviour {
-    public UnityEvent onPickup;
-    public UnityEvent onDrop;
-}
+    public class RigidBodyPickupEvent : MonoBehaviour
+    {
+        public UnityEvent onPickup;
+        public UnityEvent onDrop;
+    }
 
 }

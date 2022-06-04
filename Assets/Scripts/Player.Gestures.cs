@@ -1,31 +1,33 @@
-﻿using UnityEngine;
-using UnityEditor;
-using System.Collections;
-using System.Collections.Generic;
+﻿namespace viva
+{
 
 
-namespace viva{
+    public partial class Player : Character
+    {
 
- 
-public partial class Player : Character {
 
-    
-    private void LateUpdatePostIKGestures(){
-        
-        if( controls == ControlType.KEYBOARD ){
-            return; //GESTURES NOT ALLOWED FOR KEYBOARD MODE DUE TO LOWER PRECISION FROM LOWER FRAMERATE
+        private void LateUpdatePostIKGestures()
+        {
+
+            if (controls == ControlType.KEYBOARD)
+            {
+                return; //GESTURES NOT ALLOWED FOR KEYBOARD MODE DUE TO LOWER PRECISION FROM LOWER FRAMERATE
+            }
+            CheckForGestures(rightPlayerHandState, objectFingerPointer.rightGestureHand);
+            CheckForGestures(leftPlayerHandState, objectFingerPointer.leftGestureHand);
         }
-        CheckForGestures( rightPlayerHandState, objectFingerPointer.rightGestureHand );
-        CheckForGestures( leftPlayerHandState, objectFingerPointer.leftGestureHand );
-    }
 
-    private void CheckForGestures( PlayerHandState handState, ObjectFingerPointer.GestureHand gestureHand ){
-        if( handState.gripState.isDown ){
-            gestureHand.ResetAll();
-        }else{
-            objectFingerPointer.UpdateGestureDetection( gestureHand, head );
+        private void CheckForGestures(PlayerHandState handState, ObjectFingerPointer.GestureHand gestureHand)
+        {
+            if (handState.gripState.isDown)
+            {
+                gestureHand.ResetAll();
+            }
+            else
+            {
+                objectFingerPointer.UpdateGestureDetection(gestureHand, head);
+            }
         }
     }
-}
 
 }

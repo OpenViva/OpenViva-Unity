@@ -1,34 +1,40 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 
-namespace viva{
+namespace viva
+{
 
-public class IndoorAmbienceVolume : MonoBehaviour{
+    public class IndoorAmbienceVolume : MonoBehaviour
+    {
 
-    [Header("Must Be In Camera Layer")]
-    private static int indoorCounter = 0;
+        [Header("Must Be In Camera Layer")]
+        private static int indoorCounter = 0;
 
-    public void OnTriggerEnter( Collider collider ){
-		Camera camera = collider.GetComponent<Camera>();
-		if( camera == null ){
-			return;
-		}
-        if( indoorCounter++ == 0 ){
-            GameDirector.instance.SetUserIsIndoors( true );
+        public void OnTriggerEnter(Collider collider)
+        {
+            Camera camera = collider.GetComponent<Camera>();
+            if (camera == null)
+            {
+                return;
+            }
+            if (indoorCounter++ == 0)
+            {
+                GameDirector.instance.SetUserIsIndoors(true);
+            }
+        }
+
+        public void OnTriggerExit(Collider collider)
+        {
+            Camera camera = collider.GetComponent<Camera>();
+            if (camera == null)
+            {
+                return;
+            }
+            if (--indoorCounter == 0)
+            {
+                GameDirector.instance.SetUserIsIndoors(false);
+            }
         }
     }
-
-    public void OnTriggerExit( Collider collider ){
-		Camera camera = collider.GetComponent<Camera>();
-		if( camera == null ){
-			return;
-		}
-        if( --indoorCounter == 0 ){
-            GameDirector.instance.SetUserIsIndoors( false );
-        }
-    }
-}
 
 }

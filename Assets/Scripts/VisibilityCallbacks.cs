@@ -1,32 +1,36 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.Events;
 
-namespace viva{
+namespace viva
+{
 
 
-public class VisibilityCallbacks: MonoBehaviour {
+    public class VisibilityCallbacks : MonoBehaviour
+    {
 
-    public UnityEvent onVisible;
-    public UnityEvent onInvisible;
+        public UnityEvent onVisible;
+        public UnityEvent onInvisible;
 
-    private bool visible = false;
+        private bool visible = false;
 
 
-    private void OnBecameVisible(){
-        if( !visible ){
-            onVisible?.Invoke();
-            visible = true;
+        private void OnBecameVisible()
+        {
+            if (!visible)
+            {
+                onVisible?.Invoke();
+                visible = true;
+            }
         }
-    }
-    private void OnBecameInvisible(){
-        if( visible ){
-            onInvisible?.Invoke();
-            visible = false;
+        private void OnBecameInvisible()
+        {
+            if (visible)
+            {
+                onInvisible?.Invoke();
+                visible = false;
+            }
         }
-    }
 
-}
+    }
 
 }

@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using static viva.console.DevConsole; 
+using static viva.console.DevConsole;
 
 namespace viva.console
 {
@@ -57,7 +57,7 @@ namespace viva.console
             }
             else if (Commands.ContainsKey(data[1]) == false)
             {
-                AddStaticMessageToConsole(NotRecognized);
+                AddStaticMessageToConsole(CommandNotRecognized);
             }
             else
             {

@@ -1,9 +1,8 @@
 using System;
-using UnityEngine;
 using System.Diagnostics;
- 
- public static class Performance
- {
+
+public static class Performance
+{
     public enum FrameRateCategory
     {
         Unplayable,
@@ -38,47 +37,47 @@ using System.Diagnostics;
 
     internal static void Frame()
     {
-      ++Performance.frames;
-      if (Performance.Stopwatch.Elapsed.TotalSeconds < 1.0)
-        return;
-      Performance.OneSecond(Performance.Stopwatch.Elapsed.TotalSeconds);
-      Performance.Stopwatch.Reset();
-      Performance.Stopwatch.Start();
+        ++Performance.frames;
+        if (Performance.Stopwatch.Elapsed.TotalSeconds < 1.0)
+            return;
+        Performance.OneSecond(Performance.Stopwatch.Elapsed.TotalSeconds);
+        Performance.Stopwatch.Reset();
+        Performance.Stopwatch.Start();
     }
 
     private static void OneSecond(double timelapse)
     {
-      Performance.FrameCountLastSecond = Performance.frames;
-      Performance.frames = 0;
-      Performance.MemoryUsage = Performance.GetMemoryUsage == null ? (int) (GC.GetTotalMemory(false) / 1024L / 1024L) : Performance.GetMemoryUsage();
-      Performance.GarbageCollections = Performance.GetGarbageCollections == null ? GC.CollectionCount(0) : Performance.GetGarbageCollections();
-      Performance.UpdateFrameBuckets();
+        Performance.FrameCountLastSecond = Performance.frames;
+        Performance.frames = 0;
+        Performance.MemoryUsage = Performance.GetMemoryUsage == null ? (int)(GC.GetTotalMemory(false) / 1024L / 1024L) : Performance.GetMemoryUsage();
+        Performance.GarbageCollections = Performance.GetGarbageCollections == null ? GC.CollectionCount(0) : Performance.GetGarbageCollections();
+        Performance.UpdateFrameBuckets();
     }
 
     public static FrameRateCategory CategorizeFrameRate(int i)
     {
-      if (i < Performance.TargetFrameRate / 4)
-        return FrameRateCategory.Unplayable;
-      if (i < Performance.TargetFrameRate / 2)
-        return FrameRateCategory.VeryBad;
-      if (i < Performance.TargetFrameRate - 10)
-        return FrameRateCategory.Bad;
-      if (i < Performance.TargetFrameRate + 10)
-        return FrameRateCategory.Average;
-      return i < Performance.TargetFrameRate + 30 ? FrameRateCategory.Good : FrameRateCategory.VeryGood;
+        if (i < Performance.TargetFrameRate / 4)
+            return FrameRateCategory.Unplayable;
+        if (i < Performance.TargetFrameRate / 2)
+            return FrameRateCategory.VeryBad;
+        if (i < Performance.TargetFrameRate - 10)
+            return FrameRateCategory.Bad;
+        if (i < Performance.TargetFrameRate + 10)
+            return FrameRateCategory.Average;
+        return i < Performance.TargetFrameRate + 30 ? FrameRateCategory.Good : FrameRateCategory.VeryGood;
     }
 
     private static void UpdateFrameBuckets()
     {
-      ++Performance.frameBuckets[(int) FramerateCategory];
-      int frameR = 0;
-      for (int i = 0; i < Performance.frameBuckets.Length; ++i)
-        frameR += Performance.frameBuckets[i];
-      for (int i = 0; i < Performance.frameBuckets.Length; ++i)
-        Performance.frameBucketFractions[i] = Performance.frameBuckets[i] / frameR;
+        ++Performance.frameBuckets[(int)FramerateCategory];
+        int frameR = 0;
+        for (int i = 0; i < Performance.frameBuckets.Length; ++i)
+            frameR += Performance.frameBuckets[i];
+        for (int i = 0; i < Performance.frameBuckets.Length; ++i)
+            Performance.frameBucketFractions[i] = Performance.frameBuckets[i] / frameR;
     }
 
-    public static int GetFrameCount(FrameRateCategory category) => Performance.frameBuckets[(int) category];
+    public static int GetFrameCount(FrameRateCategory category) => Performance.frameBuckets[(int)category];
 
-    public static float GetFrameFraction(FrameRateCategory category) => Performance.frameBucketFractions[(int) category];
-  }
+    public static float GetFrameFraction(FrameRateCategory category) => Performance.frameBucketFractions[(int)category];
+}
