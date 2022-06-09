@@ -29,7 +29,7 @@
 			{
 				float4 vertex : POSITION;
 				float2 uv : TEXCOORD0;
-				UNITY_VERTEX_OUTPUT_STEREO
+
 				UNITY_VERTEX_INPUT_INSTANCE_ID
 			};
 
@@ -37,9 +37,11 @@
 			{
 				float4 vertex : SV_POSITION;
 				float4 uvKernel : TEXCOORD0;
+
+				UNITY_VERTEX_OUTPUT_STEREO
 			};
 
-			uniform sampler2D _MainTex;
+			UNITY_DECLARE_SCREENSPACE_TEXTURE(_MainTex);
             uniform fixed _Distortion;
             uniform fixed _Strength;
 
@@ -67,8 +69,8 @@
 				offset *= _Distortion*_Strength;
 				fixed2 uv = i.uvKernel.xy+offset;
                 
-                fixed3 raw = tex2D( _MainTex, uv ).rgb;
-				fixed3 col = luma( tex2D( _MainTex, i.uvKernel.xy ).rgb )*_Strength+raw;
+                fixed3 raw = UNITY_SAMPLE_SCREENSPACE_TEXTURE( _MainTex, uv ).rgb;
+				fixed3 col = luma( UNITY_SAMPLE_SCREENSPACE_TEXTURE( _MainTex, i.uvKernel.xy ).rgb )*_Strength+raw;
 
 				return fixed4( col, 1. );
 			}

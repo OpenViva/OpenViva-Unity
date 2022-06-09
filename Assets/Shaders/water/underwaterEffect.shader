@@ -28,7 +28,7 @@
 			{
 				float4 vertex : POSITION;
 				float2 uv : TEXCOORD0;
-				UNITY_VERTEX_OUTPUT_STEREO
+
 				UNITY_VERTEX_INPUT_INSTANCE_ID
 			};
 
@@ -36,9 +36,11 @@
 			{
 				float4 vertex : SV_POSITION;
 				float4 uvKernel : TEXCOORD0;
+
+				UNITY_VERTEX_OUTPUT_STEREO
 			};
 
-			uniform sampler2D _MainTex;
+			UNITY_DECLARE_SCREENSPACE_TEXTURE(_MainTex);
 			uniform fixed3 _Tint;
 
 			v2f vert (appdata v)
@@ -64,11 +66,11 @@
 				uv.x = floor(uv.x*_ScreenParams.x)/_ScreenParams.x;
 				uv.y = floor(uv.y*_ScreenParams.y)/_ScreenParams.y;
 				fixed4 col;
-				col.rgba = tex2D( _MainTex, uv ).rgba*2.0;
-				col.rgb += tex2D( _MainTex, uv+fixed2( i.uvKernel.z, i.uvKernel.w ) ).rgb;
-				col.rgb += tex2D( _MainTex, uv+fixed2( i.uvKernel.z, i.uvKernel.w ) ).rgb;
-				col.rgb += tex2D( _MainTex, uv+fixed2( -i.uvKernel.z, -i.uvKernel.w ) ).rgb;
-				col.rgb += tex2D( _MainTex, uv+fixed2( i.uvKernel.z, -i.uvKernel.w ) ).rgb;
+				col.rgba = UNITY_SAMPLE_SCREENSPACE_TEXTURE( _MainTex, uv ).rgba*2.0;
+				col.rgb += UNITY_SAMPLE_SCREENSPACE_TEXTURE( _MainTex, uv+fixed2( i.uvKernel.z, i.uvKernel.w ) ).rgb;
+				col.rgb += UNITY_SAMPLE_SCREENSPACE_TEXTURE( _MainTex, uv+fixed2( i.uvKernel.z, i.uvKernel.w ) ).rgb;
+				col.rgb += UNITY_SAMPLE_SCREENSPACE_TEXTURE( _MainTex, uv+fixed2( -i.uvKernel.z, -i.uvKernel.w ) ).rgb;
+				col.rgb += UNITY_SAMPLE_SCREENSPACE_TEXTURE( _MainTex, uv+fixed2( i.uvKernel.z, -i.uvKernel.w ) ).rgb;
 				col.rgb *= _Tint/5.0;
 
 				return fixed4( col.rgb, 1. );

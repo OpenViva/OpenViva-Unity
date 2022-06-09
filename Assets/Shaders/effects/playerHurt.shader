@@ -31,7 +31,7 @@
 			{
 				float4 vertex : POSITION;
 				float2 uv : TEXCOORD0;
-				UNITY_VERTEX_OUTPUT_STEREO
+
 				UNITY_VERTEX_INPUT_INSTANCE_ID
 			};
 
@@ -39,9 +39,11 @@
 			{
 				float4 vertex : SV_POSITION;
 				float2 uv : TEXCOORD0;
+
+				UNITY_VERTEX_OUTPUT_STEREO
 			};
 
-			uniform sampler2D _MainTex;
+			UNITY_DECLARE_SCREENSPACE_TEXTURE(_MainTex);
 			uniform sampler2D _Overlay;
 			uniform sampler2D _CloudsRT;
 			uniform float _Alpha;
@@ -60,7 +62,7 @@
 			fixed4 frag (v2f i) : SV_Target
 			{
 				UNITY_SETUP_STEREO_EYE_INDEX_POST_VERTEX(i);
-                fixed4 col = tex2D( _MainTex, i.uv );
+    			fixed4 col = UNITY_SAMPLE_SCREENSPACE_TEXTURE(_MainTex, i.uv);
 				col.rgb += tex2D( _CloudsRT, i.uv ).rgb*saturate(1.-col.a);
 				fixed overlay = tex2D( _Overlay, i.uv ).r*_Alpha;
                 col.bg -= overlay;

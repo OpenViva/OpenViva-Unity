@@ -28,7 +28,7 @@
 			{
 				float4 vertex : POSITION;
 				float2 uv : TEXCOORD0;
-				UNITY_VERTEX_OUTPUT_STEREO
+
 				UNITY_VERTEX_INPUT_INSTANCE_ID
 			};
 
@@ -36,9 +36,11 @@
 			{
 				float4 vertex : SV_POSITION;
 				float2 uv : TEXCOORD0;
+
+				UNITY_VERTEX_OUTPUT_STEREO
 			};
 
-			uniform sampler2D _MainTex;
+			UNITY_DECLARE_SCREENSPACE_TEXTURE(_MainTex);
 			uniform sampler2D _CloudsRT;
 
 			v2f vert (appdata v)
@@ -60,7 +62,7 @@
 			fixed4 frag (v2f i) : SV_Target
 			{
 				UNITY_SETUP_STEREO_EYE_INDEX_POST_VERTEX(i);
-                fixed4 col = tex2D( _MainTex, i.uv );
+    			fixed4 col = UNITY_SAMPLE_SCREENSPACE_TEXTURE(_MainTex, i.uv);
 				col.rgb = applyClouds( col, tex2D( _CloudsRT, i.uv ) );
 				return col;
 			}

@@ -65,6 +65,7 @@ Shader "UI/loading_cycle"
                 float4 vertex   : POSITION;
                 float4 color    : COLOR;
                 float2 texcoord : TEXCOORD0;
+
                 UNITY_VERTEX_INPUT_INSTANCE_ID
             };
 
@@ -74,10 +75,11 @@ Shader "UI/loading_cycle"
                 fixed4 color    : COLOR;
                 float2 texcoord  : TEXCOORD0;
                 float4 worldPosition : TEXCOORD1;
+
                 UNITY_VERTEX_OUTPUT_STEREO
             };
 
-            sampler2D _MainTex;
+			UNITY_DECLARE_SCREENSPACE_TEXTURE(_MainTex);
             sampler2D _Mask;
             fixed4 _Color;
             fixed4 _TextureSampleAdd;
@@ -101,7 +103,7 @@ Shader "UI/loading_cycle"
 
             fixed4 frag(v2f IN) : SV_Target
             {
-                half4 color = (tex2D(_MainTex, IN.texcoord) + _TextureSampleAdd) * IN.color;
+                half4 color = (UNITY_SAMPLE_SCREENSPACE_TEXTURE(_MainTex, IN.texcoord) + _TextureSampleAdd) * IN.color;
 
                 #ifdef UNITY_UI_CLIP_RECT
                 color.a *= UnityGet2DClipping(IN.worldPosition.xy, _ClipRect);

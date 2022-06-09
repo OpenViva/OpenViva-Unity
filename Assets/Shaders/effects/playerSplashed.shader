@@ -30,7 +30,7 @@
 			{
 				float4 vertex : POSITION;
 				float2 uv : TEXCOORD0;
-				UNITY_VERTEX_OUTPUT_STEREO
+
 				UNITY_VERTEX_INPUT_INSTANCE_ID
 			};
 
@@ -38,9 +38,11 @@
 			{
 				float4 vertex : SV_POSITION;
 				float2 uv : TEXCOORD0;
+
+				UNITY_VERTEX_OUTPUT_STEREO
 			};
 
-			uniform sampler2D _MainTex;
+			UNITY_DECLARE_SCREENSPACE_TEXTURE(_MainTex);
 			uniform sampler2D _SplashTex;
 			uniform float _Alpha;
 
@@ -70,7 +72,7 @@
 				normUV.y += sqDist*(1.-_Alpha)*0.6;
 
 				fixed3 normal = UnpackNormal(tex2D(_SplashTex, normUV*fixed2( 1., aspect)));
-                fixed4 col = tex2D( _MainTex, i.uv-normal*0.1*_Alpha );
+                fixed4 col = UNITY_SAMPLE_SCREENSPACE_TEXTURE( _MainTex, i.uv-normal*0.1*_Alpha );
 
 				return fixed4( col.rgb, 1. );
 			}
