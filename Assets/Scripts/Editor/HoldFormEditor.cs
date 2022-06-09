@@ -13,7 +13,7 @@
 // {
 //     private viva.HoldForm copyHoldFormTarget;
 //     private static GUIStyle boldStyle = new GUIStyle();
-   
+
 //     private void OnEnable(){
 //         boldStyle.fontStyle = FontStyle.Bold;
 //     }
@@ -38,7 +38,7 @@
 //                 sObj.FindProperty("handYaw").floatValue = -copyHoldFormTarget.handYaw;
 //                 sObj.FindProperty("handRoll").floatValue = -copyHoldFormTarget.handRoll;
 //             }
-            
+
 //             sObj.ApplyModifiedProperties();
 //         }
 //     }

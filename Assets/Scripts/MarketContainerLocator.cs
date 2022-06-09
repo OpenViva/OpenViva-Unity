@@ -1,40 +1,46 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-namespace viva{
+namespace viva
+{
 
 
-public class MarketContainerLocator : MonoBehaviour {
+    public class MarketContainerLocator : MonoBehaviour
+    {
 
-    [SerializeField]
-    private MerchantSpot merchantSpot;
+        [SerializeField]
+        private MerchantSpot merchantSpot;
 
-    public void OnTriggerEnter( Collider collider ){
-        if( merchantSpot == null ){
-            return;
+        public void OnTriggerEnter(Collider collider)
+        {
+            if (merchantSpot == null)
+            {
+                return;
+            }
+            var mc = collider.GetComponent<MarketContainer>();
+            if (mc)
+            {
+                mc.SetParentLocator(merchantSpot);
+                mc.SetMerchantGoodRegistry(merchantSpot,
+                    merchantSpot.GetNextMerchantGoodIndex(
+                        !mc.ContainsMerchangGoodRegistry(merchantSpot)
+                    )
+                );
+            }
         }
-        var mc = collider.GetComponent<MarketContainer>();
-        if( mc ){
-            mc.SetParentLocator( merchantSpot );
-            mc.SetMerchantGoodRegistry( merchantSpot,
-                merchantSpot.GetNextMerchantGoodIndex(
-                    !mc.ContainsMerchangGoodRegistry( merchantSpot )
-                )
-            );
+
+        public void OnTriggerExit(Collider collider)
+        {
+            if (merchantSpot == null)
+            {
+                return;
+            }
+            var mc = collider.GetComponent<MarketContainer>();
+            if (mc)
+            {
+                mc.SetParentLocator(null);
+            }
         }
+
     }
-    
-    public void OnTriggerExit( Collider collider ){
-        if( merchantSpot == null ){
-            return;
-        }
-        var mc = collider.GetComponent<MarketContainer>();
-        if( mc ){
-            mc.SetParentLocator( null );
-        }
-    }
-
-}
 
 }

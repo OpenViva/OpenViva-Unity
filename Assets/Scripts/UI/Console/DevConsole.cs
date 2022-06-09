@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 namespace viva.console
 {
@@ -78,7 +78,9 @@ namespace viva.console
 
         #region Typical Console Messages
 
-        public static string NotRecognized = $"Command not <color={WarningColor}>recognized</color>";
+        public static string CommandNotRecognized = $"Command not <color={WarningColor}>recognized</color>";
+
+        public static string ArgumentNotRecognized = $"Argument not <color={WarningColor}>recognized</color>";
 
         public static string ExecutedSuccessfully = $"Command executed <color={ExecutedColor}>successfully</color>";
 
@@ -121,12 +123,13 @@ namespace viva.console
             CreateCommands();
         }
 
-        //Initializes the commands
+        //When Creating a new command make sure to Initialize it here 
         private void CreateCommands()
         {
             CommandHelp.CreateCommand();
             CommandRagdoll.CreateCommand();
             CommandSetPlayerSpeed.CreateCommand();
+            CommandSelectCharacter.CreateCommand();
 
             var commandClearList = CommandClearConsole.CreateCommand();
             commandClearList.ConsoleTextRef = _consoleText;
@@ -144,20 +147,24 @@ namespace viva.console
         private void Update()
         {
             //Disable if in VR
-            if(GameDirector.player.controls == Player.ControlType.VR){
+            if (GameDirector.player.controls == Player.ControlType.VR)
+            {
                 _consoleCanvas.gameObject.SetActive(false);
                 _consoleInput.DeactivateInputField();
                 return;
             }
             if (Keyboard.current[Key.F1].wasPressedThisFrame)
             {
-                if(!_consoleCanvas.gameObject.activeInHierarchy) {
-                    GameDirector.instance.SetEnableControls( GameDirector.ControlsAllowed.NONE );
+                if (!_consoleCanvas.gameObject.activeInHierarchy)
+                {
+                    GameDirector.instance.SetEnableControls(GameDirector.ControlsAllowed.NONE);
                     _consoleCanvas.gameObject.SetActive(true);
                     _consoleInput.ActivateInputField();
                     _consoleInput.Select();
-                } else {
-                    GameDirector.instance.SetEnableControls( GameDirector.ControlsAllowed.ALL );
+                }
+                else
+                {
+                    GameDirector.instance.SetEnableControls(GameDirector.ControlsAllowed.ALL);
                     _consoleCanvas.gameObject.SetActive(false);
                 }
             }
@@ -169,7 +176,7 @@ namespace viva.console
                     if (string.IsNullOrEmpty(_inputText.text) == false)
                     {
                         AddMessageToConsole(_inputText.text);
-                        
+
                         ParseInput(_inputText.text);
 
                         if (_clipboardSize != 0)
@@ -199,7 +206,8 @@ namespace viva.console
                             {
                                 _clipboardCursor--;
                                 _consoleInput.text = _clipboard[_clipboardCursor];
-                            } else
+                            }
+                            else
                             {
                                 _consoleInput.text = _clipboard[0];
                             }
@@ -224,8 +232,8 @@ namespace viva.console
                 if (Keyboard.current[Key.Tab].wasPressedThisFrame)
                 {
                     int inputLength = _consoleInput.text.Length;
-                    
-                    if(inputLength >= _tabMinCharLength && _consoleInput.text.Any(char.IsWhiteSpace) == false)
+
+                    if (inputLength >= _tabMinCharLength && _consoleInput.text.Any(char.IsWhiteSpace) == false)
                     {
                         foreach (var command in Commands)
                         {
@@ -235,7 +243,7 @@ namespace viva.console
                             if (_consoleInput.text.ToLower().StartsWith(commandKey.ToLower()))
                             {
                                 _consoleInput.text = command.Key;
-                                
+
                                 _consoleInput.caretPosition = command.Key.Length;
                                 break;
                             }
@@ -264,13 +272,13 @@ namespace viva.console
             {
                 _clipboardIndexer++;
                 _clipboardCursor = _clipboardIndexer;
-            } 
+            }
             else if (_clipboardIndexer == _clipboardSize - 1)
             {
                 // Clear clipboard & reset 
                 _clipboardIndexer = 0;
                 _clipboardCursor = 0;
-                for(int i = 0; i < _clipboardSize; i++)
+                for (int i = 0; i < _clipboardSize; i++)
                 {
                     _clipboard[i] = string.Empty;
                 }
@@ -296,13 +304,13 @@ namespace viva.console
 
             if (string.IsNullOrWhiteSpace(input))
             {
-                AddMessageToConsole(NotRecognized);
+                AddMessageToConsole(CommandNotRecognized);
                 return;
             }
 
             if (Commands.ContainsKey(commandSplitInput[0]) == false)
             {
-                AddMessageToConsole(NotRecognized);
+                AddMessageToConsole(CommandNotRecognized);
             }
             else
             {

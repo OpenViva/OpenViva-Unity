@@ -25,18 +25,22 @@ namespace viva.console
 
         public override void RunCommand(string[] data)
         {
-            
+
             if (data.Length == 2)
             {
-                var commandParameter = data[1];               
-                    float weight = Convert.ToSingle(commandParameter);
-                    if( GameDirector.player.objectFingerPointer.selectedLolis.Count > 0 ){                   
-                        foreach( var loli in GameDirector.player.objectFingerPointer.selectedLolis ){
-                            loli.BeginRagdollMode(weight, Loli.Animation.FALLING_LOOP);
-                        }
-                    }else{
-                        AddStaticMessageToConsole("No Loli's Selected");
-                    }          
+                var commandParameter = data[1];
+                float weight = Convert.ToSingle(commandParameter);
+                if (GameDirector.player.objectFingerPointer.selectedLolis.Count > 0)
+                {
+                    foreach (var loli in GameDirector.player.objectFingerPointer.selectedLolis)
+                    {
+                        loli.BeginRagdollMode(weight, Loli.Animation.FALLING_LOOP);
+                    }
+                }
+                else
+                {
+                    AddStaticMessageToConsole("No Loli's Selected");
+                }
             }
             else
             {

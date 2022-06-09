@@ -1,14 +1,14 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-namespace viva{
+namespace viva
+{
 
 
-public abstract class ClothingScript: MonoBehaviour {
-	
-	public abstract void OnBeginWearing( Loli shinobu );
-	public abstract void OnApplywearing();
-}
+    public abstract class ClothingScript : MonoBehaviour
+    {
+
+        public abstract void OnBeginWearing(Loli shinobu);
+        public abstract void OnApplywearing();
+    }
 
 }

@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5711956621233158187}
   - component: {fileID: 8788501888631777058}
-  m_Layer: 12
+  m_Layer: 11
   m_Name: light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -90,6 +90,7 @@ Light:
   m_UseColorTemperature: 0
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
+  m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
 --- !u!1 &5991870564524132604
@@ -101,7 +102,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3904396283034735774}
-  m_Layer: 12
+  m_Layer: 11
   m_Name: flame
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -140,7 +141,7 @@ GameObject:
   - component: {fileID: 4263272231811214256}
   - component: {fileID: 5249757294496309533}
   - component: {fileID: 1617045186193880911}
-  m_Layer: 12
+  m_Layer: 11
   m_Name: lampionSmall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -185,6 +186,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -209,6 +211,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!114 &6201225710747603302
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -262,6 +265,7 @@ ConfigurableJoint:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6461201010883261005}
   m_ConnectedBody: {fileID: 0}
+  m_ConnectedArticulationBody: {fileID: 0}
   m_Anchor: {x: 0, y: 0.22807945, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
@@ -381,7 +385,7 @@ GameObject:
   - component: {fileID: 7684244732816747448}
   - component: {fileID: 48999737749659795}
   - component: {fileID: 9203216518711280747}
-  m_Layer: 12
+  m_Layer: 11
   m_Name: flare
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -425,6 +429,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -449,3 +454,4 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}

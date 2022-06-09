@@ -1,18 +1,19 @@
-﻿using UnityEditor;
-using UnityEngine;
-    
+﻿using UnityEngine;
+
 
 
 [System.Serializable]
 public class LightmapSet : ScriptableObject
 {
     [System.Serializable]
-    public class SphericalHarmonics{
+    public class SphericalHarmonics
+    {
         public float[] coefficients = new float[27];
     }
-    
+
     [System.Serializable]
-    public class RendererInfo{
+    public class RendererInfo
+    {
         public Renderer renderer;
         public int lightmapIndex;
         public Vector4 lightmapOffsetScale;

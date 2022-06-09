@@ -1,34 +1,40 @@
 using UnityEngine;
 
-namespace viva{
+namespace viva
+{
 
-public class VRController : InputController {
+    public class VRController : InputController
+    {
 
-    public VRController():base(null){
-    }
-
-    public override void OnEnter( Player player ){
-
-        player.head.localPosition = Vector3.zero;
-        player.head.localRotation = Quaternion.identity;
-    }
-
-    public override void OnFixedUpdateControl( Player player ){
-        
-        player.rightPlayerHandState.UpdateSteamVRInput();
-        player.leftPlayerHandState.UpdateSteamVRInput();
-
-        if( GameDirector.instance.controlsAllowed == GameDirector.ControlsAllowed.HAND_INPUT_ONLY || GameDirector.settings.vrControls != Player.VRControlType.TRACKPAD ){
-            return;
+        public VRController() : base(null)
+        {
         }
-        player.UpdateTrackpadBodyRotation();
-        player.UpdateVRTrackpadMovement();
-        player.LateUpdateVRInputTeleportationMovement();
- 
-        player.FixedUpdatePlayerCapsule( player.head.localPosition.y );
-        
-        player.ApplyVRHandsToAnimation();
+
+        public override void OnEnter(Player player)
+        {
+
+            player.head.localPosition = Vector3.zero;
+            player.head.localRotation = Quaternion.identity;
+        }
+
+        public override void OnFixedUpdateControl(Player player)
+        {
+
+            player.rightPlayerHandState.UpdateSteamVRInput();
+            player.leftPlayerHandState.UpdateSteamVRInput();
+
+            if (GameDirector.instance.controlsAllowed == GameDirector.ControlsAllowed.HAND_INPUT_ONLY || GameDirector.settings.vrControls != Player.VRControlType.TRACKPAD)
+            {
+                return;
+            }
+            player.UpdateTrackpadBodyRotation();
+            player.UpdateVRTrackpadMovement();
+            player.LateUpdateVRInputTeleportationMovement();
+
+            player.FixedUpdatePlayerCapsule(player.head.localPosition.y);
+
+            player.ApplyVRHandsToAnimation();
+        }
     }
-}
 
 }

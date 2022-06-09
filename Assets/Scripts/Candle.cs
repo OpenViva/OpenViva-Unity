@@ -1,57 +1,66 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 
-namespace viva{
-
-
-public class Candle : Item
+namespace viva
 {
-	[SerializeField]
-	private GameObject lightContainer;
 
-	[SerializeField]
-	private AudioClip candleOnSound;
-	
-	[SerializeField]
-	private AudioClip candleOffSound;
 
-	private Coroutine toggleCoroutine = null;
+    public class Candle : Item
+    {
+        [SerializeField]
+        private GameObject lightContainer;
 
-	private void Toggle( OccupyState mainHoldState ){
-		StopLightCoroutine();
-		toggleCoroutine = GameDirector.instance.StartCoroutine( SetLightOn( !lightContainer.activeSelf, mainHoldState ) );
-	}
+        [SerializeField]
+        private AudioClip candleOnSound;
 
-	private void StopLightCoroutine(){
-		if( toggleCoroutine != null ){
-			GameDirector.instance.StopCoroutine( toggleCoroutine );
-			toggleCoroutine = null;
-		}
-	}
+        [SerializeField]
+        private AudioClip candleOffSound;
 
-	private IEnumerator SetLightOn( bool enable, OccupyState mainHoldState ){
-		yield return new WaitForSeconds( 0.3f );
-		lightContainer.SetActive( enable );
-		yield return new WaitForSeconds( 0.2f );
+        private Coroutine toggleCoroutine = null;
 
-		mainHoldState.AttemptDrop();
-		if( enable ){
-			SoundManager.main.RequestHandle( transform.position ).PlayOneShot( candleOnSound );
-		}else{
-			SoundManager.main.RequestHandle( transform.position ).PlayOneShot( candleOffSound );
-		}
-	}
+        private void Toggle(OccupyState mainHoldState)
+        {
+            StopLightCoroutine();
+            toggleCoroutine = GameDirector.instance.StartCoroutine(SetLightOn(!lightContainer.activeSelf, mainHoldState));
+        }
 
-	public override void OnPreDrop(){
-		StopLightCoroutine();
-	}
+        private void StopLightCoroutine()
+        {
+            if (toggleCoroutine != null)
+            {
+                GameDirector.instance.StopCoroutine(toggleCoroutine);
+                toggleCoroutine = null;
+            }
+        }
 
-	public override void OnPostPickup(){
-		Toggle( mainOccupyState );
-	}
+        private IEnumerator SetLightOn(bool enable, OccupyState mainHoldState)
+        {
+            yield return new WaitForSeconds(0.3f);
+            lightContainer.SetActive(enable);
+            yield return new WaitForSeconds(0.2f);
 
-}
+            mainHoldState.AttemptDrop();
+            if (enable)
+            {
+                SoundManager.main.RequestHandle(transform.position).PlayOneShot(candleOnSound);
+            }
+            else
+            {
+                SoundManager.main.RequestHandle(transform.position).PlayOneShot(candleOffSound);
+            }
+        }
+
+        public override void OnPreDrop()
+        {
+            StopLightCoroutine();
+        }
+
+        public override void OnPostPickup()
+        {
+            Toggle(mainOccupyState);
+        }
+
+    }
 
 }

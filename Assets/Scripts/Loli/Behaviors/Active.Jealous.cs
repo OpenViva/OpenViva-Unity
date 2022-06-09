@@ -8,7 +8,7 @@
 
 
 // public class JealousBehavior : ActiveBehaviors.ActiveTask {
-	
+
 // 	private float stealCurrentFlagTime = -1.0f;
 // 	private Item currentInterest = null;
 
@@ -33,7 +33,7 @@
 // 			}
 // 			loli.active.pickup.SetPostPickupAnimationByItemType( loli.active.jealous.currentInterest.settings.itemType );
 // 			loli.SetLookAtTarget(null);
-			
+
 // 			loli.active.SetTask( loli.active.idle, true );
 // 			break;
 // 		}
@@ -49,7 +49,7 @@
 // 		}
 // 		if( self.rightHandState.holdType == HoldType.NULL || 
 // 			self.leftHandState.holdType == HoldType.NULL ){
-			
+
 // 			self.active.SetTask( self.active.jealous, null );
 // 			currentInterest = item;
 // 			self.active.pickup.SetPostPickupAnimation( self.GetLastReturnableIdleAnimation() );
@@ -68,7 +68,7 @@
 // 	}
 
 // 	public override void OnDeactivate(){
-		
+
 // 		self.IgnoreItem( currentInterest, 1.0f );
 // 		self.locomotion.StopMoveTo();
 // 		//ensure she is not stuck looping in a job specific animation
@@ -82,7 +82,7 @@
 // 	}
 
 // 	public override void OnUpdate(){
-		
+
 // 		if( currentInterest == null ){
 // 			self.active.SetTask( self.active.idle, false );
 // 			self.SetTargetAnimation( self.GetLastReturnableIdleAnimation() );
@@ -174,7 +174,7 @@
 // 			}else{
 // 				Vector3? nearest = self.locomotion.FindNearestWalkablePoint( currentInterest.transform.position, 0.45f, 0.0f, 2.0f, 0 );
 // 				if( nearest.HasValue ){
-					
+
 // 					Vector3[] newPath = self.locomotion.GetNavMeshPath( nearest.Value );
 // 					if( newPath != null ){
 // 						self.locomotion.FollowPath( newPath );
@@ -216,7 +216,7 @@
 // 	}
 
 // 	private Vector3 CalculateTipToeReachTarget( OccupyState handState ){
-		
+
 // 		float sign = -1.0f+(float)System.Convert.ToInt32( handState == self.rightHandState )*2.0f;
 
 // 		float varyX = 1.0f+Mathf.Sin( Time.time*11.0f+sign );

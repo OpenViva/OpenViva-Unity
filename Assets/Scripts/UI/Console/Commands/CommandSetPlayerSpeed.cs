@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Linq;
-using UnityEngine;
-using UnityEngine.SceneManagement;
 using static viva.console.DevConsole;
 
 namespace viva.console
@@ -40,11 +38,12 @@ namespace viva.console
                 {
                     float speed = Convert.ToSingle(commandParameter);
                     GameDirector.player.walkSpeed = speed;
-                    AddStaticMessageToConsole("Set Walkspeed to"+" "+speed);
+                    AddStaticMessageToConsole("Set Walkspeed to" + " " + speed);
                 }
                 else
                 {
-                    if( commandParameter.Contains("reset")){
+                    if (commandParameter.Contains("reset"))
+                    {
                         GameDirector.player.walkSpeed = 0.2f;
                         AddStaticMessageToConsole("Reset Walkspeed");
                     }
@@ -52,7 +51,7 @@ namespace viva.console
             }
             else
             {
-                
+
                 AddStaticMessageToConsole(ParametersAmount);
             }
         }

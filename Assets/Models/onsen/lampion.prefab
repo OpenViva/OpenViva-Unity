@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8504436129999963700}
-  m_Layer: 12
+  m_Layer: 11
   m_Name: flame
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -48,7 +48,7 @@ GameObject:
   - component: {fileID: 7239111635829390756}
   - component: {fileID: 7663684409716029332}
   - component: {fileID: 5860944577639502680}
-  m_Layer: 12
+  m_Layer: 11
   m_Name: lampion
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -93,6 +93,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -117,6 +118,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!114 &1595907919199601612
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -157,6 +159,7 @@ ConfigurableJoint:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1837517264901251303}
   m_ConnectedBody: {fileID: 0}
+  m_ConnectedArticulationBody: {fileID: 0}
   m_Anchor: {x: 0, y: 0.22807945, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
@@ -290,7 +293,7 @@ GameObject:
   - component: {fileID: 3064994209195112722}
   - component: {fileID: 4649110241154609721}
   - component: {fileID: 4580869491105879745}
-  m_Layer: 12
+  m_Layer: 11
   m_Name: flare
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -334,6 +337,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -358,6 +362,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &6623686910245680118
 GameObject:
   m_ObjectHideFlags: 0
@@ -368,7 +373,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1111846400222276225}
   - component: {fileID: 4169743671307957640}
-  m_Layer: 12
+  m_Layer: 11
   m_Name: light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -448,5 +453,6 @@ Light:
   m_UseColorTemperature: 0
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
+  m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0

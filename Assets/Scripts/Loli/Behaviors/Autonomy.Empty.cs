@@ -1,30 +1,28 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.AI;
+﻿namespace viva
+{
 
 
-namespace viva{
+    public partial class AutonomyEmpty : Autonomy.Task
+    {
 
+        public delegate bool? ProgressCallback();
 
-public partial class AutonomyEmpty : Autonomy.Task {
+        private readonly ProgressCallback onProgress;
 
-	public delegate bool? ProgressCallback();
+        public AutonomyEmpty(Autonomy _autonomy, string _name, ProgressCallback _onProgress = null) : base(_autonomy, _name)
+        {
+            onProgress = _onProgress;
+        }
 
-	private readonly ProgressCallback onProgress;
+        public override bool? Progress()
+        {
+            if (onProgress != null)
+            {
+                return onProgress();
+            }
+            return null;
+        }
 
-    public AutonomyEmpty( Autonomy _autonomy, string _name, ProgressCallback _onProgress=null ):base(_autonomy,_name){
-		onProgress = _onProgress;
     }
-
-	public override bool? Progress(){
-		if( onProgress != null ){
-			return onProgress();
-		}
-		return null;
-	}
-
-}
 
 }
