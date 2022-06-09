@@ -24,7 +24,7 @@ public partial class @InputActions_viva : IInputActionCollection2, IDisposable
     ""name"": ""inputActions_viva"",
     ""maps"": [
         {
-            ""name"": ""keyboard"",
+            ""name"": ""Keyboard"",
             ""id"": ""eb459591-4014-468b-8cee-68a48cd78f73"",
             ""actions"": [
                 {
@@ -416,148 +416,22 @@ public partial class @InputActions_viva : IInputActionCollection2, IDisposable
             ]
         },
         {
-            ""name"": ""vr"",
-            ""id"": ""3cdc15a5-f698-4dd9-a620-f06dbea65896"",
+            ""name"": ""VR Head"",
+            ""id"": ""69ab58fa-272d-4ce6-a9d4-c243b222c671"",
             ""actions"": [
                 {
-                    ""name"": ""rightTrackpad"",
-                    ""type"": ""PassThrough"",
-                    ""id"": ""2d70a984-2654-4d7f-9fbb-3416663f47e5"",
-                    ""expectedControlType"": ""Vector2"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""leftTrackpad"",
-                    ""type"": ""PassThrough"",
-                    ""id"": ""95e39184-ee92-4657-836d-6128f68f7a4c"",
-                    ""expectedControlType"": ""Vector2"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""rightTrackpadButton"",
-                    ""type"": ""Button"",
-                    ""id"": ""6700793e-43ee-44df-bd2f-e1945306c7b6"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""leftTrackpadButton"",
-                    ""type"": ""Button"",
-                    ""id"": ""ade0eb2f-ac26-41ea-88fa-cb36447a953c"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""rightGrip"",
+                    ""name"": ""Position"",
                     ""type"": ""Value"",
-                    ""id"": ""bb3ab885-f00f-439e-828d-79b82e254873"",
-                    ""expectedControlType"": ""Analog"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": true
-                },
-                {
-                    ""name"": ""leftGrip"",
-                    ""type"": ""Value"",
-                    ""id"": ""c4328b04-198d-40eb-af4c-fe87b6f6998b"",
-                    ""expectedControlType"": ""Analog"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": true
-                },
-                {
-                    ""name"": ""rightAction"",
-                    ""type"": ""Button"",
-                    ""id"": ""9fd7971e-16c8-46cc-8a55-3face60ed430"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""leftAction"",
-                    ""type"": ""Button"",
-                    ""id"": ""f3f8b25f-34c0-48d4-b927-9a872d7a9d3c"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""rightPauseButton"",
-                    ""type"": ""Button"",
-                    ""id"": ""4730eda3-98f8-46b6-823b-c3bd56253d62"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""leftPauseButton"",
-                    ""type"": ""Button"",
-                    ""id"": ""e9614f09-cf4a-4748-a023-ace798b9fe1e"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""centerEyePos"",
-                    ""type"": ""Value"",
-                    ""id"": ""788a2901-0cbf-4f2e-952b-73729f7e503b"",
+                    ""id"": ""24bcfad3-53f4-4360-b2b5-79ba7bb964d8"",
                     ""expectedControlType"": ""Vector3"",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
                 },
                 {
-                    ""name"": ""centerEyeRot"",
+                    ""name"": ""Rotation"",
                     ""type"": ""Value"",
-                    ""id"": ""6e055eda-8e7f-4658-a3fc-e9ac751cb798"",
-                    ""expectedControlType"": ""Quaternion"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": true
-                },
-                {
-                    ""name"": ""rightHandPos"",
-                    ""type"": ""Value"",
-                    ""id"": ""3d4b68df-2d8e-4860-acb9-9dcf6ed1dda5"",
-                    ""expectedControlType"": ""Vector3"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": true
-                },
-                {
-                    ""name"": ""rightHandRot"",
-                    ""type"": ""Value"",
-                    ""id"": ""1f30183c-bc68-4176-89f6-ef251c5ef5b2"",
-                    ""expectedControlType"": ""Quaternion"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": true
-                },
-                {
-                    ""name"": ""leftHandPos"",
-                    ""type"": ""Value"",
-                    ""id"": ""6f5b7871-557c-4524-a6b5-4a28d13bac5e"",
-                    ""expectedControlType"": ""Vector3"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": true
-                },
-                {
-                    ""name"": ""leftHandRot"",
-                    ""type"": ""Value"",
-                    ""id"": ""8830c36f-310e-4993-9d76-46bd4bd13d9b"",
+                    ""id"": ""bd3f4fe9-47cb-4a45-9577-ad5ab43d6e62"",
                     ""expectedControlType"": ""Quaternion"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -567,177 +441,531 @@ public partial class @InputActions_viva : IInputActionCollection2, IDisposable
             ""bindings"": [
                 {
                     ""name"": """",
-                    ""id"": ""a3e14343-a988-49f5-bbeb-9c6ec7e26b2e"",
-                    ""path"": ""<OpenVRControllerIndex>{RightHand}/gripGrab"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""rightGrip"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""0328f881-8e3f-40ff-8d3f-09f4fd6f5626"",
-                    ""path"": ""<OpenVRControllerIndex>{RightHand}/joystick"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""rightTrackpad"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""88bb7524-fd9c-4dff-9ea8-37084358ba21"",
-                    ""path"": ""<OpenVRControllerIndex>{RightHand}/joystickClick"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""rightTrackpadButton"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""88287ee7-b2dd-428f-ac68-e94d95b0a961"",
-                    ""path"": ""<OpenVRControllerIndex>{LeftHand}/joystickClick"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""leftTrackpadButton"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""50b01fd7-5e5a-482f-9439-5f7ab433db5a"",
-                    ""path"": ""<OpenVRControllerIndex>{RightHand}/triggerButton"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""rightAction"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""e5951063-fc6f-46ba-98ca-79d681ec8951"",
-                    ""path"": ""<OpenVRControllerIndex>{LeftHand}/triggerButton"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""leftAction"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""97d6e7ab-9acc-4520-9aff-9cc0ebc2b039"",
-                    ""path"": ""<OpenVRControllerIndex>{LeftHand}/gripGrab"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""leftGrip"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""5d0adc8f-013c-4709-94e3-863259d0445d"",
-                    ""path"": ""<OpenVRControllerIndex>{RightHand}/bButton"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""rightPauseButton"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""7ebf5a4a-b015-4c6b-963b-16e1f21ff4c3"",
-                    ""path"": ""<OpenVRControllerIndex>{LeftHand}/bButton"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""leftPauseButton"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""bb69a798-ccf6-49c2-8c9a-c78d9e7e05ce"",
-                    ""path"": ""<OpenVRControllerIndex>{LeftHand}/joystick"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""leftTrackpad"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""4de20e89-e11e-4d4c-9b6f-90f5f99a28b4"",
+                    ""id"": ""b23b46e2-f8fa-46af-a9b8-d2e7a9710040"",
                     ""path"": ""<XRHMD>/centerEyePosition"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""centerEyePos"",
+                    ""groups"": ""Generic XR Controller"",
+                    ""action"": ""Position"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
-                    ""id"": ""48d00a79-b04f-4a55-a584-ef163667d580"",
+                    ""id"": ""a6081415-6cab-468f-b94c-181cf938746d"",
                     ""path"": ""<XRHMD>/centerEyeRotation"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""centerEyeRot"",
+                    ""groups"": ""Generic XR Controller"",
+                    ""action"": ""Rotation"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                }
+            ]
+        },
+        {
+            ""name"": ""VR LeftHand"",
+            ""id"": ""fa62b563-0233-4b28-a9f3-6855cee5f00b"",
+            ""actions"": [
+                {
+                    ""name"": ""Position"",
+                    ""type"": ""Value"",
+                    ""id"": ""b19cd505-84c3-4f56-bb15-8c20c12720e5"",
+                    ""expectedControlType"": ""Vector3"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 },
                 {
-                    ""name"": """",
-                    ""id"": ""98cd9776-ee2e-4544-8696-c79090755927"",
-                    ""path"": ""<XRController>{RightHand}/pointerPosition"",
+                    ""name"": ""Rotation"",
+                    ""type"": ""Value"",
+                    ""id"": ""50bd0f97-0681-476d-b905-5848337aadcf"",
+                    ""expectedControlType"": ""Quaternion"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Tracking State"",
+                    ""type"": ""Value"",
+                    ""id"": ""095864f2-f950-4d85-89cf-333a0fd66d74"",
+                    ""expectedControlType"": ""Integer"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Haptic Device"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""eda8d354-ce57-488f-8f12-18b68c8476e6"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Move"",
+                    ""type"": ""Value"",
+                    ""id"": ""54650ae9-1e7c-404b-8f0d-6c9cffe1b6fd"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Select"",
+                    ""type"": ""Button"",
+                    ""id"": ""d5f797c4-47df-4581-a819-bcaa3f1a78eb"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Grab"",
+                    ""type"": ""Value"",
+                    ""id"": ""291fb1bb-31d3-41e2-8cb7-e8e539a59f75"",
+                    ""expectedControlType"": ""Axis"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Interact"",
+                    ""type"": ""Button"",
+                    ""id"": ""ddc19e3f-2853-400f-812c-46db3774d9d5"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Pause"",
+                    ""type"": ""Button"",
+                    ""id"": ""00ad63b0-b724-4823-90cc-768ca0fe0ee8"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": ""Quaternion Fallback"",
+                    ""id"": ""8eb11994-7364-41b0-8653-625b78c812a7"",
+                    ""path"": ""QuaternionFallback"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""rightHandPos"",
-                    ""isComposite"": false,
+                    ""action"": ""Rotation"",
+                    ""isComposite"": true,
                     ""isPartOfComposite"": false
                 },
                 {
-                    ""name"": """",
-                    ""id"": ""da42b62c-db58-4f59-833b-92d777126645"",
-                    ""path"": ""<XRController>{RightHand}/pointerRotation"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""rightHandRot"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""212e0d2b-7e62-4ce5-a464-ebfc6346dddb"",
-                    ""path"": ""<XRController>{LeftHand}/pointerPosition"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""leftHandPos"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""9006f47e-22ff-499e-9103-52c3533a8669"",
+                    ""name"": ""first"",
+                    ""id"": ""8b28cd4f-dc5a-4f2e-a6b0-cd9ad597de37"",
                     ""path"": ""<XRController>{LeftHand}/pointerRotation"",
                     ""interactions"": """",
                     ""processors"": """",
+                    ""groups"": ""Generic XR Controller"",
+                    ""action"": ""Rotation"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""second"",
+                    ""id"": ""a4a27c96-6e58-4bda-83ee-21e88cc9220a"",
+                    ""path"": ""<XRController>{LeftHand}/deviceRotation"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Generic XR Controller"",
+                    ""action"": ""Rotation"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""third"",
+                    ""id"": ""afb4ecb9-91a9-46f2-badf-d94954b75a28"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Generic XR Controller"",
+                    ""action"": ""Rotation"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Vector 3 Fallback"",
+                    ""id"": ""20e56458-c509-4568-9e1f-6e3abf62cf79"",
+                    ""path"": ""Vector3Fallback"",
+                    ""interactions"": """",
+                    ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""leftHandRot"",
+                    ""action"": ""Position"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""first"",
+                    ""id"": ""6f8d1d89-9c28-4da9-b5e0-aa5bec103485"",
+                    ""path"": ""<XRController>{LeftHand}/pointerPosition"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Generic XR Controller"",
+                    ""action"": ""Position"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""second"",
+                    ""id"": ""6856ea9e-e1e5-48d5-8282-f51e4ca493ff"",
+                    ""path"": ""<XRController>{LeftHand}/devicePosition"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Generic XR Controller"",
+                    ""action"": ""Position"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""third"",
+                    ""id"": ""068be33d-c726-48c0-a67d-cb2ace194a14"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Generic XR Controller"",
+                    ""action"": ""Position"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""42d84815-3791-4cc7-851f-17dbbd57b252"",
+                    ""path"": ""<XRController>{LeftHand}/*"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Generic XR Controller"",
+                    ""action"": ""Haptic Device"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""160b5582-8582-4a23-9448-0b8825a2d702"",
+                    ""path"": ""<XRController>{LeftHand}/trackingState"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Generic XR Controller"",
+                    ""action"": ""Tracking State"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c3c47594-3f06-45bb-b05e-0dd4e7ad1a55"",
+                    ""path"": ""<XRController>{LeftHand}/primary2DAxis"",
+                    ""interactions"": """",
+                    ""processors"": ""StickDeadzone"",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""87321caf-21aa-49aa-8b42-28d8b33d4fe8"",
+                    ""path"": ""<XRController>{LeftHand}/grip"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Grab"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""57af9df8-ba40-426f-8efa-4d7c4929ceed"",
+                    ""path"": ""<XRController>{LeftHand}/primary2DAxisClick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Select"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""932153d9-aa83-4c23-9c4e-5d84985c6866"",
+                    ""path"": ""<XRController>{LeftHand}/triggerButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Interact"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d10e54fc-599b-4077-9180-7d837ccd64ee"",
+                    ""path"": ""<XRController>{LeftHand}/secondaryButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
+        },
+        {
+            ""name"": ""VR RightHand"",
+            ""id"": ""323774f6-5cf8-4eac-b974-11d66f32775e"",
+            ""actions"": [
+                {
+                    ""name"": ""Position"",
+                    ""type"": ""Value"",
+                    ""id"": ""7472329b-583a-4a87-823e-3b0dfba268fc"",
+                    ""expectedControlType"": ""Vector3"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Rotation"",
+                    ""type"": ""Value"",
+                    ""id"": ""12b97adf-4d75-4e41-b19d-0ac2103094cb"",
+                    ""expectedControlType"": ""Quaternion"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Tracking State"",
+                    ""type"": ""Value"",
+                    ""id"": ""4294d283-eef9-4138-92b8-3d13eec20033"",
+                    ""expectedControlType"": ""Integer"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Haptic Device"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""e9d83227-6c13-4cd2-8793-b35128dbf653"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Move"",
+                    ""type"": ""Value"",
+                    ""id"": ""af03a2d5-d425-48d0-aae1-66b02c5962a9"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Select"",
+                    ""type"": ""Button"",
+                    ""id"": ""896cbec2-f65a-4095-99f1-b30dfdb4d7cc"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Grab"",
+                    ""type"": ""Value"",
+                    ""id"": ""d1d27fad-5515-4612-98e3-8b812917db2d"",
+                    ""expectedControlType"": ""Axis"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Interact"",
+                    ""type"": ""Button"",
+                    ""id"": ""6c76cda0-5866-4dff-9160-503a6ef27cb6"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Pause"",
+                    ""type"": ""Button"",
+                    ""id"": ""e671392c-a8d8-4152-8700-5837789c435d"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": ""Quaternion Fallback"",
+                    ""id"": ""f72500a3-32d5-47de-a4a3-976338cd7ad3"",
+                    ""path"": ""QuaternionFallback"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Rotation"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""first"",
+                    ""id"": ""13b61c76-d536-4900-b793-f98c0523dbc8"",
+                    ""path"": ""<XRController>{RightHand}/pointerRotation"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Generic XR Controller"",
+                    ""action"": ""Rotation"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""second"",
+                    ""id"": ""3362d623-3292-43ce-8455-cd0f2728de89"",
+                    ""path"": ""<XRController>{RightHand}/deviceRotation"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Generic XR Controller"",
+                    ""action"": ""Rotation"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""third"",
+                    ""id"": ""a7ee96a7-2eb3-4834-9597-d65948673145"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Generic XR Controller"",
+                    ""action"": ""Rotation"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Vector 3 Fallback"",
+                    ""id"": ""f4853e1c-8efe-4fec-a460-38cb5b8da46c"",
+                    ""path"": ""Vector3Fallback"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Position"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""first"",
+                    ""id"": ""f0a9d45d-b188-4242-8328-f3ea006e71fb"",
+                    ""path"": ""<XRController>{RightHand}/pointerPosition"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Generic XR Controller"",
+                    ""action"": ""Position"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""second"",
+                    ""id"": ""586151bf-9814-44d8-a8b0-9709cabb247f"",
+                    ""path"": ""<XRController>{RightHand}/devicePosition"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Generic XR Controller"",
+                    ""action"": ""Position"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""third"",
+                    ""id"": ""820c0eff-cab6-4b82-978c-f28bbfecf8a5"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Generic XR Controller"",
+                    ""action"": ""Position"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""135a6fef-7f76-40eb-834c-f4536455aa1c"",
+                    ""path"": ""<XRController>{RightHand}/*"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Generic XR Controller"",
+                    ""action"": ""Haptic Device"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8dce0ce5-ad7a-4af9-898f-9b18b63a3d4b"",
+                    ""path"": ""<XRController>{RightHand}/trackingState"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Generic XR Controller"",
+                    ""action"": ""Tracking State"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""abd6f3a8-d2fa-47a8-820a-9b2af870871f"",
+                    ""path"": ""<XRController>{RightHand}/primary2DAxis"",
+                    ""interactions"": """",
+                    ""processors"": ""StickDeadzone"",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""de2cabb8-b8d4-4ad2-908c-ffea46545d62"",
+                    ""path"": ""<XRController>{RightHand}/primary2DAxisClick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Select"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4e3273d2-d9d1-4415-8dbb-19fd05b2971e"",
+                    ""path"": ""<XRController>{RightHand}/grip"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Grab"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""94f2e17d-c3e1-42cf-988b-c8931cf4dcbd"",
+                    ""path"": ""<XRController>{RightHand}/triggerButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Interact"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""71d6699c-0f48-4df6-be79-1cb65bdd70b3"",
+                    ""path"": ""<XRController>{RightHand}/secondaryButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Pause"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -746,43 +974,51 @@ public partial class @InputActions_viva : IInputActionCollection2, IDisposable
     ],
     ""controlSchemes"": []
 }");
-        // keyboard
-        m_keyboard = asset.FindActionMap("keyboard", throwIfNotFound: true);
-        m_keyboard_miniprofiler = m_keyboard.FindAction("miniprofiler", throwIfNotFound: true);
-        m_keyboard_movement = m_keyboard.FindAction("movement", throwIfNotFound: true);
-        m_keyboard_extendRight = m_keyboard.FindAction("extendRight", throwIfNotFound: true);
-        m_keyboard_extendLeft = m_keyboard.FindAction("extendLeft", throwIfNotFound: true);
-        m_keyboard_wave = m_keyboard.FindAction("wave", throwIfNotFound: true);
-        m_keyboard_follow = m_keyboard.FindAction("follow", throwIfNotFound: true);
-        m_keyboard_pauseButton = m_keyboard.FindAction("pauseButton", throwIfNotFound: true);
-        m_keyboard_keyboardAlt = m_keyboard.FindAction("keyboardAlt", throwIfNotFound: true);
-        m_keyboard_rightInteract = m_keyboard.FindAction("rightInteract", throwIfNotFound: true);
-        m_keyboard_leftInteract = m_keyboard.FindAction("leftInteract", throwIfNotFound: true);
-        m_keyboard_mouseVelocity = m_keyboard.FindAction("mouseVelocity", throwIfNotFound: true);
-        m_keyboard_mousePosition = m_keyboard.FindAction("mousePosition", throwIfNotFound: true);
-        m_keyboard_crouch = m_keyboard.FindAction("crouch", throwIfNotFound: true);
-        m_keyboard_w = m_keyboard.FindAction("w", throwIfNotFound: true);
-        m_keyboard_a = m_keyboard.FindAction("a", throwIfNotFound: true);
-        m_keyboard_s = m_keyboard.FindAction("s", throwIfNotFound: true);
-        m_keyboard_d = m_keyboard.FindAction("d", throwIfNotFound: true);
-        // vr
-        m_vr = asset.FindActionMap("vr", throwIfNotFound: true);
-        m_vr_rightTrackpad = m_vr.FindAction("rightTrackpad", throwIfNotFound: true);
-        m_vr_leftTrackpad = m_vr.FindAction("leftTrackpad", throwIfNotFound: true);
-        m_vr_rightTrackpadButton = m_vr.FindAction("rightTrackpadButton", throwIfNotFound: true);
-        m_vr_leftTrackpadButton = m_vr.FindAction("leftTrackpadButton", throwIfNotFound: true);
-        m_vr_rightGrip = m_vr.FindAction("rightGrip", throwIfNotFound: true);
-        m_vr_leftGrip = m_vr.FindAction("leftGrip", throwIfNotFound: true);
-        m_vr_rightAction = m_vr.FindAction("rightAction", throwIfNotFound: true);
-        m_vr_leftAction = m_vr.FindAction("leftAction", throwIfNotFound: true);
-        m_vr_rightPauseButton = m_vr.FindAction("rightPauseButton", throwIfNotFound: true);
-        m_vr_leftPauseButton = m_vr.FindAction("leftPauseButton", throwIfNotFound: true);
-        m_vr_centerEyePos = m_vr.FindAction("centerEyePos", throwIfNotFound: true);
-        m_vr_centerEyeRot = m_vr.FindAction("centerEyeRot", throwIfNotFound: true);
-        m_vr_rightHandPos = m_vr.FindAction("rightHandPos", throwIfNotFound: true);
-        m_vr_rightHandRot = m_vr.FindAction("rightHandRot", throwIfNotFound: true);
-        m_vr_leftHandPos = m_vr.FindAction("leftHandPos", throwIfNotFound: true);
-        m_vr_leftHandRot = m_vr.FindAction("leftHandRot", throwIfNotFound: true);
+        // Keyboard
+        m_Keyboard = asset.FindActionMap("Keyboard", throwIfNotFound: true);
+        m_Keyboard_miniprofiler = m_Keyboard.FindAction("miniprofiler", throwIfNotFound: true);
+        m_Keyboard_movement = m_Keyboard.FindAction("movement", throwIfNotFound: true);
+        m_Keyboard_extendRight = m_Keyboard.FindAction("extendRight", throwIfNotFound: true);
+        m_Keyboard_extendLeft = m_Keyboard.FindAction("extendLeft", throwIfNotFound: true);
+        m_Keyboard_wave = m_Keyboard.FindAction("wave", throwIfNotFound: true);
+        m_Keyboard_follow = m_Keyboard.FindAction("follow", throwIfNotFound: true);
+        m_Keyboard_pauseButton = m_Keyboard.FindAction("pauseButton", throwIfNotFound: true);
+        m_Keyboard_keyboardAlt = m_Keyboard.FindAction("keyboardAlt", throwIfNotFound: true);
+        m_Keyboard_rightInteract = m_Keyboard.FindAction("rightInteract", throwIfNotFound: true);
+        m_Keyboard_leftInteract = m_Keyboard.FindAction("leftInteract", throwIfNotFound: true);
+        m_Keyboard_mouseVelocity = m_Keyboard.FindAction("mouseVelocity", throwIfNotFound: true);
+        m_Keyboard_mousePosition = m_Keyboard.FindAction("mousePosition", throwIfNotFound: true);
+        m_Keyboard_crouch = m_Keyboard.FindAction("crouch", throwIfNotFound: true);
+        m_Keyboard_w = m_Keyboard.FindAction("w", throwIfNotFound: true);
+        m_Keyboard_a = m_Keyboard.FindAction("a", throwIfNotFound: true);
+        m_Keyboard_s = m_Keyboard.FindAction("s", throwIfNotFound: true);
+        m_Keyboard_d = m_Keyboard.FindAction("d", throwIfNotFound: true);
+        // VR Head
+        m_VRHead = asset.FindActionMap("VR Head", throwIfNotFound: true);
+        m_VRHead_Position = m_VRHead.FindAction("Position", throwIfNotFound: true);
+        m_VRHead_Rotation = m_VRHead.FindAction("Rotation", throwIfNotFound: true);
+        // VR LeftHand
+        m_VRLeftHand = asset.FindActionMap("VR LeftHand", throwIfNotFound: true);
+        m_VRLeftHand_Position = m_VRLeftHand.FindAction("Position", throwIfNotFound: true);
+        m_VRLeftHand_Rotation = m_VRLeftHand.FindAction("Rotation", throwIfNotFound: true);
+        m_VRLeftHand_TrackingState = m_VRLeftHand.FindAction("Tracking State", throwIfNotFound: true);
+        m_VRLeftHand_HapticDevice = m_VRLeftHand.FindAction("Haptic Device", throwIfNotFound: true);
+        m_VRLeftHand_Move = m_VRLeftHand.FindAction("Move", throwIfNotFound: true);
+        m_VRLeftHand_Select = m_VRLeftHand.FindAction("Select", throwIfNotFound: true);
+        m_VRLeftHand_Grab = m_VRLeftHand.FindAction("Grab", throwIfNotFound: true);
+        m_VRLeftHand_Interact = m_VRLeftHand.FindAction("Interact", throwIfNotFound: true);
+        m_VRLeftHand_Pause = m_VRLeftHand.FindAction("Pause", throwIfNotFound: true);
+        // VR RightHand
+        m_VRRightHand = asset.FindActionMap("VR RightHand", throwIfNotFound: true);
+        m_VRRightHand_Position = m_VRRightHand.FindAction("Position", throwIfNotFound: true);
+        m_VRRightHand_Rotation = m_VRRightHand.FindAction("Rotation", throwIfNotFound: true);
+        m_VRRightHand_TrackingState = m_VRRightHand.FindAction("Tracking State", throwIfNotFound: true);
+        m_VRRightHand_HapticDevice = m_VRRightHand.FindAction("Haptic Device", throwIfNotFound: true);
+        m_VRRightHand_Move = m_VRRightHand.FindAction("Move", throwIfNotFound: true);
+        m_VRRightHand_Select = m_VRRightHand.FindAction("Select", throwIfNotFound: true);
+        m_VRRightHand_Grab = m_VRRightHand.FindAction("Grab", throwIfNotFound: true);
+        m_VRRightHand_Interact = m_VRRightHand.FindAction("Interact", throwIfNotFound: true);
+        m_VRRightHand_Pause = m_VRRightHand.FindAction("Pause", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -839,48 +1075,48 @@ public partial class @InputActions_viva : IInputActionCollection2, IDisposable
         return asset.FindBinding(bindingMask, out action);
     }
 
-    // keyboard
-    private readonly InputActionMap m_keyboard;
+    // Keyboard
+    private readonly InputActionMap m_Keyboard;
     private IKeyboardActions m_KeyboardActionsCallbackInterface;
-    private readonly InputAction m_keyboard_miniprofiler;
-    private readonly InputAction m_keyboard_movement;
-    private readonly InputAction m_keyboard_extendRight;
-    private readonly InputAction m_keyboard_extendLeft;
-    private readonly InputAction m_keyboard_wave;
-    private readonly InputAction m_keyboard_follow;
-    private readonly InputAction m_keyboard_pauseButton;
-    private readonly InputAction m_keyboard_keyboardAlt;
-    private readonly InputAction m_keyboard_rightInteract;
-    private readonly InputAction m_keyboard_leftInteract;
-    private readonly InputAction m_keyboard_mouseVelocity;
-    private readonly InputAction m_keyboard_mousePosition;
-    private readonly InputAction m_keyboard_crouch;
-    private readonly InputAction m_keyboard_w;
-    private readonly InputAction m_keyboard_a;
-    private readonly InputAction m_keyboard_s;
-    private readonly InputAction m_keyboard_d;
+    private readonly InputAction m_Keyboard_miniprofiler;
+    private readonly InputAction m_Keyboard_movement;
+    private readonly InputAction m_Keyboard_extendRight;
+    private readonly InputAction m_Keyboard_extendLeft;
+    private readonly InputAction m_Keyboard_wave;
+    private readonly InputAction m_Keyboard_follow;
+    private readonly InputAction m_Keyboard_pauseButton;
+    private readonly InputAction m_Keyboard_keyboardAlt;
+    private readonly InputAction m_Keyboard_rightInteract;
+    private readonly InputAction m_Keyboard_leftInteract;
+    private readonly InputAction m_Keyboard_mouseVelocity;
+    private readonly InputAction m_Keyboard_mousePosition;
+    private readonly InputAction m_Keyboard_crouch;
+    private readonly InputAction m_Keyboard_w;
+    private readonly InputAction m_Keyboard_a;
+    private readonly InputAction m_Keyboard_s;
+    private readonly InputAction m_Keyboard_d;
     public struct KeyboardActions
     {
         private @InputActions_viva m_Wrapper;
         public KeyboardActions(@InputActions_viva wrapper) { m_Wrapper = wrapper; }
-        public InputAction @miniprofiler => m_Wrapper.m_keyboard_miniprofiler;
-        public InputAction @movement => m_Wrapper.m_keyboard_movement;
-        public InputAction @extendRight => m_Wrapper.m_keyboard_extendRight;
-        public InputAction @extendLeft => m_Wrapper.m_keyboard_extendLeft;
-        public InputAction @wave => m_Wrapper.m_keyboard_wave;
-        public InputAction @follow => m_Wrapper.m_keyboard_follow;
-        public InputAction @pauseButton => m_Wrapper.m_keyboard_pauseButton;
-        public InputAction @keyboardAlt => m_Wrapper.m_keyboard_keyboardAlt;
-        public InputAction @rightInteract => m_Wrapper.m_keyboard_rightInteract;
-        public InputAction @leftInteract => m_Wrapper.m_keyboard_leftInteract;
-        public InputAction @mouseVelocity => m_Wrapper.m_keyboard_mouseVelocity;
-        public InputAction @mousePosition => m_Wrapper.m_keyboard_mousePosition;
-        public InputAction @crouch => m_Wrapper.m_keyboard_crouch;
-        public InputAction @w => m_Wrapper.m_keyboard_w;
-        public InputAction @a => m_Wrapper.m_keyboard_a;
-        public InputAction @s => m_Wrapper.m_keyboard_s;
-        public InputAction @d => m_Wrapper.m_keyboard_d;
-        public InputActionMap Get() { return m_Wrapper.m_keyboard; }
+        public InputAction @miniprofiler => m_Wrapper.m_Keyboard_miniprofiler;
+        public InputAction @movement => m_Wrapper.m_Keyboard_movement;
+        public InputAction @extendRight => m_Wrapper.m_Keyboard_extendRight;
+        public InputAction @extendLeft => m_Wrapper.m_Keyboard_extendLeft;
+        public InputAction @wave => m_Wrapper.m_Keyboard_wave;
+        public InputAction @follow => m_Wrapper.m_Keyboard_follow;
+        public InputAction @pauseButton => m_Wrapper.m_Keyboard_pauseButton;
+        public InputAction @keyboardAlt => m_Wrapper.m_Keyboard_keyboardAlt;
+        public InputAction @rightInteract => m_Wrapper.m_Keyboard_rightInteract;
+        public InputAction @leftInteract => m_Wrapper.m_Keyboard_leftInteract;
+        public InputAction @mouseVelocity => m_Wrapper.m_Keyboard_mouseVelocity;
+        public InputAction @mousePosition => m_Wrapper.m_Keyboard_mousePosition;
+        public InputAction @crouch => m_Wrapper.m_Keyboard_crouch;
+        public InputAction @w => m_Wrapper.m_Keyboard_w;
+        public InputAction @a => m_Wrapper.m_Keyboard_a;
+        public InputAction @s => m_Wrapper.m_Keyboard_s;
+        public InputAction @d => m_Wrapper.m_Keyboard_d;
+        public InputActionMap Get() { return m_Wrapper.m_Keyboard; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
         public bool enabled => Get().enabled;
@@ -998,160 +1234,242 @@ public partial class @InputActions_viva : IInputActionCollection2, IDisposable
             }
         }
     }
-    public KeyboardActions @keyboard => new KeyboardActions(this);
+    public KeyboardActions @Keyboard => new KeyboardActions(this);
 
-    // vr
-    private readonly InputActionMap m_vr;
-    private IVrActions m_VrActionsCallbackInterface;
-    private readonly InputAction m_vr_rightTrackpad;
-    private readonly InputAction m_vr_leftTrackpad;
-    private readonly InputAction m_vr_rightTrackpadButton;
-    private readonly InputAction m_vr_leftTrackpadButton;
-    private readonly InputAction m_vr_rightGrip;
-    private readonly InputAction m_vr_leftGrip;
-    private readonly InputAction m_vr_rightAction;
-    private readonly InputAction m_vr_leftAction;
-    private readonly InputAction m_vr_rightPauseButton;
-    private readonly InputAction m_vr_leftPauseButton;
-    private readonly InputAction m_vr_centerEyePos;
-    private readonly InputAction m_vr_centerEyeRot;
-    private readonly InputAction m_vr_rightHandPos;
-    private readonly InputAction m_vr_rightHandRot;
-    private readonly InputAction m_vr_leftHandPos;
-    private readonly InputAction m_vr_leftHandRot;
-    public struct VrActions
+    // VR Head
+    private readonly InputActionMap m_VRHead;
+    private IVRHeadActions m_VRHeadActionsCallbackInterface;
+    private readonly InputAction m_VRHead_Position;
+    private readonly InputAction m_VRHead_Rotation;
+    public struct VRHeadActions
     {
         private @InputActions_viva m_Wrapper;
-        public VrActions(@InputActions_viva wrapper) { m_Wrapper = wrapper; }
-        public InputAction @rightTrackpad => m_Wrapper.m_vr_rightTrackpad;
-        public InputAction @leftTrackpad => m_Wrapper.m_vr_leftTrackpad;
-        public InputAction @rightTrackpadButton => m_Wrapper.m_vr_rightTrackpadButton;
-        public InputAction @leftTrackpadButton => m_Wrapper.m_vr_leftTrackpadButton;
-        public InputAction @rightGrip => m_Wrapper.m_vr_rightGrip;
-        public InputAction @leftGrip => m_Wrapper.m_vr_leftGrip;
-        public InputAction @rightAction => m_Wrapper.m_vr_rightAction;
-        public InputAction @leftAction => m_Wrapper.m_vr_leftAction;
-        public InputAction @rightPauseButton => m_Wrapper.m_vr_rightPauseButton;
-        public InputAction @leftPauseButton => m_Wrapper.m_vr_leftPauseButton;
-        public InputAction @centerEyePos => m_Wrapper.m_vr_centerEyePos;
-        public InputAction @centerEyeRot => m_Wrapper.m_vr_centerEyeRot;
-        public InputAction @rightHandPos => m_Wrapper.m_vr_rightHandPos;
-        public InputAction @rightHandRot => m_Wrapper.m_vr_rightHandRot;
-        public InputAction @leftHandPos => m_Wrapper.m_vr_leftHandPos;
-        public InputAction @leftHandRot => m_Wrapper.m_vr_leftHandRot;
-        public InputActionMap Get() { return m_Wrapper.m_vr; }
+        public VRHeadActions(@InputActions_viva wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Position => m_Wrapper.m_VRHead_Position;
+        public InputAction @Rotation => m_Wrapper.m_VRHead_Rotation;
+        public InputActionMap Get() { return m_Wrapper.m_VRHead; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
         public bool enabled => Get().enabled;
-        public static implicit operator InputActionMap(VrActions set) { return set.Get(); }
-        public void SetCallbacks(IVrActions instance)
+        public static implicit operator InputActionMap(VRHeadActions set) { return set.Get(); }
+        public void SetCallbacks(IVRHeadActions instance)
         {
-            if (m_Wrapper.m_VrActionsCallbackInterface != null)
+            if (m_Wrapper.m_VRHeadActionsCallbackInterface != null)
             {
-                @rightTrackpad.started -= m_Wrapper.m_VrActionsCallbackInterface.OnRightTrackpad;
-                @rightTrackpad.performed -= m_Wrapper.m_VrActionsCallbackInterface.OnRightTrackpad;
-                @rightTrackpad.canceled -= m_Wrapper.m_VrActionsCallbackInterface.OnRightTrackpad;
-                @leftTrackpad.started -= m_Wrapper.m_VrActionsCallbackInterface.OnLeftTrackpad;
-                @leftTrackpad.performed -= m_Wrapper.m_VrActionsCallbackInterface.OnLeftTrackpad;
-                @leftTrackpad.canceled -= m_Wrapper.m_VrActionsCallbackInterface.OnLeftTrackpad;
-                @rightTrackpadButton.started -= m_Wrapper.m_VrActionsCallbackInterface.OnRightTrackpadButton;
-                @rightTrackpadButton.performed -= m_Wrapper.m_VrActionsCallbackInterface.OnRightTrackpadButton;
-                @rightTrackpadButton.canceled -= m_Wrapper.m_VrActionsCallbackInterface.OnRightTrackpadButton;
-                @leftTrackpadButton.started -= m_Wrapper.m_VrActionsCallbackInterface.OnLeftTrackpadButton;
-                @leftTrackpadButton.performed -= m_Wrapper.m_VrActionsCallbackInterface.OnLeftTrackpadButton;
-                @leftTrackpadButton.canceled -= m_Wrapper.m_VrActionsCallbackInterface.OnLeftTrackpadButton;
-                @rightGrip.started -= m_Wrapper.m_VrActionsCallbackInterface.OnRightGrip;
-                @rightGrip.performed -= m_Wrapper.m_VrActionsCallbackInterface.OnRightGrip;
-                @rightGrip.canceled -= m_Wrapper.m_VrActionsCallbackInterface.OnRightGrip;
-                @leftGrip.started -= m_Wrapper.m_VrActionsCallbackInterface.OnLeftGrip;
-                @leftGrip.performed -= m_Wrapper.m_VrActionsCallbackInterface.OnLeftGrip;
-                @leftGrip.canceled -= m_Wrapper.m_VrActionsCallbackInterface.OnLeftGrip;
-                @rightAction.started -= m_Wrapper.m_VrActionsCallbackInterface.OnRightAction;
-                @rightAction.performed -= m_Wrapper.m_VrActionsCallbackInterface.OnRightAction;
-                @rightAction.canceled -= m_Wrapper.m_VrActionsCallbackInterface.OnRightAction;
-                @leftAction.started -= m_Wrapper.m_VrActionsCallbackInterface.OnLeftAction;
-                @leftAction.performed -= m_Wrapper.m_VrActionsCallbackInterface.OnLeftAction;
-                @leftAction.canceled -= m_Wrapper.m_VrActionsCallbackInterface.OnLeftAction;
-                @rightPauseButton.started -= m_Wrapper.m_VrActionsCallbackInterface.OnRightPauseButton;
-                @rightPauseButton.performed -= m_Wrapper.m_VrActionsCallbackInterface.OnRightPauseButton;
-                @rightPauseButton.canceled -= m_Wrapper.m_VrActionsCallbackInterface.OnRightPauseButton;
-                @leftPauseButton.started -= m_Wrapper.m_VrActionsCallbackInterface.OnLeftPauseButton;
-                @leftPauseButton.performed -= m_Wrapper.m_VrActionsCallbackInterface.OnLeftPauseButton;
-                @leftPauseButton.canceled -= m_Wrapper.m_VrActionsCallbackInterface.OnLeftPauseButton;
-                @centerEyePos.started -= m_Wrapper.m_VrActionsCallbackInterface.OnCenterEyePos;
-                @centerEyePos.performed -= m_Wrapper.m_VrActionsCallbackInterface.OnCenterEyePos;
-                @centerEyePos.canceled -= m_Wrapper.m_VrActionsCallbackInterface.OnCenterEyePos;
-                @centerEyeRot.started -= m_Wrapper.m_VrActionsCallbackInterface.OnCenterEyeRot;
-                @centerEyeRot.performed -= m_Wrapper.m_VrActionsCallbackInterface.OnCenterEyeRot;
-                @centerEyeRot.canceled -= m_Wrapper.m_VrActionsCallbackInterface.OnCenterEyeRot;
-                @rightHandPos.started -= m_Wrapper.m_VrActionsCallbackInterface.OnRightHandPos;
-                @rightHandPos.performed -= m_Wrapper.m_VrActionsCallbackInterface.OnRightHandPos;
-                @rightHandPos.canceled -= m_Wrapper.m_VrActionsCallbackInterface.OnRightHandPos;
-                @rightHandRot.started -= m_Wrapper.m_VrActionsCallbackInterface.OnRightHandRot;
-                @rightHandRot.performed -= m_Wrapper.m_VrActionsCallbackInterface.OnRightHandRot;
-                @rightHandRot.canceled -= m_Wrapper.m_VrActionsCallbackInterface.OnRightHandRot;
-                @leftHandPos.started -= m_Wrapper.m_VrActionsCallbackInterface.OnLeftHandPos;
-                @leftHandPos.performed -= m_Wrapper.m_VrActionsCallbackInterface.OnLeftHandPos;
-                @leftHandPos.canceled -= m_Wrapper.m_VrActionsCallbackInterface.OnLeftHandPos;
-                @leftHandRot.started -= m_Wrapper.m_VrActionsCallbackInterface.OnLeftHandRot;
-                @leftHandRot.performed -= m_Wrapper.m_VrActionsCallbackInterface.OnLeftHandRot;
-                @leftHandRot.canceled -= m_Wrapper.m_VrActionsCallbackInterface.OnLeftHandRot;
+                @Position.started -= m_Wrapper.m_VRHeadActionsCallbackInterface.OnPosition;
+                @Position.performed -= m_Wrapper.m_VRHeadActionsCallbackInterface.OnPosition;
+                @Position.canceled -= m_Wrapper.m_VRHeadActionsCallbackInterface.OnPosition;
+                @Rotation.started -= m_Wrapper.m_VRHeadActionsCallbackInterface.OnRotation;
+                @Rotation.performed -= m_Wrapper.m_VRHeadActionsCallbackInterface.OnRotation;
+                @Rotation.canceled -= m_Wrapper.m_VRHeadActionsCallbackInterface.OnRotation;
             }
-            m_Wrapper.m_VrActionsCallbackInterface = instance;
+            m_Wrapper.m_VRHeadActionsCallbackInterface = instance;
             if (instance != null)
             {
-                @rightTrackpad.started += instance.OnRightTrackpad;
-                @rightTrackpad.performed += instance.OnRightTrackpad;
-                @rightTrackpad.canceled += instance.OnRightTrackpad;
-                @leftTrackpad.started += instance.OnLeftTrackpad;
-                @leftTrackpad.performed += instance.OnLeftTrackpad;
-                @leftTrackpad.canceled += instance.OnLeftTrackpad;
-                @rightTrackpadButton.started += instance.OnRightTrackpadButton;
-                @rightTrackpadButton.performed += instance.OnRightTrackpadButton;
-                @rightTrackpadButton.canceled += instance.OnRightTrackpadButton;
-                @leftTrackpadButton.started += instance.OnLeftTrackpadButton;
-                @leftTrackpadButton.performed += instance.OnLeftTrackpadButton;
-                @leftTrackpadButton.canceled += instance.OnLeftTrackpadButton;
-                @rightGrip.started += instance.OnRightGrip;
-                @rightGrip.performed += instance.OnRightGrip;
-                @rightGrip.canceled += instance.OnRightGrip;
-                @leftGrip.started += instance.OnLeftGrip;
-                @leftGrip.performed += instance.OnLeftGrip;
-                @leftGrip.canceled += instance.OnLeftGrip;
-                @rightAction.started += instance.OnRightAction;
-                @rightAction.performed += instance.OnRightAction;
-                @rightAction.canceled += instance.OnRightAction;
-                @leftAction.started += instance.OnLeftAction;
-                @leftAction.performed += instance.OnLeftAction;
-                @leftAction.canceled += instance.OnLeftAction;
-                @rightPauseButton.started += instance.OnRightPauseButton;
-                @rightPauseButton.performed += instance.OnRightPauseButton;
-                @rightPauseButton.canceled += instance.OnRightPauseButton;
-                @leftPauseButton.started += instance.OnLeftPauseButton;
-                @leftPauseButton.performed += instance.OnLeftPauseButton;
-                @leftPauseButton.canceled += instance.OnLeftPauseButton;
-                @centerEyePos.started += instance.OnCenterEyePos;
-                @centerEyePos.performed += instance.OnCenterEyePos;
-                @centerEyePos.canceled += instance.OnCenterEyePos;
-                @centerEyeRot.started += instance.OnCenterEyeRot;
-                @centerEyeRot.performed += instance.OnCenterEyeRot;
-                @centerEyeRot.canceled += instance.OnCenterEyeRot;
-                @rightHandPos.started += instance.OnRightHandPos;
-                @rightHandPos.performed += instance.OnRightHandPos;
-                @rightHandPos.canceled += instance.OnRightHandPos;
-                @rightHandRot.started += instance.OnRightHandRot;
-                @rightHandRot.performed += instance.OnRightHandRot;
-                @rightHandRot.canceled += instance.OnRightHandRot;
-                @leftHandPos.started += instance.OnLeftHandPos;
-                @leftHandPos.performed += instance.OnLeftHandPos;
-                @leftHandPos.canceled += instance.OnLeftHandPos;
-                @leftHandRot.started += instance.OnLeftHandRot;
-                @leftHandRot.performed += instance.OnLeftHandRot;
-                @leftHandRot.canceled += instance.OnLeftHandRot;
+                @Position.started += instance.OnPosition;
+                @Position.performed += instance.OnPosition;
+                @Position.canceled += instance.OnPosition;
+                @Rotation.started += instance.OnRotation;
+                @Rotation.performed += instance.OnRotation;
+                @Rotation.canceled += instance.OnRotation;
             }
         }
     }
-    public VrActions @vr => new VrActions(this);
+    public VRHeadActions @VRHead => new VRHeadActions(this);
+
+    // VR LeftHand
+    private readonly InputActionMap m_VRLeftHand;
+    private IVRLeftHandActions m_VRLeftHandActionsCallbackInterface;
+    private readonly InputAction m_VRLeftHand_Position;
+    private readonly InputAction m_VRLeftHand_Rotation;
+    private readonly InputAction m_VRLeftHand_TrackingState;
+    private readonly InputAction m_VRLeftHand_HapticDevice;
+    private readonly InputAction m_VRLeftHand_Move;
+    private readonly InputAction m_VRLeftHand_Select;
+    private readonly InputAction m_VRLeftHand_Grab;
+    private readonly InputAction m_VRLeftHand_Interact;
+    private readonly InputAction m_VRLeftHand_Pause;
+    public struct VRLeftHandActions
+    {
+        private @InputActions_viva m_Wrapper;
+        public VRLeftHandActions(@InputActions_viva wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Position => m_Wrapper.m_VRLeftHand_Position;
+        public InputAction @Rotation => m_Wrapper.m_VRLeftHand_Rotation;
+        public InputAction @TrackingState => m_Wrapper.m_VRLeftHand_TrackingState;
+        public InputAction @HapticDevice => m_Wrapper.m_VRLeftHand_HapticDevice;
+        public InputAction @Move => m_Wrapper.m_VRLeftHand_Move;
+        public InputAction @Select => m_Wrapper.m_VRLeftHand_Select;
+        public InputAction @Grab => m_Wrapper.m_VRLeftHand_Grab;
+        public InputAction @Interact => m_Wrapper.m_VRLeftHand_Interact;
+        public InputAction @Pause => m_Wrapper.m_VRLeftHand_Pause;
+        public InputActionMap Get() { return m_Wrapper.m_VRLeftHand; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(VRLeftHandActions set) { return set.Get(); }
+        public void SetCallbacks(IVRLeftHandActions instance)
+        {
+            if (m_Wrapper.m_VRLeftHandActionsCallbackInterface != null)
+            {
+                @Position.started -= m_Wrapper.m_VRLeftHandActionsCallbackInterface.OnPosition;
+                @Position.performed -= m_Wrapper.m_VRLeftHandActionsCallbackInterface.OnPosition;
+                @Position.canceled -= m_Wrapper.m_VRLeftHandActionsCallbackInterface.OnPosition;
+                @Rotation.started -= m_Wrapper.m_VRLeftHandActionsCallbackInterface.OnRotation;
+                @Rotation.performed -= m_Wrapper.m_VRLeftHandActionsCallbackInterface.OnRotation;
+                @Rotation.canceled -= m_Wrapper.m_VRLeftHandActionsCallbackInterface.OnRotation;
+                @TrackingState.started -= m_Wrapper.m_VRLeftHandActionsCallbackInterface.OnTrackingState;
+                @TrackingState.performed -= m_Wrapper.m_VRLeftHandActionsCallbackInterface.OnTrackingState;
+                @TrackingState.canceled -= m_Wrapper.m_VRLeftHandActionsCallbackInterface.OnTrackingState;
+                @HapticDevice.started -= m_Wrapper.m_VRLeftHandActionsCallbackInterface.OnHapticDevice;
+                @HapticDevice.performed -= m_Wrapper.m_VRLeftHandActionsCallbackInterface.OnHapticDevice;
+                @HapticDevice.canceled -= m_Wrapper.m_VRLeftHandActionsCallbackInterface.OnHapticDevice;
+                @Move.started -= m_Wrapper.m_VRLeftHandActionsCallbackInterface.OnMove;
+                @Move.performed -= m_Wrapper.m_VRLeftHandActionsCallbackInterface.OnMove;
+                @Move.canceled -= m_Wrapper.m_VRLeftHandActionsCallbackInterface.OnMove;
+                @Select.started -= m_Wrapper.m_VRLeftHandActionsCallbackInterface.OnSelect;
+                @Select.performed -= m_Wrapper.m_VRLeftHandActionsCallbackInterface.OnSelect;
+                @Select.canceled -= m_Wrapper.m_VRLeftHandActionsCallbackInterface.OnSelect;
+                @Grab.started -= m_Wrapper.m_VRLeftHandActionsCallbackInterface.OnGrab;
+                @Grab.performed -= m_Wrapper.m_VRLeftHandActionsCallbackInterface.OnGrab;
+                @Grab.canceled -= m_Wrapper.m_VRLeftHandActionsCallbackInterface.OnGrab;
+                @Interact.started -= m_Wrapper.m_VRLeftHandActionsCallbackInterface.OnInteract;
+                @Interact.performed -= m_Wrapper.m_VRLeftHandActionsCallbackInterface.OnInteract;
+                @Interact.canceled -= m_Wrapper.m_VRLeftHandActionsCallbackInterface.OnInteract;
+                @Pause.started -= m_Wrapper.m_VRLeftHandActionsCallbackInterface.OnPause;
+                @Pause.performed -= m_Wrapper.m_VRLeftHandActionsCallbackInterface.OnPause;
+                @Pause.canceled -= m_Wrapper.m_VRLeftHandActionsCallbackInterface.OnPause;
+            }
+            m_Wrapper.m_VRLeftHandActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @Position.started += instance.OnPosition;
+                @Position.performed += instance.OnPosition;
+                @Position.canceled += instance.OnPosition;
+                @Rotation.started += instance.OnRotation;
+                @Rotation.performed += instance.OnRotation;
+                @Rotation.canceled += instance.OnRotation;
+                @TrackingState.started += instance.OnTrackingState;
+                @TrackingState.performed += instance.OnTrackingState;
+                @TrackingState.canceled += instance.OnTrackingState;
+                @HapticDevice.started += instance.OnHapticDevice;
+                @HapticDevice.performed += instance.OnHapticDevice;
+                @HapticDevice.canceled += instance.OnHapticDevice;
+                @Move.started += instance.OnMove;
+                @Move.performed += instance.OnMove;
+                @Move.canceled += instance.OnMove;
+                @Select.started += instance.OnSelect;
+                @Select.performed += instance.OnSelect;
+                @Select.canceled += instance.OnSelect;
+                @Grab.started += instance.OnGrab;
+                @Grab.performed += instance.OnGrab;
+                @Grab.canceled += instance.OnGrab;
+                @Interact.started += instance.OnInteract;
+                @Interact.performed += instance.OnInteract;
+                @Interact.canceled += instance.OnInteract;
+                @Pause.started += instance.OnPause;
+                @Pause.performed += instance.OnPause;
+                @Pause.canceled += instance.OnPause;
+            }
+        }
+    }
+    public VRLeftHandActions @VRLeftHand => new VRLeftHandActions(this);
+
+    // VR RightHand
+    private readonly InputActionMap m_VRRightHand;
+    private IVRRightHandActions m_VRRightHandActionsCallbackInterface;
+    private readonly InputAction m_VRRightHand_Position;
+    private readonly InputAction m_VRRightHand_Rotation;
+    private readonly InputAction m_VRRightHand_TrackingState;
+    private readonly InputAction m_VRRightHand_HapticDevice;
+    private readonly InputAction m_VRRightHand_Move;
+    private readonly InputAction m_VRRightHand_Select;
+    private readonly InputAction m_VRRightHand_Grab;
+    private readonly InputAction m_VRRightHand_Interact;
+    private readonly InputAction m_VRRightHand_Pause;
+    public struct VRRightHandActions
+    {
+        private @InputActions_viva m_Wrapper;
+        public VRRightHandActions(@InputActions_viva wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Position => m_Wrapper.m_VRRightHand_Position;
+        public InputAction @Rotation => m_Wrapper.m_VRRightHand_Rotation;
+        public InputAction @TrackingState => m_Wrapper.m_VRRightHand_TrackingState;
+        public InputAction @HapticDevice => m_Wrapper.m_VRRightHand_HapticDevice;
+        public InputAction @Move => m_Wrapper.m_VRRightHand_Move;
+        public InputAction @Select => m_Wrapper.m_VRRightHand_Select;
+        public InputAction @Grab => m_Wrapper.m_VRRightHand_Grab;
+        public InputAction @Interact => m_Wrapper.m_VRRightHand_Interact;
+        public InputAction @Pause => m_Wrapper.m_VRRightHand_Pause;
+        public InputActionMap Get() { return m_Wrapper.m_VRRightHand; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(VRRightHandActions set) { return set.Get(); }
+        public void SetCallbacks(IVRRightHandActions instance)
+        {
+            if (m_Wrapper.m_VRRightHandActionsCallbackInterface != null)
+            {
+                @Position.started -= m_Wrapper.m_VRRightHandActionsCallbackInterface.OnPosition;
+                @Position.performed -= m_Wrapper.m_VRRightHandActionsCallbackInterface.OnPosition;
+                @Position.canceled -= m_Wrapper.m_VRRightHandActionsCallbackInterface.OnPosition;
+                @Rotation.started -= m_Wrapper.m_VRRightHandActionsCallbackInterface.OnRotation;
+                @Rotation.performed -= m_Wrapper.m_VRRightHandActionsCallbackInterface.OnRotation;
+                @Rotation.canceled -= m_Wrapper.m_VRRightHandActionsCallbackInterface.OnRotation;
+                @TrackingState.started -= m_Wrapper.m_VRRightHandActionsCallbackInterface.OnTrackingState;
+                @TrackingState.performed -= m_Wrapper.m_VRRightHandActionsCallbackInterface.OnTrackingState;
+                @TrackingState.canceled -= m_Wrapper.m_VRRightHandActionsCallbackInterface.OnTrackingState;
+                @HapticDevice.started -= m_Wrapper.m_VRRightHandActionsCallbackInterface.OnHapticDevice;
+                @HapticDevice.performed -= m_Wrapper.m_VRRightHandActionsCallbackInterface.OnHapticDevice;
+                @HapticDevice.canceled -= m_Wrapper.m_VRRightHandActionsCallbackInterface.OnHapticDevice;
+                @Move.started -= m_Wrapper.m_VRRightHandActionsCallbackInterface.OnMove;
+                @Move.performed -= m_Wrapper.m_VRRightHandActionsCallbackInterface.OnMove;
+                @Move.canceled -= m_Wrapper.m_VRRightHandActionsCallbackInterface.OnMove;
+                @Select.started -= m_Wrapper.m_VRRightHandActionsCallbackInterface.OnSelect;
+                @Select.performed -= m_Wrapper.m_VRRightHandActionsCallbackInterface.OnSelect;
+                @Select.canceled -= m_Wrapper.m_VRRightHandActionsCallbackInterface.OnSelect;
+                @Grab.started -= m_Wrapper.m_VRRightHandActionsCallbackInterface.OnGrab;
+                @Grab.performed -= m_Wrapper.m_VRRightHandActionsCallbackInterface.OnGrab;
+                @Grab.canceled -= m_Wrapper.m_VRRightHandActionsCallbackInterface.OnGrab;
+                @Interact.started -= m_Wrapper.m_VRRightHandActionsCallbackInterface.OnInteract;
+                @Interact.performed -= m_Wrapper.m_VRRightHandActionsCallbackInterface.OnInteract;
+                @Interact.canceled -= m_Wrapper.m_VRRightHandActionsCallbackInterface.OnInteract;
+                @Pause.started -= m_Wrapper.m_VRRightHandActionsCallbackInterface.OnPause;
+                @Pause.performed -= m_Wrapper.m_VRRightHandActionsCallbackInterface.OnPause;
+                @Pause.canceled -= m_Wrapper.m_VRRightHandActionsCallbackInterface.OnPause;
+            }
+            m_Wrapper.m_VRRightHandActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @Position.started += instance.OnPosition;
+                @Position.performed += instance.OnPosition;
+                @Position.canceled += instance.OnPosition;
+                @Rotation.started += instance.OnRotation;
+                @Rotation.performed += instance.OnRotation;
+                @Rotation.canceled += instance.OnRotation;
+                @TrackingState.started += instance.OnTrackingState;
+                @TrackingState.performed += instance.OnTrackingState;
+                @TrackingState.canceled += instance.OnTrackingState;
+                @HapticDevice.started += instance.OnHapticDevice;
+                @HapticDevice.performed += instance.OnHapticDevice;
+                @HapticDevice.canceled += instance.OnHapticDevice;
+                @Move.started += instance.OnMove;
+                @Move.performed += instance.OnMove;
+                @Move.canceled += instance.OnMove;
+                @Select.started += instance.OnSelect;
+                @Select.performed += instance.OnSelect;
+                @Select.canceled += instance.OnSelect;
+                @Grab.started += instance.OnGrab;
+                @Grab.performed += instance.OnGrab;
+                @Grab.canceled += instance.OnGrab;
+                @Interact.started += instance.OnInteract;
+                @Interact.performed += instance.OnInteract;
+                @Interact.canceled += instance.OnInteract;
+                @Pause.started += instance.OnPause;
+                @Pause.performed += instance.OnPause;
+                @Pause.canceled += instance.OnPause;
+            }
+        }
+    }
+    public VRRightHandActions @VRRightHand => new VRRightHandActions(this);
     public interface IKeyboardActions
     {
         void OnMiniprofiler(InputAction.CallbackContext context);
@@ -1172,23 +1490,33 @@ public partial class @InputActions_viva : IInputActionCollection2, IDisposable
         void OnS(InputAction.CallbackContext context);
         void OnD(InputAction.CallbackContext context);
     }
-    public interface IVrActions
+    public interface IVRHeadActions
     {
-        void OnRightTrackpad(InputAction.CallbackContext context);
-        void OnLeftTrackpad(InputAction.CallbackContext context);
-        void OnRightTrackpadButton(InputAction.CallbackContext context);
-        void OnLeftTrackpadButton(InputAction.CallbackContext context);
-        void OnRightGrip(InputAction.CallbackContext context);
-        void OnLeftGrip(InputAction.CallbackContext context);
-        void OnRightAction(InputAction.CallbackContext context);
-        void OnLeftAction(InputAction.CallbackContext context);
-        void OnRightPauseButton(InputAction.CallbackContext context);
-        void OnLeftPauseButton(InputAction.CallbackContext context);
-        void OnCenterEyePos(InputAction.CallbackContext context);
-        void OnCenterEyeRot(InputAction.CallbackContext context);
-        void OnRightHandPos(InputAction.CallbackContext context);
-        void OnRightHandRot(InputAction.CallbackContext context);
-        void OnLeftHandPos(InputAction.CallbackContext context);
-        void OnLeftHandRot(InputAction.CallbackContext context);
+        void OnPosition(InputAction.CallbackContext context);
+        void OnRotation(InputAction.CallbackContext context);
+    }
+    public interface IVRLeftHandActions
+    {
+        void OnPosition(InputAction.CallbackContext context);
+        void OnRotation(InputAction.CallbackContext context);
+        void OnTrackingState(InputAction.CallbackContext context);
+        void OnHapticDevice(InputAction.CallbackContext context);
+        void OnMove(InputAction.CallbackContext context);
+        void OnSelect(InputAction.CallbackContext context);
+        void OnGrab(InputAction.CallbackContext context);
+        void OnInteract(InputAction.CallbackContext context);
+        void OnPause(InputAction.CallbackContext context);
+    }
+    public interface IVRRightHandActions
+    {
+        void OnPosition(InputAction.CallbackContext context);
+        void OnRotation(InputAction.CallbackContext context);
+        void OnTrackingState(InputAction.CallbackContext context);
+        void OnHapticDevice(InputAction.CallbackContext context);
+        void OnMove(InputAction.CallbackContext context);
+        void OnSelect(InputAction.CallbackContext context);
+        void OnGrab(InputAction.CallbackContext context);
+        void OnInteract(InputAction.CallbackContext context);
+        void OnPause(InputAction.CallbackContext context);
     }
 }

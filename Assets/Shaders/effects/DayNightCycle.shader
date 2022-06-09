@@ -401,7 +401,7 @@ SubShader {
         #endif 
         
         #if SKYBOX_SUNDISK == SKYBOX_SUNDISK_HQ
-            half horizonHeight = 1.+IN.rayDir.y;
+            half horizonHeight = 1.+ray.y;
         #elif SKYBOX_SUNDISK == SKYBOX_SUNDISK_SIMPLE
             half horizonHeight = 1.+IN.rayDir.y;
         #else

@@ -207,8 +207,8 @@ namespace viva
             debugMode = true;
             var c = new InputActions_viva();
             c.Enable();
-            c.keyboard.w.performed += ctx => DebugIncrease(1);
-            c.keyboard.s.performed += ctx => DebugIncrease(-1);
+            c.Keyboard.w.performed += ctx => DebugIncrease(1);
+            c.Keyboard.s.performed += ctx => DebugIncrease(-1);
         }
 
         public void DebugIncrease(int shift)

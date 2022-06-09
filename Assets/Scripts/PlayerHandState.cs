@@ -47,14 +47,16 @@ namespace viva
         private Player.HandAnimationSystem m_animSys;
         public Player.HandAnimationSystem animSys { get { return m_animSys; } }
         public readonly ButtonState[] buttonStates = new ButtonState[]{
-        new ButtonState(),
-        new ButtonState(),
-        new ButtonState()
-    };
+            new ButtonState(),
+            new ButtonState(),
+            new ButtonState()
+        };
         public ButtonState gripState { get { return buttonStates[(int)PlayerButton.GRIP]; } }
         public ButtonState actionState { get { return buttonStates[(int)PlayerButton.ACTION]; } }
         public ButtonState trackpadButtonState { get { return buttonStates[(int)PlayerButton.TRACKPAD_BUTTON]; } }
         public Vector2 trackpadPos;
+        public Vector3 trackedPosition;
+        public Quaternion trackedRotation;
 
         private bool overrideAlt = false;
         private Vector3 rawAnimationLocalPos = Vector3.zero;
@@ -130,63 +132,66 @@ namespace viva
 
         }
 
-        public void InitializeDeprecatedMKBInput(InputActions_viva vivaControls)
-        {
-            if (vivaControlsBinded)
-            {
-                return;
-            }
-            vivaControlsBinded = true;
-            if (rightSide)
-            {
-                vivaControls.keyboard.extendRight.performed += ctx => player.OnInputTogglePresentHand(this);
-                vivaControls.keyboard.rightInteract.performed += ctx => UpdateKeyboardGripAndAction(ctx.ReadValueAsButton(), player.keyboardAlt);
-                vivaControls.keyboard.rightInteract.canceled += ctx => UpdateKeyboardGripAndAction(ctx.ReadValueAsButton(), player.keyboardAlt);
-            }
-            else
-            {
-                vivaControls.keyboard.extendLeft.performed += ctx => player.OnInputTogglePresentHand(this);
-                vivaControls.keyboard.leftInteract.performed += ctx => UpdateKeyboardGripAndAction(ctx.ReadValueAsButton(), player.keyboardAlt);
-                vivaControls.keyboard.leftInteract.canceled += ctx => UpdateKeyboardGripAndAction(ctx.ReadValueAsButton(), player.keyboardAlt);
-            }
-        }
-
-        // public void InitializeUnityInputControls( InputActions_viva vivaControls ){
-        //     Player player = owner as Player;
-        //     if( rightSide ){
-        //         vivaControls.vr.rightTrackpad.performed += ctx => trackpadPos = ctx.ReadValue<Vector2>();
-        //         vivaControls.vr.rightTrackpadButton.performed += ctx => trackpadButtonState.UpdateState( ctx.ReadValueAsButton() );
-        //         vivaControls.vr.rightTrackpadButton.canceled += ctx => trackpadButtonState.UpdateState( ctx.ReadValueAsButton() );
-        //         vivaControls.vr.rightAction.performed += ctx => actionState.UpdateState( ctx.ReadValueAsButton() );
-        //         vivaControls.vr.rightAction.canceled += ctx => actionState.UpdateState( ctx.ReadValueAsButton() );
-        //         vivaControls.vr.rightGrip.performed += ctx => gripState.UpdateState( ctx.ReadValue<float>()>0.5f );
-        //         vivaControls.vr.rightPauseButton.performed += ctx => player.TogglePauseMenu();
-        //         vivaControls.vr.rightAction.performed += ctx => actionState.UpdateState( ctx.ReadValueAsButton() );
-        //         vivaControls.vr.rightAction.canceled += ctx => actionState.UpdateState( ctx.ReadValueAsButton() );
-
-        //         vivaControls.keyboard.extendRight.performed += ctx => player.OnInputTogglePresentHand( this );
-        //         vivaControls.keyboard.rightInteract.performed += ctx => UpdateKeyboardGripAndAction( ctx.ReadValueAsButton(), player.keyboardAlt );
-        //         vivaControls.keyboard.rightInteract.canceled += ctx => UpdateKeyboardGripAndAction( ctx.ReadValueAsButton(), player.keyboardAlt );
-        //         vivaControls.keyboard.rightInteract.performed += ctx => actionState.UpdateState( ctx.ReadValueAsButton() );
-        //         vivaControls.keyboard.rightInteract.canceled += ctx => actionState.UpdateState( ctx.ReadValueAsButton() );
-        //     }else{
-        //         vivaControls.vr.leftTrackpad.performed += ctx => trackpadPos = ctx.ReadValue<Vector2>();
-        //         vivaControls.vr.leftTrackpadButton.performed += ctx => trackpadButtonState.UpdateState( ctx.ReadValueAsButton() );
-        //         vivaControls.vr.leftTrackpadButton.canceled += ctx => trackpadButtonState.UpdateState( ctx.ReadValueAsButton() );
-        //         vivaControls.vr.leftAction.performed += ctx => actionState.UpdateState( ctx.ReadValueAsButton() );
-        //         vivaControls.vr.leftAction.canceled += ctx => actionState.UpdateState( ctx.ReadValueAsButton() );
-        //         vivaControls.vr.leftGrip.performed += ctx => gripState.UpdateState( ctx.ReadValue<float>()>0.5f );
-        //         vivaControls.vr.leftPauseButton.performed += ctx => player.TogglePauseMenu();
-        //         vivaControls.vr.leftAction.performed += ctx => actionState.UpdateState( ctx.ReadValueAsButton() );
-        //         vivaControls.vr.leftAction.canceled += ctx => actionState.UpdateState( ctx.ReadValueAsButton() );
-
-        //         vivaControls.keyboard.extendLeft.performed += ctx => player.OnInputTogglePresentHand( this );
-        //         vivaControls.keyboard.leftInteract.performed += ctx => UpdateKeyboardGripAndAction( ctx.ReadValueAsButton(), player.keyboardAlt );
-        //         vivaControls.keyboard.leftInteract.canceled += ctx => UpdateKeyboardGripAndAction( ctx.ReadValueAsButton(), player.keyboardAlt );
-        //         vivaControls.keyboard.leftInteract.performed += ctx => actionState.UpdateState( ctx.ReadValueAsButton() );
-        //         vivaControls.keyboard.leftInteract.canceled += ctx => actionState.UpdateState( ctx.ReadValueAsButton() );
+        // public void InitializeDeprecatedMKBInput(InputActions_viva vivaControls)
+        // {
+        //     if (vivaControlsBinded)
+        //     {
+        //         return;
         //     }
-        // }    
+        //     vivaControlsBinded = true;
+        //     if (rightSide)
+        //     {
+        //         vivaControls.Keyboard.extendRight.performed += ctx => player.OnInputTogglePresentHand(this);
+        //         vivaControls.Keyboard.rightInteract.performed += ctx => UpdateKeyboardGripAndAction(ctx.ReadValueAsButton(), player.keyboardAlt);
+        //         vivaControls.Keyboard.rightInteract.canceled += ctx => UpdateKeyboardGripAndAction(ctx.ReadValueAsButton(), player.keyboardAlt);
+        //     }
+        //     else
+        //     {
+        //         vivaControls.Keyboard.extendLeft.performed += ctx => player.OnInputTogglePresentHand(this);
+        //         vivaControls.Keyboard.leftInteract.performed += ctx => UpdateKeyboardGripAndAction(ctx.ReadValueAsButton(), player.keyboardAlt);
+        //         vivaControls.Keyboard.leftInteract.canceled += ctx => UpdateKeyboardGripAndAction(ctx.ReadValueAsButton(), player.keyboardAlt);
+        //     }
+        // }
+
+        public void InitializeUnityInputControls( InputActions_viva vivaControls ){
+            Player player = owner as Player;
+
+            Debug.Log("initializing " + rightSide);
+            
+            if( rightSide ){
+                vivaControls.VRRightHand.Position.performed += ctx => trackedPosition = ctx.ReadValue<Vector3>();
+                vivaControls.VRRightHand.Rotation.performed += ctx => trackedRotation = ctx.ReadValue<Quaternion>();
+                vivaControls.VRRightHand.Move.performed += ctx => trackpadPos = ctx.ReadValue<Vector2>();
+                vivaControls.VRRightHand.Select.performed += ctx => trackpadButtonState.UpdateState( ctx.ReadValueAsButton() );
+                vivaControls.VRRightHand.Select.canceled += ctx => trackpadButtonState.UpdateState( ctx.ReadValueAsButton() );
+                vivaControls.VRRightHand.Interact.performed += ctx => actionState.UpdateState( ctx.ReadValueAsButton() );
+                vivaControls.VRRightHand.Interact.canceled += ctx => actionState.UpdateState( ctx.ReadValueAsButton() );
+                vivaControls.VRRightHand.Grab.performed += ctx => gripState.UpdateState( ctx.ReadValue<float>()>0.5f );
+                vivaControls.VRRightHand.Pause.performed += ctx => player.TogglePauseMenu();
+
+                vivaControls.Keyboard.extendRight.performed += ctx => player.OnInputTogglePresentHand( this );
+                vivaControls.Keyboard.rightInteract.performed += ctx => UpdateKeyboardGripAndAction( ctx.ReadValueAsButton(), player.keyboardAlt );
+                vivaControls.Keyboard.rightInteract.canceled += ctx => UpdateKeyboardGripAndAction( ctx.ReadValueAsButton(), player.keyboardAlt );
+                vivaControls.Keyboard.rightInteract.performed += ctx => actionState.UpdateState( ctx.ReadValueAsButton() );
+                vivaControls.Keyboard.rightInteract.canceled += ctx => actionState.UpdateState( ctx.ReadValueAsButton() );
+            }else{
+                vivaControls.VRLeftHand.Position.performed += ctx => trackedPosition = ctx.ReadValue<Vector3>();
+                vivaControls.VRLeftHand.Rotation.performed += ctx => trackedRotation = ctx.ReadValue<Quaternion>();
+                vivaControls.VRLeftHand.Move.performed += ctx => trackpadPos = ctx.ReadValue<Vector2>();
+                vivaControls.VRLeftHand.Select.performed += ctx => trackpadButtonState.UpdateState( ctx.ReadValueAsButton() );
+                vivaControls.VRLeftHand.Select.canceled += ctx => trackpadButtonState.UpdateState( ctx.ReadValueAsButton() );
+                vivaControls.VRLeftHand.Interact.performed += ctx => actionState.UpdateState( ctx.ReadValueAsButton() );
+                vivaControls.VRLeftHand.Interact.canceled += ctx => actionState.UpdateState( ctx.ReadValueAsButton() );
+                vivaControls.VRLeftHand.Grab.performed += ctx => gripState.UpdateState( ctx.ReadValue<float>()>0.5f );
+                vivaControls.VRLeftHand.Pause.performed += ctx => player.TogglePauseMenu();
+
+                vivaControls.Keyboard.extendLeft.performed += ctx => player.OnInputTogglePresentHand( this );
+                vivaControls.Keyboard.leftInteract.performed += ctx => UpdateKeyboardGripAndAction( ctx.ReadValueAsButton(), player.keyboardAlt );
+                vivaControls.Keyboard.leftInteract.canceled += ctx => UpdateKeyboardGripAndAction( ctx.ReadValueAsButton(), player.keyboardAlt );
+                vivaControls.Keyboard.leftInteract.performed += ctx => actionState.UpdateState( ctx.ReadValueAsButton() );
+                vivaControls.Keyboard.leftInteract.canceled += ctx => actionState.UpdateState( ctx.ReadValueAsButton() );
+            }
+        }    
 
         public void Initialize(Dictionary<Player.Animation, Player.PlayerAnimationInfo> animationInfos)
         {

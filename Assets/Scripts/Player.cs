@@ -167,21 +167,21 @@ namespace viva
         private void BindAllControls()
         {
             vivaControls = new InputActions_viva();
-            // rightPlayerHandState.InitializeUnityInputControls( vivaControls );
-            // leftPlayerHandState.InitializeUnityInputControls( vivaControls );
-            rightPlayerHandState.InitializeDeprecatedMKBInput(vivaControls);
-            leftPlayerHandState.InitializeDeprecatedMKBInput(vivaControls);
+            rightPlayerHandState.InitializeUnityInputControls( vivaControls );
+            leftPlayerHandState.InitializeUnityInputControls( vivaControls );
+            // rightPlayerHandState.InitializeDeprecatedMKBInput(vivaControls);
+            // leftPlayerHandState.InitializeDeprecatedMKBInput(vivaControls);
 
-            vivaControls.keyboard.movement.performed += ctx => movement = ctx.ReadValue<Vector2>();
-            vivaControls.keyboard.keyboardAlt.performed += ctx => keyboardAlt = ctx.ReadValueAsButton();
-            vivaControls.keyboard.keyboardAlt.canceled += ctx => keyboardAlt = ctx.ReadValueAsButton();
-            vivaControls.keyboard.mouseVelocity.performed += ctx => mouseVelocity = ctx.ReadValue<Vector2>();
-            vivaControls.keyboard.mousePosition.performed += ctx => mousePosition = ctx.ReadValue<Vector2>();
+            vivaControls.Keyboard.movement.performed += ctx => movement = ctx.ReadValue<Vector2>();
+            vivaControls.Keyboard.keyboardAlt.performed += ctx => keyboardAlt = ctx.ReadValueAsButton();
+            vivaControls.Keyboard.keyboardAlt.canceled += ctx => keyboardAlt = ctx.ReadValueAsButton();
+            vivaControls.Keyboard.mouseVelocity.performed += ctx => mouseVelocity = ctx.ReadValue<Vector2>();
+            vivaControls.Keyboard.mousePosition.performed += ctx => mousePosition = ctx.ReadValue<Vector2>();
 
-            vivaControls.keyboard.wave.performed += ctx => OnInputWaveRightHand();
-            vivaControls.keyboard.follow.performed += ctx => OnInputFollowRightHand();
-            vivaControls.keyboard.crouch.performed += ctx => FlipKeyboardHeight();
-            vivaControls.keyboard.pauseButton.performed += ctx => TogglePauseMenu();
+            vivaControls.Keyboard.wave.performed += ctx => OnInputWaveRightHand();
+            vivaControls.Keyboard.follow.performed += ctx => OnInputFollowRightHand();
+            vivaControls.Keyboard.crouch.performed += ctx => FlipKeyboardHeight();
+            vivaControls.Keyboard.pauseButton.performed += ctx => TogglePauseMenu();
         }
 
         public void SetControls(ControlType newControls)

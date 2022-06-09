@@ -23,7 +23,7 @@ namespace viva
         {
             if (enable)
             {
-                vivaControls.keyboard.Enable();
+                vivaControls.Keyboard.Enable();
                 crosshair.SetActive(true);
                 head.localPosition = Vector3.up * keyboardCurrentHeight;
                 GameDirector.instance.mainCamera.stereoTargetEye = StereoTargetEyeMask.None;
@@ -31,7 +31,7 @@ namespace viva
             }
             else
             {
-                vivaControls.keyboard.Disable();
+                vivaControls.Keyboard.Disable();
             }
             keyboardHelperItemDetector.SetActive(enable);
         }

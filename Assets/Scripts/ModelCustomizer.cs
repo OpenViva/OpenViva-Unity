@@ -101,7 +101,7 @@ namespace viva
             if (!DEBUG_BOOL)
             { //This is a Hardcoded Way to Load Viva Files Since you cant drag and drop into unity editor
                 DEBUG_BOOL = true;
-                GameDirector.player.vivaControls.keyboard.wave.performed += delegate
+                GameDirector.player.vivaControls.Keyboard.wave.performed += delegate
                 {
                     ClickCreateTab();
                     GameDirector.instance.StartCoroutine(ApplyFilesToModel(new string[]{

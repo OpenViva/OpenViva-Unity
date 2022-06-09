@@ -22,7 +22,7 @@ namespace viva
 
         public override void OnMechanismAwake()
         {
-            GameDirector.player.vivaControls.keyboard.wave.performed += delegate
+            GameDirector.player.vivaControls.Keyboard.wave.performed += delegate
             {
                 for (int i = 1; i < GameDirector.characters.objects.Count; i++)
                 {

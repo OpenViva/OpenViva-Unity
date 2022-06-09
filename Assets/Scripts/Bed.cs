@@ -42,7 +42,7 @@ namespace viva
         public override void OnMechanismAwake()
         {
             // if( transform.parent.name == "futon (5)" ){
-            // GameDirector.player.vivaControls.keyboard.wave.performed += delegate{
+            // GameDirector.player.vivaControls.Keyboard.wave.performed += delegate{
             //     for( int i=1; i<GameDirector.characters.objects.Count; i++ ){
             //         var loli = GameDirector.characters.objects[i] as Loli;
             //         if( loli ){
