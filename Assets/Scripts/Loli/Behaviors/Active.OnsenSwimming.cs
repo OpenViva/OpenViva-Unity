@@ -167,7 +167,6 @@ namespace viva
                     self.SetOutfit(resetOutfit);
 
                     towel.mainOccupyState.AttemptDrop();
-                    UnityEngine.Object.Destroy(towel.gameObject);
 
                     GoToPool();
                 }

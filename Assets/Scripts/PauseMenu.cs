@@ -508,14 +508,8 @@ namespace viva
         private void UpdateToggleQualityText()
         {
             Text text = GetRightPageUIByMenu(Menu.OPTIONS).transform.Find("Toggle Quality").GetChild(0).GetComponent(typeof(Text)) as Text;
-            var qualities = new string[]{
-            "Potato",
-            "Low",
-            "Med",
-            "High",
-            "Ultra",
-        };
-            text.text = qualities[QualitySettings.GetQualityLevel()] + " Quality";
+            string[] names = QualitySettings.names;
+            text.text = names[QualitySettings.GetQualityLevel()] + " Quality";
         }
 
         public int OnChecklistManifest()
@@ -612,6 +606,11 @@ namespace viva
         public void clickMap()
         {
             SetPauseMenu(Menu.MAP);
+        }
+
+        //TODO: add a smooth transition for this
+        public void clickWaypoint(Transform pos){
+            GameDirector.player.transform.position = pos.position;
         }
 
         private void StartCalibration()

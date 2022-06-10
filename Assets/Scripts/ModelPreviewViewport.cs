@@ -82,7 +82,7 @@ namespace viva
                     1.3f
                 );
             }
-            if (previewMode != PreviewMode.POSE)
+            if (previewMode != PreviewMode.POSE && previewMode != PreviewMode.BONES)
             {
                 modelDefault.ForceImmediatePose(modelDefault.GetLastReturnableIdleAnimation());
 

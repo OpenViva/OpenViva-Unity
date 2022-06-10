@@ -21,7 +21,7 @@ namespace viva.profiler
 
         private void Awake()
         {
-            this.canvas = this.GetComponent<Canvas>();
+            canvas = GetComponent<Canvas>();
         }
         private void ToggleUI()
         {
@@ -47,7 +47,7 @@ namespace viva.profiler
             ms.text = Performance.AvgFrameTimeLastSecond.ToString("0.00");
             mb.text = Performance.MemoryUsage.ToString("N0");
             gc.text = Performance.GarbageCollections.ToString("N0");
-            this.UpdateRainbow();
+            UpdateRainbow();
         }
 
         private void UpdateRainbow()

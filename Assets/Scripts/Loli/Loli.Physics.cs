@@ -105,7 +105,6 @@ namespace viva
 
             if (collision.gameObject.layer == Instance.outofbounds)
             {
-                Debug.Log("TELEPORT CALLED");
                 TeleportToSpawn(GameDirector.instance.loliRespawnPoint.transform.position, transform.rotation);
             }
 
