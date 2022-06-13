@@ -158,10 +158,11 @@ namespace viva
 
             Debug.Log("initializing " + rightSide);
             
-            if( rightSide ){
+            if( rightSide ) {
                 vivaControls.VRRightHand.Position.performed += ctx => trackedPosition = ctx.ReadValue<Vector3>();
                 vivaControls.VRRightHand.Rotation.performed += ctx => trackedRotation = ctx.ReadValue<Quaternion>();
                 vivaControls.VRRightHand.Move.performed += ctx => trackpadPos = ctx.ReadValue<Vector2>();
+                vivaControls.VRRightHand.Move.canceled += ctx => trackpadPos = ctx.ReadValue<Vector2>();
                 vivaControls.VRRightHand.Select.performed += ctx => trackpadButtonState.UpdateState( ctx.ReadValueAsButton() );
                 vivaControls.VRRightHand.Select.canceled += ctx => trackpadButtonState.UpdateState( ctx.ReadValueAsButton() );
                 vivaControls.VRRightHand.Interact.performed += ctx => actionState.UpdateState( ctx.ReadValueAsButton() );
@@ -174,10 +175,11 @@ namespace viva
                 vivaControls.Keyboard.rightInteract.canceled += ctx => UpdateKeyboardGripAndAction( ctx.ReadValueAsButton(), player.keyboardAlt );
                 vivaControls.Keyboard.rightInteract.performed += ctx => actionState.UpdateState( ctx.ReadValueAsButton() );
                 vivaControls.Keyboard.rightInteract.canceled += ctx => actionState.UpdateState( ctx.ReadValueAsButton() );
-            }else{
+            } else {
                 vivaControls.VRLeftHand.Position.performed += ctx => trackedPosition = ctx.ReadValue<Vector3>();
                 vivaControls.VRLeftHand.Rotation.performed += ctx => trackedRotation = ctx.ReadValue<Quaternion>();
                 vivaControls.VRLeftHand.Move.performed += ctx => trackpadPos = ctx.ReadValue<Vector2>();
+                vivaControls.VRLeftHand.Move.canceled += ctx => trackpadPos = ctx.ReadValue<Vector2>();
                 vivaControls.VRLeftHand.Select.performed += ctx => trackpadButtonState.UpdateState( ctx.ReadValueAsButton() );
                 vivaControls.VRLeftHand.Select.canceled += ctx => trackpadButtonState.UpdateState( ctx.ReadValueAsButton() );
                 vivaControls.VRLeftHand.Interact.performed += ctx => actionState.UpdateState( ctx.ReadValueAsButton() );

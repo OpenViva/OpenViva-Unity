@@ -3,7 +3,7 @@
 	Properties
 	{
 		_MainTex ("Main Texture", 2D) = "white" {}
-		_CloudsRT ("Cloud Render Texture", 2D) = "white" {}
+        _CloudsRT ("Cloud Render Texture", 2DArray) = "" {}
 	}
 	SubShader
 	{
@@ -21,6 +21,7 @@
 			#pragma vertex vert
 			#pragma fragment frag
 			#pragma multi_compile_fwdbase
+            #pragma require 2darray
 			
 			#include "UnityCG.cginc"
 
@@ -41,7 +42,7 @@
 			};
 
 			UNITY_DECLARE_SCREENSPACE_TEXTURE(_MainTex);
-			uniform sampler2D _CloudsRT;
+			UNITY_DECLARE_TEX2DARRAY(_CloudsRT);
 
 			v2f vert (appdata v)
 			{
@@ -63,7 +64,12 @@
 			{
 				UNITY_SETUP_STEREO_EYE_INDEX_POST_VERTEX(i);
     			fixed4 col = UNITY_SAMPLE_SCREENSPACE_TEXTURE(_MainTex, i.uv);
-				col.rgb = applyClouds( col, tex2D( _CloudsRT, i.uv ) );
+#if defined(UNITY_STEREO_INSTANCING_ENABLED) || defined(UNITY_STEREO_MULTIVIEW_ENABLED)
+				fixed4 clouds_col = UNITY_SAMPLE_TEX2DARRAY(_CloudsRT, float3(i.uv.xy, (float)unity_StereoEyeIndex));
+#else
+				fixed4 clouds_col = UNITY_SAMPLE_TEX2DARRAY(_CloudsRT, float3(i.uv.xy, 0.0));
+#endif
+				col.rgb = applyClouds( col, clouds_col );
 				return col;
 			}
 			ENDCG

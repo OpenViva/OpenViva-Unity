@@ -547,96 +547,39 @@ public partial class @InputActions_viva : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""New action"",
+                    ""type"": ""Button"",
+                    ""id"": ""25231d70-68d8-4a33-aa75-10c2685a4a98"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
                 {
-                    ""name"": ""Quaternion Fallback"",
-                    ""id"": ""8eb11994-7364-41b0-8653-625b78c812a7"",
-                    ""path"": ""QuaternionFallback"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Rotation"",
-                    ""isComposite"": true,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": ""first"",
-                    ""id"": ""8b28cd4f-dc5a-4f2e-a6b0-cd9ad597de37"",
-                    ""path"": ""<XRController>{LeftHand}/pointerRotation"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Generic XR Controller"",
-                    ""action"": ""Rotation"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""second"",
-                    ""id"": ""a4a27c96-6e58-4bda-83ee-21e88cc9220a"",
-                    ""path"": ""<XRController>{LeftHand}/deviceRotation"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Generic XR Controller"",
-                    ""action"": ""Rotation"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""third"",
-                    ""id"": ""afb4ecb9-91a9-46f2-badf-d94954b75a28"",
-                    ""path"": """",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Generic XR Controller"",
-                    ""action"": ""Rotation"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""Vector 3 Fallback"",
-                    ""id"": ""20e56458-c509-4568-9e1f-6e3abf62cf79"",
-                    ""path"": ""Vector3Fallback"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Position"",
-                    ""isComposite"": true,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": ""first"",
-                    ""id"": ""6f8d1d89-9c28-4da9-b5e0-aa5bec103485"",
+                    ""name"": """",
+                    ""id"": ""712a4253-1899-41d6-96cc-1cfe96a56253"",
                     ""path"": ""<XRController>{LeftHand}/pointerPosition"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""Generic XR Controller"",
+                    ""groups"": """",
                     ""action"": ""Position"",
                     ""isComposite"": false,
-                    ""isPartOfComposite"": true
+                    ""isPartOfComposite"": false
                 },
                 {
-                    ""name"": ""second"",
-                    ""id"": ""6856ea9e-e1e5-48d5-8282-f51e4ca493ff"",
+                    ""name"": """",
+                    ""id"": ""3c34bc5d-8ae3-49f7-8fcc-7d1451eca6ab"",
                     ""path"": ""<XRController>{LeftHand}/devicePosition"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""Generic XR Controller"",
+                    ""groups"": """",
                     ""action"": ""Position"",
                     ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""third"",
-                    ""id"": ""068be33d-c726-48c0-a67d-cb2ace194a14"",
-                    ""path"": """",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Generic XR Controller"",
-                    ""action"": ""Position"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
+                    ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
@@ -712,6 +655,39 @@ public partial class @InputActions_viva : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a28d70b3-1f50-4535-b327-6b942fea952b"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""New action"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""97091380-1a1d-486b-8064-4d2782bf8e82"",
+                    ""path"": ""<XRController>{LeftHand}/pointerRotation"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Rotation"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ab04f5ec-3810-4d5a-8a6e-cd7a7d7c756f"",
+                    ""path"": ""<XRController>{LeftHand}/deviceRotation"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Rotation"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -805,94 +781,6 @@ public partial class @InputActions_viva : IInputActionCollection2, IDisposable
             ],
             ""bindings"": [
                 {
-                    ""name"": ""Quaternion Fallback"",
-                    ""id"": ""f72500a3-32d5-47de-a4a3-976338cd7ad3"",
-                    ""path"": ""QuaternionFallback"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Rotation"",
-                    ""isComposite"": true,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": ""first"",
-                    ""id"": ""13b61c76-d536-4900-b793-f98c0523dbc8"",
-                    ""path"": ""<XRController>{RightHand}/pointerRotation"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Generic XR Controller"",
-                    ""action"": ""Rotation"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""second"",
-                    ""id"": ""3362d623-3292-43ce-8455-cd0f2728de89"",
-                    ""path"": ""<XRController>{RightHand}/deviceRotation"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Generic XR Controller"",
-                    ""action"": ""Rotation"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""third"",
-                    ""id"": ""a7ee96a7-2eb3-4834-9597-d65948673145"",
-                    ""path"": """",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Generic XR Controller"",
-                    ""action"": ""Rotation"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""Vector 3 Fallback"",
-                    ""id"": ""f4853e1c-8efe-4fec-a460-38cb5b8da46c"",
-                    ""path"": ""Vector3Fallback"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Position"",
-                    ""isComposite"": true,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": ""first"",
-                    ""id"": ""f0a9d45d-b188-4242-8328-f3ea006e71fb"",
-                    ""path"": ""<XRController>{RightHand}/pointerPosition"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Generic XR Controller"",
-                    ""action"": ""Position"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""second"",
-                    ""id"": ""586151bf-9814-44d8-a8b0-9709cabb247f"",
-                    ""path"": ""<XRController>{RightHand}/devicePosition"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Generic XR Controller"",
-                    ""action"": ""Position"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""third"",
-                    ""id"": ""820c0eff-cab6-4b82-978c-f28bbfecf8a5"",
-                    ""path"": """",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Generic XR Controller"",
-                    ""action"": ""Position"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
                     ""name"": """",
                     ""id"": ""135a6fef-7f76-40eb-834c-f4536455aa1c"",
                     ""path"": ""<XRController>{RightHand}/*"",
@@ -968,6 +856,50 @@ public partial class @InputActions_viva : IInputActionCollection2, IDisposable
                     ""action"": ""Pause"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""20627148-d2bb-43bc-8c91-fb9c77038d10"",
+                    ""path"": ""<XRController>{RightHand}/pointerPosition"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Position"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5ece0b57-6e8b-4f0b-bf08-251dfb32ba41"",
+                    ""path"": ""<XRController>{RightHand}/devicePosition"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Position"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""13f4e504-2c34-4adb-91b9-1bc0022f9e9f"",
+                    ""path"": ""<XRController>{RightHand}/pointerRotation"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Rotation"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""096c5bfa-6965-49bf-a8d6-53cf253e774b"",
+                    ""path"": ""<XRController>{RightHand}/deviceRotation"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Rotation"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -1008,6 +940,7 @@ public partial class @InputActions_viva : IInputActionCollection2, IDisposable
         m_VRLeftHand_Grab = m_VRLeftHand.FindAction("Grab", throwIfNotFound: true);
         m_VRLeftHand_Interact = m_VRLeftHand.FindAction("Interact", throwIfNotFound: true);
         m_VRLeftHand_Pause = m_VRLeftHand.FindAction("Pause", throwIfNotFound: true);
+        m_VRLeftHand_Newaction = m_VRLeftHand.FindAction("New action", throwIfNotFound: true);
         // VR RightHand
         m_VRRightHand = asset.FindActionMap("VR RightHand", throwIfNotFound: true);
         m_VRRightHand_Position = m_VRRightHand.FindAction("Position", throwIfNotFound: true);
@@ -1289,6 +1222,7 @@ public partial class @InputActions_viva : IInputActionCollection2, IDisposable
     private readonly InputAction m_VRLeftHand_Grab;
     private readonly InputAction m_VRLeftHand_Interact;
     private readonly InputAction m_VRLeftHand_Pause;
+    private readonly InputAction m_VRLeftHand_Newaction;
     public struct VRLeftHandActions
     {
         private @InputActions_viva m_Wrapper;
@@ -1302,6 +1236,7 @@ public partial class @InputActions_viva : IInputActionCollection2, IDisposable
         public InputAction @Grab => m_Wrapper.m_VRLeftHand_Grab;
         public InputAction @Interact => m_Wrapper.m_VRLeftHand_Interact;
         public InputAction @Pause => m_Wrapper.m_VRLeftHand_Pause;
+        public InputAction @Newaction => m_Wrapper.m_VRLeftHand_Newaction;
         public InputActionMap Get() { return m_Wrapper.m_VRLeftHand; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1338,6 +1273,9 @@ public partial class @InputActions_viva : IInputActionCollection2, IDisposable
                 @Pause.started -= m_Wrapper.m_VRLeftHandActionsCallbackInterface.OnPause;
                 @Pause.performed -= m_Wrapper.m_VRLeftHandActionsCallbackInterface.OnPause;
                 @Pause.canceled -= m_Wrapper.m_VRLeftHandActionsCallbackInterface.OnPause;
+                @Newaction.started -= m_Wrapper.m_VRLeftHandActionsCallbackInterface.OnNewaction;
+                @Newaction.performed -= m_Wrapper.m_VRLeftHandActionsCallbackInterface.OnNewaction;
+                @Newaction.canceled -= m_Wrapper.m_VRLeftHandActionsCallbackInterface.OnNewaction;
             }
             m_Wrapper.m_VRLeftHandActionsCallbackInterface = instance;
             if (instance != null)
@@ -1369,6 +1307,9 @@ public partial class @InputActions_viva : IInputActionCollection2, IDisposable
                 @Pause.started += instance.OnPause;
                 @Pause.performed += instance.OnPause;
                 @Pause.canceled += instance.OnPause;
+                @Newaction.started += instance.OnNewaction;
+                @Newaction.performed += instance.OnNewaction;
+                @Newaction.canceled += instance.OnNewaction;
             }
         }
     }
@@ -1506,6 +1447,7 @@ public partial class @InputActions_viva : IInputActionCollection2, IDisposable
         void OnGrab(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);
         void OnPause(InputAction.CallbackContext context);
+        void OnNewaction(InputAction.CallbackContext context);
     }
     public interface IVRRightHandActions
     {

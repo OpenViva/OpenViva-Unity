@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.Rendering;
+using UnityEngine.XR;
 
 namespace viva
 {
@@ -94,19 +95,24 @@ namespace viva
             clouds = GameObject.Instantiate(cloudsPrefab);
 
             //create raymarched cloud variables
-            int width;
-            int height;
-            if (m_player.controls == Player.ControlType.VR)
-            {
-                width = Screen.width / 3;
-                height = Screen.height / 3;
+            RenderTextureDescriptor desc;
+            SinglePassStereoMode singlePassMode;
+            if (XRSettings.enabled) {
+                desc = XRSettings.eyeTextureDesc;
+                desc.width /= 3;
+                desc.height /= 3;
+                desc.vrUsage = VRTextureUsage.TwoEyes;
+                singlePassMode = SinglePassStereoMode.Instancing;
+            } else {
+                desc = new RenderTextureDescriptor(Screen.width, Screen.height);
+                desc.width /= 4;
+                desc.height /= 4;
+                singlePassMode = SinglePassStereoMode.None;
             }
-            else
-            {
-                width = Screen.width / 4;
-                height = Screen.height / 4;
-            }
-            m_cloudRT = new RenderTexture(width, height, 0, RenderTextureFormat.ARGB32, RenderTextureReadWrite.Linear);
+            Debug.Log("Reacreating Clouds RT " + desc.vrUsage + " " + XRSettings.enabled);
+            desc.dimension = TextureDimension.Tex2DArray;
+            desc.colorFormat = RenderTextureFormat.ARGB32;
+            m_cloudRT = new RenderTexture(desc);
             cloudRT.wrapMode = TextureWrapMode.Mirror;
 
             cloudsMR = clouds.GetComponent(typeof(MeshRenderer)) as MeshRenderer;
@@ -115,9 +121,10 @@ namespace viva
             //render in the buffer
             cloudCommandBuffer = new CommandBuffer();
             cloudCommandBuffer.SetRenderTarget(cloudRT);
+            cloudCommandBuffer.SetSinglePassStereo(singlePassMode);
             if (Clouds)
             {
-                cloudCommandBuffer.DrawRenderer(cloudsMR, raymarchingCloudsMat, 0);
+                cloudCommandBuffer.DrawRenderer(cloudsMR, raymarchingCloudsMat, 0, -1);
             }
             cloudCommandBuffer.SetRenderTarget(null as RenderTexture);
 

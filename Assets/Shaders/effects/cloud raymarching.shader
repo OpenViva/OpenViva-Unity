@@ -37,6 +37,8 @@
             {
                 fixed4 vertex : POSITION;
                 fixed2 uv : TEXCOORD0;
+
+                UNITY_VERTEX_INPUT_INSTANCE_ID
             };
 
             struct v2f
@@ -45,6 +47,8 @@
 				fixed3 worldPos: TEXCOORD1;
 				fixed3 eye: TEXCOORD2;
                 fixed ceiling: TEXCOORD3;
+
+				UNITY_VERTEX_OUTPUT_STEREO
             };
 
             #define D_STEPS 32.
@@ -88,6 +92,11 @@
             v2f vert (appdata v)
             {
                 v2f o;
+
+                UNITY_SETUP_INSTANCE_ID(v);
+                UNITY_INITIALIZE_OUTPUT(v2f, o);
+                UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO(o);
+
                 o.vertex = UnityObjectToClipPos(v.vertex);
 				o.worldPos = mul( unity_ObjectToWorld, v.vertex ).xyz;
 				o.eye = normalize( o.worldPos-_WorldSpaceCameraPos );

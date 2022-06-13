@@ -2,14 +2,16 @@
 %TAG !u! tag:unity3d.com,2011:
 --- !u!21 &2100000
 Material:
-  serializedVersion: 6
+  serializedVersion: 8
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: DayNightCycleSkybox
   m_Shader: {fileID: 4800000, guid: c45ca06d8de64b2ac987ea770be1a271, type: 3}
-  m_ShaderKeywords: _SUNDISK_SIMPLE
+  m_ValidKeywords:
+  - _SUNDISK_SIMPLE
+  m_InvalidKeywords: []
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -59,13 +61,14 @@ Material:
         m_Texture: {fileID: 8900000, guid: dc079e0ad80d426468a6536789cee22e, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    m_Ints: []
     m_Floats:
-    - _AtmosphereThickness: 1.5751464
+    - _AtmosphereThickness: 1.5663306
     - _BumpScale: 1
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
-    - _Exposure: 1.3346583
+    - _Exposure: 1.3552289
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
@@ -91,6 +94,6 @@ Material:
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _GroundColor: {r: 0.3679245, g: 0.3679245, b: 0.3679245, a: 1}
     - _NightSky: {r: 0, g: 0, b: 0, a: 1}
-    - _SkyTint: {r: 0.36425793, g: 0.35826635, b: 0.3529405, a: 1}
+    - _SkyTint: {r: 0.39567757, g: 0.38612983, b: 0.37764293, a: 1}
     - _StarBlue: {r: 0, g: 0, b: 1, a: 1}
   m_BuildTextureStacks: []

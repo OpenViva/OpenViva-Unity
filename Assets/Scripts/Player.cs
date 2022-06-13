@@ -167,6 +167,7 @@ namespace viva
         private void BindAllControls()
         {
             vivaControls = new InputActions_viva();
+            vivaControls.Enable();
             rightPlayerHandState.InitializeUnityInputControls( vivaControls );
             leftPlayerHandState.InitializeUnityInputControls( vivaControls );
             // rightPlayerHandState.InitializeDeprecatedMKBInput(vivaControls);
