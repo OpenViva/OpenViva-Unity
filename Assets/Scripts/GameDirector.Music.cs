@@ -12,6 +12,7 @@ namespace viva
         {
             NONE,   //first index music be left out NULL
             DAY_INDOOR,
+            DAY_INDOOR_VARIATION,
             DAY_OUTDOOR,
             BATHING,
             NIGHT,
@@ -149,7 +150,14 @@ namespace viva
                     }
                     if (userIsIndoors)
                     {
-                        return Music.DAY_INDOOR;
+                        if (Random.value > 0.8f)
+                        {
+                            return Music.DAY_INDOOR_VARIATION;
+                        }
+                        else
+                        {
+                            return Music.DAY_INDOOR;
+                        }
                     }
                     else
                     {
