@@ -271,10 +271,6 @@ namespace viva
             {
                 return;
             }
-            if (!animator.enabled)
-            {
-                return;
-            }
             animator.CrossFade(animInfo.legsStateID, 0.0f, 0);
             animator.CrossFade(animInfo.faceStateID, 0.0f, 2);
             animator.CrossFade(animInfo.torsoStateID, 0.0f, 1);
