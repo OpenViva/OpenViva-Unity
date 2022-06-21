@@ -28,6 +28,8 @@
                 float4 vertex : POSITION;
                 float2 uv : TEXCOORD0;
                 float3 normal: NORMAL;
+
+                UNITY_VERTEX_INPUT_INSTANCE_ID
             };
 
             struct v2f
@@ -37,6 +39,8 @@
                 float3 eye: TEXCOORD1;
                 float3 worldPos: TEXCOORD2;
                 float3 worldNormal: TEXCOORD3;
+
+                UNITY_VERTEX_OUTPUT_STEREO
             };
 
 			sampler2D _Roughness;
@@ -48,6 +52,11 @@
             v2f vert (appdata v)
             {
                 v2f o;
+                
+                UNITY_SETUP_INSTANCE_ID(v);
+                UNITY_INITIALIZE_OUTPUT(v2f, o);
+                UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO(o);
+
                 o.vertex = UnityObjectToClipPos(v.vertex);
                 o.uv = v.uv;
                 o.worldPos = mul( unity_ObjectToWorld, v.vertex ).xyz;
@@ -58,7 +67,9 @@
 
             fixed4 frag (v2f i) : SV_Target
             {
-				float Roughness = 1.-tex2D(_Roughness, i.uv).a;
+				UNITY_SETUP_STEREO_EYE_INDEX_POST_VERTEX(i)
+
+                float Roughness = 1.-tex2D(_Roughness, i.uv).a;
                 
                 fixed3 r = reflect( i.eye, i.worldNormal );
                 fixed3 closest;

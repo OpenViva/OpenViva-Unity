@@ -57,6 +57,7 @@
 			fixed4 frag (v2f i) : SV_Target
 			{
 				UNITY_SETUP_STEREO_EYE_INDEX_POST_VERTEX(i);
+				
 				fixed2 offset;
 				offset.x = sin( (i.uvKernel.x+_SinTime.w)*13. );
 				offset.y = cos( (i.uvKernel.y+_CosTime.w)*11.1+offset.x );

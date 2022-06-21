@@ -27,14 +27,6 @@ Shader "Surface/TexReceiveCutout2S_bamboo" {
             #pragma multi_compile_shadowcaster
             #include "UnityCG.cginc"
             #include "Wind.cginc"
-            
-			struct appdata
-			{
-				float4 vertex : POSITION;
-				float2 texcoord : TEXCOORD0;
-
-                UNITY_VERTEX_INPUT_INSTANCE_ID
-			};
  
             struct v2f {
                 fixed4 pos : SV_POSITION;
@@ -65,6 +57,8 @@ Shader "Surface/TexReceiveCutout2S_bamboo" {
  
             float4 frag(v2f i) : SV_Target
             {
+                UNITY_SETUP_STEREO_EYE_INDEX_POST_VERTEX(i);
+                
                 fixed4 col = tex2D(_MainTex, i.uv);
                 clip(col.a - _Cutoff);
                 SHADOW_CASTER_FRAGMENT(i)
@@ -94,6 +88,8 @@ Shader "Surface/TexReceiveCutout2S_bamboo" {
 				float4 vertex : POSITION;
                 float3 normal : NORMAL;
 				float2 uv : TEXCOORD0;
+
+                UNITY_VERTEX_INPUT_INSTANCE_ID
 			};
 
 			struct v2f
@@ -104,6 +100,8 @@ Shader "Surface/TexReceiveCutout2S_bamboo" {
 				UNITY_FOG_COORDS(3)
                 fixed3 viewDir : TEXCOORD4;
                 float3 lightAmbience : TEXCOORD5;
+
+                UNITY_VERTEX_OUTPUT_STEREO
 			};
 
             sampler2D _MainTex;
@@ -114,6 +112,11 @@ Shader "Surface/TexReceiveCutout2S_bamboo" {
 			v2f vert (appdata v)
 			{
 				v2f o;
+
+                UNITY_SETUP_INSTANCE_ID(v);
+                UNITY_INITIALIZE_OUTPUT(v2f, o);
+                UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO(o);
+
                 fixed3 pos = v.vertex;
                 pos = ApplyWind( _Time.z*_WindSpeed, pos, _WindStrength*saturate( v.uv.x+v.uv.y )  );
 				o.pos = UnityObjectToClipPos(pos);
@@ -142,6 +145,8 @@ Shader "Surface/TexReceiveCutout2S_bamboo" {
 
 			fixed4 frag (v2f i ) : SV_Target
 			{
+                UNITY_SETUP_STEREO_EYE_INDEX_POST_VERTEX(i);
+
                 fixed4 col = tex2D( _MainTex, i.uv );
                 clip(col.a-_Cutoff);
 

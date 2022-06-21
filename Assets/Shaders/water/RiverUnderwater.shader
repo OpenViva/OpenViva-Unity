@@ -42,6 +42,8 @@ Shader "Water/RiverUnderwater"
 				float4 vertex : POSITION;
 				float2 uv : TEXCOORD0;
                 float3 color : COLOR;
+
+                UNITY_VERTEX_INPUT_INSTANCE_ID
 			};
 
 			struct v2f
@@ -52,6 +54,8 @@ Shader "Water/RiverUnderwater"
                 fixed3 depthDirtFoam : TEXCOORD2;
 				LIGHTING_COORDS(3,4)
 				float3 screenPos : TEXCOORD5;
+
+                UNITY_VERTEX_OUTPUT_STEREO
 			};
 
             uniform sampler2D _MainTex;
@@ -72,6 +76,11 @@ Shader "Water/RiverUnderwater"
 
 			v2f vert (appdata v){
                 v2f o;
+                
+                UNITY_SETUP_INSTANCE_ID(v);
+                UNITY_INITIALIZE_OUTPUT(v2f, o);
+                UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO(o);
+
                 o.vertex = UnityObjectToClipPos( v.vertex ); 
                 o.worldPos = mul( unity_ObjectToWorld, v.vertex ).xyz;
                 o.uv = v.uv;
@@ -102,7 +111,9 @@ Shader "Water/RiverUnderwater"
 			
 			fixed4 frag (v2f i) : SV_Target
 			{
-				//generate pseudo random 2D noise
+				UNITY_SETUP_STEREO_EYE_INDEX_POST_VERTEX(i)
+
+                //generate pseudo random 2D noise
                 fixed2 noise = pseudoRandomSample( _NoiseTex, i.uv, _Time.y );
                 fixed3 view = normalize( _WorldSpaceCameraPos.xyz-i.worldPos );
 

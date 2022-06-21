@@ -94,7 +94,6 @@
                 v2f o;
 
                 UNITY_SETUP_INSTANCE_ID(v);
-                UNITY_INITIALIZE_OUTPUT(v2f, o);
                 UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO(o);
 
                 o.vertex = UnityObjectToClipPos(v.vertex);
@@ -106,6 +105,8 @@
 
             fixed4 frag (v2f i) : SV_Target
             {
+                UNITY_SETUP_STEREO_EYE_INDEX_POST_VERTEX(i);
+                
                 //project worldpos to horizon
                 fixed3 cPos = i.worldPos-_WorldSpaceCameraPos;
                 cPos *= ((_CloudHeight-_WorldSpaceCameraPos.y)/cPos.y);

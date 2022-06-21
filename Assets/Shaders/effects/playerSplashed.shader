@@ -64,6 +64,7 @@
 			fixed4 frag (v2f i) : SV_Target
 			{
 				UNITY_SETUP_STEREO_EYE_INDEX_POST_VERTEX(i);
+				
 				fixed aspect = _ScreenParams.y/_ScreenParams.x;
 				fixed2 diff = i.uv-fixed2(.5,.5);
 				fixed sqDist = (diff.x*diff.x+diff.y*diff.y);

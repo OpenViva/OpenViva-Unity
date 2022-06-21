@@ -62,6 +62,7 @@
 			fixed4 frag (v2f i) : SV_Target
 			{
 				UNITY_SETUP_STEREO_EYE_INDEX_POST_VERTEX(i);
+				
     			fixed4 col = UNITY_SAMPLE_SCREENSPACE_TEXTURE(_MainTex, i.uv);
 				col.rgb += tex2D( _CloudsRT, i.uv ).rgb*saturate(1.-col.a);
 				fixed overlay = tex2D( _Overlay, i.uv ).r*_Alpha;

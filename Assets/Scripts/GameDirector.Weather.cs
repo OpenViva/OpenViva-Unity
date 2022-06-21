@@ -26,6 +26,7 @@ namespace viva
 
         private GameObject clouds;
         private MeshRenderer cloudsMR;
+        [SerializeField]
         private RenderTexture m_cloudRT;
         public RenderTexture cloudRT { get { return m_cloudRT; } }
         private CommandBuffer cloudCommandBuffer;
@@ -96,20 +97,20 @@ namespace viva
 
             //create raymarched cloud variables
             RenderTextureDescriptor desc;
-            SinglePassStereoMode singlePassMode;
             if (XRSettings.enabled) {
                 desc = XRSettings.eyeTextureDesc;
-                desc.width /= 3;
-                desc.height /= 3;
+                // Initial values in XRSettings.eyeTextureDesc are weird, very low res, no vrUsage??? I will just set them myself
+                desc.width = Screen.width / 3;
+                desc.height = Screen.height / 3;
                 desc.vrUsage = VRTextureUsage.TwoEyes;
-                singlePassMode = SinglePassStereoMode.Instancing;
+                desc.volumeDepth = 2;
             } else {
                 desc = new RenderTextureDescriptor(Screen.width, Screen.height);
                 desc.width /= 4;
                 desc.height /= 4;
-                singlePassMode = SinglePassStereoMode.None;
+                desc.volumeDepth = 1;
             }
-            Debug.Log("Reacreating Clouds RT " + desc.vrUsage + " " + XRSettings.enabled);
+            Debug.Log("Reacreating Clouds RT " + desc.vrUsage + " " + XRSettings.enabled + " " + desc.width + " " + desc.height + " " + desc.volumeDepth);
             desc.dimension = TextureDimension.Tex2DArray;
             desc.colorFormat = RenderTextureFormat.ARGB32;
             m_cloudRT = new RenderTexture(desc);
@@ -120,8 +121,7 @@ namespace viva
 
             //render in the buffer
             cloudCommandBuffer = new CommandBuffer();
-            cloudCommandBuffer.SetRenderTarget(cloudRT);
-            cloudCommandBuffer.SetSinglePassStereo(singlePassMode);
+            cloudCommandBuffer.SetRenderTarget(cloudRT, 0, CubemapFace.Unknown, -1);
             if (Clouds)
             {
                 cloudCommandBuffer.DrawRenderer(cloudsMR, raymarchingCloudsMat, 0, -1);

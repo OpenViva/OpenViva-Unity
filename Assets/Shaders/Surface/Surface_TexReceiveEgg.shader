@@ -62,6 +62,8 @@
 
 			fixed4 frag (v2f i) : SV_Target
 			{
+                UNITY_SETUP_STEREO_EYE_INDEX_POST_VERTEX(i);
+				
                 fixed4 col = tex2D( _MainTex, i.uv );
 				fixed3 env = fixed3(1.,1.,1.)-UNITY_SAMPLE_TEXCUBE( unity_SpecCube0, i.eye ).rgb;
                 col.rgb *= lerp( fixed3(1.,1.,1.), fixed3(1.,1.,1.)-env*env, _Screen );

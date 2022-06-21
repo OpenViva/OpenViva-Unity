@@ -63,6 +63,7 @@
 			fixed4 frag (v2f i) : SV_Target
 			{
 				UNITY_SETUP_STEREO_EYE_INDEX_POST_VERTEX(i);
+				
     			fixed4 col = UNITY_SAMPLE_SCREENSPACE_TEXTURE(_MainTex, i.uv);
 #if defined(UNITY_STEREO_INSTANCING_ENABLED) || defined(UNITY_STEREO_MULTIVIEW_ENABLED)
 				fixed4 clouds_col = UNITY_SAMPLE_TEX2DARRAY(_CloudsRT, float3(i.uv.xy, (float)unity_StereoEyeIndex));

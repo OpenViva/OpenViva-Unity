@@ -93,6 +93,8 @@
 
 			fixed4 frag (v2f i) : SV_Target
 			{
+                UNITY_SETUP_STEREO_EYE_INDEX_POST_VERTEX(i);
+                
                 fixed alpha = tex2D( _MainTex, i.uv ).a;
 				return fixed4(0.,0.,0.,alpha);
 			}

@@ -32,12 +32,16 @@
 			{
 				float4 vertex : POSITION;
 				float2 uv : TEXCOORD0;
+
+                UNITY_VERTEX_INPUT_INSTANCE_ID
 			};
 
 			struct v2f
 			{
 				fixed4 pos : SV_POSITION;
 				fixed2 uv : TEXCOORD0;
+
+                UNITY_VERTEX_OUTPUT_STEREO
 			};
 
 			sampler2D _MainTex;
@@ -46,14 +50,21 @@
 
 			v2f vert (appdata v){
 				v2f o;
-				o.pos = UnityObjectToClipPos(v.vertex);
+				
+                UNITY_SETUP_INSTANCE_ID(v);
+                UNITY_INITIALIZE_OUTPUT(v2f, o);
+                UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO(o);
+
+                o.pos = UnityObjectToClipPos(v.vertex);
 				o.uv = v.uv;
 				return o;
 			}
 			
 			fixed4 frag (v2f i) : SV_Target
 			{
-				fixed3 gradient = lerp( _BGA, _BGB, i.uv.y );
+				UNITY_SETUP_STEREO_EYE_INDEX_POST_VERTEX(i)
+
+                fixed3 gradient = lerp( _BGA, _BGB, i.uv.y );
 				fixed4 c = tex2D( _MainTex, i.uv );
 				return fixed4( lerp( gradient, c.rgb, c.a ), 1.0 );
 			}

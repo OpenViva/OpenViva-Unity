@@ -32,12 +32,16 @@
 				float4 vertex : POSITION;
 				float2 uv : TEXCOORD0;
 				float3 norm: NORMAL;
+
+                UNITY_VERTEX_INPUT_INSTANCE_ID
 			};
 
 			struct v2f
 			{
 				float4 vertex : SV_POSITION;
 				float2 uv : TEXCOORD0;
+
+                UNITY_VERTEX_OUTPUT_STEREO
 			};
 
 			sampler2D _MainTex;
@@ -47,7 +51,12 @@
 			v2f vert (appdata v)
 			{
 				v2f o;
-				float3 worldPos = mul( unity_ObjectToWorld, v.vertex ).xyz;
+				
+                UNITY_SETUP_INSTANCE_ID(v);
+                UNITY_INITIALIZE_OUTPUT(v2f, o);
+                UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO(o);
+
+                float3 worldPos = mul( unity_ObjectToWorld, v.vertex ).xyz;
 				fixed3 diff = _WorldSpaceCameraPos.xyz-worldPos;
 				fixed dist = ( diff.x*diff.x+diff.y*diff.y+diff.z*diff.z )*0.002;
 				fixed outlineScale = max( _OutSizeMin, min( _OutSizeMax, dist ) );
@@ -59,7 +68,9 @@
 
 			fixed4 frag (v2f i) : SV_Target
 			{
-				// sample the texture
+				UNITY_SETUP_STEREO_EYE_INDEX_POST_VERTEX(i)
+
+                // sample the texture
 				fixed3 col = tex2D(_MainTex, i.uv).rgb;
 				col = col*.5-.2;
 				return fixed4( col, 1. );
@@ -87,6 +98,8 @@
 				float4 vertex : POSITION;
 				float2 uv : TEXCOORD0;
 				float3 normal: NORMAL;
+
+                UNITY_VERTEX_INPUT_INSTANCE_ID
 			};
 
 			struct v2f
@@ -95,6 +108,8 @@
 				fixed2 uv : TEXCOORD0;
 				fixed3 normDir: TEXCOORD1;
 				LIGHTING_COORDS(2,3)
+
+                UNITY_VERTEX_OUTPUT_STEREO
 			};
 
 			sampler2D _MainTex;
@@ -102,7 +117,12 @@
 
 			v2f vert (appdata v){
 				v2f o;
-				o.pos = UnityObjectToClipPos(v.vertex);
+				
+                UNITY_SETUP_INSTANCE_ID(v);
+                UNITY_INITIALIZE_OUTPUT(v2f, o);
+                UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO(o);
+
+                o.pos = UnityObjectToClipPos(v.vertex);
 				o.normDir = normalize( mul( fixed4(v.normal,0.), unity_WorldToObject ).xyz );
 				o.uv = v.uv;
 				TRANSFER_VERTEX_TO_FRAGMENT(o);
@@ -111,7 +131,9 @@
 			
 			fixed4 frag (v2f i) : SV_Target
 			{
-				fixed worldRim = saturate(.5+dot( _WorldSpaceLightPos0, i.normDir ));
+				UNITY_SETUP_STEREO_EYE_INDEX_POST_VERTEX(i)
+
+                fixed worldRim = saturate(.5+dot( _WorldSpaceLightPos0, i.normDir ));
 				//worldRim = 1.-pow(1.-worldRim,8.);
 				fixed atten = saturate( (LIGHT_ATTENUATION(i)-.5)*2.*worldRim );
 				//return fixed4( atten, 0., 0., 1. );

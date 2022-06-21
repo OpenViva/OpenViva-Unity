@@ -33,12 +33,16 @@ Shader "Effects/DeckActionSymbol"
 			{
 				float4 vertex : POSITION;
 				float2 uv : TEXCOORD0;
+
+                UNITY_VERTEX_INPUT_INSTANCE_ID
 			};
 
 			struct v2f
 			{
 				float2 uv : TEXCOORD0;
 				float4 vertex : SV_POSITION;
+
+                UNITY_VERTEX_OUTPUT_STEREO
 			};
 
 			sampler2D _MainTex;
@@ -46,7 +50,12 @@ Shader "Effects/DeckActionSymbol"
 			v2f vert (appdata v)
 			{
 				v2f o;
-				float scale = 1.+abs(sin(_Time.w*1.2)*0.15);
+				
+                UNITY_SETUP_INSTANCE_ID(v);
+                UNITY_INITIALIZE_OUTPUT(v2f, o);
+                UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO(o);
+
+                float scale = 1.+abs(sin(_Time.w*1.2)*0.15);
                 o.vertex = UnityObjectToClipPos(v.vertex*fixed3(1.,scale,1.));
 				o.uv = v.uv;
 				return o;
@@ -54,7 +63,9 @@ Shader "Effects/DeckActionSymbol"
 			
 			fixed4 frag (v2f i) : SV_Target
 			{
-				return tex2D( _MainTex, i.uv );
+				UNITY_SETUP_STEREO_EYE_INDEX_POST_VERTEX(i)
+
+                return tex2D( _MainTex, i.uv );
 			}
 			ENDCG
 		}

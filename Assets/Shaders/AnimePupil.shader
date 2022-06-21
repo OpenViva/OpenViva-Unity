@@ -43,6 +43,8 @@
 				float4 vertex : POSITION;
 				float2 uv : TEXCOORD0;
 				float3 normal: NORMAL;
+
+                UNITY_VERTEX_INPUT_INSTANCE_ID
 			};
 
 			struct v2f
@@ -52,6 +54,8 @@
 				LIGHTING_COORDS(1,2)
 				float3 ambience: TEXCOORD3;
 				UNITY_FOG_COORDS(4)
+
+                UNITY_VERTEX_OUTPUT_STEREO
 			};
 
 			sampler2D _MainTex;	
@@ -63,7 +67,12 @@
 			
 			v2f vert (appdata v){
 				v2f o;
-				o.pos = UnityObjectToClipPos(v.vertex);
+				
+                UNITY_SETUP_INSTANCE_ID(v);
+                UNITY_INITIALIZE_OUTPUT(v2f, o);
+                UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO(o);
+
+                o.pos = UnityObjectToClipPos(v.vertex);
 				fixed3 worldNorm = normalize( mul( fixed4(v.normal,0.), unity_WorldToObject ).xyz );
 				fixed3 worldPos = mul( unity_ObjectToWorld, v.vertex );
 				o.uv = v.uv;
@@ -88,7 +97,9 @@
 			
 			fixed4 frag (v2f i) : SV_Target
 			{
-				fixed3 color = tex2D( _MainTex, i.uv );
+				UNITY_SETUP_STEREO_EYE_INDEX_POST_VERTEX(i)
+
+                fixed3 color = tex2D( _MainTex, i.uv );
 				
 				//shadows
 				fixed atten = (LIGHT_ATTENUATION(i)-.5)*2.;

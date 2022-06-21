@@ -371,6 +371,8 @@ SubShader {
 
         half4 frag (v2f IN) : SV_Target
         {
+            UNITY_SETUP_STEREO_EYE_INDEX_POST_VERTEX(IN);
+            
             half3 col = half3(0.0, 0.0, 0.0);
 
         // if y > 1 [eyeRay.y < -SKY_GROUND_THRESHOLD] - ground
