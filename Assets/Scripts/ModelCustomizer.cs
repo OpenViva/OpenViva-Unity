@@ -91,8 +91,12 @@ namespace viva
         {
             main = this;
             InitializeTabs(new GameObject[] { browseTab, createTab, tweakTab, cardResultTab });
-            ValidateAllowTweakTab();
             this.enabled = false;
+        }
+
+        private void OnEnable()
+        {
+            ValidateAllowTweakTab();
         }
 
         private void Start()
@@ -171,8 +175,7 @@ namespace viva
         }
 
         public override void OnBeginUIInput()
-        {
-
+        {            
             FileDragAndDrop.EnableDragAndDrop(OnDropFile);
             this.enabled = true;
             SetTab(lastValidTabIndex);

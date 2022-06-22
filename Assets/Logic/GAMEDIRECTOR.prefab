@@ -1556,13 +1556,14 @@ GameObject:
   - component: {fileID: 23040241922250728}
   - component: {fileID: 33550210559635408}
   - component: {fileID: 114243395228347494}
-  - component: {fileID: 114077451704392308}
   - component: {fileID: 568965071000808229}
   - component: {fileID: 6542686028549081506}
   - component: {fileID: 897248624}
   - component: {fileID: 1220906549851760943}
   - component: {fileID: 8693587257039376263}
   - component: {fileID: 1424695932}
+  - component: {fileID: 114077451704392308}
+  - component: {fileID: 7998291666396538219}
   m_Layer: 0
   m_Name: GAMEDIRECTOR
   m_TagString: Untagged
@@ -1708,7 +1709,7 @@ MonoBehaviour:
   music:
   - {fileID: 0}
   - {fileID: 8300000, guid: 3ccbbb7992a7e4d328c8f31651ef86f5, type: 3}
-  - {fileID: 8300000, guid: 00741bc66d70f5d49aa748b7a7cfe7eb, type: 3}
+  - {fileID: 8300000, guid: d083d7125f16f7340928a31c92793ca2, type: 3}
   - {fileID: 8300000, guid: 1d20fe769e2014e0e9bb5c51b937f4c1, type: 3}
   - {fileID: 8300000, guid: b1cd546cb8a2147c69c492a076da68d2, type: 3}
   - {fileID: 8300000, guid: 1281b7b8bf2e1584dbe355c20637289e, type: 3}
@@ -1780,21 +1781,7 @@ MonoBehaviour:
   weatherSimGenerate: {fileID: 2100000, guid: 8f87e72e084e944c693bde0728226407, type: 2}
   weatherNoises: {fileID: 2800000, guid: 1d4faa81c5417c543a70974190f80765, type: 3}
   raymarchingCloudsMat: {fileID: 0}
---- !u!114 &114077451704392308
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1075421151766106}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 76c392e42b5098c458856cdf6ecaaaa1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_FirstSelected: {fileID: 0}
-  m_sendNavigationEvents: 1
-  m_DragThreshold: 10
+  m_cloudRT: {fileID: 0}
 --- !u!114 &568965071000808229
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2140,6 +2127,58 @@ MonoBehaviour:
   messageImage: {fileID: 1774462009}
   globalHintScale: 0.002
   objectHintsContainer: {fileID: 8717344724600058594}
+--- !u!114 &114077451704392308
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1075421151766106}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76c392e42b5098c458856cdf6ecaaaa1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_FirstSelected: {fileID: 0}
+  m_sendNavigationEvents: 1
+  m_DragThreshold: 10
+--- !u!114 &7998291666396538219
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1075421151766106}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01614664b831546d2ae94a42149d80ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_MoveRepeatDelay: 0.5
+  m_MoveRepeatRate: 0.1
+  m_XRTrackingOrigin: {fileID: 0}
+  m_ActionsAsset: {fileID: -944628639613478452, guid: ca9f5fa95ffab41fb9a615ab714db018,
+    type: 3}
+  m_PointAction: {fileID: -1654692200621890270, guid: ca9f5fa95ffab41fb9a615ab714db018,
+    type: 3}
+  m_MoveAction: {fileID: -8784545083839296357, guid: ca9f5fa95ffab41fb9a615ab714db018,
+    type: 3}
+  m_SubmitAction: {fileID: 0}
+  m_CancelAction: {fileID: 7727032971491509709, guid: ca9f5fa95ffab41fb9a615ab714db018,
+    type: 3}
+  m_LeftClickAction: {fileID: 0}
+  m_MiddleClickAction: {fileID: -2185481485913320682, guid: ca9f5fa95ffab41fb9a615ab714db018,
+    type: 3}
+  m_RightClickAction: {fileID: -4090225696740746782, guid: ca9f5fa95ffab41fb9a615ab714db018,
+    type: 3}
+  m_ScrollWheelAction: {fileID: 6240969308177333660, guid: ca9f5fa95ffab41fb9a615ab714db018,
+    type: 3}
+  m_TrackedDevicePositionAction: {fileID: 6564999863303420839, guid: ca9f5fa95ffab41fb9a615ab714db018,
+    type: 3}
+  m_TrackedDeviceOrientationAction: {fileID: 7970375526676320489, guid: ca9f5fa95ffab41fb9a615ab714db018,
+    type: 3}
+  m_DeselectOnBackgroundClick: 1
+  m_PointerBehavior: 0
 --- !u!1 &1105119886353310
 GameObject:
   m_ObjectHideFlags: 0
@@ -14015,7 +14054,7 @@ PrefabInstance:
     - target: {fileID: 1487841468594555215, guid: b1081a8a82a4f9740815d57b829b587c,
         type: 3}
       propertyPath: m_Value
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1487841469206362423, guid: b1081a8a82a4f9740815d57b829b587c,
         type: 3}

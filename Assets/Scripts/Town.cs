@@ -34,8 +34,10 @@ namespace viva
             {
                 GameDirector.instance.fileLoadStatus.description.text = "No Cards Found!";
             }
-
-            BuildTownLolis(cardsAvailable, maxResidents - (GameDirector.characters.Count - 1), null);
+            else
+            {
+                BuildTownLolis(cardsAvailable, maxResidents - (GameDirector.characters.Count - 1), null);
+            } 
         }
 
         public void BuildTownLolis(string[] cards, int count, Vector3? defaultSpawnPos)

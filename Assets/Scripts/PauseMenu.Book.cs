@@ -59,6 +59,7 @@ namespace viva
         {
             SetPauseMenu(targetOnOpenMenuTab);
             targetOnOpenMenuTab = PauseMenu.Menu.ROOT;  //reset target
+            IsPauseMenuOpen = true;
         }
 
         private void OnCloseBookFinished()
@@ -66,6 +67,7 @@ namespace viva
             ContinueTutorial(MenuTutorial.WAIT_TO_EXIT_CHECKLIST);
             SetMenuActive(Menu.NONE, false);
             gameObject.SetActive(false);
+            IsPauseMenuOpen = false;
         }
     }
 
