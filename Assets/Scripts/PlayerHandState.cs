@@ -78,83 +78,14 @@ namespace viva
         private Vector3? freezeKeyboardLocalPosition = null;
         private Quaternion freezeKeyboardLocalRotation = Quaternion.identity;
 
-
-        public void StartDeprecatedXRInput()
-        {
-            actionState.Consume();
-        }
-
-        private int buggySteamVRMultipleFiringFix = 0;
-        // private void SteamVRTogglePauseMenu( SteamVR_Action_Boolean fromAction, SteamVR_Input_Sources fromSource ){
-        //     if( Time.frameCount != buggySteamVRMultipleFiringFix ){
-        //         buggySteamVRMultipleFiringFix = Time.frameCount;
-        //         if( fromSource == SteamVR_Input_Sources.RightHand && !GameDirector.settings.trackpadMovementUseRight ){
-        //             player.TogglePauseMenu(); 
-        //         }else if( fromSource == SteamVR_Input_Sources.LeftHand && GameDirector.settings.trackpadMovementUseRight ){
-        //             player.TogglePauseMenu();
-        //         }
-        //     }
-        // }
-
-        public void UpdateSteamVRInput()
-        {
-            // if( SteamVR.active ){
-
-            //     // SteamVR_Actions.player_Grab.onStateDown += delegate{ gripState.UpdateState( true ); };
-            //     // SteamVR_Actions.player_Grab.onStateUp += delegate{ gripState.UpdateState( false ); };
-            //     // SteamVR_Actions.player_Action.onStateDown += delegate{ actionState.UpdateState( true ); };
-            //     // SteamVR_Actions.player_Action.onStateUp += delegate{ actionState.UpdateState( false ); };
-            //     // SteamVR_Actions.player_TrackpadPress.onStateDown += delegate{ trackpadButtonState.UpdateState( true ); };
-            //     // SteamVR_Actions.player_TrackpadPress.onStateUp += delegate{ trackpadButtonState.UpdateState( false ); };
-            //     // SteamVR_Actions.player_Trackpad.onUpdate += delegate{ trackpadPos = SteamVR_Actions.player_Trackpad.GetAxis( behaviourPose.inputSource ); };
-
-            //     if( SteamVR_Actions.player_grab.GetStateDown( behaviourPose.inputSource ) ){
-            //         gripState.UpdateState( true );
-            //     }else if( SteamVR_Actions.player_grab.GetStateUp( behaviourPose.inputSource ) ){
-            //         gripState.UpdateState( false );
-            //     }
-            //     if( SteamVR_Actions.player_action.GetStateDown( behaviourPose.inputSource ) ){
-            //         actionState.UpdateState( true );
-            //     }else if( SteamVR_Actions.player_action.GetStateUp( behaviourPose.inputSource ) ){
-            //         actionState.UpdateState( false );
-            //     }
-            //     if( SteamVR_Actions.player_trackpadpress.GetStateDown( behaviourPose.inputSource ) ){
-            //         trackpadButtonState.UpdateState( true );
-            //     }else if( SteamVR_Actions.player_trackpadpress.GetStateUp( behaviourPose.inputSource ) ){
-            //         trackpadButtonState.UpdateState( false );
-            //     }
-            //     trackpadPos = SteamVR_Actions.player_trackpad.GetAxis( behaviourPose.inputSource );
-            // }
-        }
-
-        public void UnbindSteamVRInput()
-        {
-
-        }
-
-        // public void InitializeDeprecatedMKBInput(InputActions_viva vivaControls)
-        // {
-        //     if (vivaControlsBinded)
-        //     {
-        //         return;
-        //     }
-        //     vivaControlsBinded = true;
-        //     if (rightSide)
-        //     {
-        //         vivaControls.Keyboard.extendRight.performed += ctx => player.OnInputTogglePresentHand(this);
-        //         vivaControls.Keyboard.rightInteract.performed += ctx => UpdateKeyboardGripAndAction(ctx.ReadValueAsButton(), player.keyboardAlt);
-        //         vivaControls.Keyboard.rightInteract.canceled += ctx => UpdateKeyboardGripAndAction(ctx.ReadValueAsButton(), player.keyboardAlt);
-        //     }
-        //     else
-        //     {
-        //         vivaControls.Keyboard.extendLeft.performed += ctx => player.OnInputTogglePresentHand(this);
-        //         vivaControls.Keyboard.leftInteract.performed += ctx => UpdateKeyboardGripAndAction(ctx.ReadValueAsButton(), player.keyboardAlt);
-        //         vivaControls.Keyboard.leftInteract.canceled += ctx => UpdateKeyboardGripAndAction(ctx.ReadValueAsButton(), player.keyboardAlt);
-        //     }
-        // }
-
         public void InitializeUnityInputControls( InputActions_viva vivaControls ){
             Player player = owner as Player;
+
+            if (vivaControlsBinded)
+            {
+                return;
+            }
+            vivaControlsBinded = true;
 
             Debug.Log("initializing " + rightSide);
             
@@ -208,8 +139,6 @@ namespace viva
             selfItem.rigidBody.maxDepenetrationVelocity = 0.001f;
 
             behaviourPose.transform.SetParent(player.transform, true);
-
-            // SteamVR_Actions.player_pause.AddOnStateDownListener( SteamVRTogglePauseMenu, behaviourPose.inputSource );
         }
 
         protected override void GetRigidBodyBlendConnectedAnchor(out Vector3 targetLocalPos, out Quaternion targetLocalRot)

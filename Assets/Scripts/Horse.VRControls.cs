@@ -31,10 +31,6 @@ namespace viva
 
         public override void OnFixedUpdateControl(Player player)
         {
-
-            player.rightPlayerHandState.UpdateSteamVRInput();
-            player.leftPlayerHandState.UpdateSteamVRInput();
-
             if (GameDirector.instance.controlsAllowed != GameDirector.ControlsAllowed.ALL || GameDirector.settings.vrControls != Player.VRControlType.TRACKPAD)
             {
                 return;

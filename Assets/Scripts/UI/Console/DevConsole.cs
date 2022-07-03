@@ -164,7 +164,10 @@ namespace viva.console
                 }
                 else
                 {
-                    GameDirector.instance.SetEnableControls(GameDirector.ControlsAllowed.ALL);
+                    if (!GameDirector.player.pauseMenu.IsPauseMenuOpen)
+                    {
+                        GameDirector.instance.SetEnableControls(GameDirector.ControlsAllowed.ALL);
+                    } 
                     _consoleCanvas.gameObject.SetActive(false);
                 }
             }

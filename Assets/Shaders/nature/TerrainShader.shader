@@ -19,6 +19,7 @@
             "Queue" = "Geometry-99"
             "IgnoreProjector"="True"
             "RenderType" = "Opaque"
+            "TerrainCompatible" = "True"
         }
  
         CGPROGRAM

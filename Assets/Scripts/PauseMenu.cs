@@ -57,6 +57,7 @@ namespace viva
         private Coroutine errorCoroutine = null;
         private Coroutine calibrationCoroutine = null;
         private Vector3 lastPositionBeforeTutorial = Vector3.zero;
+        public bool IsPauseMenuOpen = false;
 
         [SerializeField]
         private GameObject calibrateHandGhostPrefab = null;
