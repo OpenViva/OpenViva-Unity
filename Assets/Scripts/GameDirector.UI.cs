@@ -91,7 +91,7 @@ namespace viva
                 {
                     hand = sourcePlayer.leftPlayerHandState;
                 }
-                pointer = hand.selfItem.rigidBody.transform;
+                pointer = hand.behaviourPose.transform;
                 button = hand.actionState;
                 m_controlsAllowed = ControlsAllowed.NONE;
                 raycastLaserMF.gameObject.SetActive(true);
@@ -305,7 +305,8 @@ namespace viva
                 if (pointer != null)
                 {
                     RaycastHit hitInfo = new RaycastHit();
-                    bool hit = Physics.Raycast(pointer.position, pointer.up, out hitInfo, 4.0f, Instance.uiMask | Instance.wallsMask);
+                    bool hit = Physics.Raycast(pointer.position, pointer.forward, out hitInfo, 4.0f, Instance.uiMask | Instance.wallsMask);
+
                     if (hit)
                     {  //make sure it hit the UI not the wall mask
                         hit = hitInfo.collider.gameObject.layer == Instance.uiLayer;
@@ -314,7 +315,7 @@ namespace viva
                     {
                         UpdateRaycastLaserWithPointer(
                             pointer.position + pointer.up * 0.1f,
-                            pointer.position + pointer.up * 100.0f,
+                            pointer.position + pointer.forward * 100.0f,
                             pointer.right * 0.01f,
                             pointer.forward * 0.005f
                         );
@@ -332,13 +333,11 @@ namespace viva
                         pointer.forward * 0.0025f
                     );
                     eventData.position = GameDirector.instance.mainCamera.WorldToScreenPoint(hitInfo.point);
-
                 }
                 else
                 {
                     eventData.position = player.mousePosition;
                 }
-
 
                 if (button.isUp)
                 {

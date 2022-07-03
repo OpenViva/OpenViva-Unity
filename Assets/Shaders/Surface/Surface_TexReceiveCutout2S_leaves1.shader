@@ -132,6 +132,7 @@ Shader "Surface/TexReceiveCutout2S_leaves1" {
                 fixed3 viewDir : TEXCOORD4;
                 fixed3 tint : TEXCOORD5;
                 float3 lightAmbience : TEXCOORD6;
+				float3 worldPos : TEXCOORD7;
 
                 UNITY_VERTEX_OUTPUT_STEREO
 			};
@@ -161,6 +162,7 @@ Shader "Surface/TexReceiveCutout2S_leaves1" {
                 fixed3 worldPos = mul( unity_ObjectToWorld, v.vertex );
                 fixed3 worldNorm = UnityObjectToWorldNormal( v.normal );
                 o.viewDir = normalize( worldPos-_WorldSpaceCameraPos.xyz );
+                o.worldPos = worldPos;
 
                 //calculate vface
                 fixed vface = -dot( o.viewDir, worldNorm );
@@ -186,7 +188,9 @@ Shader "Surface/TexReceiveCutout2S_leaves1" {
                 fixed4 col = tex2D( _MainTex, i.uv.xy );
                 clip(col.a-_Cutoff);
 
-				fixed atten = LIGHT_ATTENUATION(i);
+                UNITY_SETUP_STEREO_EYE_INDEX_POST_VERTEX(i);
+
+                UNITY_LIGHT_ATTENUATION(atten, i, i.worldPos);
                 fixed sunRim = saturate( dot( i.viewDir, _WorldSpaceLightPos0.xyz ) )*atten;
                 col.rgb *= lerp( UNITY_LIGHTMODEL_AMBIENT+i.lightAmbience, _LightColor0+i.lightAmbience, atten+sunRim )*i.tint;
 				UNITY_APPLY_FOG(i.fogCoord, col);

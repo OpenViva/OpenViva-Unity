@@ -79,7 +79,7 @@ Shader "UI/loading_cycle"
                 UNITY_VERTEX_OUTPUT_STEREO
             };
 
-			UNITY_DECLARE_SCREENSPACE_TEXTURE(_MainTex);
+            sampler2D _MainTex;
             sampler2D _Mask;
             fixed4 _Color;
             fixed4 _TextureSampleAdd;
@@ -103,9 +103,9 @@ Shader "UI/loading_cycle"
 
             fixed4 frag(v2f IN) : SV_Target
             {
-                UNITY_SETUP_STEREO_EYE_INDEX_POST_VERTEX(i);
+                UNITY_SETUP_STEREO_EYE_INDEX_POST_VERTEX(IN);
                 
-                half4 color = (UNITY_SAMPLE_SCREENSPACE_TEXTURE(_MainTex, IN.texcoord) + _TextureSampleAdd) * IN.color;
+                half4 color = (tex2D(_MainTex, IN.texcoord) + _TextureSampleAdd) * IN.color;
 
                 #ifdef UNITY_UI_CLIP_RECT
                 color.a *= UnityGet2DClipping(IN.worldPosition.xy, _ClipRect);
