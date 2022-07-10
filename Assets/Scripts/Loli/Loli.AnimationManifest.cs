@@ -2110,7 +2110,6 @@ namespace viva
                 "stand_react_perv_front_idle_loop", "stand_react_perv_front_idle_loop", "stand_react_perv_front_idle_loop",
                 Loli.Priority.HIGH, BodyState.STAND, BodyState.STAND,
                 0.2f, new Loli.AnimLogicInfo(1, 0.5f, 1.5f, 12, 1.0f), new LoliAnimationEvent[]{
-                new LoliAnimationEvent( 0.112f, (int)Loli.AnimationEventName.SPEAK, new float[]{ (float)Loli.VoiceLine.WHAT_YOU_DOING, 3.0f } ),
                 }
             ));
 

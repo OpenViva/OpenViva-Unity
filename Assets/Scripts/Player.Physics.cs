@@ -182,10 +182,10 @@ namespace viva
                     BeginKeyboardHalfCrouch(sc);
                 }
             }
-            else if (collider.name == "EXPLORING")
-            {
-                GameDirector.instance.SetUserIsExploring(true);
-            }
+            //else if (collider.name == "EXPLORING")
+            //{
+            //    GameDirector.instance.SetUserIsExploring(true);
+            //}
         }
 
         private void CheckExitRegion(Collider collider)
@@ -194,10 +194,10 @@ namespace viva
             {
                 StopKeyboardHalfCrouch();
             }
-            else if (collider.name == "EXPLORING")
-            {
-                GameDirector.instance.SetUserIsExploring(false);
-            }
+            //else if (collider.name == "EXPLORING")
+            //{
+            //    GameDirector.instance.SetUserIsExploring(false);
+            //}
         }
 
         private void AttemptPoke(Character owner, Collider collider, PlayerHandState handState)
