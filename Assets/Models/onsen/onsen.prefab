@@ -19767,7 +19767,6 @@ GameObject:
   - component: {fileID: 6319144771311706608}
   - component: {fileID: 1707681954505178685}
   - component: {fileID: 6390861745747467938}
-  - component: {fileID: 8269846665640569768}
   - component: {fileID: 508806405649217087}
   - component: {fileID: 8067056972335885865}
   m_Layer: 5
@@ -19872,25 +19871,6 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &8269846665640569768
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2659628283027793355}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: afe3cda3e244f60419474164d6ba3b0b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_IgnoreReversedGraphics: 0
-  m_CheckFor2DOcclusion: 0
-  m_CheckFor3DOcclusion: 0
-  m_MaxDistance: 1000
-  m_BlockingMask:
-    serializedVersion: 2
-    m_Bits: 0
 --- !u!114 &508806405649217087
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22968,9 +22948,10 @@ Transform:
   - {fileID: 2400293403152200151}
   - {fileID: 2400293403527920216}
   - {fileID: 9174031271124697500}
-  - {fileID: 7924442973460199607}
-  - {fileID: 4404590224792316107}
   - {fileID: 4328032386033223902}
+  - {fileID: 7924442973460199607}
+  - {fileID: 7969755046536097257}
+  - {fileID: 4404590224792316107}
   - {fileID: 1797729799180475787}
   - {fileID: 1493966569396700760}
   - {fileID: 2278254706371849469}
@@ -22986,7 +22967,6 @@ Transform:
   - {fileID: 2400293405162670368}
   - {fileID: 2395470991385595466}
   - {fileID: 954969741863682587}
-  - {fileID: 7969755046536097257}
   - {fileID: 4816723004742945895}
   - {fileID: 6869220621772733448}
   - {fileID: 7271511640574489099}
@@ -23075,7 +23055,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 696597624278404887}
-  m_RootOrder: 35
+  m_RootOrder: 37
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &6763948962078040736
 MonoBehaviour:
@@ -35739,7 +35719,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 696597624278404887}
-  m_RootOrder: 52
+  m_RootOrder: 36
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1988692540474049022
 MonoBehaviour:
@@ -37313,51 +37293,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 696597624278404887}
     m_Modifications:
-    - target: {fileID: 4962564144869022304, guid: ac76bd2fac6fa1048a0299d95cffb0ca,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 27
-      objectReference: {fileID: 0}
-    - target: {fileID: 4962564144869022304, guid: ac76bd2fac6fa1048a0299d95cffb0ca,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -11.347
-      objectReference: {fileID: 0}
-    - target: {fileID: 4962564144869022304, guid: ac76bd2fac6fa1048a0299d95cffb0ca,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -1.8529911
-      objectReference: {fileID: 0}
-    - target: {fileID: 4962564144869022304, guid: ac76bd2fac6fa1048a0299d95cffb0ca,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -21.615
-      objectReference: {fileID: 0}
-    - target: {fileID: 4962564144869022304, guid: ac76bd2fac6fa1048a0299d95cffb0ca,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: -0.42712867
-      objectReference: {fileID: 0}
-    - target: {fileID: 4962564144869022304, guid: ac76bd2fac6fa1048a0299d95cffb0ca,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0.90419084
-      objectReference: {fileID: 0}
-    - target: {fileID: 4962564144869022304, guid: ac76bd2fac6fa1048a0299d95cffb0ca,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 170.09601
-      objectReference: {fileID: 0}
-    - target: {fileID: 8252221884370053235, guid: ac76bd2fac6fa1048a0299d95cffb0ca,
-        type: 3}
-      propertyPath: m_Name
-      value: bambooWallCard_mesh (12)
-      objectReference: {fileID: 0}
-    - target: {fileID: 8252221884370053235, guid: ac76bd2fac6fa1048a0299d95cffb0ca,
-        type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
-      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 76d1449ab1e04764697f763908a3894d,
         type: 3}
       propertyPath: m_RootOrder
@@ -37417,6 +37352,51 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: bambooWallCard_mesh (10)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4962564144869022304, guid: ac76bd2fac6fa1048a0299d95cffb0ca,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 27
+      objectReference: {fileID: 0}
+    - target: {fileID: 4962564144869022304, guid: ac76bd2fac6fa1048a0299d95cffb0ca,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -11.347
+      objectReference: {fileID: 0}
+    - target: {fileID: 4962564144869022304, guid: ac76bd2fac6fa1048a0299d95cffb0ca,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1.8529911
+      objectReference: {fileID: 0}
+    - target: {fileID: 4962564144869022304, guid: ac76bd2fac6fa1048a0299d95cffb0ca,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -21.615
+      objectReference: {fileID: 0}
+    - target: {fileID: 4962564144869022304, guid: ac76bd2fac6fa1048a0299d95cffb0ca,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: -0.42712867
+      objectReference: {fileID: 0}
+    - target: {fileID: 4962564144869022304, guid: ac76bd2fac6fa1048a0299d95cffb0ca,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.90419084
+      objectReference: {fileID: 0}
+    - target: {fileID: 4962564144869022304, guid: ac76bd2fac6fa1048a0299d95cffb0ca,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 170.09601
+      objectReference: {fileID: 0}
+    - target: {fileID: 8252221884370053235, guid: ac76bd2fac6fa1048a0299d95cffb0ca,
+        type: 3}
+      propertyPath: m_Name
+      value: bambooWallCard_mesh (12)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8252221884370053235, guid: ac76bd2fac6fa1048a0299d95cffb0ca,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ac76bd2fac6fa1048a0299d95cffb0ca, type: 3}
@@ -37548,51 +37528,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 696597624278404887}
     m_Modifications:
-    - target: {fileID: 4962564144869022304, guid: ac76bd2fac6fa1048a0299d95cffb0ca,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 28
-      objectReference: {fileID: 0}
-    - target: {fileID: 4962564144869022304, guid: ac76bd2fac6fa1048a0299d95cffb0ca,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -12.937
-      objectReference: {fileID: 0}
-    - target: {fileID: 4962564144869022304, guid: ac76bd2fac6fa1048a0299d95cffb0ca,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -1.8529911
-      objectReference: {fileID: 0}
-    - target: {fileID: 4962564144869022304, guid: ac76bd2fac6fa1048a0299d95cffb0ca,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -16.89
-      objectReference: {fileID: 0}
-    - target: {fileID: 4962564144869022304, guid: ac76bd2fac6fa1048a0299d95cffb0ca,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: -0.5106999
-      objectReference: {fileID: 0}
-    - target: {fileID: 4962564144869022304, guid: ac76bd2fac6fa1048a0299d95cffb0ca,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0.859759
-      objectReference: {fileID: 0}
-    - target: {fileID: 4962564144869022304, guid: ac76bd2fac6fa1048a0299d95cffb0ca,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 241.42099
-      objectReference: {fileID: 0}
-    - target: {fileID: 8252221884370053235, guid: ac76bd2fac6fa1048a0299d95cffb0ca,
-        type: 3}
-      propertyPath: m_Name
-      value: bambooWallCard_mesh (16)
-      objectReference: {fileID: 0}
-    - target: {fileID: 8252221884370053235, guid: ac76bd2fac6fa1048a0299d95cffb0ca,
-        type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
-      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 76d1449ab1e04764697f763908a3894d,
         type: 3}
       propertyPath: m_RootOrder
@@ -37653,6 +37588,51 @@ PrefabInstance:
       propertyPath: m_Name
       value: bambooWallCard_mesh (10)
       objectReference: {fileID: 0}
+    - target: {fileID: 4962564144869022304, guid: ac76bd2fac6fa1048a0299d95cffb0ca,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 28
+      objectReference: {fileID: 0}
+    - target: {fileID: 4962564144869022304, guid: ac76bd2fac6fa1048a0299d95cffb0ca,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -12.937
+      objectReference: {fileID: 0}
+    - target: {fileID: 4962564144869022304, guid: ac76bd2fac6fa1048a0299d95cffb0ca,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1.8529911
+      objectReference: {fileID: 0}
+    - target: {fileID: 4962564144869022304, guid: ac76bd2fac6fa1048a0299d95cffb0ca,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -16.89
+      objectReference: {fileID: 0}
+    - target: {fileID: 4962564144869022304, guid: ac76bd2fac6fa1048a0299d95cffb0ca,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: -0.5106999
+      objectReference: {fileID: 0}
+    - target: {fileID: 4962564144869022304, guid: ac76bd2fac6fa1048a0299d95cffb0ca,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.859759
+      objectReference: {fileID: 0}
+    - target: {fileID: 4962564144869022304, guid: ac76bd2fac6fa1048a0299d95cffb0ca,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 241.42099
+      objectReference: {fileID: 0}
+    - target: {fileID: 8252221884370053235, guid: ac76bd2fac6fa1048a0299d95cffb0ca,
+        type: 3}
+      propertyPath: m_Name
+      value: bambooWallCard_mesh (16)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8252221884370053235, guid: ac76bd2fac6fa1048a0299d95cffb0ca,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ac76bd2fac6fa1048a0299d95cffb0ca, type: 3}
 --- !u!4 &4962564145658872133 stripped
@@ -37668,6 +37648,66 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 696597624278404887}
     m_Modifications:
+    - target: {fileID: -4216859302048453862, guid: 76d1449ab1e04764697f763908a3894d,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 23
+      objectReference: {fileID: 0}
+    - target: {fileID: -4216859302048453862, guid: 76d1449ab1e04764697f763908a3894d,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 59.22
+      objectReference: {fileID: 0}
+    - target: {fileID: -4216859302048453862, guid: 76d1449ab1e04764697f763908a3894d,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 145.45
+      objectReference: {fileID: 0}
+    - target: {fileID: -4216859302048453862, guid: 76d1449ab1e04764697f763908a3894d,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 299.31
+      objectReference: {fileID: 0}
+    - target: {fileID: -4216859302048453862, guid: 76d1449ab1e04764697f763908a3894d,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.99441946
+      objectReference: {fileID: 0}
+    - target: {fileID: -4216859302048453862, guid: 76d1449ab1e04764697f763908a3894d,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -4216859302048453862, guid: 76d1449ab1e04764697f763908a3894d,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.10549886
+      objectReference: {fileID: 0}
+    - target: {fileID: -4216859302048453862, guid: 76d1449ab1e04764697f763908a3894d,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -4216859302048453862, guid: 76d1449ab1e04764697f763908a3894d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -4216859302048453862, guid: 76d1449ab1e04764697f763908a3894d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 12.112
+      objectReference: {fileID: 0}
+    - target: {fileID: -4216859302048453862, guid: 76d1449ab1e04764697f763908a3894d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 76d1449ab1e04764697f763908a3894d,
+        type: 3}
+      propertyPath: m_Name
+      value: bambooWallCard_mesh (10)
+      objectReference: {fileID: 0}
     - target: {fileID: 4962564144869022304, guid: ac76bd2fac6fa1048a0299d95cffb0ca,
         type: 3}
       propertyPath: m_RootOrder
@@ -37728,66 +37768,6 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 4294967295
       objectReference: {fileID: 0}
-    - target: {fileID: -4216859302048453862, guid: 76d1449ab1e04764697f763908a3894d,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 23
-      objectReference: {fileID: 0}
-    - target: {fileID: -4216859302048453862, guid: 76d1449ab1e04764697f763908a3894d,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 59.22
-      objectReference: {fileID: 0}
-    - target: {fileID: -4216859302048453862, guid: 76d1449ab1e04764697f763908a3894d,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 145.45
-      objectReference: {fileID: 0}
-    - target: {fileID: -4216859302048453862, guid: 76d1449ab1e04764697f763908a3894d,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 299.31
-      objectReference: {fileID: 0}
-    - target: {fileID: -4216859302048453862, guid: 76d1449ab1e04764697f763908a3894d,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.99441946
-      objectReference: {fileID: 0}
-    - target: {fileID: -4216859302048453862, guid: 76d1449ab1e04764697f763908a3894d,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: -4216859302048453862, guid: 76d1449ab1e04764697f763908a3894d,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0.10549886
-      objectReference: {fileID: 0}
-    - target: {fileID: -4216859302048453862, guid: 76d1449ab1e04764697f763908a3894d,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: -4216859302048453862, guid: 76d1449ab1e04764697f763908a3894d,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -4216859302048453862, guid: 76d1449ab1e04764697f763908a3894d,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 12.112
-      objectReference: {fileID: 0}
-    - target: {fileID: -4216859302048453862, guid: 76d1449ab1e04764697f763908a3894d,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -927199367670048503, guid: 76d1449ab1e04764697f763908a3894d,
-        type: 3}
-      propertyPath: m_Name
-      value: bambooWallCard_mesh (10)
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ac76bd2fac6fa1048a0299d95cffb0ca, type: 3}
 --- !u!4 &4962564145833847552 stripped
@@ -37811,7 +37791,7 @@ PrefabInstance:
     - target: {fileID: 2400293404244959420, guid: 2725395322f4e474e8f6c96dfe2f8658,
         type: 3}
       propertyPath: m_RootOrder
-      value: 49
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 2400293404244959420, guid: 2725395322f4e474e8f6c96dfe2f8658,
         type: 3}
@@ -38503,51 +38483,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 696597624278404887}
     m_Modifications:
-    - target: {fileID: 4962564144869022304, guid: ac76bd2fac6fa1048a0299d95cffb0ca,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 29
-      objectReference: {fileID: 0}
-    - target: {fileID: 4962564144869022304, guid: ac76bd2fac6fa1048a0299d95cffb0ca,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -7.2061005
-      objectReference: {fileID: 0}
-    - target: {fileID: 4962564144869022304, guid: ac76bd2fac6fa1048a0299d95cffb0ca,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -4.3229914
-      objectReference: {fileID: 0}
-    - target: {fileID: 4962564144869022304, guid: ac76bd2fac6fa1048a0299d95cffb0ca,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -24.960522
-      objectReference: {fileID: 0}
-    - target: {fileID: 4962564144869022304, guid: ac76bd2fac6fa1048a0299d95cffb0ca,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: -0.1443367
-      objectReference: {fileID: 0}
-    - target: {fileID: 4962564144869022304, guid: ac76bd2fac6fa1048a0299d95cffb0ca,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0.98952866
-      objectReference: {fileID: 0}
-    - target: {fileID: 4962564144869022304, guid: ac76bd2fac6fa1048a0299d95cffb0ca,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 136.123
-      objectReference: {fileID: 0}
-    - target: {fileID: 8252221884370053235, guid: ac76bd2fac6fa1048a0299d95cffb0ca,
-        type: 3}
-      propertyPath: m_Name
-      value: bambooWallCard_mesh (13)
-      objectReference: {fileID: 0}
-    - target: {fileID: 8252221884370053235, guid: ac76bd2fac6fa1048a0299d95cffb0ca,
-        type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
-      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 76d1449ab1e04764697f763908a3894d,
         type: 3}
       propertyPath: m_RootOrder
@@ -38607,6 +38542,51 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: bambooWallCard_mesh (10)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4962564144869022304, guid: ac76bd2fac6fa1048a0299d95cffb0ca,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 29
+      objectReference: {fileID: 0}
+    - target: {fileID: 4962564144869022304, guid: ac76bd2fac6fa1048a0299d95cffb0ca,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -7.2061005
+      objectReference: {fileID: 0}
+    - target: {fileID: 4962564144869022304, guid: ac76bd2fac6fa1048a0299d95cffb0ca,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -4.3229914
+      objectReference: {fileID: 0}
+    - target: {fileID: 4962564144869022304, guid: ac76bd2fac6fa1048a0299d95cffb0ca,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -24.960522
+      objectReference: {fileID: 0}
+    - target: {fileID: 4962564144869022304, guid: ac76bd2fac6fa1048a0299d95cffb0ca,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: -0.1443367
+      objectReference: {fileID: 0}
+    - target: {fileID: 4962564144869022304, guid: ac76bd2fac6fa1048a0299d95cffb0ca,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.98952866
+      objectReference: {fileID: 0}
+    - target: {fileID: 4962564144869022304, guid: ac76bd2fac6fa1048a0299d95cffb0ca,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 136.123
+      objectReference: {fileID: 0}
+    - target: {fileID: 8252221884370053235, guid: ac76bd2fac6fa1048a0299d95cffb0ca,
+        type: 3}
+      propertyPath: m_Name
+      value: bambooWallCard_mesh (13)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8252221884370053235, guid: ac76bd2fac6fa1048a0299d95cffb0ca,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ac76bd2fac6fa1048a0299d95cffb0ca, type: 3}
@@ -38808,66 +38788,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 696597624278404887}
     m_Modifications:
-    - target: {fileID: 4962564144869022304, guid: ac76bd2fac6fa1048a0299d95cffb0ca,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 30
-      objectReference: {fileID: 0}
-    - target: {fileID: 4962564144869022304, guid: ac76bd2fac6fa1048a0299d95cffb0ca,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.7726882
-      objectReference: {fileID: 0}
-    - target: {fileID: 4962564144869022304, guid: ac76bd2fac6fa1048a0299d95cffb0ca,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.77268803
-      objectReference: {fileID: 0}
-    - target: {fileID: 4962564144869022304, guid: ac76bd2fac6fa1048a0299d95cffb0ca,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.7726882
-      objectReference: {fileID: 0}
-    - target: {fileID: 4962564144869022304, guid: ac76bd2fac6fa1048a0299d95cffb0ca,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -3.44
-      objectReference: {fileID: 0}
-    - target: {fileID: 4962564144869022304, guid: ac76bd2fac6fa1048a0299d95cffb0ca,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -6.382992
-      objectReference: {fileID: 0}
-    - target: {fileID: 4962564144869022304, guid: ac76bd2fac6fa1048a0299d95cffb0ca,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -26.94
-      objectReference: {fileID: 0}
-    - target: {fileID: 4962564144869022304, guid: ac76bd2fac6fa1048a0299d95cffb0ca,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.105549276
-      objectReference: {fileID: 0}
-    - target: {fileID: 4962564144869022304, guid: ac76bd2fac6fa1048a0299d95cffb0ca,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0.99441415
-      objectReference: {fileID: 0}
-    - target: {fileID: 4962564144869022304, guid: ac76bd2fac6fa1048a0299d95cffb0ca,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 167.882
-      objectReference: {fileID: 0}
-    - target: {fileID: 8252221884370053235, guid: ac76bd2fac6fa1048a0299d95cffb0ca,
-        type: 3}
-      propertyPath: m_Name
-      value: bambooWallCard_mesh (14)
-      objectReference: {fileID: 0}
-    - target: {fileID: 8252221884370053235, guid: ac76bd2fac6fa1048a0299d95cffb0ca,
-        type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
-      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 76d1449ab1e04764697f763908a3894d,
         type: 3}
       propertyPath: m_RootOrder
@@ -38927,6 +38847,66 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: bambooWallCard_mesh (10)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4962564144869022304, guid: ac76bd2fac6fa1048a0299d95cffb0ca,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 4962564144869022304, guid: ac76bd2fac6fa1048a0299d95cffb0ca,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.7726882
+      objectReference: {fileID: 0}
+    - target: {fileID: 4962564144869022304, guid: ac76bd2fac6fa1048a0299d95cffb0ca,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.77268803
+      objectReference: {fileID: 0}
+    - target: {fileID: 4962564144869022304, guid: ac76bd2fac6fa1048a0299d95cffb0ca,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.7726882
+      objectReference: {fileID: 0}
+    - target: {fileID: 4962564144869022304, guid: ac76bd2fac6fa1048a0299d95cffb0ca,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -3.44
+      objectReference: {fileID: 0}
+    - target: {fileID: 4962564144869022304, guid: ac76bd2fac6fa1048a0299d95cffb0ca,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -6.382992
+      objectReference: {fileID: 0}
+    - target: {fileID: 4962564144869022304, guid: ac76bd2fac6fa1048a0299d95cffb0ca,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -26.94
+      objectReference: {fileID: 0}
+    - target: {fileID: 4962564144869022304, guid: ac76bd2fac6fa1048a0299d95cffb0ca,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.105549276
+      objectReference: {fileID: 0}
+    - target: {fileID: 4962564144869022304, guid: ac76bd2fac6fa1048a0299d95cffb0ca,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.99441415
+      objectReference: {fileID: 0}
+    - target: {fileID: 4962564144869022304, guid: ac76bd2fac6fa1048a0299d95cffb0ca,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 167.882
+      objectReference: {fileID: 0}
+    - target: {fileID: 8252221884370053235, guid: ac76bd2fac6fa1048a0299d95cffb0ca,
+        type: 3}
+      propertyPath: m_Name
+      value: bambooWallCard_mesh (14)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8252221884370053235, guid: ac76bd2fac6fa1048a0299d95cffb0ca,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ac76bd2fac6fa1048a0299d95cffb0ca, type: 3}
@@ -39488,51 +39468,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 812477890}
     m_Modifications:
-    - target: {fileID: 4962564144869022304, guid: ac76bd2fac6fa1048a0299d95cffb0ca,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 44
-      objectReference: {fileID: 0}
-    - target: {fileID: 4962564144869022304, guid: ac76bd2fac6fa1048a0299d95cffb0ca,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0.86
-      objectReference: {fileID: 0}
-    - target: {fileID: 4962564144869022304, guid: ac76bd2fac6fa1048a0299d95cffb0ca,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 18.6
-      objectReference: {fileID: 0}
-    - target: {fileID: 4962564144869022304, guid: ac76bd2fac6fa1048a0299d95cffb0ca,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -82.59
-      objectReference: {fileID: 0}
-    - target: {fileID: 4962564144869022304, guid: ac76bd2fac6fa1048a0299d95cffb0ca,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: -0.015112815
-      objectReference: {fileID: 0}
-    - target: {fileID: 4962564144869022304, guid: ac76bd2fac6fa1048a0299d95cffb0ca,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0.9998858
-      objectReference: {fileID: 0}
-    - target: {fileID: 4962564144869022304, guid: ac76bd2fac6fa1048a0299d95cffb0ca,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 181.732
-      objectReference: {fileID: 0}
-    - target: {fileID: 8252221884370053235, guid: ac76bd2fac6fa1048a0299d95cffb0ca,
-        type: 3}
-      propertyPath: m_Name
-      value: bambooWallCard_mesh (12)
-      objectReference: {fileID: 0}
-    - target: {fileID: 8252221884370053235, guid: ac76bd2fac6fa1048a0299d95cffb0ca,
-        type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
-      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 76d1449ab1e04764697f763908a3894d,
         type: 3}
       propertyPath: m_RootOrder
@@ -39593,6 +39528,51 @@ PrefabInstance:
       propertyPath: m_Name
       value: bambooWallCard_mesh (10)
       objectReference: {fileID: 0}
+    - target: {fileID: 4962564144869022304, guid: ac76bd2fac6fa1048a0299d95cffb0ca,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 44
+      objectReference: {fileID: 0}
+    - target: {fileID: 4962564144869022304, guid: ac76bd2fac6fa1048a0299d95cffb0ca,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.86
+      objectReference: {fileID: 0}
+    - target: {fileID: 4962564144869022304, guid: ac76bd2fac6fa1048a0299d95cffb0ca,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 18.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4962564144869022304, guid: ac76bd2fac6fa1048a0299d95cffb0ca,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -82.59
+      objectReference: {fileID: 0}
+    - target: {fileID: 4962564144869022304, guid: ac76bd2fac6fa1048a0299d95cffb0ca,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: -0.015112815
+      objectReference: {fileID: 0}
+    - target: {fileID: 4962564144869022304, guid: ac76bd2fac6fa1048a0299d95cffb0ca,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.9998858
+      objectReference: {fileID: 0}
+    - target: {fileID: 4962564144869022304, guid: ac76bd2fac6fa1048a0299d95cffb0ca,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 181.732
+      objectReference: {fileID: 0}
+    - target: {fileID: 8252221884370053235, guid: ac76bd2fac6fa1048a0299d95cffb0ca,
+        type: 3}
+      propertyPath: m_Name
+      value: bambooWallCard_mesh (12)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8252221884370053235, guid: ac76bd2fac6fa1048a0299d95cffb0ca,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ac76bd2fac6fa1048a0299d95cffb0ca, type: 3}
 --- !u!1001 &2075404184
@@ -39610,7 +39590,7 @@ PrefabInstance:
     - target: {fileID: 2278254706798349157, guid: c02c5b70ae9dda842a41b4ac8b1e84eb,
         type: 3}
       propertyPath: m_RootOrder
-      value: 39
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 2278254706798349157, guid: c02c5b70ae9dda842a41b4ac8b1e84eb,
         type: 3}
@@ -40235,7 +40215,7 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: 7eba87d01db81d54290505adb69ad710,
         type: 3}
       propertyPath: m_RootOrder
-      value: 42
+      value: 43
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 7eba87d01db81d54290505adb69ad710,
         type: 3}
@@ -41116,7 +41096,7 @@ PrefabInstance:
     - target: {fileID: 1186794954879543636, guid: 336e1f4bfe325a941bbf4cfb69e7ca97,
         type: 3}
       propertyPath: m_RootOrder
-      value: 51
+      value: 52
       objectReference: {fileID: 0}
     - target: {fileID: 1186794954879543636, guid: 336e1f4bfe325a941bbf4cfb69e7ca97,
         type: 3}
@@ -41978,12 +41958,12 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: 7ebda6b89baa77c47a96da8c8464fbc5,
         type: 3}
       propertyPath: m_RootOrder
-      value: 34
+      value: 35
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 7ebda6b89baa77c47a96da8c8464fbc5,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 7ebda6b89baa77c47a96da8c8464fbc5,
         type: 3}
@@ -42872,7 +42852,7 @@ PrefabInstance:
     - target: {fileID: 1186794954879543636, guid: 336e1f4bfe325a941bbf4cfb69e7ca97,
         type: 3}
       propertyPath: m_RootOrder
-      value: 50
+      value: 51
       objectReference: {fileID: 0}
     - target: {fileID: 1186794954879543636, guid: 336e1f4bfe325a941bbf4cfb69e7ca97,
         type: 3}
@@ -43225,66 +43205,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7289062037087106037}
     m_Modifications:
-    - target: {fileID: 4962564144869022304, guid: ac76bd2fac6fa1048a0299d95cffb0ca,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4962564144869022304, guid: ac76bd2fac6fa1048a0299d95cffb0ca,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.07165855
-      objectReference: {fileID: 0}
-    - target: {fileID: 4962564144869022304, guid: ac76bd2fac6fa1048a0299d95cffb0ca,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.09027854
-      objectReference: {fileID: 0}
-    - target: {fileID: 4962564144869022304, guid: ac76bd2fac6fa1048a0299d95cffb0ca,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.15495715
-      objectReference: {fileID: 0}
-    - target: {fileID: 4962564144869022304, guid: ac76bd2fac6fa1048a0299d95cffb0ca,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0.18586574
-      objectReference: {fileID: 0}
-    - target: {fileID: 4962564144869022304, guid: ac76bd2fac6fa1048a0299d95cffb0ca,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.3061224
-      objectReference: {fileID: 0}
-    - target: {fileID: 4962564144869022304, guid: ac76bd2fac6fa1048a0299d95cffb0ca,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -0.04526076
-      objectReference: {fileID: 0}
-    - target: {fileID: 4962564144869022304, guid: ac76bd2fac6fa1048a0299d95cffb0ca,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: -0.05451251
-      objectReference: {fileID: 0}
-    - target: {fileID: 4962564144869022304, guid: ac76bd2fac6fa1048a0299d95cffb0ca,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0.9985131
-      objectReference: {fileID: 0}
-    - target: {fileID: 4962564144869022304, guid: ac76bd2fac6fa1048a0299d95cffb0ca,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 457.741
-      objectReference: {fileID: 0}
-    - target: {fileID: 8252221884370053235, guid: ac76bd2fac6fa1048a0299d95cffb0ca,
-        type: 3}
-      propertyPath: m_Name
-      value: bambooWallCard_mesh (14)
-      objectReference: {fileID: 0}
-    - target: {fileID: 8252221884370053235, guid: ac76bd2fac6fa1048a0299d95cffb0ca,
-        type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
-      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 76d1449ab1e04764697f763908a3894d,
         type: 3}
       propertyPath: m_RootOrder
@@ -43345,6 +43265,66 @@ PrefabInstance:
       propertyPath: m_Name
       value: bambooWallCard_mesh (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 4962564144869022304, guid: ac76bd2fac6fa1048a0299d95cffb0ca,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4962564144869022304, guid: ac76bd2fac6fa1048a0299d95cffb0ca,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.07165855
+      objectReference: {fileID: 0}
+    - target: {fileID: 4962564144869022304, guid: ac76bd2fac6fa1048a0299d95cffb0ca,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.09027854
+      objectReference: {fileID: 0}
+    - target: {fileID: 4962564144869022304, guid: ac76bd2fac6fa1048a0299d95cffb0ca,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.15495715
+      objectReference: {fileID: 0}
+    - target: {fileID: 4962564144869022304, guid: ac76bd2fac6fa1048a0299d95cffb0ca,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.18586574
+      objectReference: {fileID: 0}
+    - target: {fileID: 4962564144869022304, guid: ac76bd2fac6fa1048a0299d95cffb0ca,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.3061224
+      objectReference: {fileID: 0}
+    - target: {fileID: 4962564144869022304, guid: ac76bd2fac6fa1048a0299d95cffb0ca,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.04526076
+      objectReference: {fileID: 0}
+    - target: {fileID: 4962564144869022304, guid: ac76bd2fac6fa1048a0299d95cffb0ca,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: -0.05451251
+      objectReference: {fileID: 0}
+    - target: {fileID: 4962564144869022304, guid: ac76bd2fac6fa1048a0299d95cffb0ca,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.9985131
+      objectReference: {fileID: 0}
+    - target: {fileID: 4962564144869022304, guid: ac76bd2fac6fa1048a0299d95cffb0ca,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 457.741
+      objectReference: {fileID: 0}
+    - target: {fileID: 8252221884370053235, guid: ac76bd2fac6fa1048a0299d95cffb0ca,
+        type: 3}
+      propertyPath: m_Name
+      value: bambooWallCard_mesh (14)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8252221884370053235, guid: ac76bd2fac6fa1048a0299d95cffb0ca,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ac76bd2fac6fa1048a0299d95cffb0ca, type: 3}
 --- !u!4 &8091822089961073096 stripped
@@ -43368,7 +43348,7 @@ PrefabInstance:
     - target: {fileID: 8532570208323289201, guid: 146d07aed814f8a429cd31bb3bbda515,
         type: 3}
       propertyPath: m_RootOrder
-      value: 45
+      value: 46
       objectReference: {fileID: 0}
     - target: {fileID: 8532570208323289201, guid: 146d07aed814f8a429cd31bb3bbda515,
         type: 3}
@@ -44976,6 +44956,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_StaticEditorFlags
       value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 671127896521927568, guid: 9a8cfe92827723a4f9eef9032639eac9,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.104781
+      objectReference: {fileID: 0}
+    - target: {fileID: 671127896521927568, guid: 9a8cfe92827723a4f9eef9032639eac9,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.25392
       objectReference: {fileID: 0}
     - target: {fileID: 886193994835275164, guid: 9a8cfe92827723a4f9eef9032639eac9,
         type: 3}
@@ -46741,66 +46731,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7289062037087106037}
     m_Modifications:
-    - target: {fileID: 4962564144869022304, guid: ac76bd2fac6fa1048a0299d95cffb0ca,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4962564144869022304, guid: ac76bd2fac6fa1048a0299d95cffb0ca,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.07983944
-      objectReference: {fileID: 0}
-    - target: {fileID: 4962564144869022304, guid: ac76bd2fac6fa1048a0299d95cffb0ca,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.09027854
-      objectReference: {fileID: 0}
-    - target: {fileID: 4962564144869022304, guid: ac76bd2fac6fa1048a0299d95cffb0ca,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.1268499
-      objectReference: {fileID: 0}
-    - target: {fileID: 4962564144869022304, guid: ac76bd2fac6fa1048a0299d95cffb0ca,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0.14329
-      objectReference: {fileID: 0}
-    - target: {fileID: 4962564144869022304, guid: ac76bd2fac6fa1048a0299d95cffb0ca,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.3061224
-      objectReference: {fileID: 0}
-    - target: {fileID: 4962564144869022304, guid: ac76bd2fac6fa1048a0299d95cffb0ca,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -0.18929493
-      objectReference: {fileID: 0}
-    - target: {fileID: 4962564144869022304, guid: ac76bd2fac6fa1048a0299d95cffb0ca,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.9735434
-      objectReference: {fileID: 0}
-    - target: {fileID: 4962564144869022304, guid: ac76bd2fac6fa1048a0299d95cffb0ca,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0.22850241
-      objectReference: {fileID: 0}
-    - target: {fileID: 4962564144869022304, guid: ac76bd2fac6fa1048a0299d95cffb0ca,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 617.573
-      objectReference: {fileID: 0}
-    - target: {fileID: 8252221884370053235, guid: ac76bd2fac6fa1048a0299d95cffb0ca,
-        type: 3}
-      propertyPath: m_Name
-      value: bambooWallCard_mesh (15)
-      objectReference: {fileID: 0}
-    - target: {fileID: 8252221884370053235, guid: ac76bd2fac6fa1048a0299d95cffb0ca,
-        type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
-      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 76d1449ab1e04764697f763908a3894d,
         type: 3}
       propertyPath: m_RootOrder
@@ -46860,6 +46790,66 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: bambooWallCard_mesh (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4962564144869022304, guid: ac76bd2fac6fa1048a0299d95cffb0ca,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4962564144869022304, guid: ac76bd2fac6fa1048a0299d95cffb0ca,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.07983944
+      objectReference: {fileID: 0}
+    - target: {fileID: 4962564144869022304, guid: ac76bd2fac6fa1048a0299d95cffb0ca,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.09027854
+      objectReference: {fileID: 0}
+    - target: {fileID: 4962564144869022304, guid: ac76bd2fac6fa1048a0299d95cffb0ca,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.1268499
+      objectReference: {fileID: 0}
+    - target: {fileID: 4962564144869022304, guid: ac76bd2fac6fa1048a0299d95cffb0ca,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.14329
+      objectReference: {fileID: 0}
+    - target: {fileID: 4962564144869022304, guid: ac76bd2fac6fa1048a0299d95cffb0ca,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.3061224
+      objectReference: {fileID: 0}
+    - target: {fileID: 4962564144869022304, guid: ac76bd2fac6fa1048a0299d95cffb0ca,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.18929493
+      objectReference: {fileID: 0}
+    - target: {fileID: 4962564144869022304, guid: ac76bd2fac6fa1048a0299d95cffb0ca,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.9735434
+      objectReference: {fileID: 0}
+    - target: {fileID: 4962564144869022304, guid: ac76bd2fac6fa1048a0299d95cffb0ca,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.22850241
+      objectReference: {fileID: 0}
+    - target: {fileID: 4962564144869022304, guid: ac76bd2fac6fa1048a0299d95cffb0ca,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 617.573
+      objectReference: {fileID: 0}
+    - target: {fileID: 8252221884370053235, guid: ac76bd2fac6fa1048a0299d95cffb0ca,
+        type: 3}
+      propertyPath: m_Name
+      value: bambooWallCard_mesh (15)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8252221884370053235, guid: ac76bd2fac6fa1048a0299d95cffb0ca,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ac76bd2fac6fa1048a0299d95cffb0ca, type: 3}
@@ -47064,7 +47054,7 @@ PrefabInstance:
     - target: {fileID: 8532570208323289201, guid: 146d07aed814f8a429cd31bb3bbda515,
         type: 3}
       propertyPath: m_RootOrder
-      value: 47
+      value: 48
       objectReference: {fileID: 0}
     - target: {fileID: 8532570208323289201, guid: 146d07aed814f8a429cd31bb3bbda515,
         type: 3}
@@ -47403,7 +47393,7 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: 63c163f090f25384c819a790e13a4e4f,
         type: 3}
       propertyPath: m_RootOrder
-      value: 38
+      value: 39
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 63c163f090f25384c819a790e13a4e4f,
         type: 3}
@@ -48169,7 +48159,7 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: 343712377a9150441adeebf28aabd976,
         type: 3}
       propertyPath: m_RootOrder
-      value: 37
+      value: 38
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 343712377a9150441adeebf28aabd976,
         type: 3}
@@ -48289,7 +48279,7 @@ LODGroup:
     fadeTransitionWidth: 0
     renderers:
     - renderer: {fileID: 7603476809705387300}
-  - screenRelativeHeight: 0.45368648
+  - screenRelativeHeight: 0.4989088
     fadeTransitionWidth: 0
     renderers:
     - renderer: {fileID: 5607965067536202068}
@@ -48776,7 +48766,7 @@ PrefabInstance:
     - target: {fileID: 8532570208323289201, guid: 146d07aed814f8a429cd31bb3bbda515,
         type: 3}
       propertyPath: m_RootOrder
-      value: 46
+      value: 47
       objectReference: {fileID: 0}
     - target: {fileID: 8532570208323289201, guid: 146d07aed814f8a429cd31bb3bbda515,
         type: 3}
@@ -48846,7 +48836,7 @@ PrefabInstance:
     - target: {fileID: 1933625443127035590, guid: 123011f0847244b459cdf6747aab0fa5,
         type: 3}
       propertyPath: m_RootOrder
-      value: 40
+      value: 41
       objectReference: {fileID: 0}
     - target: {fileID: 1933625443127035590, guid: 123011f0847244b459cdf6747aab0fa5,
         type: 3}
@@ -49431,66 +49421,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7289062037087106037}
     m_Modifications:
-    - target: {fileID: 4962564144869022304, guid: ac76bd2fac6fa1048a0299d95cffb0ca,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4962564144869022304, guid: ac76bd2fac6fa1048a0299d95cffb0ca,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.0716585
-      objectReference: {fileID: 0}
-    - target: {fileID: 4962564144869022304, guid: ac76bd2fac6fa1048a0299d95cffb0ca,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.09027854
-      objectReference: {fileID: 0}
-    - target: {fileID: 4962564144869022304, guid: ac76bd2fac6fa1048a0299d95cffb0ca,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.15495737
-      objectReference: {fileID: 0}
-    - target: {fileID: 4962564144869022304, guid: ac76bd2fac6fa1048a0299d95cffb0ca,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0.0028492585
-      objectReference: {fileID: 0}
-    - target: {fileID: 4962564144869022304, guid: ac76bd2fac6fa1048a0299d95cffb0ca,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.3061224
-      objectReference: {fileID: 0}
-    - target: {fileID: 4962564144869022304, guid: ac76bd2fac6fa1048a0299d95cffb0ca,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0.24517474
-      objectReference: {fileID: 0}
-    - target: {fileID: 4962564144869022304, guid: ac76bd2fac6fa1048a0299d95cffb0ca,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: -0.9985132
-      objectReference: {fileID: 0}
-    - target: {fileID: 4962564144869022304, guid: ac76bd2fac6fa1048a0299d95cffb0ca,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0.054509647
-      objectReference: {fileID: 0}
-    - target: {fileID: 4962564144869022304, guid: ac76bd2fac6fa1048a0299d95cffb0ca,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 277.741
-      objectReference: {fileID: 0}
-    - target: {fileID: 8252221884370053235, guid: ac76bd2fac6fa1048a0299d95cffb0ca,
-        type: 3}
-      propertyPath: m_Name
-      value: bambooWallCard_mesh (13)
-      objectReference: {fileID: 0}
-    - target: {fileID: 8252221884370053235, guid: ac76bd2fac6fa1048a0299d95cffb0ca,
-        type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
-      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 76d1449ab1e04764697f763908a3894d,
         type: 3}
       propertyPath: m_RootOrder
@@ -49550,6 +49480,66 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: bambooWallCard_mesh (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4962564144869022304, guid: ac76bd2fac6fa1048a0299d95cffb0ca,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4962564144869022304, guid: ac76bd2fac6fa1048a0299d95cffb0ca,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.0716585
+      objectReference: {fileID: 0}
+    - target: {fileID: 4962564144869022304, guid: ac76bd2fac6fa1048a0299d95cffb0ca,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.09027854
+      objectReference: {fileID: 0}
+    - target: {fileID: 4962564144869022304, guid: ac76bd2fac6fa1048a0299d95cffb0ca,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.15495737
+      objectReference: {fileID: 0}
+    - target: {fileID: 4962564144869022304, guid: ac76bd2fac6fa1048a0299d95cffb0ca,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.0028492585
+      objectReference: {fileID: 0}
+    - target: {fileID: 4962564144869022304, guid: ac76bd2fac6fa1048a0299d95cffb0ca,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.3061224
+      objectReference: {fileID: 0}
+    - target: {fileID: 4962564144869022304, guid: ac76bd2fac6fa1048a0299d95cffb0ca,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.24517474
+      objectReference: {fileID: 0}
+    - target: {fileID: 4962564144869022304, guid: ac76bd2fac6fa1048a0299d95cffb0ca,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: -0.9985132
+      objectReference: {fileID: 0}
+    - target: {fileID: 4962564144869022304, guid: ac76bd2fac6fa1048a0299d95cffb0ca,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.054509647
+      objectReference: {fileID: 0}
+    - target: {fileID: 4962564144869022304, guid: ac76bd2fac6fa1048a0299d95cffb0ca,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 277.741
+      objectReference: {fileID: 0}
+    - target: {fileID: 8252221884370053235, guid: ac76bd2fac6fa1048a0299d95cffb0ca,
+        type: 3}
+      propertyPath: m_Name
+      value: bambooWallCard_mesh (13)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8252221884370053235, guid: ac76bd2fac6fa1048a0299d95cffb0ca,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ac76bd2fac6fa1048a0299d95cffb0ca, type: 3}
@@ -49669,7 +49659,7 @@ PrefabInstance:
     - target: {fileID: 8532570208323289201, guid: 146d07aed814f8a429cd31bb3bbda515,
         type: 3}
       propertyPath: m_RootOrder
-      value: 43
+      value: 44
       objectReference: {fileID: 0}
     - target: {fileID: 8532570208323289201, guid: 146d07aed814f8a429cd31bb3bbda515,
         type: 3}
@@ -49824,7 +49814,7 @@ PrefabInstance:
     - target: {fileID: 8532570208323289201, guid: 146d07aed814f8a429cd31bb3bbda515,
         type: 3}
       propertyPath: m_RootOrder
-      value: 44
+      value: 45
       objectReference: {fileID: 0}
     - target: {fileID: 8532570208323289201, guid: 146d07aed814f8a429cd31bb3bbda515,
         type: 3}
@@ -50359,7 +50349,7 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: e1789be4d36b6b347a67c92afcc3fdf3,
         type: 3}
       propertyPath: m_RootOrder
-      value: 36
+      value: 34
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: e1789be4d36b6b347a67c92afcc3fdf3,
         type: 3}
@@ -50637,7 +50627,7 @@ PrefabInstance:
     - target: {fileID: 1933625443127035590, guid: 123011f0847244b459cdf6747aab0fa5,
         type: 3}
       propertyPath: m_RootOrder
-      value: 41
+      value: 42
       objectReference: {fileID: 0}
     - target: {fileID: 1933625443127035590, guid: 123011f0847244b459cdf6747aab0fa5,
         type: 3}
@@ -50732,7 +50722,7 @@ PrefabInstance:
     - target: {fileID: 8532570208323289201, guid: 146d07aed814f8a429cd31bb3bbda515,
         type: 3}
       propertyPath: m_RootOrder
-      value: 48
+      value: 49
       objectReference: {fileID: 0}
     - target: {fileID: 8532570208323289201, guid: 146d07aed814f8a429cd31bb3bbda515,
         type: 3}

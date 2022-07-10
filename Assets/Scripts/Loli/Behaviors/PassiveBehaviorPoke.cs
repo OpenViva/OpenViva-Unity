@@ -83,7 +83,7 @@ namespace viva
 
         public bool AttemptTummyPoke(Item sourceItem)
         {
-            viva.DevTools.LogExtended("Attempting TummyPoke", true, true);
+            //viva.DevTools.LogExtended("Attempting TummyPoke", true, true);
             //tummy poking supported only while standing
             if (self.bodyState != BodyState.STAND)
             {
@@ -130,14 +130,11 @@ namespace viva
             }
             if (self.active.RequestPermission(ActiveBehaviors.Permission.ALLOW_ROOT_FACING_TARGET_CHANGE))
             {
-                if (self.bodyState == BodyState.STAND)
-                { //Make sure to only face direction when standing
-                    self.autonomy.Interrupt(new AutonomyFaceDirection(self.autonomy, "face direction", delegate (TaskTarget target)
-                    {
-                        target.SetTargetPosition(GameDirector.player.transform.position + lastPokeSource.position / 2.0f);
-                    }));
-                    // self.SetRootFacingTarget( ( GameDirector.player.transform.position+lastPokeSource.position )/2.0f, 160.0f, 5.0f, 10.0f );
-                }
+                self.autonomy.Interrupt(new AutonomyFaceDirection(self.autonomy, "face direction", delegate (TaskTarget target)
+                {
+                    target.SetTargetPosition(GameDirector.player.transform.position + lastPokeSource.position / 2.0f);
+                }));
+                // self.SetRootFacingTarget( ( GameDirector.player.transform.position+lastPokeSource.position )/2.0f, 160.0f, 5.0f, 10.0f );
             }
             return true;
         }
@@ -204,8 +201,9 @@ namespace viva
                     return self.GetAnimationFromSet(Loli.Animation.BATHTUB_RELAX_FACE_POKE_RIGHT, pokeSideIsLeft);
                 case BodyState.BATHING_IDLE:
                     return GetBathtubIdleFacePokedAnimation(pokeSideIsLeft);
-                // case BodyState.SLEEP_PILLOW_SIDE:
-                // return self.active.sleeping.GetSleepSidePillowFacePokeAnimation( pokeSideIsLeft );
+                case BodyState.SLEEP_PILLOW_SIDE_LEFT:
+                case BodyState.SLEEP_PILLOW_SIDE_RIGHT:
+                    return self.active.sleeping.GetSleepSidePillowFacePokeAnimation( pokeSideIsLeft );
                 case BodyState.SLEEP_PILLOW_UP:
                     return self.GetAnimationFromSet(Loli.Animation.SLEEP_PILLOW_UP_BOTHER_RIGHT, pokeSideIsLeft);
                 case BodyState.AWAKE_PILLOW_UP:
@@ -248,10 +246,11 @@ namespace viva
                     return self.GetAnimationFromSet(Loli.Animation.BATHTUB_RELAX_FACE_POKE_RIGHT, pokeSideIsLeft);
                 case BodyState.BATHING_IDLE:
                     return GetBathtubIdlePostFacePokedAnimation(pokeSideIsLeft);
-                    //case BodyState.SLEEP_PILLOW_SIDE_LEFT:
-                    //return self.active.sleeping.GetSleepSidePillowPostFacePokeAnimation();
-                    //case BodyState.SLEEP_PILLOW_UP:
-                    //return self.active.sleeping.GetSleepPillowUpPostFacePokeAnimation();
+                case BodyState.SLEEP_PILLOW_SIDE_LEFT:
+                case BodyState.SLEEP_PILLOW_SIDE_RIGHT:
+                    return self.active.sleeping.GetSleepSidePillowPostFacePokeAnimation();
+                case BodyState.SLEEP_PILLOW_UP:
+                    return self.active.sleeping.GetSleepPillowUpPostFacePokeAnimation();
             }
             return self.GetLastReturnableIdleAnimation();
         }
@@ -479,11 +478,15 @@ namespace viva
             }
             if (self.active.RequestPermission(ActiveBehaviors.Permission.ALLOW_ROOT_FACING_TARGET_CHANGE))
             {
-                self.autonomy.Interrupt(new AutonomyFaceDirection(self.autonomy, "face direction", delegate (TaskTarget target)
+                if (self.bodyState == BodyState.STAND || self.bodyState != BodyState.AWAKE_PILLOW_UP || self.bodyState != BodyState.AWAKE_PILLOW_SIDE_LEFT || self.bodyState != BodyState.AWAKE_PILLOW_SIDE_RIGHT
+                || self.bodyState == BodyState.SQUAT || self.bodyState != BodyState.SLEEP_PILLOW_SIDE_LEFT || self.bodyState != BodyState.SLEEP_PILLOW_SIDE_RIGHT || self.bodyState != BodyState.SLEEP_PILLOW_UP)
                 {
-                    target.SetTargetPosition(GameDirector.player.transform.position + lastPokeSource.position);
-                }));
-                // self.SetRootFacingTarget( ( GameDirector.player.transform.position+lastPokeSource.position )/2.0f, 160.0f, 5.0f, 10.0f );
+                    self.autonomy.Interrupt(new AutonomyFaceDirection(self.autonomy, "face direction", delegate (TaskTarget target)
+                    {
+                        target.SetTargetPosition(GameDirector.player.transform.position + lastPokeSource.position);
+                    }));
+                    // self.SetRootFacingTarget( ( GameDirector.player.transform.position+lastPokeSource.position )/2.0f, 160.0f, 5.0f, 10.0f );
+                }
             }
             //viva.DevTools.LogExtended("", true, true);
             return true;

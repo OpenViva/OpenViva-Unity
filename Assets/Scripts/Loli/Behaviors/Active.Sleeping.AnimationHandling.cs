@@ -73,55 +73,76 @@ namespace viva
         //     return GetLaySidePillowHeadpatStartAnimation();	//same animation
         // }
 
-        // public Loli.Animation GetSleepSidePillowFacePokeAnimation( int pokeSideIsLeft ){
-        // 	if( !layingOnRightSide.HasValue ){
-        // 		return Loli.Animation.NONE;
-        // 	}
-        // 	if( phase == SleepingPhase.SLEEPING ){
-        // 		if( layingOnRightSide.Value ){
-        // 			return Loli.Animation.SLEEP_PILLOW_SIDE_BOTHER_RIGHT;
-        // 		}else{
-        // 			return Loli.Animation.SLEEP_PILLOW_SIDE_BOTHER_LEFT;
-        // 		}
-        // 	}else{
-        // 		//TODO: sleep side pillow awake poke animations?
-        // 	}
-        // 	return Loli.Animation.NONE;
-        // }
+        public Loli.Animation GetSleepSidePillowFacePokeAnimation(int pokeSideIsLeft)
+        {
+            if (!layingOnRightSide.HasValue)
+            {
+                return Loli.Animation.NONE;
+            }
+            if (phase == SleepingPhase.SLEEPING)
+            {
+                if (layingOnRightSide.Value)
+                {
+                    return Loli.Animation.SLEEP_PILLOW_SIDE_BOTHER_RIGHT;
+                }
+                else
+                {
+                    return Loli.Animation.SLEEP_PILLOW_SIDE_BOTHER_LEFT;
+                }
+            }
+            else
+            {
+                //TODO: sleep side pillow awake poke animations?
+            }
+            return Loli.Animation.NONE;
+        }
 
-        // public Loli.Animation GetSleepSidePillowPostFacePokeAnimation(){
+        public Loli.Animation GetSleepSidePillowPostFacePokeAnimation()
+        {
 
-        // 	if( !layingOnRightSide.HasValue ){
-        // 		return Loli.Animation.NONE;
-        // 	}
+            if (!layingOnRightSide.HasValue)
+            {
+                return Loli.Animation.NONE;
+            }
 
-        // 	if( CheckIfShouldWakeUpFromBother() ){
-        // 		return GetWakeUpAnimation( false );
-        // 	}
-        // 	if( self.passive.poke.pokeCount >= 2 ){
-        // 		if( layingOnRightSide.Value ){
-        // 			return Loli.Animation.SLEEP_PILLOW_SIDE_TO_SLEEP_PILLOW_UP_RIGHT;
-        // 		}else{
-        // 			return Loli.Animation.SLEEP_PILLOW_SIDE_TO_SLEEP_PILLOW_UP_LEFT;
-        // 		}
-        // 	}
-        // 	return Loli.Animation.NONE;
-        // }
+            if (CheckIfShouldWakeUpFromBother())
+            {
+                return GetWakeUpAnimation(false);
+            }
+            if (self.passive.poke.pokeCount >= 2)
+            {
+                if (layingOnRightSide.Value)
+                {
+                    return Loli.Animation.SLEEP_PILLOW_SIDE_TO_SLEEP_PILLOW_UP_RIGHT;
+                }
+                else
+                {
+                    return Loli.Animation.SLEEP_PILLOW_SIDE_TO_SLEEP_PILLOW_UP_LEFT;
+                }
+            }
+            return Loli.Animation.NONE;
+        }
 
-        // public Loli.Animation GetSleepPillowUpPostFacePokeAnimation(){
+        public Loli.Animation GetSleepPillowUpPostFacePokeAnimation()
+        {
 
-        // 	if( CheckIfShouldWakeUpFromBother() ){
-        // 		return GetWakeUpAnimation( false );
-        // 	}
-        // 	if( self.passive.poke.pokeCount >= 2 ){
-        // 		if( Random.value > 0.5f ){
-        // 			return Loli.Animation.SLEEP_PILLOW_UP_TO_SLEEP_PILLOW_SIDE_LEFT;
-        // 		}else{
-        // 			return Loli.Animation.SLEEP_PILLOW_UP_TO_SLEEP_PILLOW_SIDE_RIGHT;
-        // 		}
-        // 	}
-        // 	return Loli.Animation.NONE;
-        // }
+            if (CheckIfShouldWakeUpFromBother())
+            {
+                return GetWakeUpAnimation(false);
+            }
+            if (self.passive.poke.pokeCount >= 2)
+            {
+                if (UnityEngine.Random.value > 0.5f)
+                {
+                    return Loli.Animation.SLEEP_PILLOW_UP_TO_SLEEP_PILLOW_SIDE_LEFT;
+                }
+                else
+                {
+                    return Loli.Animation.SLEEP_PILLOW_UP_TO_SLEEP_PILLOW_SIDE_RIGHT;
+                }
+            }
+            return Loli.Animation.NONE;
+        }
     }
 
 }

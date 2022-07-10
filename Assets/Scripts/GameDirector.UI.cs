@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using UnityEngine.InputSystem.UI;
+using UnityEngine.InputSystem;
 
 
 namespace viva
@@ -35,6 +37,9 @@ namespace viva
         private EventSystem eventSystem;    //there should be 1 in the entire scene
 
         [SerializeField]
+        private InputSystemUIInputModule inputModule;
+
+        [SerializeField]
         private MeshFilter raycastLaserMF;
 
         private Mesh laserMesh;
@@ -49,6 +54,20 @@ namespace viva
         private Player sourcePlayer = null;
         private bool useRightHandForVRPointer = true;
 
+        public static Vector2 mousePosition
+        {
+            get
+            {
+                if(instance == null)
+                {
+                    return new Vector2();
+                }
+                else
+                {
+                    return instance.inputModule.point.action.ReadValue<Vector2>();
+                }
+            }
+        }
 
         public void DisableNextClick()
         {

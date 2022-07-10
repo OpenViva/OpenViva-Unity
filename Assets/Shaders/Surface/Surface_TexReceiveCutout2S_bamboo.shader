@@ -100,6 +100,7 @@ Shader "Surface/TexReceiveCutout2S_bamboo" {
 				UNITY_FOG_COORDS(3)
                 fixed3 viewDir : TEXCOORD4;
                 float3 lightAmbience : TEXCOORD5;
+                float3 worldPos : TEXCOORD6;
 
                 UNITY_VERTEX_OUTPUT_STEREO
 			};
@@ -123,6 +124,7 @@ Shader "Surface/TexReceiveCutout2S_bamboo" {
                 fixed3 worldPos = mul( unity_ObjectToWorld, v.vertex );
                 fixed3 worldNorm = UnityObjectToWorldNormal( v.normal );
                 o.viewDir = normalize( worldPos-_WorldSpaceCameraPos.xyz );
+                o.worldPos = worldPos;
 
                 //calculate vface
                 fixed vface = -dot( o.viewDir, worldNorm );
@@ -145,14 +147,14 @@ Shader "Surface/TexReceiveCutout2S_bamboo" {
 
 			fixed4 frag (v2f i ) : SV_Target
 			{
-                UNITY_SETUP_STEREO_EYE_INDEX_POST_VERTEX(i);
-
                 fixed4 col = tex2D( _MainTex, i.uv );
                 clip(col.a-_Cutoff);
 
-				fixed atten = LIGHT_ATTENUATION(i);
+                UNITY_SETUP_STEREO_EYE_INDEX_POST_VERTEX(i);
+
+                UNITY_LIGHT_ATTENUATION(atten, i, i.worldPos);
                 fixed sunRim = saturate( dot( i.viewDir, _WorldSpaceLightPos0.xyz ) )*atten;
-                col.rgb *= lerp( UNITY_LIGHTMODEL_AMBIENT, _LightColor0*2.0, atten+sunRim )+i.lightAmbience;
+                col.rgb *= lerp( UNITY_LIGHTMODEL_AMBIENT, _LightColor0*2.0, atten-sunRim )+i.lightAmbience;
 				UNITY_APPLY_FOG(i.fogCoord, col);
 
                 // col.a = 1.;

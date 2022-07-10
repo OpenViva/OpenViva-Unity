@@ -46,6 +46,8 @@ namespace viva
         [SerializeField]
         private Text dayNightCycleSpeedText;
         [SerializeField]
+        private Text reflectionDistanceText;
+        [SerializeField]
         private GameObject beginnerFriendlyKeyboard;
         [SerializeField]
         private GameObject beginnerFriendlyVR;
@@ -143,6 +145,17 @@ namespace viva
         public void clickShiftDayNightCycleSpeedIndex(int indexAmount)
         {
             dayNightCycleSpeedText.text = GameDirector.settings.AdjustDayTimeSpeedIndex(indexAmount);
+        }
+
+        private void UpdateReflectionDistanceText()
+        {
+            reflectionDistanceText.text = "" + GameDirector.settings.reflectionDistance + "%";
+        }
+
+        public void clickShiftReflectionDistance(int amount)
+        {
+            GameDirector.settings.AdjustReflectionDistance(amount);
+            UpdateReflectionDistanceText();
         }
         private void UpdateMouseSensitivityText()
         {

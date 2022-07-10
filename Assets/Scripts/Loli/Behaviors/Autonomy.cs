@@ -271,7 +271,7 @@ namespace viva
                 successTime = null;
                 failTime = null;
                 onRegistered?.Invoke();
-                Debug.Log("Registered " + name + "  " + self.gameObject.name);
+                //Debug.Log("Registered " + name + "  " + self.gameObject.name);
             }
             public void FireOnUnregistered()
             {
@@ -279,7 +279,7 @@ namespace viva
                 UnregisterAllPassives();
 
                 onUnregistered?.Invoke();
-                Debug.Log("Unregistered " + name);
+                //Debug.Log("Unregistered " + name);
             }
             public abstract bool? Progress();
 

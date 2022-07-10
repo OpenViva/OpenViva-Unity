@@ -3,7 +3,7 @@
 --- !u!129 &1
 PlayerSettings:
   m_ObjectHideFlags: 0
-  serializedVersion: 22
+  serializedVersion: 23
   productGUID: ffae0669b04f04e4f877f596b4652e98
   AndroidProfiler: 0
   AndroidFilterTouchesWhenObscured: 0
@@ -50,7 +50,7 @@ PlayerSettings:
   defaultScreenWidthWeb: 960
   defaultScreenHeightWeb: 600
   m_StereoRenderingPath: 1
-  m_ActiveColorSpace: 1
+  m_ActiveColorSpace: 0
   m_MTRendering: 1
   mipStripping: 0
   numberOfMipsStripped: 0
@@ -137,13 +137,10 @@ PlayerSettings:
     16:10: 1
     16:9: 1
     Others: 1
-  bundleVersion: 0.8
+  bundleVersion: 0.2.0
   preloadedAssets:
   - {fileID: 11400000, guid: 8b0be70a9ccfd19469b5e80d3aa62282, type: 2}
   - {fileID: 0}
-  - {fileID: 9130097496388808908, guid: b0cb10e782039904495e2f27de552d0e, type: 2}
-  - {fileID: 11400000, guid: 80309c9f4f4a3914f9c1a70c66e5ccef, type: 2}
-  - {fileID: 3432870880609460142, guid: 08dd485950628844c81f08f1489466f3, type: 2}
   metroInputSource: 0
   wsaTransparentSwapchain: 0
   m_HolographicPauseOnTrackingLoss: 1
@@ -153,11 +150,13 @@ PlayerSettings:
     enable360StereoCapture: 0
   isWsaHolographicRemotingEnabled: 0
   enableFrameTimingStats: 0
+  enableOpenGLProfilerGPURecorders: 1
   useHDRDisplay: 0
   D3DHDRBitDepth: 0
   m_ColorGamuts: 00000000
   targetPixelDensity: 30
   resolutionScalingMode: 0
+  resetResolutionOnWindowResize: 0
   androidSupportedAspectRatio: 1
   androidMaxAspectRatio: 2.1
   applicationIdentifier:
@@ -168,7 +167,7 @@ PlayerSettings:
     tvOS: 0
   overrideDefaultApplicationIdentifier: 0
   AndroidBundleVersionCode: 1
-  AndroidMinSdkVersion: 19
+  AndroidMinSdkVersion: 22
   AndroidTargetSdkVersion: 0
   AndroidPreferredInstallLocation: 1
   aotOptions: 
@@ -224,6 +223,7 @@ PlayerSettings:
   iOSLaunchScreeniPadCustomStoryboardPath: 
   iOSDeviceRequirements: []
   iOSURLSchemes: []
+  macOSURLSchemes: []
   iOSBackgroundModes: 0
   iOSMetalForceHardShadows: 0
   metalEditorSupport: 1
@@ -323,6 +323,9 @@ PlayerSettings:
   - m_BuildTarget: iOSSupport
     m_APIs: 10000000
     m_Automatic: 1
+  - m_BuildTarget: AndroidPlayer
+    m_APIs: 0b00000008000000
+    m_Automatic: 0
   m_BuildTargetVRSettings:
   - m_BuildTarget: Standalone
     m_Enabled: 0
@@ -340,6 +343,7 @@ PlayerSettings:
   m_BuildTargetGroupLightmapEncodingQuality: []
   m_BuildTargetGroupLightmapSettings: []
   m_BuildTargetNormalMapEncoding: []
+  m_BuildTargetDefaultTextureCompressionFormat: []
   playModeTestRunnerEnabled: 0
   runPlayModeTestAsEditModeTest: 0
   actionOnDotNetUnhandledException: 1
@@ -358,6 +362,7 @@ PlayerSettings:
   switchScreenResolutionBehavior: 2
   switchUseCPUProfiler: 0
   switchUseGOLDLinker: 0
+  switchLTOSetting: 0
   switchApplicationID: 0x01004b9000490000
   switchNSODependencies: 
   switchTitleNames_0: 
@@ -561,7 +566,6 @@ PlayerSettings:
   ps4videoRecordingFeaturesUsed: 0
   ps4contentSearchFeaturesUsed: 0
   ps4CompatibilityPS5: 0
-  ps4AllowPS5Detection: 0
   ps4GPU800MHz: 1
   ps4attribEyeToEyeDistanceSettingVR: 0
   ps4IncludedModules: []
@@ -588,25 +592,21 @@ PlayerSettings:
   webGLThreadsSupport: 0
   webGLDecompressionFallback: 0
   scriptingDefineSymbols:
-    1: UNITY_POST_PROCESSING_STACK_V2;BAKERY_INCLUDED
-    4: UNITY_POST_PROCESSING_STACK_V2
-    7: UNITY_POST_PROCESSING_STACK_V2;ENVIRO_LW;ENVIRO_HD
-    13: UNITY_POST_PROCESSING_STACK_V2;ENVIRO_LW;ENVIRO_HD
-    14: ENVIRO_LW;ENVIRO_HD
-    17: UNITY_POST_PROCESSING_STACK_V2
-    18: UNITY_POST_PROCESSING_STACK_V2
-    19: UNITY_POST_PROCESSING_STACK_V2;ENVIRO_LW;ENVIRO_HD
-    21: UNITY_POST_PROCESSING_STACK_V2;ENVIRO_LW;ENVIRO_HD
-    23: UNITY_POST_PROCESSING_STACK_V2
-    24: UNITY_POST_PROCESSING_STACK_V2
-    25: UNITY_POST_PROCESSING_STACK_V2;ENVIRO_LW;ENVIRO_HD
-    26: UNITY_POST_PROCESSING_STACK_V2
-    27: UNITY_POST_PROCESSING_STACK_V2;ENVIRO_LW;ENVIRO_HD
-    28: UNITY_POST_PROCESSING_STACK_V2;ENVIRO_LW;ENVIRO_HD
-    29: UNITY_POST_PROCESSING_STACK_V2;ENVIRO_LW;ENVIRO_HD
-    30: ENVIRO_LW;ENVIRO_HD
-    32: ENVIRO_LW;ENVIRO_HD
-    33: ENVIRO_LW;ENVIRO_HD
+    : UNITY_POST_PROCESSING_STACK_V2
+    Android: UNITY_POST_PROCESSING_STACK_V2;ENVIRO_LW;ENVIRO_HD
+    CloudRendering: ENVIRO_LW;ENVIRO_HD
+    GameCoreXboxOne: ENVIRO_LW;ENVIRO_HD
+    Lumin: UNITY_POST_PROCESSING_STACK_V2;ENVIRO_LW;ENVIRO_HD
+    Nintendo Switch: UNITY_POST_PROCESSING_STACK_V2;ENVIRO_LW;ENVIRO_HD
+    PS4: UNITY_POST_PROCESSING_STACK_V2;ENVIRO_LW;ENVIRO_HD
+    PS5: ENVIRO_LW;ENVIRO_HD
+    Stadia: UNITY_POST_PROCESSING_STACK_V2;ENVIRO_LW;ENVIRO_HD
+    Standalone: UNITY_POST_PROCESSING_STACK_V2;BAKERY_INCLUDED
+    WebGL: UNITY_POST_PROCESSING_STACK_V2;ENVIRO_LW;ENVIRO_HD
+    Windows Store Apps: ENVIRO_LW;ENVIRO_HD
+    XboxOne: UNITY_POST_PROCESSING_STACK_V2;ENVIRO_LW;ENVIRO_HD
+    iPhone: UNITY_POST_PROCESSING_STACK_V2
+    tvOS: UNITY_POST_PROCESSING_STACK_V2;ENVIRO_LW;ENVIRO_HD
   additionalCompilerArguments: {}
   platformArchitecture: {}
   scriptingBackend: {}
@@ -617,7 +617,6 @@ PlayerSettings:
   suppressCommonWarnings: 1
   allowUnsafeCode: 0
   useDeterministicCompilation: 1
-  useReferenceAssemblies: 1
   enableRoslynAnalyzers: 1
   additionalIl2CppArgs: 
   scriptingRuntimeVersion: 1
@@ -706,4 +705,6 @@ PlayerSettings:
   organizationId: sgthale
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 1
+  playerDataPath: 
+  forceSRGBBlit: 1
   virtualTexturingSupportEnabled: 0

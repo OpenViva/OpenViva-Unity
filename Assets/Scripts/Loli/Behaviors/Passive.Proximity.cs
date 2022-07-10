@@ -124,13 +124,17 @@ namespace viva
             {
                 self.SetTargetAnimation(Loli.Animation.STAND_FACE_PROX_ANGRY_SURPRISE);
             }
-            //self.SetRootFacingTarget( item.transform.position, 200.0f, 40.0f, 10.0f );
-            self.autonomy.Interrupt(new AutonomyFaceDirection(self.autonomy, "face direction", delegate (TaskTarget target)
+            if (self.active.RequestPermission(ActiveBehaviors.Permission.ALLOW_ROOT_FACING_TARGET_CHANGE))
             {
-                target.SetTargetPosition(item.transform.position);
-            }, 2.0f));
-
-
+                if (self.bodyState != BodyState.AWAKE_PILLOW_UP && self.bodyState != BodyState.AWAKE_PILLOW_SIDE_LEFT && self.bodyState != BodyState.AWAKE_PILLOW_SIDE_RIGHT)
+                {
+                    //self.SetRootFacingTarget( item.transform.position, 200.0f, 40.0f, 10.0f );
+                    self.autonomy.Interrupt(new AutonomyFaceDirection(self.autonomy, "fast proximity direction", delegate (TaskTarget target)
+                    {
+                        target.SetTargetPosition(item.transform.position);
+                    }, 2.0f));
+                }         
+            }
             Vector3 surprisePush = self.transform.position - item.transform.position;
             surprisePush.y = 0.0f;
             surprisePush = surprisePush.normalized * 1.5f;
@@ -148,12 +152,17 @@ namespace viva
             {
                 self.SetTargetAnimation(Loli.Animation.STAND_FACE_PROX_ANGRY_LOOP);
             }
-            //self.SetRootFacingTarget( item.transform.position, 200.0f, 10.0f, 10.0f );
-            self.autonomy.Interrupt(new AutonomyFaceDirection(self.autonomy, "face direction", delegate (TaskTarget target)
+            if (self.bodyState != BodyState.AWAKE_PILLOW_UP && self.bodyState != BodyState.AWAKE_PILLOW_SIDE_LEFT && self.bodyState != BodyState.AWAKE_PILLOW_SIDE_RIGHT)
             {
-                target.SetTargetPosition(item.transform.position);
-            }, 1.0f));
-
+                if (self.active.RequestPermission(ActiveBehaviors.Permission.ALLOW_ROOT_FACING_TARGET_CHANGE))
+                {
+                    //self.SetRootFacingTarget( item.transform.position, 200.0f, 10.0f, 10.0f );
+                    self.autonomy.Interrupt(new AutonomyFaceDirection(self.autonomy, "slow proximity direction", delegate (TaskTarget target)
+                    {
+                        target.SetTargetPosition(item.transform.position);
+                    }, 1.0f));
+                }
+            }
         }
 
         private bool IsNearCheek(float side)

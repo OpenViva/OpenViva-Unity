@@ -127,7 +127,10 @@ namespace viva
             float lastFastSplashTime = UnityEngine.Random.value;
             while (true)
             {
-
+                if (rigidBody == null)
+                {
+                    break;
+                }
                 if (waterSurfaces.Count == 0)
                 {
                     break;

@@ -113,7 +113,7 @@ namespace viva.console
             _consoleCanvas.gameObject.SetActive(false);
 
             var primary = "#F9F0E6";
-            var secondary = "#B3E6F9"; //Unused
+            var secondary = "#B3E6F9"; // Unused
 
             _consoleText.text = "\n\n---------------------------------------------------------------------------------\n" +
                                $"<size=30><color={primary}>OpenViva Developer Console</color></size> \n" +
@@ -123,13 +123,14 @@ namespace viva.console
             CreateCommands();
         }
 
-        //When Creating a new command make sure to Initialize it here 
+        // When Creating a new command make sure to Initialize it here 
         private void CreateCommands()
         {
             CommandHelp.CreateCommand();
             CommandRagdoll.CreateCommand();
             CommandSetPlayerSpeed.CreateCommand();
             CommandSelectCharacter.CreateCommand();
+            CommandCreateCharacter.CreateCommand();
 
             var commandClearList = CommandClearConsole.CreateCommand();
             commandClearList.ConsoleTextRef = _consoleText;
@@ -146,7 +147,7 @@ namespace viva.console
 
         private void Update()
         {
-            //Disable if in VR
+            // Disable if in VR
             if (GameDirector.player.controls == Player.ControlType.VR)
             {
                 _consoleCanvas.gameObject.SetActive(false);

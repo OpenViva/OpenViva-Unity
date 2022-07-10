@@ -342,11 +342,14 @@ namespace viva
                     idleRootFacingTargetTimer = 4.0f + Random.value * 4.0f;
                     if (self.active.RequestPermission(ActiveBehaviors.Permission.ALLOW_ROOT_FACING_TARGET_CHANGE))
                     {
-                        self.autonomy.Interrupt(new AutonomyFaceDirection(self.autonomy, "face direction", delegate (TaskTarget target)
+                        if (self.bodyState != BodyState.AWAKE_PILLOW_UP && self.bodyState != BodyState.AWAKE_PILLOW_SIDE_LEFT && self.bodyState != BodyState.AWAKE_PILLOW_SIDE_RIGHT)
                         {
-                            target.SetTargetPosition(self.currentLookAtTransform.position);
-                        }));
-                        //self.SetRootFacingTarget( self.currentLookAtTransform.position, 200.0f, 15.0f, 30.0f );
+                            self.autonomy.Interrupt(new AutonomyFaceDirection(self.autonomy, "idle face direction", delegate (TaskTarget target)
+                            {
+                                target.SetTargetPosition(self.currentLookAtTransform.position);
+                            }));
+                            //self.SetRootFacingTarget( self.currentLookAtTransform.position, 200.0f, 15.0f, 30.0f );
+                        }
                     }
                 }
             }

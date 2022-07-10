@@ -191,10 +191,6 @@ namespace viva
             {
                 return false;
             }
-            if (targetLoli == null)
-            {
-                return false;
-            }
             if (!CanHost(targetLoli))
             {
                 foreach (Bed bed in bedGroup)

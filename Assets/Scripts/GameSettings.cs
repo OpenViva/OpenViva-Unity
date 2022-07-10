@@ -42,11 +42,14 @@ namespace viva
         private int m_antiAliasing = 2;
         [VivaFileAttribute]
         public int antiAliasing { get { return m_antiAliasing; } protected set { m_antiAliasing = value; } }
-
         [SerializeField]
-        private int m_shaderLOD = 2;
+        private int m_reflectionDistance = 30;
         [VivaFileAttribute]
-        public int shaderLOD { get { return m_shaderLOD; } protected set { m_shaderLOD = value; } }
+        public int reflectionDistance { get { return m_reflectionDistance; } protected set { m_reflectionDistance = value; } }
+
+        private bool m_toggleTooltips = true;
+
+        public bool toggleTooltips { get { return m_toggleTooltips; } protected set { m_toggleTooltips = value; } } 
 
 
         private string[] dayNightCycleSpeedDesc = new string[]{
@@ -73,6 +76,16 @@ namespace viva
         public void SetMusicVolume(float percent)
         {
             m_musicVolume = Mathf.Clamp01(percent);
+        }
+        public void AdjustReflectionDistance(int direction)
+        {
+            SetReflectionDistance(reflectionDistance + direction);
+        }
+        public void SetReflectionDistance(int amount)
+        {
+            Vector3 newSize = new Vector3(reflectionDistance, reflectionDistance, reflectionDistance);
+            GameDirector.player.realtimeReflectionController.reflectionProbe.size = newSize;
+            m_reflectionDistance = Mathf.Clamp(amount, 0, 250);
         }
         public void ShiftWorldTime(float timeAmount)
         {
