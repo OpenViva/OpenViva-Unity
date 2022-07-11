@@ -197,6 +197,13 @@ namespace viva
         public override void OnCharacterUpdate()
         {
             UpdateTasks();
+
+            
+            if (transform.position.y < 0.0f || transform.position.y > 500.0f)
+            {
+                Vector3 respawnPos = new Vector3(62.34f, 144.57f, 325.11f);
+                TeleportToSpawn(respawnPos, transform.rotation);
+            }           
         }
 
         public override void OnCharacterFixedUpdate()

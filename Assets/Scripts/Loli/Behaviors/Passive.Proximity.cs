@@ -73,7 +73,7 @@ namespace viva
                 {
                     StartProximityBehaviorFast(lookAtItem);
                 }
-                else if (self.IsCurrentAnimationIdle() && !proximityActive)
+                else if (self.IsCurrentAnimationIdle() && !proximityActive && !self.Tired)
                 {
                     proximityStartTimer += Time.deltaTime;
                     if (proximityStartTimer > 0.5f)

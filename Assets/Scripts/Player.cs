@@ -288,7 +288,7 @@ namespace viva
             //TODO: REMOVE
             if (transform.position.y < 0.0f)
             {
-                transform.position = new Vector3(158.0f, 102.7f, 56.0f);
+                transform.position = new Vector3(62.34f, 144.57f, 325.11f);
             }
         }
 

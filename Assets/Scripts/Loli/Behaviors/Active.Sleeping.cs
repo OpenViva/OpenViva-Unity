@@ -189,7 +189,7 @@ namespace viva
             var goodnightanim = new AutonomyPlayAnimation(self.autonomy, "say good night", goodNightAnim);
             
             var yawnanim = new AutonomyPlayAnimation(self.autonomy, "yawn anim", yawnAnim);
-            if (self.Tired)
+            if (self.Tired && UnityEngine.Random.value > 0.5f)
             {
                 awakeToSleeptimer.AddRequirement(yawnanim);
             }

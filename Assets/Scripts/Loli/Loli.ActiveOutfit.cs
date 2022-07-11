@@ -18,7 +18,7 @@ namespace viva
             float sqDist = Vector3.SqrMagnitude(GameDirector.instance.mainCamera.transform.position - floorPos);
             sqDist *= System.Convert.ToInt32(!previewMode); //cancels out lod to zero if on
             int newHighLOD;
-            if (sqDist < 200.0f)
+            if (sqDist < 250.0f)
             {
                 newHighLOD = 0;
             }
