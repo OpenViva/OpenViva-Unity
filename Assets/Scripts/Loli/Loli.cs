@@ -199,10 +199,10 @@ namespace viva
             UpdateTasks();
 
             
-            if (transform.position.y < 0.0f || transform.position.y > 500.0f)
+            if (spine1.transform.position.y < 0.0f || spine1.transform.position.y > 500.0f)
             {
                 Vector3 respawnPos = new Vector3(62.34f, 144.57f, 325.11f);
-                TeleportToSpawn(respawnPos, transform.rotation);
+                TeleportToSpawn(respawnPos, spine1.transform.rotation);
             }           
         }
 

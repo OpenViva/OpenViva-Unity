@@ -78,8 +78,15 @@ namespace viva
         private Vector3? freezeKeyboardLocalPosition = null;
         private Quaternion freezeKeyboardLocalRotation = Quaternion.identity;
 
+        public void StartActionState()
+        {
+            actionState.Consume();
+        }
+
         public void InitializeUnityInputControls( InputActions_viva vivaControls ){
             Player player = owner as Player;
+
+            StartActionState();
 
             if (vivaControlsBinded)
             {

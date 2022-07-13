@@ -106,7 +106,7 @@ namespace viva
             goToBasket.onSuccess += delegate ()
             {
 
-                if (swimmingSession.activeBasketAsset == null)
+                if (swimmingSession.activeBasketAsset != null)
                 {
                     self.SetOutfit(swimmingSession.basket.outfit);
                     swimmingSession.basket.SetDisposedOutfit(null);

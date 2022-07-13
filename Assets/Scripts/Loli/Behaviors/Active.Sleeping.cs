@@ -282,11 +282,12 @@ namespace viva
         private bool CheckIfShouldWakeUpFromBother()
         {
             bothersUntilWakeUp--;
-            if(bothersUntilWakeUp <= 0)
-            {
-                self.Tired = false;
-                return true;
-            }
+            //if (bothersUntilWakeUp <= 0)
+            //{
+                //self.Tired = false;
+                //Debug.Log("Wake up");
+            //    return true;
+            //}
             return false;
         }
 

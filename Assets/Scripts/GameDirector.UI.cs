@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
-using UnityEngine.InputSystem.UI;
-using UnityEngine.InputSystem;
 
 
 namespace viva
@@ -50,6 +48,7 @@ namespace viva
         public ControlsAllowed controlsAllowed { get { return m_controlsAllowed; } }
         private Player sourcePlayer = null;
         private bool useRightHandForVRPointer = true;
+
 
         public void DisableNextClick()
         {

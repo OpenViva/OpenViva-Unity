@@ -191,8 +191,8 @@ Shader "Surface/TexReceiveCutout2S_leaves1" {
                 UNITY_SETUP_STEREO_EYE_INDEX_POST_VERTEX(i);
 
                 UNITY_LIGHT_ATTENUATION(atten, i, i.worldPos);
-                fixed sunRim = saturate( dot( i.viewDir, _WorldSpaceLightPos0.xyz ) )+atten;
-                col.rgb *= lerp( UNITY_LIGHTMODEL_AMBIENT+i.lightAmbience, _LightColor0+i.lightAmbience, sunRim )*i.tint;
+                fixed sunRim = saturate( dot( i.viewDir, _WorldSpaceLightPos0.xyz ) )*atten;
+                col.rgb *= lerp( UNITY_LIGHTMODEL_AMBIENT+i.lightAmbience, _LightColor0+i.lightAmbience, atten+sunRim )*i.tint;
 				UNITY_APPLY_FOG(i.fogCoord, col);
 
                 // col.a = 1.;

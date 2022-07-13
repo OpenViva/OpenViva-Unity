@@ -535,17 +535,6 @@ public partial class @InputActions_viva : IInputActionCollection2, IDisposable
             ""bindings"": [
                 {
                     ""name"": """",
-                    ""id"": ""b887c54d-4ed9-452f-84f2-3d633a09817c"",
-                    ""path"": ""<Mouse>/leftButton"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""leftClick"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""0cadca45-767e-4dc5-b397-82f3b5c0479c"",
                     ""path"": ""<XRController>{RightHand}/triggerPressed"",
                     ""interactions"": """",
