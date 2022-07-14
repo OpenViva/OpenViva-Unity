@@ -1166,7 +1166,7 @@ public partial class @InputActions_viva : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""932153d9-aa83-4c23-9c4e-5d84985c6866"",
-                    ""path"": ""<XRController>{LeftHand}/triggerButton"",
+                    ""path"": ""<XRController>{LeftHand}/triggerPressed"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -1374,7 +1374,7 @@ public partial class @InputActions_viva : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""94f2e17d-c3e1-42cf-988b-c8931cf4dcbd"",
-                    ""path"": ""<XRController>{RightHand}/triggerButton"",
+                    ""path"": ""<XRController>{RightHand}/triggerPressed"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
