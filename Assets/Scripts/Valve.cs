@@ -117,10 +117,15 @@ namespace viva
                     //automatically drop valve if head is too far away
                     if (Vector3.SqrMagnitude(mainOwner.head.position - transform.position) > 1.0f)
                     {
-                        // mainHoldState.Drop( Vector3.zero );
+                        mainOccupyState.AttemptDrop();
                     }
                     break;
             }
+        }
+
+        public override bool CanBePlacedInRestParent()
+        {
+            return false;
         }
 
         private void UpdateVRPostIKUsage(Player player, PlayerHandState mainHoldState)
