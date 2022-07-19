@@ -26,7 +26,8 @@ namespace viva
         private bool currentAnimAwarenessModeBinded = false;
         private Quaternion cachedAnchorRotation;
         private Vector3 cachedAnchorPosition;
-        private RootAnimationOffset rootAnchorOffset = null;
+        private Vector3 anchorPosition;
+        private Quaternion anchorRotation;
         private Tools.EaseBlend anchorBlend = new Tools.EaseBlend();
         private AnchorFinishCallback onAnchorFinish;
         public bool anchorActive { get; private set; } = false;
@@ -48,12 +49,12 @@ namespace viva
             anchorBlend.Update(Time.deltaTime);
             anchor.localRotation = Quaternion.LerpUnclamped(
                 cachedAnchorRotation,
-                Quaternion.Euler(rootAnchorOffset.eulerRotation),
+                anchorRotation,
                 anchorBlend.value
             );
             anchor.localPosition = Vector3.LerpUnclamped(
                 cachedAnchorPosition,
-                rootAnchorOffset.position,
+                anchorPosition,
                 anchorBlend.value
             );
         }
@@ -141,7 +142,8 @@ namespace viva
         }
 
         public void BeginAnchorTransformAnimation(
-                RootAnimationOffset _rootAnchorOffset,
+                Vector3 newAnchorPosition,
+                Quaternion newAnchorRotation,
                 float transitionLength,
                 AnchorFinishCallback _onAnchorFinish = null,
                 bool _stopRootAnchorAfterFinished = true
@@ -149,7 +151,8 @@ namespace viva
         {
             cachedAnchorPosition = anchor.localPosition;
             cachedAnchorRotation = anchor.localRotation;
-            rootAnchorOffset = _rootAnchorOffset;
+            anchorPosition = newAnchorPosition;
+            anchorRotation = newAnchorRotation;
             onAnchorFinish = _onAnchorFinish;
             stopRootAnchorAfterFinished = _stopRootAnchorAfterFinished;
 

@@ -314,7 +314,7 @@ namespace viva
             }
             else
             {
-                DisplayHUDMessage("Drop/Pickup :Grip Button (VIVE), Trigger (Oculus)", true, HintType.HINT, MenuTutorial.WAIT_TO_START_PICKUP);
+                DisplayHUDMessage("Drop/Pickup :Grip Button", true, HintType.HINT, MenuTutorial.WAIT_TO_START_PICKUP);
             }
 
             while (menuTutorialPhase <= MenuTutorial.WAIT_TO_PRESENT)
@@ -354,8 +354,8 @@ namespace viva
                 yield return null;
             }
 
-            DisplayHUDMessage("Game under development expect bugs!", true, HintType.HINT_NO_IMAGE);
             DisplayHUDMessage("Tutorial Finished!", true, HintType.HINT);
+            DisplayHUDMessage("Game under development expect bugs!", true, HintType.HINT_NO_IMAGE);          
             DisplayHUDMessage("You will now be sent back to your previous location.", true, HintType.HINT_NO_IMAGE);
 
             ExitTutorial();

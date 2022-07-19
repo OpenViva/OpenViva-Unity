@@ -31,6 +31,7 @@ namespace viva
         private SleepingPhase phase = SleepingPhase.NONE;
         private bool? layingOnRightSide = null;
         private bool saidGoodnight;
+        private float getUpTimer;
         private Vector3 sleepPos;
 
 
@@ -70,6 +71,7 @@ namespace viva
         public override void OnActivate()
         {
             saidGoodnight = false;
+            getUpTimer = 16.0f;
             bothersUntilWakeUp = botherResistanceCount;
             GameDirector.player.objectFingerPointer.selectedLolis.Remove(self);
             self.characterSelectionTarget.OnUnselected();
@@ -96,16 +98,21 @@ namespace viva
 
         public override bool OnGesture(Item source, ObjectFingerPointer.Gesture gesture)
         {
-            // if( gesture == ObjectFingerPointer.Gesture.FOLLOW ){
-            // 	if( phase == SleepingPhase.AWAKE_ON_BED ){
-            // 		if( self.CanSeePoint( source.transform.position ) ){
-            // 			getUpTimer = 0.0f;
-            // 			return true;
-            // 		}
-            // 	}else if( phase == SleepingPhase.WALKING_TO_BED ){
-            // 		self.active.follow.AttemptFollow( source );
-            // 	}
-            // }
+            if (gesture == ObjectFingerPointer.Gesture.FOLLOW)
+            {
+                if (phase == SleepingPhase.AWAKE_ON_BED)
+                {
+                    if (self.CanSeePoint(source.transform.position))
+                    {
+                        getUpTimer = 0.0f;
+                        return true;
+                    }
+                }
+                else if (phase == SleepingPhase.WALKING_TO_BED || phase == SleepingPhase.SLEEPING)
+                {
+                    self.active.follow.AttemptFollow(source);
+                }
+            }
             return false;
         }
 
@@ -238,6 +245,12 @@ namespace viva
                 case SleepingPhase.SLEEPING:
                     WaitForMorning();
                     break;
+                case SleepingPhase.AWAKE_ON_BED:
+                    UpdateAwakeOnBed();
+                    break;
+                case SleepingPhase.CRAWLING_OFF_BED: 
+                    EndSleeping();
+                    break;
             }
         }
 
@@ -255,7 +268,6 @@ namespace viva
             if (!self.Tired)
             {
                 WakeUp();
-                phase = SleepingPhase.AWAKE_ON_BED;
             }
         }
 
@@ -270,13 +282,18 @@ namespace viva
             var playWakeAnim = new AutonomyPlayAnimation(self.autonomy, "play wake up anim", wakeUpAnim);
             self.autonomy.SetAutonomy(playWakeAnim);
 
-            playWakeAnim.onSuccess += EndSleeping;
         }
 
         private void EndSleeping()
         {
             self.active.idle.hasSaidGoodMorning = false;
-            self.active.SetTask(self.active.idle);
+            var standup = new AutonomyPlayAnimation(self.autonomy, "stand up", Loli.Animation.CRAWL_BED_TO_STAND);
+            //self.autonomy.SetAutonomy(standup);
+
+            standup.onSuccess += delegate
+            {
+                self.active.SetTask(self.active.idle, true);
+            };
         }
 
         private bool CheckIfShouldWakeUpFromBother()
@@ -289,6 +306,16 @@ namespace viva
             //    return true;
             //}
             return false;
+        }
+
+        private void UpdateAwakeOnBed()
+        {
+
+            getUpTimer -= Time.deltaTime;
+            if (getUpTimer < 0.0f)
+            {
+                self.SetTargetAnimation(Loli.Animation.AWAKE_PILLOW_UP_TO_CRAWL_TIRED);
+            }
         }
 
         private Loli.Animation GetWakeUpAnimation(bool wakeUpHappy)
@@ -389,11 +416,11 @@ namespace viva
                 case Loli.Animation.SLEEP_PILLOW_SIDE_TO_AWAKE_HAPPY_PILLOW_UP_LEFT:
                 case Loli.Animation.SLEEP_PILLOW_SIDE_TO_AWAKE_ANGRY_PILLOW_UP_RIGHT:
                 case Loli.Animation.SLEEP_PILLOW_SIDE_TO_AWAKE_ANGRY_PILLOW_UP_LEFT:
+                    phase = SleepingPhase.AWAKE_ON_BED;
                     layingOnRightSide = null;   //no longer laying on a side
                     break;
                 case Loli.Animation.AWAKE_PILLOW_UP_TO_CRAWL_TIRED:
-                    self.outfitInstance.SetDynamicBoneModificationsStiffness(1.0f);
-                    self.outfitInstance.SetDynamicBoneModificationsCollider(bed.GetDynamicBonePlane(), false);
+                    phase = SleepingPhase.CRAWLING_OFF_BED;
                     break;
             }
         }

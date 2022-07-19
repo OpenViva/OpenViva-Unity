@@ -22,7 +22,8 @@ namespace viva
             ERROR,
             CHECKLIST,
             CALIBRATE_HANDS,
-            MANUAL
+            MANUAL,
+            QUIT
         }
 
         private List<Button> cycleButtons = new List<Button>();
@@ -281,6 +282,10 @@ namespace viva
                     SetShowManualRoot(true);
                     UpdateRespawnShinobuText();
                     break;
+                case Menu.QUIT:
+                    GameDirector.instance.PlayGlobalSound(nextSound);
+                    SetMenuActive(menu, true);
+                    break;
                 case Menu.ROOT:
                     if (lastMenu == Menu.ROOT)
                     {    //treat as a toggle
@@ -416,9 +421,12 @@ namespace viva
             Application.OpenURL("https://discord.gg/openviva");
         }
 
-        public void clickSaveAndQuitGame()
+        public void clickSaveAndQuitGame(bool save)
         {
-            GameDirector.instance.Save();
+            if (save)
+            {
+                GameDirector.instance.Save();
+            }           
 #if UNITY_EDITOR
             UnityEditor.EditorApplication.isPlaying = false;
 #else
@@ -614,12 +622,25 @@ namespace viva
         public void clickCalibrateHands()
         {
             SetPauseMenu(Menu.CALIBRATE_HANDS);
-            StartCalibration();
+            if (calibrationCoroutine != null)
+            {
+                StopCalibration();
+            }
+            else
+            {
+                StartCalibration();
+            }
+            
         }
 
         public void clickMap()
         {
             SetPauseMenu(Menu.MAP);
+        }
+
+        public void clickQuit()
+        {
+            SetPauseMenu(Menu.QUIT);
         }
 
         //TODO: add a smooth transition for this

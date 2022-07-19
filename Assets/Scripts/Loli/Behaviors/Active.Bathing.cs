@@ -359,30 +359,35 @@ namespace viva
 
         private void CheckToTestWaterTemperature()
         {
-            // if( targetBathPos == null || Vector3.SqrMagnitude( targetBathPos.Value-self.floorPos ) > 0.1f ){
+            if (targetBathPos == null || Vector3.SqrMagnitude(targetBathPos.Value - self.floorPos) > 0.1f)
+            {
 
-            // 	if( !self.locomotion.isMoveToActive() ){
-            // 		shinobuIsOnRightSide = bathtub.IsClosestEdgeRightSide( self.floorPos );
-            // 		targetBathPos = bathtub.GetSideAnchorAnimationTransform( shinobuIsOnRightSide ).position;
+                if (!self.locomotion.isMoveToActive())
+                {
+                    shinobuIsOnRightSide = bathtub.IsClosestEdgeRightSide(self.floorPos);
+                    targetBathPos = bathtub.GetSideAnchorAnimationTransform(shinobuIsOnRightSide).position;
 
-            // 		Vector3[] path = self.locomotion.GetNavMeshPath( targetBathPos.Value );
-            // 		if( path == null ){
-            // 			self.active.SetTask( self.active.idle, false );
-            // 			return;
-            // 		}
-            // 		self.locomotion.FollowPath( path );
-            // 	}
-            // //hasn't started anchoring transform animation
-            // }else if( !self.isAnchorActive ){
-            // 	Transform targetAnchorTransform = bathtub.GetSideAnchorAnimationTransform( shinobuIsOnRightSide );
-            // 	// self.BeginAnchorTransformAnimation(
-            // 	// 	targetBathPos.Value,
-            // 	// 	targetAnchorTransform.rotation,
-            // 	// 	1.0f,
-            // 	// 	OnAnchorFinishToStartWaterTest,
-            // 	// 	false
-            // 	// );
-            // }
+                    Vector3[] path = self.locomotion.GetNavMeshPath(targetBathPos.Value);
+                    if (path == null)
+                    {
+                        self.active.SetTask(self.active.idle, false);
+                        return;
+                    }
+                    self.locomotion.FollowPath(path);
+                }
+                //hasn't started anchoring transform animation
+            }
+            else if (!self.anchorActive)
+            {
+                Transform targetAnchorTransform = bathtub.GetSideAnchorAnimationTransform(shinobuIsOnRightSide);
+                self.BeginAnchorTransformAnimation(
+                    targetBathPos.Value,
+                    targetAnchorTransform.rotation,
+                    1.0f,
+                    OnAnchorFinishToStartWaterTest,
+                    false
+                );
+            }
         }
 
         private float GetBathroomDoorBearing()
@@ -1083,13 +1088,13 @@ namespace viva
                     break;
                 case Loli.Animation.BATHTUB_HAPPY_SWITCH_SIDES:
                     shinobuIsOnRightSide = !shinobuIsOnRightSide;
-                    // self.BeginAnchorTransformAnimation(
-                    // 	self.floorPos,
-                    // 	bathtub.GetSideAnchorAnimationTransform( shinobuIsOnRightSide ).rotation,
-                    // 	1.0f,
-                    // 	null,
-                    // 	false
-                    // );			
+                    self.BeginAnchorTransformAnimation(
+                        self.floorPos,
+                        bathtub.GetSideAnchorAnimationTransform(shinobuIsOnRightSide).rotation,
+                        1.0f,
+                        null,
+                        false
+                    );
                     break;
                 case Loli.Animation.BATHTUB_TEST_WATER_IN_RIGHT:
                 case Loli.Animation.BATHTUB_TEST_WATER_IN_LEFT:

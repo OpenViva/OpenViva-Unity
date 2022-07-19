@@ -255,7 +255,8 @@ namespace viva
             if (horseSession.horse != null)
             {
                 self.BeginAnchorTransformAnimation(
-                    self.rootAnimationOffsets[(int)Loli.TransformOffsetAnimation.HORSE_IDLE],
+                    self.rootAnimationOffsets[(int)Loli.TransformOffsetAnimation.HORSE_IDLE].position,
+                    Quaternion.Euler(self.rootAnimationOffsets[(int)Loli.TransformOffsetAnimation.HORSE_IDLE].eulerRotation),
                     0.0f
                 );
                 self.AnchorSpineUntilTransitionEnds(horseSession.horse.spine0);
@@ -286,7 +287,8 @@ namespace viva
 
                 self.anchor.transform.SetParent(horseSession.horse.spine0, true);
                 self.BeginAnchorTransformAnimation(
-                    self.rootAnimationOffsets[(int)offsetAnimation],
+                    self.rootAnimationOffsets[(int)offsetAnimation].position,
+                    Quaternion.Euler(self.rootAnimationOffsets[(int)offsetAnimation].eulerRotation),
                     1.5f,
                     null
                 );

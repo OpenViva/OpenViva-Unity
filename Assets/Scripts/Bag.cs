@@ -352,14 +352,14 @@ namespace viva
                 targetShoulderState = loli.leftShoulderState;
                 armIKOverrideAnimation = leftArmIKOverrideAnimation;
             }
-            // targetShoulderState.Pickup(
-            // 	this,
-            // 	ShoulderWearCallback,
-            // 	OccupyState.OBJECT,
-            // 	shoulderWearOffset,
-            // 	armIKOverrideAnimation,
-            // 	1.0f
-            // );
+            targetShoulderState.Pickup(
+                this,
+                ShoulderWearCallback,
+                HoldType.OBJECT,
+                shoulderWearOffset,
+                armIKOverrideAnimation,
+                1.0f
+            );
             isOnShoulder = rightShoulder;
         }
 
@@ -389,7 +389,7 @@ namespace viva
             Quaternion restRotation = Quaternion.LookRotation(Vector3.down, handState.fingerAnimator.targetBone.up);
             // handWearBlend.Blend( transform.localPosition, restRotation*Quaternion.Euler( wearOffsetEuler ) );
         }
-        public void ShoulderWearCallback(Character self, Occupation occupation, OccupyState action)
+        public void ShoulderWearCallback(OccupyState source, Item oldItem, Item newItem)
         {
         }
 
