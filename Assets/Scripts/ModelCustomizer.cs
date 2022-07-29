@@ -174,6 +174,16 @@ namespace viva
             Application.OpenURL("https://shinobuproject.itch.io/game/devlog/100331/viva-character-manual-for-v06-and-above");
         }
 
+        public void clickDeselectAll()
+        {
+            foreach (Loli loli in GameDirector.player.objectFingerPointer.selectedLolis.ToList())
+            {
+                loli.characterSelectionTarget.OnUnselected();
+                GameDirector.player.objectFingerPointer.selectedLolis.Remove(loli);
+            }
+            selectedLolisText.text = GameDirector.player.objectFingerPointer.selectedLolis.Count + " lolis selected";
+        }
+
         public override void OnBeginUIInput()
         {            
             FileDragAndDrop.EnableDragAndDrop(OnDropFile);
