@@ -87,6 +87,7 @@ namespace viva
                 {
                     Debug.LogError("#VR Disabled " + XRGeneralSettings.Instance.Manager.isInitializationComplete);
                     XRGeneralSettings.Instance.Manager.StopSubsystems();
+                    Camera.main.ResetAspect();
                     XRGeneralSettings.Instance.Manager.DeinitializeLoader();
                 }
                 // SteamVR.enabled = false;
