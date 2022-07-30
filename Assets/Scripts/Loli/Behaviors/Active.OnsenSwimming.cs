@@ -92,7 +92,7 @@ namespace viva
                 return false;
             }
 
-            if (!IsWearingSwimmingClothes())
+            if (IsWearingSwimmingClothes())
             {
                 return false;
             }
