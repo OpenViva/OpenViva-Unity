@@ -636,14 +636,15 @@ namespace viva
         }
 
         public void clickCalibrateHands()
-        {
-            SetPauseMenu(Menu.CALIBRATE_HANDS);
+        {            
             if (calibrationCoroutine != null)
             {
+                SetPauseMenu(Menu.ROOT);
                 StopCalibration();
             }
             else
             {
+                SetPauseMenu(Menu.CALIBRATE_HANDS);
                 StartCalibration();
             }
             
