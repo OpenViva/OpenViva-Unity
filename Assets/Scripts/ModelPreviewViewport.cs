@@ -47,7 +47,7 @@ namespace viva
         private PreviewMode previewMode = PreviewMode.NONE;
         private LineRenderer lineRenderer;
         private Coroutine highlightBoneChainCoroutine = null;
-        public Loli.Animation modelDefaultPoseAnim;
+        public Loli.Animation modelDefaultPoseAnim = Loli.Animation.PHOTOSHOOT_2;
 
         private void Awake()
         {
@@ -205,11 +205,11 @@ namespace viva
                 case PreviewMode.POSE:
                     if (posedropdown.value == 0)
                     {
-                        modelDefaultPoseAnim = Loli.Animation.PHOTOSHOOT_1;
+                        modelDefaultPoseAnim = Loli.Animation.PHOTOSHOOT_2;
                     }
                     if (posedropdown.value == 1)
                     {
-                        modelDefaultPoseAnim = Loli.Animation.PHOTOSHOOT_2;
+                        modelDefaultPoseAnim = Loli.Animation.PHOTOSHOOT_1;
                     }
                     // if(posedropdown.value == 2){
                     //     modelDefaultPoseAnim = Loli.Animation.PHOTOSHOOT_3;
