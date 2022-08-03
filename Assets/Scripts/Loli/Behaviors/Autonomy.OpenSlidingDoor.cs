@@ -174,8 +174,8 @@ namespace viva
 
             float unit = slidingDoor.GetUnitDistanceFromStart();
             slidingComplete = 1.0f - Mathf.Clamp01(Mathf.Abs(unit - targetDoorUnit));
-            if (slidingComplete >= 0.75f)
-            {   //75% required to succeed
+            if (slidingComplete >= 0.65f)
+            {   //65% required to succeed
                 FlagForSuccess();
             }
             return null;

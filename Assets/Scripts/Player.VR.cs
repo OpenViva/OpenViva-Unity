@@ -73,9 +73,6 @@ namespace viva
                 }
                 head.localPosition = Vector3.zero;
                 head.localRotation = Quaternion.identity;
-                // SteamVR.enabled = true;
-                // rightPlayerHandState.StartDeprecatedXRInput();
-                // leftPlayerHandState.StartDeprecatedXRInput();
 
                 crosshair.SetActive(false);
                 InitVRTeleportVariables();
@@ -90,9 +87,6 @@ namespace viva
                     Camera.main.ResetAspect();
                     XRGeneralSettings.Instance.Manager.DeinitializeLoader();
                 }
-                // SteamVR.enabled = false;
-                // rightPlayerHandState.UnbindSteamVRInput();
-                // leftPlayerHandState.UnbindSteamVRInput();
             }
             rightPlayerHandState.behaviourPose.enabled = enable;
             leftPlayerHandState.behaviourPose.enabled = enable;
