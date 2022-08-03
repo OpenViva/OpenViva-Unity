@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -427,6 +428,21 @@ namespace viva
             {
                 GameDirector.instance.Save();
             }           
+#if UNITY_EDITOR
+            UnityEditor.EditorApplication.isPlaying = false;
+#else
+         Application.Quit();
+         System.Diagnostics.Process.GetCurrentProcess().Kill();
+#endif
+        }
+
+        public void clickDeleteSave()
+        {
+            string path = "Saves/save.viva";
+            if (File.Exists(path))
+            {
+                File.Delete(path);
+            }
 #if UNITY_EDITOR
             UnityEditor.EditorApplication.isPlaying = false;
 #else
