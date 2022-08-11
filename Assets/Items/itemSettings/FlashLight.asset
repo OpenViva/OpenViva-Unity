@@ -10,21 +10,23 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 18db65be426b91641bb3a5f35c97df40, type: 3}
-  m_Name: Valve
+  m_Name: FlashLight
   m_EditorClassIdentifier: 
-  m_playerHeldAnimation: 13
-  m_loliHeldAnimation: 0
+  m_usePickupAnimation: 1
+  m_playerHeldAnimation: 78
+  m_loliHeldAnimation: 3
   m_IKHoldTarget: {x: 0.12, y: 0.06, z: 0.17}
   m_IKHoldPole: {x: 0.18, y: 0.06, z: -0.45}
   m_IKHoldEuler: {x: 177.28, y: -99.4, z: -61.8}
   m_ikBlendStrength: 0.65
+  m_inertia: {x: 0.15, y: 0.15, z: 0.15}
+  m_centerMass: {x: 0, y: 0, z: 0}
   m_allowMultipleOwners: 0
-  m_dynamicShapeHold: 0
   m_heldMassScale: 10
-  m_holdRotationOffset: {x: 0, y: 90, z: 90}
+  m_holdRotationOffset: {x: 0, y: 0, z: 0}
   m_allowChangeOwner: 1
   m_permanentlyEnabled: 0
-  m_itemType: 9
+  m_itemType: 38
   m_pickupTexture: {fileID: 0}
   m_pickupSound: {fileID: 11400000, guid: e5e54e44c062dc34c98242ce89402343, type: 2}
   m_pickupReasons: 0

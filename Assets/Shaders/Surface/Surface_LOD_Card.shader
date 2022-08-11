@@ -10,6 +10,7 @@
 	{
 		Tags {
             "RenderType"="Transparent"
+            "LightMode" = "ForwardBase"
             "Queue"="Transparent"
             "PhotoData"="Opaque"
         }

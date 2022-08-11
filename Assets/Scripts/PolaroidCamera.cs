@@ -300,7 +300,7 @@ namespace viva
             {
                 if (lastTakenPhoto.transform.parent == transform)
                 {
-                    // lastTakenPhoto.Unparent();
+                    lastTakenPhoto.Detach();
                 }
             }
         }
@@ -310,7 +310,7 @@ namespace viva
 
             GameObject container = GameObject.Instantiate(polaroidPrefab);
             PolaroidFrame polaroidFrame = container.GetComponent(typeof(PolaroidFrame)) as PolaroidFrame;
-            // polaroidFrame.ParentToTransform( transform );
+            //polaroidFrame.ParentToTransform( transform );
             MeshRenderer mr = container.GetComponent(typeof(MeshRenderer)) as MeshRenderer;
             mr.materials[1].mainTexture = polaroidTexture;
 

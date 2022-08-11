@@ -71,8 +71,8 @@ Shader "SP2/Glass"
 
                 fixed rim = 1.-saturate( (dot( i.toCamDir, i.worldRefl )+.8)*2. );
 				//return fixed4( rim, rim, 0., 1. );
-				fixed3 cubemap = UNITY_SAMPLE_TEXCUBE( unity_SpecCube0, i.worldRefl ).rgb;
-				fixed3 col = cubemap*_Color;
+				//fixed3 cubemap = UNITY_SAMPLE_TEXCUBE( unity_SpecCube0, i.worldRefl ).rgb;
+				fixed3 col = _Color;
 				col += col*rim;
 				return fixed4( col, saturate(0.25+rim*2.) );
 			}

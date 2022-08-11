@@ -93,7 +93,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1257536631380234214}
   - component: {fileID: 3874127381596206627}
-  m_Layer: 0
+  - component: {fileID: 2430501916654431408}
+  m_Layer: 11
   m_Name: toriiGate
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -116,7 +117,7 @@ Transform:
   - {fileID: 3050158809975510069}
   - {fileID: 893308510201810694}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 4.327, z: 0}
 --- !u!205 &3874127381596206627
 LODGroup:
@@ -145,6 +146,20 @@ LODGroup:
     renderers:
     - renderer: {fileID: 6641040666199974108}
   m_Enabled: 1
+--- !u!64 &2430501916654431408
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2821772621188906485}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 3980926391761657022, guid: 8479cda085e893e4aa013467f4ec5d45, type: 3}
 --- !u!1 &6216235642420061768
 GameObject:
   m_ObjectHideFlags: 0
