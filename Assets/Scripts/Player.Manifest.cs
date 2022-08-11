@@ -105,7 +105,8 @@ namespace viva
             HAND_ALT,
             GENERIC,
             FIREWORK,
-            RUBBER_DUCKY
+            RUBBER_DUCKY,
+            FLASHLIGHT
         }
     }
 

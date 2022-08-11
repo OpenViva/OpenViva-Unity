@@ -202,6 +202,7 @@ namespace viva
             m_animationInfos[Animation.GENERIC] = new PlayerAnimationInfo(Animator.StringToHash("player_HOLD_GENERIC"), duration, Priority.LOW, Animation.GENERIC, 1.0f);
             m_animationInfos[Animation.FIREWORK] = new PlayerAnimationInfo(Animator.StringToHash("player_HOLD_FORM_FIREWORK"), duration, Priority.LOW, Animation.FIREWORK, 1.0f);
             m_animationInfos[Animation.RUBBER_DUCKY] = new PlayerAnimationInfo(Animator.StringToHash("player_HOLD_DUCK"), duration, Priority.LOW, Animation.RUBBER_DUCKY, 1.0f);
+            m_animationInfos[Animation.FLASHLIGHT] = new PlayerAnimationInfo(Animator.StringToHash("player_HOLD_FORM_FLASHLIGHT"), duration, Priority.LOW, Animation.FLASHLIGHT, 1.0f);
 
             m_animationInfos[Animation.ADD_CARD_TO_RIGHT] = new PlayerAnimationInfo(Animator.StringToHash("player_poker_add_card_right"), duration, Priority.LOW, Animation.IDLE, 1.0f,
             new PlayerAnimationEvent[]{

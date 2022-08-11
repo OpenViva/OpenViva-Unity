@@ -68,7 +68,8 @@ namespace viva
             MILK_CANISTER,
             POKER_CARD,
             UNUSED,
-            FIREWORK_ROCKET
+            FIREWORK_ROCKET,
+            FLASH_LIGHT
         }
         public enum SpawnSleepMode
         {
