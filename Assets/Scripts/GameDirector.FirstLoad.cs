@@ -58,6 +58,21 @@ namespace viva
                 m_language = null;
             }
         }
+        private void BuildBoundaryWalls()
+        {
+            var left = Boundary.AddComponent<BoxCollider>();
+            left.center = new Vector3(-18.48f, 38.5f, 265.29f);
+            left.size = new Vector3(1029.27f, 160.29f, 3.03f);
+            var right = Boundary.AddComponent<BoxCollider>();
+            right.center = new Vector3(-18.48f, 38.5f, -246.95f);
+            right.size = new Vector3(1029.27f, 160.29f, 3.03f);
+            var back = Boundary.AddComponent<BoxCollider>();
+            back.center = new Vector3(494.67f, 38.5f, 9.68f);
+            back.size = new Vector3(2.56f, 160.29f, 514.69f);
+            var front  = Boundary.AddComponent<BoxCollider>();
+            front.center = new Vector3(-530.25f, 38.5f, 9.68f);
+            front.size = new Vector3(2.56f, 160.29f, 514.69f);
+        }
     }
 
 }

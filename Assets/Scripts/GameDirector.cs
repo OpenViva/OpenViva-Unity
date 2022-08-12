@@ -48,7 +48,8 @@ namespace viva
         [SerializeField]
         private Town m_town;
         public Town town { get { return m_town; } }
-
+        [SerializeField]
+        private GameObject Boundary;
         public Camera mainCamera { get; private set; }
         private OnVivaFileCallback onFinishLoadingVivaFile;
         public bool physicsFrame { get; private set; } = false;
@@ -94,6 +95,7 @@ namespace viva
             onFinishLoadingVivaFile += OnPostLoadVivaFile;
             AttemptLoadVivaFile();
             Loli.GenerateAnimations();
+            BuildBoundaryWalls();
         }
 
         private void FixedUpdate()
