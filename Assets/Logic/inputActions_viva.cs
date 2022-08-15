@@ -536,7 +536,7 @@ public partial class @InputActions_viva : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""0cadca45-767e-4dc5-b397-82f3b5c0479c"",
-                    ""path"": ""<XRController>{RightHand}/triggerPressed"",
+                    ""path"": ""<Mouse>/leftButton"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
