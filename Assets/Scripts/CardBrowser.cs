@@ -296,6 +296,17 @@ namespace viva
 
         }
 
+        public bool CheckIfCardActuallyExists(string card)
+        {
+            string path = ModelCustomizer.main.characterCardBrowser.cardFolder + "/" + card + ".png";
+            if (!File.Exists(path))
+            {
+                return false;
+            }
+
+            return true;
+        }
+
         public string[] FindAllExistingCardsInFolders()
         {
             var thumbsPath = Steganography.EnsureFolderExistence(m_cardFolder + "/.thumbs");

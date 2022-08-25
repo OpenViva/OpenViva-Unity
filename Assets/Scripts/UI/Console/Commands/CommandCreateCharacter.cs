@@ -1,5 +1,6 @@
 ﻿using static viva.console.DevConsole;
 using UnityEngine;
+using System.IO;
 
 namespace viva.console
 {
@@ -32,8 +33,16 @@ namespace viva.console
                 {
                     AddStaticMessageToConsole(ParametersAmount);
                 }
-                Vector3 spawnPos = GameDirector.player.head.transform.position + GameDirector.player.head.transform.forward*2;
-                var cardsavailable = ModelCustomizer.main.characterCardBrowser.FindAllExistingCardsInFolders();
+                Vector3 spawnPos = GameDirector.player.head.transform.position + GameDirector.player.head.transform.forward * 2;
+                var CardExists = ModelCustomizer.main.characterCardBrowser.CheckIfCardActuallyExists(commandParameter);
+                if (CardExists)
+                {
+                    AddStaticMessageToConsole("Successfully Created"+" "+commandParameter);
+                }
+                else
+                {
+                    AddStaticMessageToConsole("Coulden't find" + " " + commandParameter + "\nAre you sure it exists?");
+                }
                 GameDirector.instance.town.BuildTownLolis(new string[] { commandParameter }, 1, spawnPos);
             }
             else

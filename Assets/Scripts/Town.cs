@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 
 
@@ -50,10 +51,14 @@ namespace viva
             Debug.Log("[Town] Generating " + count + " loli residents...");
             for (int i = 0; i < count; i++)
             {
-                var cardFilename = cards[i % cards.Length] + ".png";
+                var cardFilename = cards[i % cards.Length] + ".png";                                                          
                 var serializedLoli = new GameDirector.VivaFile.SerializedLoli(cardFilename, new GameDirector.VivaFile.SerializedAsset(cardFilename));
                 var targetLoli = GameDirector.instance.GetLoliFromPool();
-
+                string path = ModelCustomizer.main.characterCardBrowser.cardFolder + "/" + cardFilename;
+                if (!File.Exists(path))
+                {
+                    return;
+                }   
                 GameDirector.instance.StartCoroutine(Loli.LoadLoliFromSerializedLoli(serializedLoli.sourceCardFilename, targetLoli, delegate ()
                 {
                     startingTownLolis.Add(new LoliInit(targetLoli, serializedLoli));
