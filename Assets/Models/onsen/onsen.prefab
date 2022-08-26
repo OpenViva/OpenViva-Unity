@@ -5465,7 +5465,7 @@ ParticleSystem:
         m_RotationOrder: 4
     randomizeRotationDirection: 0
     gravitySource: 0
-    maxNumParticles: 100
+    maxNumParticles: 150
     customEmitterVelocity: {x: 0, y: 0, z: 0}
     size3D: 0
     rotation3D: 0
@@ -9696,7 +9696,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1340598713}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9479de6dad682b0499855f430dc75e51, type: 3}
   m_Name: 
@@ -10277,6 +10277,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5704314608519111126}
   - component: {fileID: 5685563734843661657}
+  - component: {fileID: 590572301690835471}
   m_Layer: 0
   m_Name: ONSENMUSIC
   m_TagString: Untagged
@@ -10312,6 +10313,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.0155004, y: 1, z: 2.468528}
   m_Center: {x: -0.0077503193, y: 0, z: 0.26375252}
+--- !u!114 &590572301690835471
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 104822689799671938}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66be04c1b3c96c147b06e277e16f16b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  musicToOverride: 9
 --- !u!1 &106548442368525002
 GameObject:
   m_ObjectHideFlags: 0

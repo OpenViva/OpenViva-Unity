@@ -9,10 +9,10 @@ namespace viva
         public float velocity = 0.0f;
         private Transform wrist;
 
-        public override void OnBeginWearing(Loli shinobu)
+        public override void OnBeginWearing(Loli loli)
         {
 
-            wrist = shinobu.bodyArmature.Find("spine1/spine2/spine3/shoulder_l/armControl_l/forearmControl_l/wrist_l");
+            wrist = loli.bodyArmature.Find("spine1/spine2/spine3/shoulder_l/armControl_l/forearmControl_l/wrist_l");
             transform.SetParent(wrist, false);
             transform.localRotation = Quaternion.Euler(90.0f, 0.0f, 0.0f);
         }

@@ -74,10 +74,10 @@ namespace viva
             Transform camera = gameObject.transform;
             for (int i = 0; i < lolis.Count; i++)
             {
-                Loli shinobu = lolis[i] as Loli;
+                Loli loli = lolis[i] as Loli;
                 //if camera is visible for Shinobu and bearing is small
-                if (!shinobu.CanSeePoint(camera.position) ||
-                    Mathf.Abs(Tools.Bearing(player.head, shinobu.head.position)) > 50.0f)
+                if (!loli.CanSeePoint(camera.position) ||
+                    Mathf.Abs(Tools.Bearing(player.head, loli.head.position)) > 50.0f)
                 {
                     return;
                 }
@@ -88,14 +88,14 @@ namespace viva
                 }
 
                 //cancel if too close to her head
-                if (Vector3.SqrMagnitude(camera.position - shinobu.head.position) < 0.36f)
+                if (Vector3.SqrMagnitude(camera.position - loli.head.position) < 0.36f)
                 {
                     return;
                 }
-                float rayDist = Tools.PointToSegmentDistance(camera.position, camera.position - camera.up * 20.0f, shinobu.head.position);
+                float rayDist = Tools.PointToSegmentDistance(camera.position, camera.position - camera.up * 20.0f, loli.head.position);
                 if (rayDist < 0.35f)
                 {
-                    shinobu.active.cameraPose.AttemptPoseForCamera(transform);
+                    loli.active.cameraPose.AttemptPoseForCamera(transform);
                 }
             }
         }

@@ -45,12 +45,18 @@ namespace viva
         public bool userIsIndoors { get { return m_userIsIndoors; } }
         private bool userIsExploring = false;
         private bool userInOnsen = false;
-
         private bool userInTown = false;
+        private Music? overrideMusic = null;
 
         public bool IsMusicMuted()
         {
             return muteMusic;
+        }
+
+        public void SetOverrideMusic(Music? music)
+        {
+            overrideMusic = music;
+            SetMusic(GetDefaultMusic());
         }
 
         public void SetMuteMusic(bool enable)
@@ -111,18 +117,6 @@ namespace viva
             ambienceDirector.FadeAmbience();
         }
 
-        public void SetUserInOnsen(bool onsen)
-        {
-            userInOnsen = onsen;
-            SetMusic(GetDefaultMusic());
-        }
-
-        public void SetUserInTown(bool town)
-        {
-            userInTown = town;
-            SetMusic(GetDefaultMusic());
-        }
-
         public void SetUserIsExploring(bool exploring)
         {
             userIsExploring = exploring;
@@ -131,6 +125,7 @@ namespace viva
 
         public Music GetDefaultMusic()
         {
+            if (overrideMusic.HasValue) return overrideMusic.Value;
             switch (GameDirector.skyDirector.daySegment)
             {
                 case SkyDirector.DaySegment.MORNING:
@@ -182,7 +177,7 @@ namespace viva
 
         public void UpdateMusicVolume()
         {
-            musicSourceB.volume = settings.musicVolume;
+            musicSourceB.volume = GameSettings.main.musicVolume;
         }
 
         public void PlayGlobalSound(AudioClip clip)
@@ -198,7 +193,7 @@ namespace viva
             //Fade music source from A to B
             musicSourceA.clip = music[(int)currentMusic];
             musicSourceA.time = musicSourceB.time;
-            musicSourceB.volume = settings.musicVolume;
+            musicSourceB.volume = GameSettings.main.musicVolume;
             musicSourceA.Play();
 
             musicSourceB.clip = music[(int)newMusic];
@@ -209,13 +204,13 @@ namespace viva
             while (timer > 0.0f)
             {
                 timer = Mathf.Max(0.0f, timer - Time.deltaTime);
-                musicSourceA.volume = (timer / fadeTime) * GameDirector.settings.musicVolume;
-                musicSourceB.volume = (1.0f - timer / fadeTime) * GameDirector.settings.musicVolume;
+                musicSourceA.volume = (timer / fadeTime) * GameSettings.main.musicVolume;
+                musicSourceB.volume = (1.0f - timer / fadeTime) * GameSettings.main.musicVolume;
                 yield return null;
             }
             musicSourceA.volume = 0.0f;
             musicSourceA.Stop();
-            musicSourceB.volume = GameDirector.settings.musicVolume;
+            musicSourceB.volume = GameSettings.main.musicVolume;
 
             fadeMusicCoroutine = null;
             currentMusic = newMusic;

@@ -20,6 +20,7 @@ namespace viva
         public abstract void OnBeginUIInput();
         public abstract void OnExitUIInput();
 
+        public virtual bool KeyboardModeBringsHandDown(bool rightHand) { return true; }
 
         public GraphicRaycaster GetGraphicRaycaster()
         {

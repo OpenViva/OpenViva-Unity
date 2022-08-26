@@ -284,13 +284,13 @@ namespace viva
             {
                 return;
             }
-            Loli shinobu = owner as Loli;
+            Loli loli = owner as Loli;
             //achievements
-            if (shinobu.rightHandState.heldItem != null &&
-                shinobu.leftHandState.heldItem != null)
+            if (loli.rightHandState.heldItem != null &&
+                loli.leftHandState.heldItem != null)
             {
-                if (shinobu.rightHandState.heldItem.settings.itemType == Item.Type.DONUT &&
-                    shinobu.leftHandState.heldItem.settings.itemType == Item.Type.DONUT)
+                if (loli.rightHandState.heldItem.settings.itemType == Item.Type.DONUT &&
+                    loli.leftHandState.heldItem.settings.itemType == Item.Type.DONUT)
                 {
                     GameDirector.player.CompleteAchievement(Player.ObjectiveType.GIVE_2_DONUTS);
                 }

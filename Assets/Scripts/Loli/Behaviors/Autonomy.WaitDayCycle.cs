@@ -13,16 +13,16 @@
         {
             duration = _duration;
 
-            onRegistered += delegate { dayCycleStarted = GameDirector.settings.worldTime; };
+            onRegistered += delegate { dayCycleStarted = GameDirector.skyDirector.worldTime; };
         }
 
         public override bool? Progress()
         {
-            if (GameDirector.settings.worldTime - dayCycleStarted > duration)
+            if (GameDirector.skyDirector.worldTime - dayCycleStarted > duration)
             {
                 if (loop)
                 {
-                    dayCycleStarted = GameDirector.settings.worldTime;
+                    dayCycleStarted = GameDirector.skyDirector.worldTime;
                     Reset();
                 }
                 return true;

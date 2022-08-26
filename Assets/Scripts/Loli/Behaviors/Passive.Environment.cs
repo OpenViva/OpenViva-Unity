@@ -27,7 +27,6 @@ namespace viva
             if (self.currentAnim != reactAnim && self.targetAnim != reactAnim)
             {
                 initiateListenEntryAnim = reactAnim;
-                self.SetTargetAnimation(reactAnim);
             }
             if (substanceType == SubstanceSpill.Substance.FLOUR)
             {
@@ -37,13 +36,18 @@ namespace viva
             Vector3 forceDir = self.floorPos - particlePosition;
             forceDir.y = 0.0f;
             self.locomotion.PlayForce(forceDir.normalized, 0.8f);
-            self.SetTargetAnimation(reactAnim);
-
-            self.autonomy.Interrupt(new AutonomyFaceDirection(self.autonomy, "face direction", delegate (TaskTarget target)
+            
+            var playReactAnim = new AutonomyPlayAnimation(self.autonomy, "spill react animation", reactAnim);
+            var faceSubstance = new AutonomyFaceDirection(self.autonomy, "face substance", delegate (TaskTarget target)
+            { target.SetTargetPosition(particlePosition); }, 2.0f);
+            playReactAnim.onRegistered += delegate
             {
-                target.SetTargetPosition(particlePosition);
-            }, 2.0f));
-            // self.SetRootFacingTarget( particlePosition, 150.0f, 20.0f, 30.0f );
+                self.leftHandState.AttemptDrop();
+                self.rightHandState.AttemptDrop();
+            };
+            playReactAnim.AddPassive(faceSubstance);
+
+            self.autonomy.Interrupt(playReactAnim);
             return true;
         }
 

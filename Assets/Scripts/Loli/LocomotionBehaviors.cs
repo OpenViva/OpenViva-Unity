@@ -79,7 +79,6 @@ namespace viva
                 Vector3 cornerDiff = nextCorner - self.floorPos;
                 bool heightInRange = Mathf.Abs(cornerDiff.y) < 0.3f;
                 cornerDiff.y = 0.0f;
-
                 Debug.DrawLine(nextCorner, self.floorPos, Color.white, 0.025f);
                 float successDist;
                 if (currCorner + 1 < path.Length || finishPath)
@@ -280,7 +279,7 @@ namespace viva
             Vector3 targetNavPos = navTest.position;
             if (!NavMesh.SamplePosition(sourcePos, out navTest, 1.0f, NavMesh.AllAreas))
             {
-                Debug.LogError("No nearest shinobu nav position found");
+                Debug.LogError("No nearest loli nav position found");
                 Debug.DrawLine(newTargetMoveToPos, newTargetMoveToPos + Vector3.up * 0.5f, Color.red, 3.0f);
                 return null;
             }

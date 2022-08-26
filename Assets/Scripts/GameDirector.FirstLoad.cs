@@ -23,7 +23,6 @@ namespace viva
 
             GameObject.Instantiate(firstLoadPrefab);
             yield return new WaitForSeconds(0.5f);
-            settings.SelectBestVRControllerSetup();
             if (player)
             {
                 player.OpenPauseMenu();

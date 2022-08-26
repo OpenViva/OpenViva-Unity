@@ -42,23 +42,9 @@ namespace viva {
             }
         }
 
-        public override void OnItemLateUpdate()
+        public override void OnItemUsed()
         {
-            if(mainOwner == null)
-            {
-                Debug.Log("mainOwner null");
-                return;
-            }
-            PlayerHandState handState = mainOwner.FindOccupyStateByHeldItem(this) as PlayerHandState;
-            if (handState == null)
-            {
-                Debug.Log("Handstate null");
-                return;
-            }
-            if (handState.actionState.isDown)
-            {
-                Toggle();
-            }
+            Toggle();
         }
 
         private IEnumerator SetLightOn(bool enable)

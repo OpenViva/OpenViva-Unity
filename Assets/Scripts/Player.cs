@@ -61,14 +61,6 @@ namespace viva
         private bool initialized = false;
         public InputActions_viva vivaControls { get; private set; }
 
-
-        public override void Save(GameDirector.VivaFile vivaFile)
-        {
-            m_absoluteVRPositionOffset = rightPlayerHandState.absoluteHandTransform.localPosition;
-            m_absoluteVRRotationEulerOffset = rightPlayerHandState.absoluteHandTransform.localEulerAngles;
-            base.Save(vivaFile);
-        }
-
         protected override Vector3 CalculateFloorPosition()
         {
             return new Vector3(base.head.position.x, transform.position.y, base.head.position.z);
@@ -108,8 +100,7 @@ namespace viva
 
             rightPlayerHandState.Initialize(animationInfos);
             leftPlayerHandState.Initialize(animationInfos);
-            rightPlayerHandState.SetAbsoluteVROffsets(absoluteVRPositionOffset, absoluteVRRotationEulerOffset, true);
-            leftPlayerHandState.SetAbsoluteVROffsets(absoluteVRPositionOffset, absoluteVRRotationEulerOffset, true);
+            GameSettings.main.SetDefaultCalibration();
 
             if (initialized)
             {
@@ -121,7 +112,7 @@ namespace viva
 
             ReloadCurrentControlType();
             SetInputController(null);    //ensure controller exists on initialize
-            GameDirector.instance.ApplyAllQualitySettings();
+            GameSettings.main.Apply();
             BindButtonStateCallbacks();
         }
 
@@ -154,7 +145,7 @@ namespace viva
             SetEnableVRControls(!usingKeyboardControls);
 
             SetInputController(null);  //refresh controller
-            GameDirector.instance.ApplyAllQualitySettings();
+            GameSettings.main.Apply();
             if (GameDirector.instance.IsAnyUIMenuActive())
             {
                 //open correct updated control scheme

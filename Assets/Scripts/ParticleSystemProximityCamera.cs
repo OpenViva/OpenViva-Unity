@@ -65,13 +65,11 @@ namespace viva
 
         private void Update()
         {
-            if (target == null)
-            {
-                enabled = false;
-            }
-
             Vector3 diff = endpointB - endpointA;
-            transform.position = endpointA + diff * Mathf.Clamp01(Tools.PointOnRayRatio(endpointA, endpointB, target.position + target.forward * padding));
+            if(target != null)
+            {
+                transform.position = endpointA + diff * Mathf.Clamp01(Tools.PointOnRayRatio(endpointA, endpointB, target.position + target.forward * padding));
+            }
         }
     }
 

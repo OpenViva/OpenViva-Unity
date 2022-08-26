@@ -24,7 +24,7 @@ namespace viva
 
         public void OnPointerEnter(PointerEventData eventData)
         {
-            if (toolTipGO != null && GameDirector.settings.toggleTooltips)
+            if (toolTipGO != null && GameSettings.main.toggleTooltips)
             {
                 LeanTween.delayedCall(delayedEnterTime, () =>
                 {

@@ -203,7 +203,7 @@ namespace viva
                 return false;
             }
 
-            //disable nav search if shinobu is an anchor transition
+            //disable nav search if loli is in anchor transition
             if (self.anchorActive)
             {
                 // Debug.LogError("Skipping nav search due to anchor transition...");
@@ -234,7 +234,7 @@ namespace viva
 
             yield return null; //wait 1 frame so it's not an immediate return
 
-            //ensure shinobu is in the NavMesh
+            //ensure loli is in the NavMesh
             if (!NavMesh.SamplePosition(self.floorPos, out navTest, minCornerDist * 2.0f, NavMesh.AllAreas))
             {
                 Debug.LogError("[Locomotion] Character not near walkable position");
@@ -325,56 +325,68 @@ namespace viva
             return length;
         }
 
-        // //samples rays extending from pos with length "radius", then each step the radius i shrunk by radiusErode
-        // public Vector3? SampleDownNearestFloorPosition( Vector3 pos, float radius, float radiusErode, float height, int steps ){
+        //UNUSED samples rays extending from pos with length "radius", then each step the radius i shrunk by radiusErode       
+        //public Vector3? FindNearestWalkablePoint(Vector3 pos, float radius, float radiusErode, float height, int steps)
+        //{
 
-        // 	//shift a bit up so it doesnt collide with floor
-        // 	pos.y += 0.02f;
-        // 	Vector3? walkPos = null;
-        // 	float sqShortest = Mathf.Infinity;
-        // 	float radians = 0.0f;
-        // 	float radiansStep = Mathf.PI*2.0f/8.0f;
-        // 	for( int i=0; i<8; i++ ){
+        //    //shift a bit up so it doesnt collide with floor
+        //    pos.y += 0.02f;
+        //    Vector3? walkPos = null;
+        //    float sqShortest = Mathf.Infinity;
+        //    float radians = 0.0f;
+        //    float radiansStep = Mathf.PI * 2.0f / 8.0f;
+        //    for (int i = 0; i < 8; i++)
+        //    {
 
-        // 		Vector3 testDir = Vector3.zero;
-        // 		testDir.x = Mathf.Cos(radians)*radius;
-        // 		testDir.z = Mathf.Sin(radians)*radius;
+        //        Vector3 testDir = Vector3.zero;
+        //        testDir.x = Mathf.Cos(radians) * radius;
+        //        testDir.z = Mathf.Sin(radians) * radius;
 
-        // 		Vector3? subClosest = null;
-        // 		float subRadius = radius;
-        // 		for( int j=0; j<4; j++ ){
+        //        Vector3? subClosest = null;
+        //        float subRadius = radius;
+        //        for (int j = 0; j < 4; j++)
+        //        {
 
-        // 			Vector3 subPos = pos+testDir*subRadius;
-        // 			if( GamePhysics.GetRaycastInfo( subPos, -Vector3.up, height, Instance.wallsMask ) ){
-        // 				if( isOnWalkableFloor( GamePhysics.result().point ) ){
-        // 					subClosest = GamePhysics.result().point;
-        // 					Debug.DrawLine( subPos, subClosest.Value, Color.yellow, 2.0f );
-        // 				}else{
-        // 					Tools.DrawCross( GamePhysics.result().point, Color.red, 0.05f );
-        // 					break;
-        // 				}
-        // 			}else{
-        // 				Tools.DrawCross( subPos, Color.red, 0.04f );
-        // 				Tools.DrawCross( subPos-Vector3.up*height, Color.red, 0.04f );
-        // 				break;
-        // 			}
-        // 			subRadius -= radiusErode;
-        // 		}
-        // 		if( subClosest.HasValue ){
-        // 			float dist = Vector3.SqrMagnitude( self.floorPos-subClosest.Value );
-        // 			if( dist < sqShortest ){
-        // 				sqShortest = dist;
-        // 				walkPos = subClosest.Value;
-        // 				Debug.DrawLine( subClosest.Value-Vector3.one*0.05f, subClosest.Value+Vector3.one*0.05f, Color.green, 2.0f );
-        // 			}
-        // 		}
-        // 		radians += radiansStep;
-        // 	}
-        // 	if( walkPos == null ){
-        // 		Tools.DrawCross( pos, Color.red );
-        // 	}
-        // 	return walkPos;
-        // }
+        //            Vector3 subPos = pos + testDir * subRadius;
+        //            if (GamePhysics.GetRaycastInfo(subPos, -Vector3.up, height, Instance.wallsMask))
+        //            {
+        //                if (isOnWalkableFloor(GamePhysics.result().point))
+        //                {
+        //                    subClosest = GamePhysics.result().point;
+        //                    Debug.DrawLine(subPos, subClosest.Value, Color.yellow, 2.0f);
+        //                }
+        //                else
+        //                {
+        //                    Tools.DrawCross(GamePhysics.result().point, Color.red, 0.05f);
+        //                    break;
+        //                }
+        //            }
+        //            else
+        //            {
+        //                Tools.DrawCross(subPos, Color.red, 0.04f);
+        //                Tools.DrawCross(subPos - Vector3.up * height, Color.red, 0.04f);
+        //                break;
+        //            }
+        //            subRadius -= radiusErode;
+        //        }
+        //        if (subClosest.HasValue)
+        //        {
+        //            float dist = Vector3.SqrMagnitude(self.floorPos - subClosest.Value);
+        //            if (dist < sqShortest)
+        //            {
+        //                sqShortest = dist;
+        //                walkPos = subClosest.Value;
+        //                Debug.DrawLine(subClosest.Value - Vector3.one * 0.05f, subClosest.Value + Vector3.one * 0.05f, Color.green, 2.0f);
+        //            }
+        //        }
+        //        radians += radiansStep;
+        //    }
+        //    if (walkPos == null)
+        //    {
+        //        Tools.DrawCross(pos, Color.red);
+        //    }
+        //    return walkPos;
+        //}
     }
 
 }

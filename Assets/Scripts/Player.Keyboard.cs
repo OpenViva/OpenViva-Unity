@@ -93,7 +93,7 @@ namespace viva
 
         public Vector2 CalculateMouseMovement()
         {
-            return new Vector2(-mouseVelocity.y, mouseVelocity.x) * GameDirector.settings.mouseSensitivity * Time.deltaTime * 0.01f;
+            return new Vector2(-mouseVelocity.y, mouseVelocity.x) * GameSettings.main.mouseSensitivity * Time.deltaTime * 0.01f;
         }
 
         public void SetKeyboardMouseRotationMult(float mult)

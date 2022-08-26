@@ -54,7 +54,7 @@ namespace viva
                 }
                 else
                 {
-                    useToggle = !GameDirector.settings.disableGrabToggle;
+                    useToggle = !GameSettings.main.disableGrabToggle;
                 }
 
                 //drop item, Index does NOT use grab toggling
@@ -94,8 +94,12 @@ namespace viva
                     //if player didn't grab anything
                     if (handState.animSys.currentAnim == Player.Animation.IDLE)
                     {
-                        handState.animSys.SetTargetAndIdleAnimation(Player.Animation.POINT);
+                        if (handState.animSys.idleAnimation != Player.Animation.KEYBOARD_HANDS_DOWN)
+                        {     
+                            handState.animSys.SetTargetAndIdleAnimation(Player.Animation.POINT);                         
+                        }
                     }
+                        
                 }
                 //if hand isn't busy and released grip
             }
@@ -103,7 +107,10 @@ namespace viva
             {
                 if (handState.animSys.currentAnim == Player.Animation.POINT)
                 {
-                    handState.animSys.SetTargetAndIdleAnimation(Player.Animation.IDLE);
+                    if (handState.animSys.idleAnimation != Player.Animation.KEYBOARD_HANDS_DOWN)
+                    {
+                        handState.animSys.SetTargetAndIdleAnimation(Player.Animation.IDLE);
+                    }
                 }
                 //if hand isn't doing anything
             }

@@ -43,14 +43,6 @@ namespace viva
         private Coroutine blackFadeCoroutine = null;
         private bool teleportLocationValid = false;
         private bool disableVRTransforms = false;
-        [SerializeField]
-        private Vector3 m_absoluteVRPositionOffset;
-        [VivaFileAttribute]
-        public Vector3 absoluteVRPositionOffset { get { return m_absoluteVRPositionOffset; } protected set { m_absoluteVRPositionOffset = value; } }
-        [SerializeField]
-        private Vector3 m_absoluteVRRotationEulerOffset;
-        [VivaFileAttribute]
-        public Vector3 absoluteVRRotationEulerOffset { get { return m_absoluteVRRotationEulerOffset; } protected set { m_absoluteVRRotationEulerOffset = value; } }
 
         private void SetEnableVRControls(bool enable)
         {
@@ -75,7 +67,7 @@ namespace viva
                 head.localRotation = Quaternion.identity;
 
                 crosshair.SetActive(false);
-                InitVRTeleportVariables();
+                CreateVRTeleportMesh();
                 GameDirector.instance.mainCamera.stereoTargetEye = StereoTargetEyeMask.Both;
             }
             else
@@ -104,7 +96,7 @@ namespace viva
             }
         }
 
-        private void InitVRTeleportVariables()
+        private void CreateVRTeleportMesh()
         {
             teleportMesh = new Mesh();
             teleportMF.sharedMesh = teleportMesh;
@@ -203,8 +195,8 @@ namespace viva
         public void UpdateTrackpadBodyRotation()
         {
             bool turn = false;
-            var targetHand = !GameDirector.settings.trackpadMovementUseRight ? rightPlayerHandState : leftPlayerHandState;
-            if (GameDirector.settings.pressToTurn)
+            var targetHand = !GameSettings.main.trackpadMovementUseRight ? rightPlayerHandState : leftPlayerHandState;
+            if (GameSettings.main.pressToTurn)
             {
                 if (targetHand.trackpadButtonState.isDown)
                 {
@@ -248,17 +240,17 @@ namespace viva
 
         public void LateUpdateVRInputTeleportationMovement()
         {
-            if (GameDirector.instance.controlsAllowed == GameDirector.ControlsAllowed.NONE || GameDirector.settings.vrControls != Player.VRControlType.TELEPORT)
+            if (GameDirector.instance.controlsAllowed == GameDirector.ControlsAllowed.NONE || GameSettings.main.vrControls != Player.VRControlType.TELEPORT)
             {
                 return;
             }
-            var targetHand = GameDirector.settings.trackpadMovementUseRight ? rightPlayerHandState : leftPlayerHandState;
+            var targetHand = GameSettings.main.trackpadMovementUseRight ? rightPlayerHandState : leftPlayerHandState;
             if (teleportTestSide == 0)
             {
 
                 if (targetHand.trackpadButtonState.isDown && blackFadeCoroutine == null)
                 {
-                    if (GameDirector.settings.trackpadMovementUseRight)
+                    if (GameSettings.main.trackpadMovementUseRight)
                     {
                         teleportTestSide = 1;
                     }
@@ -277,7 +269,7 @@ namespace viva
                 }
                 else
                 {
-                    if (GameDirector.settings.trackpadMovementUseRight)
+                    if (GameSettings.main.trackpadMovementUseRight)
                     {
                         SampleVRTeleportationLocation(rightHandState.fingerAnimator.hand);
                     }
@@ -424,7 +416,7 @@ namespace viva
 
         public void UpdateVRTrackpadMovement()
         {
-            var targetHand = GameDirector.settings.trackpadMovementUseRight ? rightPlayerHandState : leftPlayerHandState;
+            var targetHand = GameSettings.main.trackpadMovementUseRight ? rightPlayerHandState : leftPlayerHandState;
             Vector2 touchpadPos = targetHand.trackpadPos;
             touchpadPos.y = -touchpadPos.y;
 

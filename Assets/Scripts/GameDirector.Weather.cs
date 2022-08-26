@@ -21,9 +21,6 @@ namespace viva
         private Texture weatherNoises;
         [SerializeField]
         public Material raymarchingCloudsMat;
-        private bool Clouds = true;
-
-
         private GameObject clouds;
         private MeshRenderer cloudsMR;
         [SerializeField]
@@ -36,17 +33,6 @@ namespace viva
         private RenderTexture weatherGenerateRT;
         private const float weatherRenderWaitTime = 1.0f / 20.0f; //20fps
         private float weatherRenderWaitTimer = 0.0f;
-
-        public bool UseClouds()
-        {
-            return Clouds;
-        }
-
-        public void SetCloud(bool on)
-        {
-            Clouds = on;
-            RebuildCloudRendering();
-        }
 
         public RenderTexture GetCloudRT()
         {
@@ -74,7 +60,7 @@ namespace viva
             }
         }
 
-        private void RebuildCloudRendering()
+        public void RebuildCloudRendering()
         {
             if (cloudsPrefab == null)
             {
@@ -122,7 +108,7 @@ namespace viva
             //render in the buffer
             cloudCommandBuffer = new CommandBuffer();
             cloudCommandBuffer.SetRenderTarget(cloudRT, 0, CubemapFace.Unknown, -1);
-            if (Clouds)
+            if (GameSettings.main.toggleClouds)
             {
                 cloudCommandBuffer.DrawRenderer(cloudsMR, raymarchingCloudsMat, 0, -1);
             }

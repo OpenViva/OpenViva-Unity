@@ -20,6 +20,7 @@ namespace viva
             VR_CONTROLS,
             MAP,
             OPTIONS,
+            GRAPHICS,
             ERROR,
             CHECKLIST,
             CALIBRATE_HANDS,
@@ -47,8 +48,7 @@ namespace viva
         private Text musicVolumeText;
         [SerializeField]
         private Text dayNightCycleSpeedText;
-        [SerializeField]
-        private Text reflectionDistanceText;
+
         [SerializeField]
         private GameObject beginnerFriendlyKeyboard;
         [SerializeField]
@@ -56,7 +56,7 @@ namespace viva
         [SerializeField]
         private Text respawnLoliText;
         [SerializeField]
-        private Text antiAliasingText;
+
 
         private Coroutine errorCoroutine = null;
         private Coroutine calibrationCoroutine = null;
@@ -81,10 +81,12 @@ namespace viva
 
         private void Start()
         {
+            FindAutomaticResolution();
+
             if (tutorialCircle == null)
             {
                 Debug.LogError("ERROR Tutorial Circle is null!");
-            }
+            }          
 
             checklistPageScroller.Initialize(OnChecklistManifest, OnChecklistPageUpdate);
 
@@ -135,44 +137,35 @@ namespace viva
 
         private void UpdateMusicVolumeText()
         {
-            musicVolumeText.text = "" + (int)(GameDirector.settings.musicVolume * 100) + "%";
+            musicVolumeText.text = "" + (int)(GameSettings.main.musicVolume * 100) + "%";
         }
 
         public void clickShiftMusicVolume(float amount)
         {
-            GameDirector.settings.AdjustMusicVolume(amount);
+            GameSettings.main.AdjustMusicVolume(amount);
             UpdateMusicVolumeText();
         }
 
         public void clickShiftDayNightCycleSpeedIndex(int indexAmount)
         {
-            dayNightCycleSpeedText.text = GameDirector.settings.AdjustDayTimeSpeedIndex(indexAmount);
+            dayNightCycleSpeedText.text = GameSettings.main.AdjustDayTimeSpeedIndex(indexAmount);
         }
 
-        private void UpdateReflectionDistanceText()
-        {
-            reflectionDistanceText.text = "" + GameDirector.settings.reflectionDistance + "%";
-        }
-
-        public void clickShiftReflectionDistance(int amount)
-        {
-            GameDirector.settings.AdjustReflectionDistance(amount);
-            UpdateReflectionDistanceText();
-        }
+        
         private void UpdateMouseSensitivityText()
         {
-            mouseSensitivityText.text = "" + (int)(GameDirector.settings.mouseSensitivity) + "%";
+            mouseSensitivityText.text = "" + (int)(GameSettings.main.mouseSensitivity) + "%";
         }
 
         public void IncreaseMouseSensitivity()
         {
-            GameDirector.settings.AdjustMouseSensitivity(10.0f);
+            GameSettings.main.AdjustMouseSensitivity(10.0f);
             UpdateMouseSensitivityText();
         }
 
         public void DecreaseMouseSensitivity()
         {
-            GameDirector.settings.AdjustMouseSensitivity(-10.0f);
+            GameSettings.main.AdjustMouseSensitivity(-10.0f);
             UpdateMouseSensitivityText();
         }
 
@@ -250,6 +243,15 @@ namespace viva
                 case Menu.NONE:
                     SetMenuActive(menu, false);
                     break;
+                case Menu.CHECKLIST:
+                    GameDirector.instance.PlayGlobalSound(nextSound);
+                    SetMenuActive(menu, true);
+                    ContinueTutorial(MenuTutorial.WAIT_TO_ENTER_CHECKLIST);
+                    break;
+                case Menu.MAP:
+                    GameDirector.instance.PlayGlobalSound(nextSound);
+                    SetMenuActive(menu, true);
+                    break;
                 case Menu.VR_CONTROLS:
                     GameDirector.instance.PlayGlobalSound(nextSound);
                     SetMenuActive(menu, true);
@@ -263,19 +265,20 @@ namespace viva
                     SetMenuActive(menu, true);
                     UpdateMusicVolumeText();
                     UpdateMouseSensitivityText();
-                    clickShiftDayNightCycleSpeedIndex(0);
+                    clickShiftDayNightCycleSpeedIndex(0);                   
+                    break;
+                case Menu.GRAPHICS:
+                    GameDirector.instance.PlayGlobalSound(nextSound);
+                    SetMenuActive(menu, true);
                     UpdateToggleQualityText();
                     UpdateAntiAliasingText();
-                    break;
-                case Menu.MAP:
-                    GameDirector.instance.PlayGlobalSound(nextSound);
-                    SetMenuActive(menu, true);
-                    break;
-                case Menu.CHECKLIST:
-                    GameDirector.instance.PlayGlobalSound(nextSound);
-                    SetMenuActive(menu, true);
-                    ContinueTutorial(MenuTutorial.WAIT_TO_ENTER_CHECKLIST);
-                    break;
+                    UpdateShadowLevelText();
+                    UpdateReflectionDistanceText();
+                    UpdateResolutionText();
+                    UpdateVsyncText();
+                    UpdateFpsLimitText();
+                    UpdateLodDistanceText();
+                    break;                               
                 case Menu.CALIBRATE_HANDS:
                 case Menu.MANUAL:
                     GameDirector.instance.PlayGlobalSound(nextSound);
@@ -287,6 +290,7 @@ namespace viva
                     GameDirector.instance.PlayGlobalSound(nextSound);
                     SetMenuActive(menu, true);
                     break;
+                
                 case Menu.ROOT:
                     if (lastMenu == Menu.ROOT)
                     {    //treat as a toggle
@@ -357,33 +361,7 @@ namespace viva
             cycleButtons[cycleIndex].onClick.Invoke();
         }
 
-        public void clickCycleAntiAliasing()
-        {
-            GameDirector.settings.CycleAntiAliasing();
-            UpdateAntiAliasingText();
-        }
-
-        private void UpdateAntiAliasingText()
-        {
-            switch (GameDirector.settings.antiAliasing)
-            {
-                case 0:
-                    antiAliasingText.text = "No Antialiasing";
-                    break;
-                case 2:
-                    antiAliasingText.text = "2x Antialiasing";
-                    break;
-                case 4:
-                    antiAliasingText.text = "4x Antialiasing";
-                    break;
-                case 8:
-                    antiAliasingText.text = "8x Antialiasing";
-                    break;
-                default:
-                    antiAliasingText.text = "[ERROR] Bad Antialiasing value";
-                    break;
-            }
-        }
+        
 
         private void UpdateRespawnShinobuText()
         {
@@ -470,6 +448,10 @@ namespace viva
         {
             SetPauseMenu(Menu.OPTIONS);
         }
+        public void clickGraphics()
+        {
+            SetPauseMenu(Menu.GRAPHICS);
+        }
         public void toggleMuteMusic()
         {
             GameDirector.instance.SetMuteMusic(GameDirector.instance.IsMusicMuted());
@@ -478,15 +460,15 @@ namespace viva
         {
             Player player = GameDirector.player;
             Text buttonText = GetRightPageUIByMenu(Menu.VR_CONTROLS).transform.Find("Trackpad").GetChild(0).GetComponent(typeof(Text)) as Text;
-            if (GameDirector.settings.vrControls == Player.VRControlType.TRACKPAD)
+            if (GameSettings.main.vrControls == Player.VRControlType.TRACKPAD)
             {
-                GameDirector.settings.SetVRControls(Player.VRControlType.TELEPORT);
+                GameSettings.main.SetVRControls(Player.VRControlType.TELEPORT);
                 buttonText.text = "Using Teleport";
                 OrientPauseBookToPlayer();
             }
             else
             {
-                GameDirector.settings.SetVRControls(Player.VRControlType.TRACKPAD);
+                GameSettings.main.SetVRControls(Player.VRControlType.TRACKPAD);
                 buttonText.text = "Using Trackpad";
             }
             UpdateVRMovementPrefText();
@@ -494,20 +476,13 @@ namespace viva
         public void clickToggleTrackpadPreferences()
         {
 
-            GameDirector.settings.ToggleTrackpadMovementUseRight();
+            GameSettings.main.ToggleTrackpadMovementUseRight();
             UpdateVRMovementPrefText();
         }
         private void UpdateVRMovementPrefText()
         {
             Text buttonText = GetRightPageUIByMenu(Menu.VR_CONTROLS).transform.Find("TrackpadPref").GetChild(0).GetComponent(typeof(Text)) as Text;
-            if (GameDirector.settings.trackpadMovementUseRight)
-            {
-                buttonText.text = "Using Right Handed";
-            }
-            else
-            {
-                buttonText.text = "Using Left Handed";
-            }
+            buttonText.text = GameSettings.main.trackpadMovementUseRight ? "Using Right Handed" : "Using Left Handed";
         }
         public void clickSwitchControlScheme()
         {
@@ -521,34 +496,7 @@ namespace viva
                 player.SetControls(Player.ControlType.KEYBOARD);
             }
         }
-        public void clickToggleQuality()
-        {
-            GameDirector.settings.CycleQualitySetting();
-            GameDirector.instance.ApplyAllQualitySettings();
-
-            UpdateToggleQualityText();
-        }
-        public void clickToggleClouds()
-        {
-            bool currentCLD = GameDirector.instance.UseClouds();
-            Text text = GetRightPageUIByMenu(Menu.OPTIONS).transform.Find("Toggle Clouds").GetChild(0).GetComponent(typeof(Text)) as Text;
-            currentCLD = !currentCLD;
-            if (currentCLD)
-            {
-                text.text = "Turn Off Clouds";
-            }
-            else
-            {
-                text.text = "Turn On Clouds";
-            }
-            GameDirector.instance.SetCloud(currentCLD);
-        }
-        private void UpdateToggleQualityText()
-        {
-            Text text = GetRightPageUIByMenu(Menu.OPTIONS).transform.Find("Toggle Quality").GetChild(0).GetComponent(typeof(Text)) as Text;
-            string[] names = QualitySettings.names;
-            text.text = names[QualitySettings.GetQualityLevel()] + " Quality";
-        }
+        
 
         public int OnChecklistManifest()
         {
@@ -594,44 +542,30 @@ namespace viva
 
         public void BETA_increaseDaylight()
         {
-            GameDirector.settings.ShiftWorldTime(0.3f);
+            GameSettings.main.ShiftWorldTime(0.3f);
         }
 
         public void clickToggleDisableGrab()
         {
-            GameDirector.settings.ToggleDisableGrabToggle();
+            GameSettings.main.ToggleDisableGrabToggle();
             UpdateDisableGrabToggleText();
         }
 
         private void UpdateDisableGrabToggleText()
         {
             Text buttonText = GetRightPageUIByMenu(Menu.VR_CONTROLS).transform.Find("Disable Grab Toggle").GetChild(0).GetComponent(typeof(Text)) as Text;
-            if (GameDirector.settings.disableGrabToggle)
-            {
-                buttonText.text = "Grab Toggle is off";
-            }
-            else
-            {
-                buttonText.text = "Grab Toggle is on";
-            }
+            buttonText.text = GameSettings.main.disableGrabToggle ? "Grab Toggle is off" : "Grab Toggle is on";
         }
 
         private void UpdatePressToTurnText()
         {
             Text buttonText = GetRightPageUIByMenu(Menu.VR_CONTROLS).transform.Find("Turning requires press").GetChild(0).GetComponent(typeof(Text)) as Text;
-            if (GameDirector.settings.pressToTurn)
-            {
-                buttonText.text = "Using Press to Turn";
-            }
-            else
-            {
-                buttonText.text = "Using Touch to Turn";
-            }
+            buttonText.text = GameSettings.main.pressToTurn ? "Using Press to Turn" : "Using Touch to Turn";
         }
 
         public void clickTogglePressToTurn()
         {
-            GameDirector.settings.TogglePresstoTurn();
+            GameSettings.main.TogglePresstoTurn();
             UpdatePressToTurnText();
         }
 
@@ -744,7 +678,6 @@ namespace viva
                         Vector3 rotOffset = wrist.localEulerAngles;
                         wrist.SetParent(oldParent, true);
                         SetPlayerAbsoluteVROffsets(posOffset, rotOffset, targetHoldState == GameDirector.player.rightHandState);
-
                         Destroy(ghost);
                         ghost = null;
                         targetHoldState = null;

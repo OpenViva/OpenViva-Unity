@@ -52,10 +52,11 @@ namespace viva
         private Material sunMaterial;
         [SerializeField]
         private float sunYaw = 100.0f;
+        public float worldTime = 0.0f;
         [SerializeField]
         private ReflectionProbe environmentMapProbe;
         [SerializeField]
-        private DayNightCycle.Phase m_defaultDayNightPhase;
+        private DayNightCycle.Phase m_defaultDayNightPhase;       
         public DayNightCycle.Phase defaultDayNightPhase { get { return m_defaultDayNightPhase; } }
 
         private FogOverride fogOverride = null;
@@ -93,7 +94,7 @@ namespace viva
 
         public int GetCurrentDay()
         {
-            return Mathf.FloorToInt(GameDirector.settings.worldTime / M_PI2);
+            return Mathf.FloorToInt(GameDirector.skyDirector.worldTime / M_PI2);
         }
 
         public Light GetSun()
@@ -113,7 +114,7 @@ namespace viva
         private Color baseToonAmbience;
         private List<DayNightCycleCallback> cycleCallbacks = new List<DayNightCycleCallback>();
         private bool debugMode = false;
-        public bool isNight { get { return GameDirector.settings.worldTime % M_PI2 > Mathf.PI; } }
+        public bool isNight { get { return GameDirector.skyDirector.worldTime % M_PI2 > Mathf.PI; } }
         public bool nightModeSet = false;
 
 
@@ -133,10 +134,10 @@ namespace viva
             }
             else
             {
-                GameDirector.settings.ShiftWorldTime(Time.deltaTime * dayNightCycleSpeed);
+                GameSettings.main.ShiftWorldTime(Time.deltaTime * dayNightCycleSpeed);
             }
 #else
-        GameDirector.settings.ShiftWorldTime( Time.deltaTime*dayNightCycleSpeed );
+        GameSettings.main.ShiftWorldTime( Time.deltaTime*dayNightCycleSpeed );
 #endif
         }
 
@@ -160,13 +161,13 @@ namespace viva
 
         public void UpdateWorldTime()
         {
-            m_sunPitchRadian = GameDirector.settings.worldTime % M_PI2;
+            m_sunPitchRadian = GameDirector.skyDirector.worldTime % M_PI2;
             m_currentDaySegment = CalculateCurrentDayNightSegment();
         }
 
         public void UpdateDayNightCycleSpeed()
         {
-            dayNightCycleSpeed = dayNightCycleSpeeds[GameDirector.settings.dayNightCycleSpeedIndex];
+            dayNightCycleSpeed = dayNightCycleSpeeds[GameSettings.main.dayNightCycleSpeedIndex];
         }
 
         private void OnDaySegmentChange()
@@ -214,13 +215,13 @@ namespace viva
         public void DebugIncrease(int shift)
         {
             float pieces = dayNightCycle.phases.Length / M_PI2;
-            float time = Mathf.RoundToInt(GameDirector.settings.worldTime * pieces) / pieces + shift / pieces;
+            float time = Mathf.RoundToInt(GameDirector.skyDirector.worldTime * pieces) / pieces + shift / pieces;
             if (time < 0.0f)
             {
                 time = M_PI2;
             }
-            GameDirector.settings.SetWorldTime(time);
-            m_sunPitchRadian = GameDirector.settings.worldTime % M_PI2;
+            GameSettings.main.SetWorldTime(time);
+            m_sunPitchRadian = GameDirector.skyDirector.worldTime % M_PI2;
             Debug.LogError("[CYCLE] " + CalculatePhaseIndex());
         }
 
@@ -232,7 +233,7 @@ namespace viva
                 return;
             }
             //update sun rotation every frame
-            m_sunPitchRadian = GameDirector.settings.worldTime % M_PI2;
+            m_sunPitchRadian = GameDirector.skyDirector.worldTime % M_PI2;
             UpdateDayNightCycleSunRotation();
 
             //check if daySegment changed

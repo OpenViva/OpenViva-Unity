@@ -155,6 +155,7 @@ namespace viva
             m_animationInfos[Animation.VR_SOAP_GENERATE_BUBBLES] = new PlayerAnimationInfo(Animator.StringToHash("player_vr_soap_generate_bubbles"), duration, Priority.LOW, Animation.VR_SOAP_GENERATE_BUBBLES, 1.0f);
             m_animationInfos[Animation.LANTERN] = new PlayerAnimationInfo(Animator.StringToHash("player_lantern"), duration, Priority.LOW, Animation.LANTERN, 1.0f);
             m_animationInfos[Animation.WALL_CANDLE] = new PlayerAnimationInfo(Animator.StringToHash("player_wall_candle"), duration, Priority.LOW, Animation.WALL_CANDLE, 1.0f);
+            m_animationInfos[Animation.KEYBOARD_HANDS_DOWN] = new PlayerAnimationInfo(Animator.StringToHash("player_keyboard_hands_down"), 0.3f, Priority.LOW, Animation.KEYBOARD_HANDS_DOWN, 1.0f);
             m_animationInfos[Animation.CHICKEN] = new PlayerAnimationInfo(Animator.StringToHash("player_HOLD_FORM_CHICKEN"), duration, Priority.LOW, Animation.CHICKEN, 1.0f);
             m_animationInfos[Animation.BAG] = new PlayerAnimationInfo(Animator.StringToHash("player_HOLD_FORM_BAG"), duration, Priority.LOW, Animation.BAG, 1.0f);
             m_animationInfos[Animation.MORTAR] = new PlayerAnimationInfo(Animator.StringToHash("player_HOLD_FORM_MORTAR"), duration, Priority.LOW, Animation.MORTAR, 1.0f);

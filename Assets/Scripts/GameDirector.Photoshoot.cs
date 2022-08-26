@@ -45,8 +45,8 @@ namespace viva
             Quaternion oldRotation = loli.transform.rotation;
             Quaternion oldSunRotation = skyDirector.sun.transform.rotation;
 
-            //must make sure Shinobu is in a proper behavior to override animations!
-            //frezee Shinobu in place without logic momentarily to simulate clothing and hair
+            //must make sure loli is in a proper behavior to override animations!
+            //frezee loli in place without logic momentarily to simulate clothing and hair
             loli.Teleport(photoshootStage.transform.position, photoshootStage.transform.rotation);
             characters.Remove(loli);
             loli.puppetMaster.SetEnableGravity(false);

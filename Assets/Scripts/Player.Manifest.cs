@@ -51,7 +51,7 @@ namespace viva
             VR_SOAP_GENERATE_BUBBLES,
             LANTERN,
             WALL_CANDLE,
-            UNUSED,
+            KEYBOARD_HANDS_DOWN,
             BAG_PLACE_INSIDE_RIGHT,
             BAG_PLACE_INSIDE_LEFT,
             BAG_TAKE_OUT_RIGHT,

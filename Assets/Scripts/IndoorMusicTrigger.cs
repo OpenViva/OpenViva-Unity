@@ -4,33 +4,29 @@
 namespace viva
 {
 
-    public class IndoorAmbienceVolume : MonoBehaviour
+    public class IndoorMusicTrigger : MonoBehaviour
     {
-
-        [Header("Must Be In Camera Layer")]
         private static int indoorCounter = 0;
 
         public void OnTriggerEnter(Collider collider)
         {
             Camera camera = collider.GetComponent<Camera>();
-            if (camera == null)
-            {
-                return;
-            }
-            if (indoorCounter++ == 0)
+            if (!camera) return;
+
+            if (indoorCounter == 0)
             {
                 GameDirector.instance.SetUserIsIndoors(true);
             }
+            indoorCounter++;
         }
 
         public void OnTriggerExit(Collider collider)
         {
             Camera camera = collider.GetComponent<Camera>();
-            if (camera == null)
-            {
-                return;
-            }
-            if (--indoorCounter == 0)
+            if (!camera) return;
+
+            indoorCounter--;
+            if (indoorCounter == 0)
             {
                 GameDirector.instance.SetUserIsIndoors(false);
             }

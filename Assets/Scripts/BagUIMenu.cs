@@ -32,6 +32,11 @@ namespace viva
             gameObject.SetActive(false);
         }
 
+        public override bool KeyboardModeBringsHandDown(bool rightHand)
+        {
+            return false;
+        }
+
         public void RefreshMenuContents()
         {
             itemPageScroller.FlipPage(0);

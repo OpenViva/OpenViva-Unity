@@ -74,9 +74,18 @@ namespace viva
             {
 
                 pointer = null;
-                button = player.leftPlayerHandState.gripState;
+                button = player.leftPlayerHandState.actionState;
                 SetEnableCursor(true);
                 m_controlsAllowed = ControlsAllowed.NONE;
+
+                if (lastMenu.KeyboardModeBringsHandDown(true))
+                {
+                    sourcePlayer.rightPlayerHandState.animSys.SetTargetAndIdleOverrideAnimation(Player.Animation.KEYBOARD_HANDS_DOWN);
+                }
+                if (lastMenu.KeyboardModeBringsHandDown(false))
+                {
+                    sourcePlayer.leftPlayerHandState.animSys.SetTargetAndIdleOverrideAnimation(Player.Animation.KEYBOARD_HANDS_DOWN);
+                }
 
                 raycastLaserMF.gameObject.SetActive(false);
             }

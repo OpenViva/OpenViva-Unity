@@ -171,7 +171,7 @@ namespace viva
             }
             else
             {
-                if (GameDirector.settings.vrControls == Player.VRControlType.TRACKPAD)
+                if (GameSettings.main.vrControls == Player.VRControlType.TRACKPAD)
                 {
                     DisplayHUDMessage("Use trackpad/thumbstick to walk around.", true, HintType.HINT_NO_IMAGE);
                     DisplayHUDMessage("Press and hold to run faster.", true, HintType.HINT);

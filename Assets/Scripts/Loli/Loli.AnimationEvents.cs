@@ -92,7 +92,7 @@ namespace viva
             {
                 type = _type;
             }
-            public abstract void Transition(Loli shinobu);
+            public abstract void Transition(Loli loli);
         }
 
         public sealed class DefaultTransition : TransitionHandle
@@ -104,9 +104,9 @@ namespace viva
             {
                 nextAnim = _nextAnim;
             }
-            public override void Transition(Loli shinobu)
+            public override void Transition(Loli loli)
             {
-                shinobu.UpdateAnimationTransition(nextAnim);
+                loli.UpdateAnimationTransition(nextAnim);
             }
         }
 
@@ -116,9 +116,9 @@ namespace viva
             public TransitionToIdle() : base(TransitionType.NO_MIRROR)
             {
             }
-            public override void Transition(Loli shinobu)
+            public override void Transition(Loli loli)
             {
-                shinobu.UpdateAnimationTransition(shinobu.GetLastReturnableIdleAnimation());
+                loli.UpdateAnimationTransition(loli.GetLastReturnableIdleAnimation());
             }
         }
 
@@ -194,25 +194,25 @@ namespace viva
             {
                 return torsoSyncFloatID;
             }
-            public void Validate(Loli shinobu)
+            public void Validate(Loli loli)
             {
                 if (legsStateName != null)
                 {
-                    if (!shinobu.animator.HasState(0, legsStateID))
+                    if (!loli.animator.HasState(0, legsStateID))
                     {
                         Debug.LogError("Legs state " + legsStateName + " doesn't exist");
                     }
                 }
                 if (torsoStateName != null)
                 {
-                    if (!shinobu.animator.HasState(1, torsoStateID))
+                    if (!loli.animator.HasState(1, torsoStateID))
                     {
                         Debug.LogError("Torso state " + torsoStateName + " doesn't exist");
                     }
                 }
                 if (faceStateName != null)
                 {
-                    if (!shinobu.animator.HasState(2, faceStateID))
+                    if (!loli.animator.HasState(2, faceStateID))
                     {
                         Debug.LogError("Face state " + faceStateName + " doesn't exist");
                     }

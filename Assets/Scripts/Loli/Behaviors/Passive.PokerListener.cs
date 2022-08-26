@@ -10,7 +10,7 @@ namespace viva
 
         public PokerListenerBehavior(Loli _self) : base(_self, 0.3f)
         {
-            self.onBegItemCallstack.AddCallback(OnItemBeg);
+            self.onGiftItemCallstack.AddCallback(OnItemBeg);
         }
 
         private bool OnItemBeg(Item item)

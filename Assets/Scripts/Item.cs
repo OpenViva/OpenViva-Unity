@@ -281,6 +281,20 @@ namespace viva
         }
         public virtual void OnItemLateUpdate()
         {
+            if (mainOwner == null)
+            {
+                return;
+            }
+            PlayerHandState handState = mainOwner.FindOccupyStateByHeldItem(this) as PlayerHandState;
+            if (handState == null)
+            {
+                return;
+            }
+            if (handState.actionState.isDown)
+            {
+                OnItemUsed();
+            }
+            
         }
         public virtual void OnItemLateUpdatePostIK()
         {
@@ -288,6 +302,9 @@ namespace viva
             {
                 statusBar.FaceCamera();
             }
+        }
+        public virtual void OnItemUsed()
+        {
         }
         public virtual bool OnPrePickupInterrupt(HandState handState)
         {

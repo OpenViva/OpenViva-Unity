@@ -182,9 +182,10 @@ namespace viva
                     localRot *= -1;
                 }
             }
-
-            absoluteHandTransform.localPosition = localPos;
-            absoluteHandTransform.localRotation = Quaternion.Euler(localRot);
+            GameSettings.main.CalibratePosition = localPos;
+            GameSettings.main.CalibrateEuler = localRot;
+            absoluteHandTransform.localPosition = GameSettings.main.CalibratePosition;
+            absoluteHandTransform.localRotation = Quaternion.Euler(GameSettings.main.CalibrateEuler);
         }
 
         public void CleanHand()

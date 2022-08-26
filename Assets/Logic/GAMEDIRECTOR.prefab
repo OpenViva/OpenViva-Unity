@@ -1558,7 +1558,6 @@ GameObject:
   - component: {fileID: 33550210559635408}
   - component: {fileID: 114243395228347494}
   - component: {fileID: 568965071000808229}
-  - component: {fileID: 6542686028549081506}
   - component: {fileID: 897248624}
   - component: {fileID: 1220906549851760943}
   - component: {fileID: 8693587257039376263}
@@ -1754,7 +1753,6 @@ MonoBehaviour:
   - {fileID: 3343309721242412510, guid: 512af53ed5685031a960edbbfeb28a60, type: 3}
   - {fileID: 1928013736185540, guid: 871a229dd6a614e7cabfdba14b89ec0e, type: 3}
   - {fileID: 5731825305441668962, guid: 2fc21b89ea2589340b836e62709ad981, type: 3}
-  m_settings: {fileID: 6542686028549081506}
   fileLoadStatus: {fileID: 914968381742050401}
   photoshootCamera: {fileID: 20052337503288322}
   photoshootStage: {fileID: 1349215088606382}
@@ -1811,31 +1809,6 @@ MonoBehaviour:
     type: 3}
   clothingCardBorderGrey: {fileID: 2800000, guid: d5452cae2749c4c858fbb5b19a9a7871,
     type: 3}
---- !u!114 &6542686028549081506
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1075421151766106}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 21708e378f67ae5baa96b2bfcceca102, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  disablePersistance: 0
-  targetsSceneAsset: 1
-  assetName: GAMEDIRECTOR
-  m_mouseSensitivity: 250
-  m_musicVolume: 1
-  m_worldTime: 0
-  m_dayNightCycleSpeedIndex: 0
-  m_disableGrabToggle: 0
-  m_pressToTurn: 1
-  m_vrControls: 0
-  m_trackpadMovementUseRight: 0
-  m_antiAliasing: 2
-  m_reflectionDistance: 30
 --- !u!114 &897248624
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2178,13 +2151,13 @@ MonoBehaviour:
   m_SubmitAction: {fileID: 0}
   m_CancelAction: {fileID: -7808487211997055100, guid: 6277521aad8c3d441abf8a8f0c5122b4,
     type: 3}
-  m_LeftClickAction: {fileID: 61741448170551390, guid: 6277521aad8c3d441abf8a8f0c5122b4,
-    type: 3}
+  m_LeftClickAction: {fileID: 0}
   m_MiddleClickAction: {fileID: -1227231541077435755, guid: 6277521aad8c3d441abf8a8f0c5122b4,
     type: 3}
   m_RightClickAction: {fileID: -425787893680309120, guid: 6277521aad8c3d441abf8a8f0c5122b4,
     type: 3}
-  m_ScrollWheelAction: {fileID: 0}
+  m_ScrollWheelAction: {fileID: -1832775385838860241, guid: 6277521aad8c3d441abf8a8f0c5122b4,
+    type: 3}
   m_TrackedDevicePositionAction: {fileID: 6250792808120494506, guid: 6277521aad8c3d441abf8a8f0c5122b4,
     type: 3}
   m_TrackedDeviceOrientationAction: {fileID: -269913731337626603, guid: 6277521aad8c3d441abf8a8f0c5122b4,
@@ -13928,6 +13901,11 @@ PrefabInstance:
       propertyPath: m_SizeDelta.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1487841468594555201, guid: b1081a8a82a4f9740815d57b829b587c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1487841468594555215, guid: b1081a8a82a4f9740815d57b829b587c,
         type: 3}
       propertyPath: m_Size
@@ -13946,7 +13924,7 @@ PrefabInstance:
     - target: {fileID: 1487841469206362423, guid: b1081a8a82a4f9740815d57b829b587c,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0.00008773804
+      value: -0.00008106232
       objectReference: {fileID: 0}
     - target: {fileID: 1487841469360280756, guid: b1081a8a82a4f9740815d57b829b587c,
         type: 3}

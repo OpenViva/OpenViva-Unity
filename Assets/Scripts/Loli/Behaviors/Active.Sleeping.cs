@@ -232,7 +232,7 @@ namespace viva
            
             var playSleepAnim = new AutonomyPlayAnimation(self.autonomy, "play sleep anim", sleepAnim);;
             playSleepAnim.AddRequirement(GenerateEnsureNearBed());
-            sleepTimeStart = GameDirector.settings.worldTime;
+            sleepTimeStart = GameDirector.skyDirector.worldTime;
             self.autonomy.SetAutonomy(playSleepAnim);
 
             phase = SleepingPhase.SLEEPING;
@@ -257,7 +257,7 @@ namespace viva
         private void WaitForMorning()
         {
             //wake up in morning
-            float timeSlept = GameDirector.settings.worldTime - sleepTimeStart;
+            float timeSlept = GameDirector.skyDirector.worldTime - sleepTimeStart;
             float PI_2 = Mathf.PI * 2.0f;
             if (timeSlept > PI_2 - TiredBehavior.tiredSunPitchRadianEnd &&
                 GameDirector.skyDirector.sunPitchRadian < TiredBehavior.tiredSunPitchRadianStart &&
@@ -389,7 +389,7 @@ namespace viva
                     Debug.Log("on right side");
                     break;
                 case Loli.Animation.SLEEP_PILLOW_SIDE_IDLE_LEFT:
-                    sleepTimeStart = GameDirector.settings.worldTime;
+                    sleepTimeStart = GameDirector.skyDirector.worldTime;
                     layingOnRightSide = false;
                     Debug.Log("on left side");
                     break;
@@ -402,12 +402,12 @@ namespace viva
                     Debug.Log("on right side");
                     break;
                 case Loli.Animation.SLEEP_PILLOW_SIDE_IDLE_RIGHT:
-                    sleepTimeStart = GameDirector.settings.worldTime;
+                    sleepTimeStart = GameDirector.skyDirector.worldTime;
                     layingOnRightSide = true;
                     Debug.Log("on right side");
                     break;
                 case Loli.Animation.SLEEP_PILLOW_UP_IDLE:
-                    sleepTimeStart = GameDirector.settings.worldTime;
+                    sleepTimeStart = GameDirector.skyDirector.worldTime;
                     layingOnRightSide = null;
                     break;
                 case Loli.Animation.SLEEP_PILLOW_SIDE_TO_SLEEP_PILLOW_UP_RIGHT:

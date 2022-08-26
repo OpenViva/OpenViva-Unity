@@ -120,8 +120,8 @@ namespace viva
         public override void EndUse(Character targetCharacter)
         {
 
-            Loli shinobu = targetCharacter as Loli;
-            if (shinobu == null)
+            Loli loli = targetCharacter as Loli;
+            if (loli == null)
             {
                 return;
             }

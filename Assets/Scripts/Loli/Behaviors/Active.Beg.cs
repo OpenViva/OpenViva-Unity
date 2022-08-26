@@ -14,7 +14,7 @@ namespace viva
 
         public BegBehavior(Loli _self) : base(_self, ActiveBehaviors.Behavior.BEG, null)
         {
-            self.onBegItemCallstack.AddCallback(OnItemBeg);
+            self.onGiftItemCallstack.AddCallback(OnItemBeg);
         }
 
         private bool OnItemBeg(Item item)
@@ -84,7 +84,7 @@ namespace viva
             {
                 return;
             }
-            Debug.LogError("PICKED UP");
+            Debug.Log(self.headModel.name + " picked up " + targetItem.name);
             self.SetLookAtTarget(null);
 
             var playEndBegAnim = new AutonomyPlayAnimation(self.autonomy, "end beg anim", Loli.Animation.STAND_HAPPY_BEG_END);

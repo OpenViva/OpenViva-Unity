@@ -97,7 +97,6 @@ namespace viva
             switch (oldAnim)
             {
                 case Loli.Animation.STAND_REACT_PERV_FRONT_OUT:
-                    // self.registry.unregister( (int)Occupation.EVERYTHING, OccupyType.CLEAR );
                     self.SetViewAwarenessTimeout(0.0f);
                     break;
             }

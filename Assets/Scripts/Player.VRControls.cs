@@ -19,7 +19,7 @@ namespace viva
 
         public override void OnFixedUpdateControl(Player player)
         {
-            if (GameDirector.instance.controlsAllowed == GameDirector.ControlsAllowed.HAND_INPUT_ONLY || GameDirector.settings.vrControls != Player.VRControlType.TRACKPAD)
+            if (GameDirector.instance.controlsAllowed == GameDirector.ControlsAllowed.HAND_INPUT_ONLY || GameSettings.main.vrControls != Player.VRControlType.TRACKPAD)
             {
                 return;
             }

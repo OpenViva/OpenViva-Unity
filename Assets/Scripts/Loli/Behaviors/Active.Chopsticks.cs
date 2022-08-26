@@ -11,7 +11,7 @@ namespace viva
         enum GameState
         {
             NONE,
-            SHINOBU_TURN,
+            LOLI_TURN,
             PLAYER_TURN
         }
 
@@ -101,13 +101,13 @@ namespace viva
         private FingerAnimator targetFingers = null;
         private GameState currentState = GameState.NONE;
         private UserInfo playerInfo = null;
-        private UserInfo shinobuInfo = null;
+        private UserInfo loliInfo = null;
         private bool showedHype = false;
         private bool waitForChopsticksIdle = false;
         private int waitTurnsUntilReachNeutral = 3;
         private bool[] movesAvailable = new bool[4];
-        private int shinobuReactPlayerConfident = 0;    //stores 2 bools [0]:left [1]:right
-        private int shinobuReactPlayerWorried = 0;  //stores 2 bools [0]:left [1]:right
+        private int loliReactPlayerConfident = 0;    //stores 2 bools [0]:left [1]:right
+        private int loliReactPlayerWorried = 0;  //stores 2 bools [0]:left [1]:right
         private float validGameTimer = 0.0f;
         private Tools.EaseBlend playerKeyboardDistributeEase = new Tools.EaseBlend();
         private bool disableFaceYawChopsticks = false;
@@ -134,9 +134,9 @@ namespace viva
             }
 
             playerInfo = new UserInfo(GameDirector.player.leftHandState.fingerAnimator, GameDirector.player.rightHandState.fingerAnimator);
-            shinobuInfo = new UserInfo(self.leftHandState.fingerAnimator, self.rightHandState.fingerAnimator);
+            loliInfo = new UserInfo(self.leftHandState.fingerAnimator, self.rightHandState.fingerAnimator);
             waitForChopsticksIdle = true;
-            currentState = GameState.SHINOBU_TURN; //Shinobu always goes first
+            currentState = GameState.LOLI_TURN; //Shinobu always goes first
         }
 
         private void FinishGame()
@@ -193,10 +193,10 @@ namespace viva
                 {
                     case BodyState.STAND:
                         self.SetTargetAnimation(Loli.Animation.STAND_TO_SIT_FLOOR);
-                        self.autonomy.Interrupt(new AutonomyFaceDirection(self.autonomy, "face direction chopsticks", delegate (TaskTarget target)
-                        {
-                            target.SetTargetPosition(GameDirector.player.floorPos);
-                        }, 2.0f));
+                        //self.autonomy.Interrupt(new AutonomyFaceDirection(self.autonomy, "face direction chopsticks", delegate (TaskTarget target)
+                        //{
+                        //    target.SetTargetPosition(GameDirector.player.floorPos);
+                        //}, 2.0f));
                         // self.SetRootFacingTarget( GameDirector.player.floorPos, 130.0f, 15.0f, 20.0f );
                         break;
                     case BodyState.FLOOR_SIT:
@@ -274,7 +274,7 @@ namespace viva
             {
                 case GameState.NONE:
                     break;
-                case GameState.SHINOBU_TURN:
+                case GameState.LOLI_TURN:
                     UpdateChopsticksAnim();
                     if (animIKSide == 0)
                     {
@@ -290,7 +290,7 @@ namespace viva
                                 }
                                 else
                                 {
-                                    WaitUntilTapHandShinobuTurn();
+                                    WaitUntilTapHandLoliTurn();
                                 }
                             }
                         }
@@ -350,16 +350,16 @@ namespace viva
         private void UpdateChopsticksAnim()
         {
 
-            // playerInfo.ApplyChopsticksAnim(
-            // 	GameDirector.player.getUtilityHoldForm(Player.UtilityHoldForms.PALM_EXTEND_LEFT),
-            // 	GameDirector.player.getUtilityHoldForm(Player.UtilityHoldForms.PALM_EXTEND_RIGHT)
-            // );
+            //playerInfo.ApplyChopsticksAnim(
+            //    GameDirector.player.getUtilityHoldForm(Player.UtilityHoldForms.PALM_EXTEND_LEFT),
+            //    GameDirector.player.getUtilityHoldForm(Player.UtilityHoldForms.PALM_EXTEND_RIGHT)
+            //);
             UpdatePlayerKeyboardDistributeControls();
         }
 
         public void EndTurn()
         {
-            if (currentState == GameState.SHINOBU_TURN)
+            if (currentState == GameState.LOLI_TURN)
             {
                 if (CheckShinobuWon())
                 {
@@ -381,12 +381,12 @@ namespace viva
                 }
                 else
                 {
-                    currentState = GameState.SHINOBU_TURN;
+                    currentState = GameState.LOLI_TURN;
                 }
             }
             appliedTurnTimer = 0.0f;
         }
-        public void WaitUntilTapHandShinobuTurn()
+        public void WaitUntilTapHandLoliTurn()
         {
 
             if (Vector3.Distance(self.floorPos, GameDirector.player.floorPos) > 1.8f)
@@ -394,13 +394,13 @@ namespace viva
                 return;
             }
             //attempt redistribute first
-            if (shinobuInfo.rightFingerCount > 4 || shinobuInfo.leftFingerCount > 4)
+            if (loliInfo.rightFingerCount > 4 || loliInfo.leftFingerCount > 4)
             {
-                if ((shinobuInfo.rightFingerCount > 1 && shinobuInfo.rightFingerCount <= 4) || (shinobuInfo.leftFingerCount > 1 && shinobuInfo.leftFingerCount <= 4))
+                if ((loliInfo.rightFingerCount > 1 && loliInfo.rightFingerCount <= 4) || (loliInfo.leftFingerCount > 1 && loliInfo.leftFingerCount <= 4))
                 {
                     self.SetTargetAnimation(Loli.Animation.FLOOR_SIT_CHOPSTICKS_REDISTRIBUTE);
                     waitForChopsticksIdle = true;
-                    if (shinobuInfo.rightFingerCount > 4)
+                    if (loliInfo.rightFingerCount > 4)
                     {
                         self.SetLookAtTarget(self.leftHandState.fingerAnimator.fingers[3]);
                     }
@@ -417,27 +417,27 @@ namespace viva
                 movesAvailable[i] = false;
             }
             bool killMove = false;
-            if (shinobuInfo.leftFingerCount <= 4)
+            if (loliInfo.leftFingerCount <= 4)
             {
-                if (playerInfo.leftFingerCount + shinobuInfo.leftFingerCount > 4 && playerInfo.leftFingerCount <= 4)
+                if (playerInfo.leftFingerCount + loliInfo.leftFingerCount > 4 && playerInfo.leftFingerCount <= 4)
                 {
                     movesAvailable[0] = true;
                     killMove = true;
                 }
-                if (playerInfo.rightFingerCount + shinobuInfo.leftFingerCount > 4 && playerInfo.rightFingerCount <= 4)
+                if (playerInfo.rightFingerCount + loliInfo.leftFingerCount > 4 && playerInfo.rightFingerCount <= 4)
                 {
                     movesAvailable[1] = true;
                     killMove = true;
                 }
             }
-            if (shinobuInfo.rightFingerCount <= 4)
+            if (loliInfo.rightFingerCount <= 4)
             {
-                if (playerInfo.leftFingerCount + shinobuInfo.rightFingerCount > 4 && playerInfo.leftFingerCount <= 4)
+                if (playerInfo.leftFingerCount + loliInfo.rightFingerCount > 4 && playerInfo.leftFingerCount <= 4)
                 {
                     movesAvailable[2] = true;
                     killMove = true;
                 }
-                if (playerInfo.rightFingerCount + shinobuInfo.rightFingerCount > 4 && playerInfo.rightFingerCount <= 4)
+                if (playerInfo.rightFingerCount + loliInfo.rightFingerCount > 4 && playerInfo.rightFingerCount <= 4)
                 {
                     movesAvailable[3] = true;
                     killMove = true;
@@ -453,7 +453,7 @@ namespace viva
                 {
                     movesAvailable[i] = false;
                 }
-                if (shinobuInfo.leftFingerCount <= 4)
+                if (loliInfo.leftFingerCount <= 4)
                 {
                     if (playerInfo.leftFingerCount <= 4)
                     {
@@ -464,7 +464,7 @@ namespace viva
                         movesAvailable[1] = true;
                     }
                 }
-                if (shinobuInfo.rightFingerCount <= 4)
+                if (loliInfo.rightFingerCount <= 4)
                 {
                     if (playerInfo.leftFingerCount <= 4)
                     {
@@ -498,22 +498,22 @@ namespace viva
             PlayReachToPlayerHandAnim(randomIndex >= 2, (randomIndex % 2) == 1);
         }
 
-        public bool IsNearShinobuHand(Vector3 position, FingerAnimator shinobuHand, float minDist = 0.025f)
+        public bool IsNearShinobuHand(Vector3 position, FingerAnimator loliHand, float minDist = 0.025f)
         {
-            int offset = (shinobuHand == self.leftHandState.fingerAnimator) ? 0 : 5;
+            int offset = (loliHand == self.leftHandState.fingerAnimator) ? 0 : 5;
             for (int i = 0; i < 5; i++)
             {   //test if near any active fingers
-                if (shinobuInfo.targetFingerRest[i + offset] == 1.0f)
+                if (loliInfo.targetFingerRest[i + offset] == 1.0f)
                 {
-                    if (Vector3.Distance(position, shinobuHand.fingers[i * 3].position) < minDist)
+                    if (Vector3.Distance(position, loliHand.fingers[i * 3].position) < minDist)
                     {
                         return true;
                     }
-                    if (Vector3.Distance(position, shinobuHand.fingers[i * 3 + 1].position) < minDist)
+                    if (Vector3.Distance(position, loliHand.fingers[i * 3 + 1].position) < minDist)
                     {
                         return true;
                     }
-                    if (Vector3.Distance(position, shinobuHand.fingers[i * 3 + 2].position) < minDist)
+                    if (Vector3.Distance(position, loliHand.fingers[i * 3 + 2].position) < minDist)
                     {
                         return true;
                     }
@@ -572,7 +572,7 @@ namespace viva
                 if (playerInfo.AttemptRedistributeFingers())
                 {
                     appliedTurnTimer = Time.deltaTime;
-                    shinobuReactPlayerConfident = 0;
+                    loliReactPlayerConfident = 0;
                 }
             }
         }
@@ -591,18 +591,18 @@ namespace viva
             return false;
         }
 
-        public void ApplyPlayerTurn(FingerAnimator playerHand, FingerAnimator shinobuHand)
+        public void ApplyPlayerTurn(FingerAnimator playerHand, FingerAnimator loliHand)
         {
 
-            if (shinobuHand == self.rightHandState.fingerAnimator)
+            if (loliHand == self.rightHandState.fingerAnimator)
             {
                 if (playerHand == GameDirector.player.rightHandState.fingerAnimator)
                 {
-                    shinobuInfo.rightFingerCount += playerInfo.rightFingerCount;
+                    loliInfo.rightFingerCount += playerInfo.rightFingerCount;
                 }
                 else
                 {
-                    shinobuInfo.rightFingerCount += playerInfo.leftFingerCount;
+                    loliInfo.rightFingerCount += playerInfo.leftFingerCount;
                 }
                 self.SetTargetAnimation(Loli.Animation.FLOOR_SIT_CHOPSTICKS_RECEIVE_RIGHT);
             }
@@ -610,23 +610,23 @@ namespace viva
             {
                 if (playerHand == GameDirector.player.rightHandState.fingerAnimator)
                 {
-                    shinobuInfo.leftFingerCount += playerInfo.rightFingerCount;
+                    loliInfo.leftFingerCount += playerInfo.rightFingerCount;
                 }
                 else
                 {
-                    shinobuInfo.leftFingerCount += playerInfo.leftFingerCount;
+                    loliInfo.leftFingerCount += playerInfo.leftFingerCount;
                 }
                 self.SetTargetAnimation(Loli.Animation.FLOOR_SIT_CHOPSTICKS_RECEIVE_LEFT);
             }
-            shinobuInfo.updateTargetFingers();
-            self.SetLookAtTarget(shinobuHand.hand.transform);
+            loliInfo.updateTargetFingers();
+            self.SetLookAtTarget(loliHand.hand.transform);
 
             appliedTurnTimer = Time.deltaTime;
         }
 
         public bool CheckPlayerWon()
         {
-            return (shinobuInfo.rightFingerCount > 4 && shinobuInfo.leftFingerCount > 4);
+            return (loliInfo.rightFingerCount > 4 && loliInfo.leftFingerCount > 4);
         }
         public bool CheckShinobuWon()
         {
@@ -639,15 +639,15 @@ namespace viva
             {
                 return;
             }
-            if (shinobuInfo.rightFingerCount >= 4 && (shinobuReactPlayerWorried & 2) == 0)
+            if (loliInfo.rightFingerCount >= 4 && (loliReactPlayerWorried & 2) == 0)
             {
-                shinobuReactPlayerWorried += 2;
+                loliReactPlayerWorried += 2;
                 self.SetTargetAnimation(Loli.Animation.FLOOR_SIT_CHOPSTICKS_WORRIED);
                 waitForChopsticksIdle = true;
             }
-            else if (shinobuInfo.leftFingerCount >= 4 && (shinobuReactPlayerWorried & 1) == 0)
+            else if (loliInfo.leftFingerCount >= 4 && (loliReactPlayerWorried & 1) == 0)
             {
-                shinobuReactPlayerWorried += 1;
+                loliReactPlayerWorried += 1;
                 self.SetTargetAnimation(Loli.Animation.FLOOR_SIT_CHOPSTICKS_WORRIED);
                 waitForChopsticksIdle = true;
             }
@@ -659,22 +659,22 @@ namespace viva
             {
                 if (animIKSide == -1)
                 {
-                    playerInfo.rightFingerCount += shinobuInfo.leftFingerCount;
+                    playerInfo.rightFingerCount += loliInfo.leftFingerCount;
                 }
                 else
                 {
-                    playerInfo.rightFingerCount += shinobuInfo.rightFingerCount;
+                    playerInfo.rightFingerCount += loliInfo.rightFingerCount;
                 }
             }
             else
             {
                 if (animIKSide == -1)
                 {
-                    playerInfo.leftFingerCount += shinobuInfo.leftFingerCount;
+                    playerInfo.leftFingerCount += loliInfo.leftFingerCount;
                 }
                 else
                 {
-                    playerInfo.leftFingerCount += shinobuInfo.rightFingerCount;
+                    playerInfo.leftFingerCount += loliInfo.rightFingerCount;
                 }
             }
             playerInfo.updateTargetFingers();
@@ -687,15 +687,15 @@ namespace viva
             {
                 return;
             }
-            if (playerInfo.rightFingerCount > 4 && (shinobuReactPlayerConfident & 2) == 0)
+            if (playerInfo.rightFingerCount > 4 && (loliReactPlayerConfident & 2) == 0)
             {
-                shinobuReactPlayerConfident += 2;
+                loliReactPlayerConfident += 2;
                 self.SetTargetAnimation(Loli.Animation.FLOOR_SIT_CHOPSTICKS_CONFIDENT);
                 waitForChopsticksIdle = true;
             }
-            else if (playerInfo.leftFingerCount > 4 && (shinobuReactPlayerConfident & 1) == 0)
+            else if (playerInfo.leftFingerCount > 4 && (loliReactPlayerConfident & 1) == 0)
             {
-                shinobuReactPlayerConfident += 1;
+                loliReactPlayerConfident += 1;
                 self.SetTargetAnimation(Loli.Animation.FLOOR_SIT_CHOPSTICKS_CONFIDENT);
                 waitForChopsticksIdle = true;
             }
@@ -760,9 +760,9 @@ namespace viva
         // }
 
 
-        public void PlayReachToPlayerHandAnim(bool shinobuRightHand, bool playerRightHand)
+        public void PlayReachToPlayerHandAnim(bool loliRightHand, bool playerRightHand)
         {
-            if (shinobuRightHand)
+            if (loliRightHand)
             {
                 animIKSide = 1;
                 targetHandState = self.rightLoliHandState;
@@ -806,7 +806,7 @@ namespace viva
         }
         public void RedistributeChopsticksFingers()
         {
-            if (shinobuInfo.AttemptRedistributeFingers())
+            if (loliInfo.AttemptRedistributeFingers())
             {
                 appliedTurnTimer = Time.deltaTime;
             }

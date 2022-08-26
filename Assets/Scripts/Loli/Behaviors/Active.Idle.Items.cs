@@ -228,6 +228,7 @@ namespace viva
                         case PolaroidFrame.PhotoSummary.PANTY:
                             polaroidFrameReactAnim = Loli.Animation.STAND_POLAROID_FRAME_REACT_PANTY_RIGHT;
                             self.ShiftHappiness(-2);
+                            GameDirector.player.CompleteAchievement(Player.ObjectiveType.TAKE_PANTY_SHOT);
                             break;
                     }
                 }

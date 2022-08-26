@@ -247,7 +247,7 @@ namespace viva
 
 
         public void UpdateGestureDetection(GestureHand sourceHand, Transform head)
-        {
+        {            
             if (sourceHand.AttemptHello(head))
             {
                 FireGesture(sourceHand, Gesture.HELLO);
@@ -309,7 +309,7 @@ namespace viva
                             }
                             Loli loli = selectedLolis[index];
                             viva.DevTools.LogExtended("Presenting " + sourceHand.playerHandState.heldItem + " to loli " + loli, true, true);
-                            loli.onBegItemCallstack.Call(sourceHand.playerHandState.heldItem);
+                            loli.onGiftItemCallstack.Call(sourceHand.playerHandState.heldItem);
                         }
                     }
                     GameDirector.player.pauseMenu.ContinueTutorial(PauseMenu.MenuTutorial.WAIT_TO_PRESENT);

@@ -31,7 +31,7 @@ namespace viva
         public OnCharacterCollisionCallback onCharacterCollisionEnter;
         public OnCharacterTriggerCallback onCharacterTriggerEnter;
         public TaskChangeCallback onTaskChange;
-        public FirstServeItemCallStack onBegItemCallstack { get; private set; } = new FirstServeItemCallStack();
+        public FirstServeItemCallStack onGiftItemCallstack { get; private set; } = new FirstServeItemCallStack();
 
 
         private static readonly int globalDirtTexID = Shader.PropertyToID("_GlobalDirtTex");

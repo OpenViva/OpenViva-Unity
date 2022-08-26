@@ -11,7 +11,6 @@ namespace viva
 
         public static GameDirector instance;
         public static SkyDirector skyDirector;
-        public static GameSettings settings;
         public static LampDirector lampDirector;
         public static Transform utilityTransform;
         private static Set<DynamicBone> m_dynamicBones = new Set<DynamicBone>();
@@ -78,16 +77,28 @@ namespace viva
             instance = this;
             skyDirector = m_skyDirector;
             lampDirector = m_lampDirector;
-            settings = m_settings;
             utilityTransform = new GameObject("UTILITY").transform;
             player = m_player;
             mainCamera = Camera.main;   //cache for usage
+
+            //load Game Settings
+            var savedSettings = Tools.LoadJson<GameSettings>(System.IO.Path.GetFullPath(System.IO.Directory.GetParent(Application.dataPath) + "/settings.cfg"));
+            if (savedSettings == null)
+            {
+                Debug.LogError("Could not load settings.cfg");
+            }
+            GameSettings.main.Copy(savedSettings);
 
             if (m_player)
             {
                 characters.Add(m_player);
             }
             SetEnableCursor(false);
+        }
+
+        public void OnDestroy()
+        {
+            Tools.SaveJson(GameSettings.main, true, System.IO.Path.GetFullPath(System.IO.Directory.GetParent(Application.dataPath) + "/settings.cfg"));
         }
 
         private void Start()
