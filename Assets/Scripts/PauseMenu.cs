@@ -65,6 +65,8 @@ namespace viva
 
         [SerializeField]
         private GameObject calibrateHandGhostPrefab = null;
+        private PlayerHandState targetHoldState = null;
+        private GameObject ghost = null;
 
 
         public void ShowFirstLoadInstructions()
@@ -615,6 +617,29 @@ namespace viva
             {
                 return;
             }
+            if(ghost != null || targetHoldState != null)
+            {
+                //copied from CalibrateHands coroutine
+                Transform absolute = targetHoldState.absoluteHandTransform;
+                Transform wrist = targetHoldState.fingerAnimator.wrist;
+                ghost.transform.position = absolute.position;
+                ghost.transform.rotation = absolute.rotation;
+                Transform oldParent = wrist.parent;
+                wrist.SetParent(absolute, true);
+                Vector3 posOffset = wrist.localPosition;
+                //safety position check
+                if (posOffset.sqrMagnitude > 0.4f)
+                {
+                    posOffset = Vector3.zero;
+                }
+                Vector3 rotOffset = wrist.localEulerAngles;
+                wrist.SetParent(oldParent, true);
+                SetPlayerAbsoluteVROffsets(posOffset, rotOffset, targetHoldState == GameDirector.player.rightHandState);
+                Destroy(ghost);
+                ghost = null;
+                targetHoldState = null;
+                GameDirector.player.SetFreezeVRHandTransforms(false);
+            }
             GameDirector.instance.StopCoroutine(calibrationCoroutine);
             calibrationCoroutine = null;
         }
@@ -632,9 +657,6 @@ namespace viva
 
         private IEnumerator CalibrateHands()
         {
-
-            PlayerHandState targetHoldState = null;
-            GameObject ghost = null;
             while (true)
             {
                 if (ghost == null)
@@ -653,7 +675,6 @@ namespace viva
                         GameDirector.player.ApplyVRHandsToAnimation();
                         GameDirector.player.SetFreezeVRHandTransforms(true);
                         SetPlayerAbsoluteVROffsets(Vector3.zero, Vector3.zero, false);
-                        Transform absolute = targetHoldState.absoluteHandTransform;
                         ghost = GameObject.Instantiate(calibrateHandGhostPrefab, Vector3.zero, Quaternion.identity);
                     }
                 }
