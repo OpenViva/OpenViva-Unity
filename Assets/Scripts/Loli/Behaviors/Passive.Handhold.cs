@@ -152,7 +152,7 @@ namespace viva
         {
 
             float playerSpeed = GameDirector.player.rigidBody.velocity.sqrMagnitude;
-            float loliSpeed = self.animator.GetFloat(Instance.speedID);
+            float loliSpeed = self.animator.GetFloat(WorldUtil.speedID);
             if (loliSpeed > 4.0f || playerSpeed > 4.0f)
             {   //immediately cancel match walking speed
                 if (slowHandholdTimer != 0.0f)
@@ -194,7 +194,7 @@ namespace viva
 
         private void LateUpdatePostIKNonMatchWalkHandold(LoliHandState targetHandState, HandState sourceHandState)
         {
-            float speed = self.animator.GetFloat(Instance.speedID);
+            float speed = self.animator.GetFloat(WorldUtil.speedID);
             float armStretchSqDist = Vector3.SqrMagnitude(targetHandState.selfItem.rigidBody.position - sourceHandState.selfItem.rigidBody.position);
             float armStretchMax = (targetHandState.holdArmIK.ik.r0 + targetHandState.holdArmIK.ik.r1) * 0.9f;
             //if going fast or arm is stretching or pulling source hand
@@ -276,7 +276,7 @@ namespace viva
                 Vector3 checkValidDir = targetHand.position - sourceHand.position;
                 float checkValidLength = checkValidDir.magnitude;
                 //break match walk ease if moved too far or physics in the way
-                if (checkValidLength > 0.5f || Physics.Raycast(sourceHand.position, checkValidDir, checkValidLength, Instance.wallsMask))
+                if (checkValidLength > 0.5f || Physics.Raycast(sourceHand.position, checkValidDir, checkValidLength, WorldUtil.wallsMask))
                 {
 
                     // handTargetHoldState.ForceInitHoldBlend( 0.0f, 0.2f );

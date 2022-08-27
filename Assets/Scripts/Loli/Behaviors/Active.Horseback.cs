@@ -169,7 +169,7 @@ namespace viva
 
         private Vector3? HorseSideIsClear(int side)
         {
-            if (!GamePhysics.GetRaycastInfo(horseSession.horse.spine1.position, horseSession.horse.spine1.forward * side + Vector3.down * 1.5f, 2.5f, Instance.wallsMask))
+            if (!GamePhysics.GetRaycastInfo(horseSession.horse.spine1.position, horseSession.horse.spine1.forward * side + Vector3.down * 1.5f, 2.5f, WorldUtil.wallsMask))
             {
                 return null;
             }

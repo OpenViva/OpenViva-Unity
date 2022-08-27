@@ -103,7 +103,7 @@ namespace viva
             float pickupHeight = targetPos.y - self.floorPos.y;
             pickupHeight = Mathf.Clamp01(pickupHeight);
 
-            self.animator.SetFloat(Instance.pickupHeightID, pickupHeight);
+            self.animator.SetFloat(WorldUtil.pickupHeightID, pickupHeight);
             float lerp = Mathf.Clamp01((0.5f - Mathf.Abs(0.5f - self.GetLayerAnimNormTime(1))) * 2.0f);
 
             if (targetHandState != null)

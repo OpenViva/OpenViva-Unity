@@ -49,7 +49,7 @@ namespace viva
                     return null;
                 }
                 Vector3 pos = lineStart + ((float)currentStep++ / steps) * lineDiff + Vector3.up * 0.1f;
-                if (GamePhysics.GetRaycastInfo(pos, -Vector3.up, height + 0.1f, Instance.wallsMask))
+                if (GamePhysics.GetRaycastInfo(pos, -Vector3.up, height + 0.1f, WorldUtil.wallsMask))
                 {
                     return GamePhysics.result().point + Vector3.up * 0.01f; //pad to stay above floor
                 }
@@ -175,7 +175,7 @@ namespace viva
                         continue;
                     }
                     //test downwards to find local floor
-                    if (GamePhysics.GetRaycastInfo(edgePoint, Vector3.down, testHeight, Instance.wallsMask))
+                    if (GamePhysics.GetRaycastInfo(edgePoint, Vector3.down, testHeight, WorldUtil.wallsMask))
                     {
                         return GamePhysics.result().point + Vector3.up * 0.01f; //pad to stay above floor
                     }

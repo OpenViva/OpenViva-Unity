@@ -360,7 +360,7 @@ namespace viva
             for (; quadCount < teleportMaxQuads; quadCount++)
             {
 
-                if (Physics.Raycast(rayPos, rayNorm, out teleportTest, rayNorm.magnitude, Instance.wallsMask))
+                if (Physics.Raycast(rayPos, rayNorm, out teleportTest, rayNorm.magnitude, WorldUtil.wallsMask))
                 {
 
                     teleportVertices[quadCount * 2] = transform.InverseTransformPoint(teleportTest.point + outDir);
@@ -372,7 +372,7 @@ namespace viva
                         teleportRing.transform.position = teleportTest.point;
                         teleportRing.transform.rotation = Quaternion.LookRotation(Vector3.up, (teleportTest.point - head.position).normalized) * Quaternion.Euler(0.0f, 0.0f, 90.0f);
 
-                        if (!Physics.CheckCapsule(teleportTest.point + Vector3.up * (characterCC.radius + 0.15f), teleportTest.point + Vector3.up * 1.35f, characterCC.radius, Instance.wallsMask))
+                        if (!Physics.CheckCapsule(teleportTest.point + Vector3.up * (characterCC.radius + 0.15f), teleportTest.point + Vector3.up * 1.35f, characterCC.radius, WorldUtil.wallsMask))
                         {
                             teleportLocationValid = true;
                         }

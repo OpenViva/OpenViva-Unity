@@ -36,7 +36,7 @@ namespace viva
             restPos = transform.localPosition;
             restRot = transform.localRotation;
             StopRestPoseAnimation();
-            mainOwner.gameObject.layer = Instance.noneLayer;
+            mainOwner.gameObject.layer = WorldUtil.noneLayer;
 
             horse.AddDriverHand(mainOwner as Player);
         }

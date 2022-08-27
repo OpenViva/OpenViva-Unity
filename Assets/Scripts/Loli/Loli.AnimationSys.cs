@@ -134,7 +134,7 @@ namespace viva
         private Vector3 CalculateSmoothSpeed()
         {
             //store X, Z, MAGNITUDE in the Vector3
-            Vector3 newSpeedInfo = (floorPos - lastPos) / Time.deltaTime * Instance.speedToAnim;
+            Vector3 newSpeedInfo = (floorPos - lastPos) / Time.deltaTime * WorldUtil.speedToAnim;
             newSpeedInfo.y = newSpeedInfo.z;
             newSpeedInfo.z = 1.0f + new Vector2(newSpeedInfo.x, newSpeedInfo.z).magnitude;
             lastPos = floorPos;
@@ -185,9 +185,9 @@ namespace viva
             sidewaysReverseEase.Update(Time.deltaTime);
             localVel.x *= 1.0f - sidewaysReverseEase.value * 2.0f;
 
-            animator.SetFloat(Instance.sidewaysSpeedID, localVel.x);
-            animator.SetFloat(Instance.forwardSpeedID, localVel.y);
-            animator.SetFloat(Instance.speedID, speedInfo.z);
+            animator.SetFloat(WorldUtil.sidewaysSpeedID, localVel.x);
+            animator.SetFloat(WorldUtil.forwardSpeedID, localVel.y);
+            animator.SetFloat(WorldUtil.speedID, speedInfo.z);
 
             if (locomotion == null)
             {

@@ -108,7 +108,7 @@ namespace viva
                 {
                     vrTimeRubbed = Mathf.Clamp01(vrTimeRubbed - Time.deltaTime * 3.0f);
                 }
-                player.GetAnimator().SetFloat(Instance.vrSoapRubID, Mathf.Clamp01(vrTimeRubbed * 1.5f));
+                player.GetAnimator().SetFloat(WorldUtil.vrSoapRubID, Mathf.Clamp01(vrTimeRubbed * 1.5f));
             }
             else
             {

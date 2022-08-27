@@ -228,7 +228,7 @@ namespace viva
             GameDirector.mechanisms.Remove(this);
             lastPos = null;
             driver.rigidBody.isKinematic = false;
-            driver.transform.gameObject.layer = Instance.playerMovementLayer;
+            driver.transform.gameObject.layer = WorldUtil.playerMovementLayer;
 
             driver.rightHandState.selfItem.ClearAttribute(Item.Attributes.DO_NOT_LOOK_AT);
             driver.leftHandState.selfItem.ClearAttribute(Item.Attributes.DO_NOT_LOOK_AT);
@@ -370,7 +370,7 @@ namespace viva
         private RaycastHit? SampleFloorNormal(Vector3 pos, Vector3 dir, float distance)
         {
 
-            if (GamePhysics.GetRaycastInfo(pos, dir, distance, Instance.wallsMask))
+            if (GamePhysics.GetRaycastInfo(pos, dir, distance, WorldUtil.wallsMask))
             {
                 Debug.DrawLine(pos, pos + dir.normalized * distance, Color.green, 0.1f);
                 return GamePhysics.result();

@@ -211,7 +211,7 @@ namespace viva
                 wheatSpike.mainOccupyState.AttemptDrop();
             }
             grainToAdd++;
-            wheatSpike.gameObject.layer = Instance.noneLayer;
+            wheatSpike.gameObject.layer = WorldUtil.noneLayer;
             wheatSpike.SetAttribute(Item.Attributes.DISABLE_PICKUP);
             const float animDuration = 0.3f;    //seconds
             TransformBlend animBlend = new TransformBlend();

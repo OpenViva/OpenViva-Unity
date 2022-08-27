@@ -258,7 +258,7 @@ namespace viva
             }
             newTargetMoveToPos += Vector3.up * 0.1f;    //shift upwards to pad for nav sampling
                                                         //Find closest point to floor
-            Vector3? testHit = GamePhysics.getRaycastPos(newTargetMoveToPos, -Vector3.up, 3.0f, Instance.wallsMask);
+            Vector3? testHit = GamePhysics.getRaycastPos(newTargetMoveToPos, -Vector3.up, 3.0f, WorldUtil.wallsMask);
             if (testHit.HasValue)
             {
                 newTargetMoveToPos = testHit.Value;

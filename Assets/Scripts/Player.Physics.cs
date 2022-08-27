@@ -49,7 +49,7 @@ namespace viva
                 switch (ccc.collisionPart)
                 {
                     case CharacterCollisionCallback.Type.HEAD:
-                        if (collision.collider.gameObject.layer == Instance.waterLayer)
+                        if (collision.collider.gameObject.layer == WorldUtil.waterLayer)
                         {
                             RemoveWaterBoxCollider(collision.collider as BoxCollider);
                         }
@@ -64,7 +64,7 @@ namespace viva
 
         public override void OnCharacterTriggerEnter(CharacterTriggerCallback ccc, Collider collider)
         {
-            if (collider.gameObject.layer == Instance.waterLayer)
+            if (collider.gameObject.layer == WorldUtil.waterLayer)
             {
                 OnEnterWaterRegion(ccc, collider);
             }

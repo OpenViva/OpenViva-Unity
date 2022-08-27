@@ -36,7 +36,7 @@ namespace viva
             transform.localScale = Vector3.one * Mathf.LerpUnclamped(startSize, endSize, ratio);
 
             float fade = Mathf.Clamp01(Time.time - startTime - animLength);
-            meshRenderer.material.SetFloat(Instance.alphaID, 1.0f - fade);
+            meshRenderer.material.SetFloat(WorldUtil.alphaID, 1.0f - fade);
             if (fade >= 1.0f)
             {
                 gameObject.SetActive(false);

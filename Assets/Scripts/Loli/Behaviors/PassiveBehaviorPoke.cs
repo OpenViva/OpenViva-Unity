@@ -54,7 +54,7 @@ namespace viva
             if (self.currentAnim == Loli.Animation.STAND_POKED_TUMMY_LOOP)
             {
                 tummyPokeXBlend.Update(Time.deltaTime);
-                self.animator.SetFloat(Instance.pokeTummyXID, tummyPokeXBlend.value);
+                self.animator.SetFloat(WorldUtil.pokeTummyXID, tummyPokeXBlend.value);
                 if (pokeLaughTimer <= 0.0f)
                 {
                     pokeLaughTimer = 0.0f;

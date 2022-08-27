@@ -115,7 +115,7 @@ namespace viva
             activeHat.transform.localPosition = modelPreviewer.modelDefault.headModel.hatLocalPosAndPitch;
             activeHat.transform.localRotation = Quaternion.identity;
             activeHat.transform.localScale = Vector3.one;
-            activeHat.gameObject.layer = Instance.offscreenSpecialLayer;
+            activeHat.gameObject.layer = WorldUtil.offscreenSpecialLayer;
             Vector3 localEuler = activeHat.transform.localEulerAngles;
             localEuler.x = modelPreviewer.modelDefault.headModel.hatLocalPosAndPitch.w;
             activeHat.transform.localEulerAngles = localEuler;

@@ -156,7 +156,7 @@ namespace viva
         {
             foreach (Material mat in toonMaterials.objects)
             {
-                mat.SetColor(Instance.skinColorID, color);
+                mat.SetColor(WorldUtil.skinColorID, color);
             }
         }
 
@@ -244,7 +244,7 @@ namespace viva
                 DynamicBoneItem dynBoneItem = Item.AddAndAwakeItemComponent<DynamicBoneItem>(bone.gameObject, dynBoneItemSettings, this);
                 dynBoneItem.InitializeDynamicBoneItem(dynamicBone);
 
-                bone.gameObject.layer = Instance.bodyPartItemsLayer;
+                bone.gameObject.layer = WorldUtil.bodyPartItemsLayer;
                 SphereCollider itemCollider = viva.Tools.EnsureComponent<SphereCollider>(bone.gameObject);
                 itemCollider.radius = 0.03f;
                 itemCollider.isTrigger = true;

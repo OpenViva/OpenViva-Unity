@@ -429,7 +429,7 @@ namespace viva
         private IEnumerator LoadVivaFile(VivaFile file)
         {
             int oldMask = mainCamera.cullingMask;
-            mainCamera.cullingMask = Instance.uiMask;
+            mainCamera.cullingMask = WorldUtil.uiMask;
 
             fileLoadStatus.gameObject.SetActive(true);
 

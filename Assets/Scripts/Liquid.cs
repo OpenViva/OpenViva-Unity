@@ -253,7 +253,7 @@ namespace viva
                     Vector3 currPos = spill.worldRingPos[j];
                     Vector3 currVel = spill.worldRingVel[j] + Vector3.up * -0.11f * Time.deltaTime;
                     RaycastHit hit = new RaycastHit();
-                    if (Physics.Raycast(currPos, currVel, out hit, currVel.magnitude, Instance.wallsMask | Instance.characterMovementMask))
+                    if (Physics.Raycast(currPos, currVel, out hit, currVel.magnitude, WorldUtil.wallsMask | WorldUtil.characterMovementMask))
                     {
                         currPos = hit.point;
 

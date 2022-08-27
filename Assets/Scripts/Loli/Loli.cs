@@ -157,7 +157,7 @@ namespace viva
 
             name = sessionReferenceName;
             loliID = loliIDCounter++;
-            worldMask = Instance.wallsMask | Instance.wallsStaticForCharactersMask | Instance.wallsStaticForLoliOnlyMask;
+            worldMask = WorldUtil.wallsMask | WorldUtil.wallsStaticForCharactersMask | WorldUtil.wallsStaticForLoliOnlyMask;
             lastFloorPos = CalculateCurrentFloorPosition();
         }
 
@@ -222,7 +222,7 @@ namespace viva
             previewMode = enable;
             if (enable)
             {
-                SetModelLayer(Instance.offscreenSpecialLayer);
+                SetModelLayer(WorldUtil.offscreenSpecialLayer);
                 headSMR.rootBone = head;
             }
             else
@@ -340,13 +340,13 @@ namespace viva
             Color proximityAmbience = Color.LerpUnclamped(Color.black, toonAmbience, ease);
             foreach (Material mat in toonMaterials.objects)
             {
-                mat.SetColor(Instance.toonProximityAmbienceID, proximityAmbience);
+                mat.SetColor(WorldUtil.toonProximityAmbienceID, proximityAmbience);
             }
             foreach (OutfitInstance.AttachmentInstance attachment in outfitInstance.attachmentInstances)
             {
                 foreach (Renderer renderer in attachment.activeRenderers)
                 {
-                    renderer.material.SetColor(Instance.toonProximityAmbienceID, proximityAmbience);
+                    renderer.material.SetColor(WorldUtil.toonProximityAmbienceID, proximityAmbience);
                 }
             }
         }

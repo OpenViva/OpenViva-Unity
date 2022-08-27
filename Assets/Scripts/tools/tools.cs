@@ -297,6 +297,44 @@ namespace viva
             return closest;
         }
 
+        public static bool RayIntersectsRectTransform(RectTransform transform, Ray ray, out Vector3 worldPosition, out float distance)
+        {
+            var corners = new Vector3[4];
+            transform.GetWorldCorners(corners);
+            var plane = new Plane(corners[0], corners[1], corners[2]);
+
+            float enter;
+            if (plane.Raycast(ray, out enter))
+            {
+                var intersection = ray.GetPoint(enter);
+
+                var bottomEdge = corners[3] - corners[0];
+                var leftEdge = corners[1] - corners[0];
+                var bottomDot = Vector3.Dot(intersection - corners[0], bottomEdge);
+                var leftDot = Vector3.Dot(intersection - corners[0], leftEdge);
+
+                // If the intersection is right of the left edge and above the bottom edge.
+                if (leftDot >= 0 && bottomDot >= 0)
+                {
+                    var topEdge = corners[1] - corners[2];
+                    var rightEdge = corners[3] - corners[2];
+                    var topDot = Vector3.Dot(intersection - corners[2], topEdge);
+                    var rightDot = Vector3.Dot(intersection - corners[2], rightEdge);
+
+                    //If the intersection is left of the right edge, and below the top edge
+                    if (topDot >= 0 && rightDot >= 0)
+                    {
+                        worldPosition = intersection;
+                        distance = enter;
+                        return true;
+                    }
+                }
+            }
+            worldPosition = Vector3.zero;
+            distance = 0;
+            return false;
+        }
+
         public class EaseBlend
         {
 

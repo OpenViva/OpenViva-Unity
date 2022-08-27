@@ -19,7 +19,7 @@ namespace viva
         public void OnTriggerEnter(Collider collider)
         {
 
-            if (collider.gameObject.layer != Instance.waterLayer)
+            if (collider.gameObject.layer != WorldUtil.waterLayer)
             {
                 return;
             }
@@ -195,7 +195,7 @@ namespace viva
 
         public void OnTriggerExit(Collider collider)
         {
-            if (collider.gameObject.layer != Instance.waterLayer)
+            if (collider.gameObject.layer != WorldUtil.waterLayer)
             {
                 return;
             }

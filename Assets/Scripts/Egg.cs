@@ -141,7 +141,7 @@ namespace viva
             }
             splat = true;
             eggMR.enabled = false;
-            this.gameObject.layer = Instance.noneLayer;
+            this.gameObject.layer = WorldUtil.noneLayer;
 
             rigidBody.isKinematic = true;
             this.SetAttribute(Attributes.DISABLE_PICKUP);
@@ -163,7 +163,7 @@ namespace viva
             splat = true;
 
             gameObject.GetComponent<MeshRenderer>().enabled = false;
-            gameObject.layer = Instance.noneLayer;
+            gameObject.layer = WorldUtil.noneLayer;
 
             mainOccupyState.AttemptDrop();
             SetAttribute(Attributes.DISABLE_PICKUP);

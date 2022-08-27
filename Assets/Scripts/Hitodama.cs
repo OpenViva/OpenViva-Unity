@@ -102,7 +102,7 @@ namespace viva
         void FixedUpdate()
         {
             float force = Mathf.Sin(transform.position.x + transform.position.z + Time.time * bobFrequency) * bobStrength;
-            if (!Physics.Raycast(transform.position, Vector3.down, 1.5f, Instance.wallsMask, QueryTriggerInteraction.Ignore))
+            if (!Physics.Raycast(transform.position, Vector3.down, 1.5f, WorldUtil.wallsMask, QueryTriggerInteraction.Ignore))
             {
                 force = bobStrength;
             }

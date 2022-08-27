@@ -140,7 +140,7 @@ public class RiverRegionEditor : EditorWindow
             Vert currB = verts[i + 1];
 
             var container = new GameObject("region");
-            container.layer = Instance.waterLayer;
+            container.layer = WorldUtil.waterLayer;
             container.isStatic = true;
             container.name = "footstep_water";
             container.transform.SetParent(root.transform, false);

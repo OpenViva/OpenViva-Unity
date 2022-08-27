@@ -123,7 +123,7 @@ namespace viva
                     {
 
                         Vector3 toFirework = transform.position - loli.head.position;
-                        if (Physics.Raycast(loli.head.position, toFirework.normalized, 8.0f, Instance.wallsMask, QueryTriggerInteraction.Ignore))
+                        if (Physics.Raycast(loli.head.position, toFirework.normalized, 8.0f, WorldUtil.wallsMask, QueryTriggerInteraction.Ignore))
                         {
                             continue;
                         }

@@ -1057,7 +1057,7 @@ namespace viva
 
         private void FindAndAddToProximalFanGroup(List<PokerCard> cards)
         {
-            Collider[] colliders = Physics.OverlapSphere(transform.position, 0.125f, Instance.itemsMask, QueryTriggerInteraction.Ignore);
+            Collider[] colliders = Physics.OverlapSphere(transform.position, 0.125f, WorldUtil.itemsMask, QueryTriggerInteraction.Ignore);
             foreach (Collider collider in colliders)
             {
                 PokerCard card = collider.GetComponent<PokerCard>();
@@ -1319,7 +1319,7 @@ namespace viva
         private void AddNearbyCardsToFanGroup()
         {
             List<PokerCard> newCards = new List<PokerCard>();
-            Collider[] colliders = Physics.OverlapSphere(transform.position, 0.15f, Instance.itemsMask, QueryTriggerInteraction.Ignore);
+            Collider[] colliders = Physics.OverlapSphere(transform.position, 0.15f, WorldUtil.itemsMask, QueryTriggerInteraction.Ignore);
             foreach (Collider collider in colliders)
             {
                 PokerCard card = collider.GetComponent<PokerCard>();

@@ -5,7 +5,7 @@ namespace viva
 {
 
 
-    public class Instance
+    public class WorldUtil
     {
 
         public static readonly int pupilShrinkID = Shader.PropertyToID("_PupilShrink");

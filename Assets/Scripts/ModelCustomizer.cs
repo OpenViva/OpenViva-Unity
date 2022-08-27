@@ -368,7 +368,7 @@ namespace viva
             //mouse must hit UI
             RaycastHit hitInfo = new RaycastHit();
             Ray mouseray = GameDirector.instance.mainCamera.ScreenPointToRay(GameDirector.player.mousePosition);
-            if (!Physics.Raycast(mouseray.origin, mouseray.direction, out hitInfo, 2.0f, Instance.uiMask))
+            if (!Physics.Raycast(mouseray.origin, mouseray.direction, out hitInfo, 2.0f, WorldUtil.uiMask))
             {
                 return;
             }

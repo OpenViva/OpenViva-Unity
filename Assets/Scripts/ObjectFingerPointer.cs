@@ -349,7 +349,7 @@ namespace viva
                 timer += Time.deltaTime;
                 float ratio = timer / maxTime;
                 gestureDisplay.transform.localScale = Vector3.one * (Tools.EaseInQuad(1.0f - ratio) * 0.5f + 1.0f);
-                gestureDisplayMat.SetFloat(Instance.alphaID, Tools.EaseInOutCubic(ratio));
+                gestureDisplayMat.SetFloat(WorldUtil.alphaID, Tools.EaseInOutCubic(ratio));
                 UpdateGestureDisplayRotation();
                 yield return new WaitForEndOfFrame();
             }
@@ -366,7 +366,7 @@ namespace viva
             {
                 timer += Time.deltaTime;
                 float ratio = timer / maxTime;
-                gestureDisplayMat.SetFloat(Instance.alphaID, 1.0f - ratio);
+                gestureDisplayMat.SetFloat(WorldUtil.alphaID, 1.0f - ratio);
                 UpdateGestureDisplayRotation();
                 yield return new WaitForEndOfFrame();
             }
@@ -427,7 +427,7 @@ namespace viva
             if (LocomotionBehaviors.isOnWalkableFloor(pointedPos))
             {
                 gestureDisplay.transform.SetParent(null);
-                gestureDisplayMat.SetFloat(Instance.alphaID, 0.75f);
+                gestureDisplayMat.SetFloat(WorldUtil.alphaID, 0.75f);
             }
             else
             {
@@ -525,7 +525,7 @@ namespace viva
             }
 
             //sample mechanism triggers
-            if (!GamePhysics.GetRaycastInfo(point, dir, 20.0f, Instance.wallsMask | Instance.visionMask, QueryTriggerInteraction.Collide))
+            if (!GamePhysics.GetRaycastInfo(point, dir, 20.0f, WorldUtil.wallsMask | WorldUtil.visionMask, QueryTriggerInteraction.Collide))
             {
                 Debug.DrawLine(point, point + dir * 20.0f, Color.red, 3.0f);
                 return;
@@ -572,7 +572,7 @@ namespace viva
         {
             gestureDisplay.SetActive(true);
             gestureDisplayMat.SetFloat(clockProgressID, clockProgress);
-            gestureDisplayMat.SetFloat(Instance.alphaID, alpha);
+            gestureDisplayMat.SetFloat(WorldUtil.alphaID, alpha);
             gestureDisplay.transform.position = pos;
             SetupDisplayTexture(gesture);
             UpdateGestureDisplayRotation(size);

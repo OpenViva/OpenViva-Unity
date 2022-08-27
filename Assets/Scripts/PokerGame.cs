@@ -309,7 +309,7 @@ namespace viva
             cardPile.ReleaseAllCards();
             Destroy(gameObject, 2.0f);
             masterDeck.rigidBody.isKinematic = false;
-            masterDeck.SetItemLayer(Instance.itemsLayer);
+            masterDeck.SetItemLayer(WorldUtil.itemsLayer);
         }
 
         private bool AllPlayersFinished()
@@ -339,7 +339,7 @@ namespace viva
                 return false;
             }
             masterDeck.SetLastOwner(null);
-            masterDeck.SetItemLayer(Instance.heldItemsLayer);
+            masterDeck.SetItemLayer(WorldUtil.heldItemsLayer);
             deckMeshFilter.mesh = placeDeckSymbol;
 
             TutorialManager.main.DisplayObjectHint(masterDeck, "hint_howToPlayOne");
@@ -392,7 +392,7 @@ namespace viva
                 return;
             }
             //wait for dealer to place deck on floor
-            if (!GamePhysics.GetRaycastInfo(masterDeck.transform.position, Vector3.down, 0.5f, Instance.wallsMask, QueryTriggerInteraction.Ignore, 0.0f))
+            if (!GamePhysics.GetRaycastInfo(masterDeck.transform.position, Vector3.down, 0.5f, WorldUtil.wallsMask, QueryTriggerInteraction.Ignore, 0.0f))
             {
                 deckMeshRenderer.enabled = false;
                 return;

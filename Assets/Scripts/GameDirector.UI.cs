@@ -47,7 +47,8 @@ namespace viva
         private ControlsAllowed m_controlsAllowed = ControlsAllowed.ALL;
         public ControlsAllowed controlsAllowed { get { return m_controlsAllowed; } }
         private Player sourcePlayer = null;
-        private bool useRightHandForVRPointer = true;
+        private bool m_useRightHandForVRPointer = true;
+        public bool useRightHandForVRPointer { get { return m_useRightHandForVRPointer; } }
 
 
         public void DisableNextClick()
@@ -130,7 +131,7 @@ namespace viva
 
         public void BeginUIInput(UIMenu newMenu, Player newSourcePlayer, bool _useRightHandForVRPointer = true)
         {
-            useRightHandForVRPointer = _useRightHandForVRPointer;
+            m_useRightHandForVRPointer = _useRightHandForVRPointer;
             if (newMenu == null)
             {
                 Debug.LogError("ERROR Cannot BeginUIInput to null menu!");
@@ -314,11 +315,11 @@ namespace viva
                 if (pointer != null)
                 {
                     RaycastHit hitInfo = new RaycastHit();
-                    bool hit = Physics.Raycast(pointer.position, pointer.forward, out hitInfo, 4.0f, Instance.uiMask | Instance.wallsMask);
+                    bool hit = Physics.Raycast(pointer.position, pointer.forward, out hitInfo, 4.0f, WorldUtil.uiMask | WorldUtil.wallsMask);
 
                     if (hit)
                     {  //make sure it hit the UI not the wall mask
-                        hit = hitInfo.collider.gameObject.layer == Instance.uiLayer;
+                        hit = hitInfo.collider.gameObject.layer == WorldUtil.uiLayer;
                     }
                     if (!hit)
                     {

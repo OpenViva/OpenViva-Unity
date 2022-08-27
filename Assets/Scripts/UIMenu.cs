@@ -83,7 +83,7 @@ namespace viva
                     {
                         if (player.leftPlayerHandState.gripState.isUp)
                         {
-                            if (GamePhysics.GetRaycastInfo(player.head.position, player.head.forward, 1.5f, Instance.uiMask))
+                            if (GamePhysics.GetRaycastInfo(player.head.position, player.head.forward, 1.5f, WorldUtil.uiMask))
                             {
                                 GraphicRaycaster gRaycaster = GamePhysics.result().transform.GetComponent<GraphicRaycaster>();
                                 if (gRaycaster == graphicRaycaster)

@@ -189,7 +189,7 @@ namespace viva
         public Item FindPickupItemForCharacter(Character source, Vector3 position, float radius, Item.Type preference = Item.Type.NONE)
         {
 
-            Collider[] objects = Physics.OverlapSphere(position, radius, Instance.visionMask, QueryTriggerInteraction.Collide);
+            Collider[] objects = Physics.OverlapSphere(position, radius, WorldUtil.visionMask, QueryTriggerInteraction.Collide);
             Item result = null;
             float leastSqDist = Mathf.Infinity;
             for (int i = 0; i < objects.Length; i++)

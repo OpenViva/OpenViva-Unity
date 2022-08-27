@@ -726,7 +726,7 @@ namespace viva
             Vector3 targetPos = targetFingers.hand.position + targetFingers.hand.up * 0.15f + targetFingers.hand.forward * 0.05f;
             Vector3 handToTarget = (targetPos - targetHandState.holdArmIK.ik.p0.position).normalized;
 
-            self.animator.SetFloat(Instance.chopsticksReachID, Tools.EaseInOutQuad(animTargetIKBlend));
+            self.animator.SetFloat(WorldUtil.chopsticksReachID, Tools.EaseInOutQuad(animTargetIKBlend));
 
             float offsetBlend = 0.0f;
             if (animTargetIKBlend < 0.5f)

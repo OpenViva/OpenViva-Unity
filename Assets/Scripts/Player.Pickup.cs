@@ -73,7 +73,7 @@ namespace viva
                     handState.AttemptDrop();
 
                     //store in a nearby bag if available
-                    Bag bag = Tools.FindClosestToSphere<Bag>(handState.fingerAnimator.hand.position, 0.15f, Instance.visionMask);
+                    Bag bag = Tools.FindClosestToSphere<Bag>(handState.fingerAnimator.hand.position, 0.15f, WorldUtil.visionMask);
                     if (bag != null)
                     {
                         bag.StoreItem(handState.heldItem);

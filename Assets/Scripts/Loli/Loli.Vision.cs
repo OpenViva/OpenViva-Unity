@@ -524,7 +524,7 @@ namespace viva
             Vector3 dir = position - headLookAt.bone.position;
             float maxDistance = dir.magnitude;
             dir /= maxDistance;
-            return !Physics.Raycast(headLookAt.bone.position, dir, maxDistance, Instance.wallsMask);
+            return !Physics.Raycast(headLookAt.bone.position, dir, maxDistance, WorldUtil.wallsMask);
         }
 
         public void SetLookAtTarget(Transform newLookAtTransform, float speedMult = 1.0f)
@@ -641,7 +641,7 @@ namespace viva
             if (hasMaterial)
             {
                 hasTexture = eye.material.mainTexture != null;
-                eye.material.SetFloat(Instance.sideMultiplierID, sideMultiplier);
+                eye.material.SetFloat(WorldUtil.sideMultiplierID, sideMultiplier);
             }
             else
             {
@@ -789,8 +789,8 @@ namespace viva
             float pupilShrink = SafeGetBlendShapeWeight(pupilShrinkBS) / 100.0f + 1.0f;
             //scale so it is NOT full strength
             pupilShrink = 1.0f + (pupilShrink - 1.0f) * 0.5f;
-            rightEye.material.SetFloat(Instance.pupilShrinkID, pupilShrink);
-            leftEye.material.SetFloat(Instance.pupilShrinkID, pupilShrink);
+            rightEye.material.SetFloat(WorldUtil.pupilShrinkID, pupilShrink);
+            leftEye.material.SetFloat(WorldUtil.pupilShrinkID, pupilShrink);
         }
 
         public void ResetEyeUniforms()
@@ -803,9 +803,9 @@ namespace viva
         private void ResetEyeUniform(Eye eye)
         {
 
-            eye.material.SetFloat(Instance.pupilShrinkID, 1.0f);
-            eye.material.SetFloat(Instance.pupilRightID, 0.0f);
-            eye.material.SetFloat(Instance.pupilUpID, 0.0f);
+            eye.material.SetFloat(WorldUtil.pupilShrinkID, 1.0f);
+            eye.material.SetFloat(WorldUtil.pupilRightID, 0.0f);
+            eye.material.SetFloat(WorldUtil.pupilUpID, 0.0f);
         }
 
         private float SafeGetBlendShapeWeight(int id)
@@ -853,13 +853,13 @@ namespace viva
             //symmetrize
             currAvgPupilDown = (rightPupilInfo.y + leftPupilInfo.y) * 0.5f + 0.05f;
 
-            rightEye.material.SetFloat(Instance.pupilShrinkID, 1.0f + pupilShrink);
-            rightEye.material.SetFloat(Instance.pupilRightID, -rightPupilInfo.x);
-            rightEye.material.SetFloat(Instance.pupilUpID, currAvgPupilDown);
+            rightEye.material.SetFloat(WorldUtil.pupilShrinkID, 1.0f + pupilShrink);
+            rightEye.material.SetFloat(WorldUtil.pupilRightID, -rightPupilInfo.x);
+            rightEye.material.SetFloat(WorldUtil.pupilUpID, currAvgPupilDown);
 
-            leftEye.material.SetFloat(Instance.pupilShrinkID, 1.0f + pupilShrink);
-            leftEye.material.SetFloat(Instance.pupilRightID, leftPupilInfo.x);
-            leftEye.material.SetFloat(Instance.pupilUpID, currAvgPupilDown);
+            leftEye.material.SetFloat(WorldUtil.pupilShrinkID, 1.0f + pupilShrink);
+            leftEye.material.SetFloat(WorldUtil.pupilRightID, leftPupilInfo.x);
+            leftEye.material.SetFloat(WorldUtil.pupilUpID, currAvgPupilDown);
         }
 
         private void UpdatePupilTargetLookAt()

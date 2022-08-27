@@ -121,7 +121,7 @@ namespace viva
 
             //TODO: Move to TriggerEnter()
             Vector3 bottom = transform.position + transform.up * bottomOffset;
-            Collider[] results = Physics.OverlapSphere(bottom, 0.04f, Instance.itemsMask, QueryTriggerInteraction.Collide);
+            Collider[] results = Physics.OverlapSphere(bottom, 0.04f, WorldUtil.itemsMask, QueryTriggerInteraction.Collide);
             foreach (Collider collider in results)
             {
                 if (CheckIfCanPaintNails(collider))

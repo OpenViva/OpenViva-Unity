@@ -63,7 +63,7 @@ namespace viva
 
         public override void OnMechanismFixedUpdate()
         {
-            if (!GamePhysics.GetRaycastInfo(transform.position, Vector3.down, 0.5f, Instance.itemsMask, QueryTriggerInteraction.Collide))
+            if (!GamePhysics.GetRaycastInfo(transform.position, Vector3.down, 0.5f, WorldUtil.itemsMask, QueryTriggerInteraction.Collide))
             {
                 return;
             }

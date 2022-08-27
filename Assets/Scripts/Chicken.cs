@@ -95,7 +95,7 @@ namespace viva
             lastStandPos = transform.position;
             GameDirector.mechanisms.Add(this);
 
-            chickenPhysicsMask = Instance.wallsMask | Instance.wallsStaticForCharactersMask;
+            chickenPhysicsMask = WorldUtil.wallsMask | WorldUtil.wallsStaticForCharactersMask;
             animator.speed = 0.95f + UnityEngine.Random.value * 0.1f;
             bukTimer = UnityEngine.Random.value;
 

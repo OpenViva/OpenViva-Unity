@@ -151,11 +151,11 @@ namespace viva
 
             if (targetDoorUnit > startingDoorUnit)
             {
-                self.animator.SetFloat(Instance.pickupReverseID, targetHandSign * startingDoorSide);
+                self.animator.SetFloat(WorldUtil.pickupReverseID, targetHandSign * startingDoorSide);
             }
             else
             {
-                self.animator.SetFloat(Instance.pickupReverseID, -targetHandSign * startingDoorSide);
+                self.animator.SetFloat(WorldUtil.pickupReverseID, -targetHandSign * startingDoorSide);
             }
         }
 

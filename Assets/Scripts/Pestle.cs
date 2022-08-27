@@ -28,7 +28,7 @@ namespace viva
 
             //find Mortar
             Vector3 bottom = transform.position + transform.up * bottomOffset;
-            Collider[] results = Physics.OverlapSphere(bottom, 0.025f, Instance.itemsMask);
+            Collider[] results = Physics.OverlapSphere(bottom, 0.025f, WorldUtil.itemsMask);
             foreach (Collider collider in results)
             {
                 Item item = collider.gameObject.GetComponent<Item>();

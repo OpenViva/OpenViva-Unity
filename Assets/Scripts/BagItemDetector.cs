@@ -36,7 +36,7 @@ namespace viva
                 return;
             }
 
-            int collisions = Physics.OverlapSphereNonAlloc(transform.position, 0.17f, results, Instance.itemDetectorMask, QueryTriggerInteraction.Collide);
+            int collisions = Physics.OverlapSphereNonAlloc(transform.position, 0.17f, results, WorldUtil.itemDetectorMask, QueryTriggerInteraction.Collide);
             for (int i = 0; i < collisions; i++)
             {
                 Collider collider = results[i];

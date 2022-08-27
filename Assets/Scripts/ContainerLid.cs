@@ -60,7 +60,7 @@ namespace viva
         {
 
             int oldLayer = gameObject.layer;
-            gameObject.layer = Instance.noneLayer;
+            gameObject.layer = WorldUtil.noneLayer;
             yield return new WaitForSeconds(seconds);
             gameObject.layer = oldLayer;
             tempDisablePhysicsCoroutine = null;

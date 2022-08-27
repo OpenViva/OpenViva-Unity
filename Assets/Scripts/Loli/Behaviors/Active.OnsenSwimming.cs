@@ -232,7 +232,7 @@ namespace viva
                 Vector3 source = self.floorPos;
                 Vector3 dir = self.anchor.forward + self.anchor.right * i * 0.1f;
                 Debug.DrawLine(source, source + dir.normalized * 1.0f, Color.green, 0.1f);
-                if (GamePhysics.GetRaycastInfo(source, dir, 1.0f, Instance.wallsMask, QueryTriggerInteraction.Ignore))
+                if (GamePhysics.GetRaycastInfo(source, dir, 1.0f, WorldUtil.wallsMask, QueryTriggerInteraction.Ignore))
                 {
                     hits++;
                     wallNorm += GamePhysics.result().normal;
@@ -257,7 +257,7 @@ namespace viva
                 moveToRelax.onGeneratePathRequest = delegate (Vector3 target)
                 {
                     return new LocomotionBehaviors.PathRequest[]{
-                    new LocomotionBehaviors.NavSearchCircle( target, 0.4f, 1.0f, 6, Instance.wallsMask,
+                    new LocomotionBehaviors.NavSearchCircle( target, 0.4f, 1.0f, 6, WorldUtil.wallsMask,
                     new LocomotionBehaviors.NavSearchCircle.TestTowardsInnerCircle( 0.2f, 3 ) )
                 };
                 };
@@ -466,8 +466,8 @@ namespace viva
                 return 0.0f;
             }
             Vector3 targetPos = swimmingSession.pool.onsenReception.receptionBell.transform.position;
-            self.animator.SetFloat(Instance.pickupHeightID, 1.0f);
-            self.animator.SetFloat(Instance.pickupReachID, 1.0f);
+            self.animator.SetFloat(WorldUtil.pickupHeightID, 1.0f);
+            self.animator.SetFloat(WorldUtil.pickupReachID, 1.0f);
 
             float progress = self.GetLayerAnimNormTime(1);
             float lerp = Tools.GetClampedRatio(0.35f, 0.5f, progress) - Tools.GetClampedRatio(0.5f, 0.7f, progress);

@@ -110,7 +110,7 @@ namespace viva
             source -= dir * 0.2f;   //erode backwards to prevent up close detection
 
             Debug.DrawLine(source, source + dir * dirLength, Color.blue, 0.25f);
-            int results = Physics.SphereCastNonAlloc(source, 0.1f, dir, raycastResults, dirLength, Instance.itemsOnlyMask, QueryTriggerInteraction.Ignore);
+            int results = Physics.SphereCastNonAlloc(source, 0.1f, dir, raycastResults, dirLength, WorldUtil.itemsOnlyMask, QueryTriggerInteraction.Ignore);
             float leastDist = Mathf.Infinity;
             SlidingDoor targetSlidingDoor = null;
             for (int i = 0; i < results; i++)
@@ -303,7 +303,7 @@ namespace viva
                     toFloorPos.y = 0.0f;
                     targetPos += toFloorPos.normalized * distance;
 
-                    var nearestFloor = GamePhysics.getRaycastPos(targetPos, Vector3.down, 2.0f, Instance.wallsMask, QueryTriggerInteraction.Ignore, 0.1f);
+                    var nearestFloor = GamePhysics.getRaycastPos(targetPos, Vector3.down, 2.0f, WorldUtil.wallsMask, QueryTriggerInteraction.Ignore, 0.1f);
                     if (nearestFloor.HasValue && LocomotionBehaviors.isOnWalkableFloor(nearestFloor.Value))
                     {
                         //keep actual move to pos
@@ -333,7 +333,7 @@ namespace viva
             {
                 vertices = 3;
             }
-            return new LocomotionBehaviors.PathRequest[] { new LocomotionBehaviors.NavSearchCircle(targetPos, distance, 2.0f, vertices, Instance.wallsMask) };
+            return new LocomotionBehaviors.PathRequest[] { new LocomotionBehaviors.NavSearchCircle(targetPos, distance, 2.0f, vertices, WorldUtil.wallsMask) };
         }
 
         private void OnFindPath(Vector3[] path, Vector3 navSearchPoint, Vector3 navPointDir)

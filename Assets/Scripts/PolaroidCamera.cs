@@ -103,7 +103,7 @@ namespace viva
         private bool IsLookingAtPanty()
         {
 
-            Collider[] results = Physics.OverlapSphere(transform.position - transform.up, 1.0f, Instance.characterMovementMask);
+            Collider[] results = Physics.OverlapSphere(transform.position - transform.up, 1.0f, WorldUtil.characterMovementMask);
             for (int i = 0; i < results.Length; i++)
             {
                 Loli loli = results[i].gameObject.GetComponent(typeof(Loli)) as Loli;
@@ -229,7 +229,7 @@ namespace viva
             flash.SetActive(false);
 
             //check if ghost is in front
-            var collisions = Physics.OverlapSphere(transform.position, 10.0f, Instance.itemDetectorMask, QueryTriggerInteraction.Collide);
+            var collisions = Physics.OverlapSphere(transform.position, 10.0f, WorldUtil.itemDetectorMask, QueryTriggerInteraction.Collide);
             foreach (var collision in collisions)
             {
                 var ghost = collision.GetComponent<OnsenGhost>();

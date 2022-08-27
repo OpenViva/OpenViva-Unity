@@ -126,7 +126,7 @@ namespace viva
             // if not moving towards circle
             // of final destination does not see chicken
             if (chickenToPointLength > keepRadius + 0.5f ||
-                !Physics.Raycast(point, chickenToPoint, chickenToPointLength, Instance.wallsMask))
+                !Physics.Raycast(point, chickenToPoint, chickenToPointLength, WorldUtil.wallsMask))
             {
 
                 self.locomotion.AttemptContinuousNavSearch(
@@ -136,7 +136,7 @@ namespace viva
                         keepRadius,
                         3.0f,
                         8,
-                        Instance.wallsMask
+                        WorldUtil.wallsMask
                     )
                     },
                     OnFindCircleStart
@@ -208,7 +208,7 @@ namespace viva
 
             //check if running into wall
             Vector3 wallTestStart = self.spine1RigidBody.transform.position;
-            bool wallObstacleHit = GamePhysics.GetRaycastInfo(wallTestStart, tangent * dirSign, 0.3f, Instance.wallsMask, QueryTriggerInteraction.Ignore);
+            bool wallObstacleHit = GamePhysics.GetRaycastInfo(wallTestStart, tangent * dirSign, 0.3f, WorldUtil.wallsMask, QueryTriggerInteraction.Ignore);
             bool stuck = self.spine1RigidBody.velocity.sqrMagnitude < 0.008f;
             if (wallObstacleHit || stuck)
             {
@@ -284,17 +284,21 @@ namespace viva
             if (chickenToPointLength > 0.5f)
             {
 
-                Vector3[] path = self.locomotion.GetNavMeshPath(targetChicken.pelvis.position);
-                if (path == null)
-                {
-                    Debug.LogError("no path");
-                    self.active.SetTask(self.active.idle, false);
-                    return;
-                }
+                
                 chickenToPoint /= chickenToPointLength;
                 //chickenToPoint
-                self.locomotion.FollowPath(path);
+                self.autonomy.SetAutonomy(GenerateMovetoChickenIfPointIsOutsideChase());
             }
+        }
+
+        private AutonomyMoveTo GenerateMovetoChickenIfPointIsOutsideChase()
+        {
+            var moveToChicken = new AutonomyMoveTo(self.autonomy, "move to chicken outside chase radius", delegate (TaskTarget target)
+            {
+                target.SetTargetPosition(targetChicken.pelvis.position);
+            }, 0.5f, BodyState.STAND
+            );
+            return moveToChicken;
         }
     }
 

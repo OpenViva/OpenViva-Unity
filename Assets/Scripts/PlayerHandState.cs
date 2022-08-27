@@ -242,7 +242,7 @@ namespace viva
             while (timer > 0.0f)
             {
                 timer = Mathf.Max(0.0f, timer - Time.deltaTime);
-                bubblesMaterial.SetFloat(Instance.bubbleSizeID, (1.0f - (timer / growTime)) * 0.025f);
+                bubblesMaterial.SetFloat(WorldUtil.bubbleSizeID, (1.0f - (timer / growTime)) * 0.025f);
                 yield return null;
             }
             SetAttribute(HandState.Attribute.SOAPY);
@@ -404,7 +404,7 @@ namespace viva
         Collider CalculateNearbyGrabCollider(Vector3 dir, float length, ref Vector3 colliderPos, ref Vector3 colliderNormal)
         {
             Vector3 handCenter = selfItem.rigidBody.worldCenterOfMass;
-            if (!GamePhysics.GetRaycastInfo(handCenter, dir, length, Instance.itemsMask, QueryTriggerInteraction.Ignore, 0.0f))
+            if (!GamePhysics.GetRaycastInfo(handCenter, dir, length, WorldUtil.itemsMask, QueryTriggerInteraction.Ignore, 0.0f))
             {
                 return null;
             }

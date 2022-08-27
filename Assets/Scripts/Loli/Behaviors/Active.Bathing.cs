@@ -296,9 +296,9 @@ namespace viva
                 return;
             }
 
-            float currBegDirection = self.animator.GetFloat(Instance.begDirection);
+            float currBegDirection = self.animator.GetFloat(WorldUtil.begDirection);
             currBegDirection += (bearing / 120.0f - currBegDirection) * Time.deltaTime * 6.0f;
-            self.animator.SetFloat(Instance.begDirection, currBegDirection);
+            self.animator.SetFloat(WorldUtil.begDirection, currBegDirection);
 
             Vector3 approxPos = begTarget.transform.position - self.rightLoliHandState.fingerAnimator.hand.right * 0.1f;
 
@@ -474,8 +474,7 @@ namespace viva
                     LoliHandState currentPointingHand,
                     Loli.Animation sayGetOutAnimation)
         {
-
-            UpdatePointingArmIK(currentPointingHand);
+            //new BlendController(currentPointingHand, OnPointingArmIKControl;
             if (playerIsStillInBathroom)
             {
 
@@ -515,77 +514,91 @@ namespace viva
         {
 
             //if self is outside of the room, end bathing
-            // if( !bathtub.IsCharacterInBathroom(self) ){
-            // 	self.active.SetTask( self.active.idle, false );
-            // 	return;
-            // }
+            if (!bathtub.IsCharacterInBathroom(self))
+            {
+                self.active.SetTask(self.active.idle, false);
+                return;
+            }
 
-            // bool playerIsInRoom = bathtub.IsCharacterInBathroom( GameDirector.player );
+            bool playerIsInRoom = bathtub.IsCharacterInBathroom(GameDirector.player);
 
-            // refreshLookAtTargetTimer -= Time.deltaTime;
-            // if( refreshLookAtTargetTimer <= 0.0f ){
-            // 	refreshLookAtTargetTimer = 4.0f;
-            // 	self.SetRootFacingTarget( GameDirector.player.head.position, 200.0f, 25.0f, 30.0f );
-            // }
-            // switch( self.currentAnim ){
-            // case Loli.Animation.STAND_POINT_OUT_IN_RIGHT:
-            // case Loli.Animation.STAND_POINT_OUT_LOOP_RIGHT:
-            // case Loli.Animation.STAND_POINT_OUT_ANTSY_RIGHT:
-            // case Loli.Animation.STAND_POINT_OUT_SOUND_2_3_RIGHT:
-            // 	UpdateWaitForPlayerToGetOutAnimation(
-            // 		playerIsInRoom,
-            // 		self.rightLoliHandState,
-            // 		GetPointAndSayOutAnimation(true)
-            // 	);
-            // 	break;
-            // case Loli.Animation.STAND_POINT_OUT_IN_LEFT:
-            // case Loli.Animation.STAND_POINT_OUT_LOOP_LEFT:
-            // case Loli.Animation.STAND_POINT_OUT_ANTSY_LEFT:
-            // case Loli.Animation.STAND_POINT_OUT_SOUND_2_3_LEFT:
-            // 	UpdateWaitForPlayerToGetOutAnimation(
-            // 		playerIsInRoom,
-            // 		self.leftLoliHandState,
-            // 		GetPointAndSayOutAnimation(false)
-            // 	);
-            // 	break;
-            // case Loli.Animation.STAND_WAIT_ANNOYED_LOOP:
-            // 	if( playerIsInRoom ){
-            // 		CheckIfCanPointToDoor();
-            // 	}
-            // 	break;
+            refreshLookAtTargetTimer -= Time.deltaTime;
+            if (refreshLookAtTargetTimer <= 0.0f)
+            {
+                refreshLookAtTargetTimer = 4.0f;
+                //self.SetRootFacingTarget(GameDirector.player.head.position, 200.0f, 25.0f, 30.0f);
+            }
+            switch (self.currentAnim)
+            {
+                case Loli.Animation.STAND_POINT_OUT_IN_RIGHT:
+                case Loli.Animation.STAND_POINT_OUT_LOOP_RIGHT:
+                case Loli.Animation.STAND_POINT_OUT_ANTSY_RIGHT:
+                case Loli.Animation.STAND_POINT_OUT_SOUND_2_3_RIGHT:
+                    UpdateWaitForPlayerToGetOutAnimation(
+                        playerIsInRoom,
+                        self.rightLoliHandState,
+                        GetPointAndSayOutAnimation(true)
+                    );
+                    break;
+                case Loli.Animation.STAND_POINT_OUT_IN_LEFT:
+                case Loli.Animation.STAND_POINT_OUT_LOOP_LEFT:
+                case Loli.Animation.STAND_POINT_OUT_ANTSY_LEFT:
+                case Loli.Animation.STAND_POINT_OUT_SOUND_2_3_LEFT:
+                    UpdateWaitForPlayerToGetOutAnimation(
+                        playerIsInRoom,
+                        self.leftLoliHandState,
+                        GetPointAndSayOutAnimation(false)
+                    );
+                    break;
+                case Loli.Animation.STAND_WAIT_ANNOYED_LOOP:
+                    if (playerIsInRoom)
+                    {
+                        CheckIfCanPointToDoor();
+                    }
+                    break;
 
-            // case Loli.Animation.BATHTUB_TOWEL_IDLE_LOOP:
-            // 	//if towel was taken away
-            // 	if( !self.rightHandState.GetItemIfHeld<Towel>() ){
-            // 		self.SetTargetAnimation( Loli.Animation.BATHTUB_TOWEL_EMBARRASSED_TO_BATHTUB_IDLE );
-            // 		self.SetLookAtTarget( GameDirector.player.head, 1.5f );
-            // 		self.ShiftHappiness(-2);
-            // 	}else if( playerIsInRoom ){
-            // 		if( self.headModel.voiceIndex == (byte)Voice.VoiceType.SHINOBU ){
-            // 			CheckIfShouldSayGetOut( Loli.Animation.BATHTUB_TOWEL_OUT_SOUND_2_3 );
-            // 		}
-            // 	}
-            // 	break;
+                case Loli.Animation.BATHTUB_TOWEL_IDLE_LOOP:
+                    //if towel was taken away
+                    if (!self.rightHandState.GetItemIfHeld<Towel>())
+                    {
+                        self.SetTargetAnimation(Loli.Animation.BATHTUB_TOWEL_EMBARRASSED_TO_BATHTUB_IDLE);
+                        self.SetLookAtTarget(GameDirector.player.head, 1.5f);
+                        self.ShiftHappiness(-2);
+                    }
+                    else if (playerIsInRoom)
+                    {
+                        if (self.headModel.voiceIndex == (byte)Voice.VoiceType.SHINOBU)
+                        {
+                            CheckIfShouldSayGetOut(Loli.Animation.BATHTUB_TOWEL_OUT_SOUND_2_3);
+                        }
+                    }
+                    break;
 
-            // default:
-            // 	if( self.IsCurrentAnimationIdle() ){
-            // 		self.SetViewAwarenessTimeout(3.0f);
-            // 		float playerBearing = Tools.Bearing( self.transform, GameDirector.player.head.position );
-            // 		refreshLookAtTargetTimer = 0.0f;
-            // 		if( Mathf.Abs( playerBearing ) < 20.0f ){
-            // 			CheckIfCanPointToDoor();
-            // 		}
-            // 	}
-            // 	break;
-            // }
-            // if( !playerIsInRoom && bathtub.AreAllBathroomDoorsClosed() ){
-            // 	//Holding towel implies bathing is over, succeed bathing
-            // 	if( self.rightHandState.GetItemIfHeld<Towel>() ){
-            // 		self.active.SetTask( self.active.idle, true );
-            // 	}else{
-            // 		BeginActualBathing();
-            // 	}
-            // }
+                default:
+                    if (self.IsCurrentAnimationIdle())
+                    {
+                        self.SetViewAwarenessTimeout(3.0f);
+                        float playerBearing = Tools.Bearing(self.transform, GameDirector.player.head.position);
+                        refreshLookAtTargetTimer = 0.0f;
+                        if (Mathf.Abs(playerBearing) < 20.0f)
+                        {
+                            CheckIfCanPointToDoor();
+                        }
+                    }
+                    break;
+            }
+            if (!playerIsInRoom && bathtub.AreAllBathroomDoorsClosed())
+            {
+                //Holding towel implies bathing is over, succeed bathing
+                if (self.rightHandState.GetItemIfHeld<Towel>())
+                {
+                    self.active.SetTask(self.active.idle, true);
+                }
+                else
+                {
+                    BeginActualBathing();
+                }
+            }
         }
 
         private void BeginActualBathing()
@@ -695,7 +708,7 @@ namespace viva
                 {
                     self.SetTargetAnimation(splashBackAnim);
                 }
-                self.animator.SetFloat(Instance.splashDirID, Mathf.Clamp(bearing / 60.0f, -1.0f, 1.0f));
+                self.animator.SetFloat(WorldUtil.splashDirID, Mathf.Clamp(bearing / 60.0f, -1.0f, 1.0f));
             }
         }
 
@@ -817,16 +830,16 @@ namespace viva
             }
         }
 
-        private void UpdatePointingArmIK(LoliHandState handState)
+        private void OnPointingArmIKControl(BlendController blendController, LoliHandState handState)
         {
             Door door = bathtub.GetBathroomDoor(0);
-            Quaternion pointRotation = Quaternion.LookRotation(door.transform.position - handState.holdArmIK.hand.position, self.transform.up);
-            // handState.holdArmIK.OverrideWorldRetargetingTransform(
-            // 	handState.freeHandRetargeting,
-            // 	door.transform.position+Vector3.up*1.25f,
-            // 	self.floorPos+self.transform.right*0.5f,
-            // 	pointRotation*handState.handRestPoseRotation
-            // );
+            Quaternion pointRotation = Quaternion.LookRotation(door.transform.position - blendController.armIK.hand.position, self.transform.up);
+            blendController.armIK.OverrideWorldRetargetingTransform(
+                blendController.retargetingInfo,
+                door.transform.position + Vector3.up * 1.25f,
+                self.floorPos + self.transform.right * 0.5f,
+                pointRotation * handState.handRestPoseRotation
+            );
         }
 
         private IEnumerator GrowBubbles(Material instance)

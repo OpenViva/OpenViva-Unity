@@ -255,7 +255,7 @@ namespace viva
         private bool AttemptPlacePolaroidFrame(PlayerHandState mainHoldState)
         {
 
-            if (GamePhysics.GetRaycastInfo(transform.position, transform.forward, 0.3f, Instance.wallsMask))
+            if (GamePhysics.GetRaycastInfo(transform.position, transform.forward, 0.3f, WorldUtil.wallsMask))
             {
                 mainHoldState.AttemptDrop();
                 rigidBody.Sleep();

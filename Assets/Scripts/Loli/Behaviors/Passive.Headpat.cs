@@ -306,8 +306,8 @@ namespace viva
             float appliedHeadpatRoughness = Mathf.Clamp01(headpatRoughness);
             appliedHeadpatRoughness = 1.0f - Mathf.Pow(1.0f - appliedHeadpatRoughness, 2.0f);
             //update animation floats
-            self.animator.SetFloat(Instance.headpatProperID, Tools.EaseInOutQuad(Mathf.Clamp01(headpatProper)));
-            self.animator.SetFloat(Instance.headpatRoughnessID, appliedHeadpatRoughness);
+            self.animator.SetFloat(WorldUtil.headpatProperID, Tools.EaseInOutQuad(Mathf.Clamp01(headpatProper)));
+            self.animator.SetFloat(WorldUtil.headpatRoughnessID, appliedHeadpatRoughness);
         }
         private void DecreaseHeadpatProper()
         {

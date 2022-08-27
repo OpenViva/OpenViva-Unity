@@ -35,7 +35,7 @@ namespace viva
 
         public override void OnItemFixedUpdate()
         {
-            var pos = GamePhysics.getRaycastPos(transform.position, Vector3.down, 1.0f, Instance.wallsMask, QueryTriggerInteraction.Ignore);
+            var pos = GamePhysics.getRaycastPos(transform.position, Vector3.down, 1.0f, WorldUtil.wallsMask, QueryTriggerInteraction.Ignore);
             if (!pos.HasValue)
             {
                 pos = transform.position + Vector3.down;
@@ -53,7 +53,7 @@ namespace viva
             rigidBody.isKinematic = false;
 
             //find nearest TowelClip
-            Collider[] objects = Physics.OverlapSphere(transform.position, 0.2f, Instance.regionMask);
+            Collider[] objects = Physics.OverlapSphere(transform.position, 0.2f, WorldUtil.regionMask);
             foreach (var obj in objects)
             {
                 TowelClip wallClip = obj.GetComponent<TowelClip>();

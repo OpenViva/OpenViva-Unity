@@ -139,7 +139,7 @@ namespace viva
                 }
             }
             hugAnimSide = Mathf.LerpUnclamped(hugAnimSide, newHugAnimSide, Time.deltaTime * 8.0f * hugStartSmooth.value);
-            self.animator.SetFloat(Instance.hugSideID, hugAnimSide);
+            self.animator.SetFloat(WorldUtil.hugSideID, hugAnimSide);
 
             self.SetLookAtTarget(player.head);
 

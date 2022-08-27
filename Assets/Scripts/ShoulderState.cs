@@ -54,14 +54,14 @@ namespace viva
 
         protected override void OnPostPickupItem()
         {
-            heldItem.gameObject.layer = Instance.itemDetectorLayer;
+            heldItem.gameObject.layer = WorldUtil.itemDetectorLayer;
         }
 
         protected override void OnPreDropItem()
         {
             wearOffset = null;
             iKAnimation = null;
-            heldItem.gameObject.layer = Instance.itemsLayer;
+            heldItem.gameObject.layer = WorldUtil.itemsLayer;
         }
 
         // protected override void OnUpdateHold(){

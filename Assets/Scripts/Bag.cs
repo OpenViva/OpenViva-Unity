@@ -45,7 +45,7 @@ namespace viva
                 Item item = items[0];
                 Camera camera = GameDirector.instance.utilityCamera;
                 camera.gameObject.SetActive(true);
-                camera.cullingMask = Instance.itemsMask;
+                camera.cullingMask = WorldUtil.itemsMask;
                 camera.fieldOfView = 40;
 
                 //setup item gameobject settings

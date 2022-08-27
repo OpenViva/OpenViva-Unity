@@ -73,7 +73,7 @@ namespace viva
                 float pitch = Tools.Pitch(self.head, cameraTarget.transform);
                 UpdateCameraPitchDir(pitch / 90.0f);
 
-                // self.SetRootFacingTarget( cameraTarget.transform.position, 200.0f, 12.0f, 10.0f );
+                //self.SetRootFacingTarget( cameraTarget.transform.position, 200.0f, 12.0f, 10.0f );
                 self.autonomy.Interrupt(new AutonomyFaceDirection(self.autonomy, "face direction camera", delegate (TaskTarget target)
                 {
                     target.SetTargetPosition(cameraTarget.transform.position);
@@ -110,7 +110,7 @@ namespace viva
                     }
                 }
                 cameraPrepared = Mathf.Clamp01(cameraPrepared);
-                self.animator.SetFloat(Instance.cameraPrepared, Tools.EaseInOutQuad(cameraPrepared));
+                self.animator.SetFloat(WorldUtil.cameraPrepared, Tools.EaseInOutQuad(cameraPrepared));
             }
         }
 
@@ -150,7 +150,7 @@ namespace viva
         {
 
             cameraPitchDir = Mathf.Clamp(cameraPitchDir + targetPitchDir * Time.deltaTime * 4.0f, -1.0f, 1.0f);
-            self.animator.SetFloat(Instance.cameraPitchDir, cameraPitchDir);
+            self.animator.SetFloat(WorldUtil.cameraPitchDir, cameraPitchDir);
         }
 
         private void LateUpdateTookPicture()

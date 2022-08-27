@@ -291,7 +291,7 @@ namespace viva
             //completely knock out if it was hit on the head
             if (ccc.collisionPart == CharacterCollisionCallback.Type.HEAD)
             {
-                if (!isRegainingBalance || collision.collider.gameObject.layer != Instance.wallsStatic)
+                if (!isRegainingBalance || collision.collider.gameObject.layer != WorldUtil.wallsStatic)
                 {
                     if (collision.collider.transform != GameDirector.player.head)
                     {

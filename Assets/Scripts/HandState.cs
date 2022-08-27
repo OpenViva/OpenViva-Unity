@@ -249,7 +249,7 @@ namespace viva
 
         protected override void OnPostPickupItem()
         {
-            selfItem.SetItemLayer(Instance.heldItemsLayer);
+            selfItem.SetItemLayer(WorldUtil.heldItemsLayer);
             if (heldItem.rigidBody)
             {
                 heldItem.rigidBody.useGravity = false;
