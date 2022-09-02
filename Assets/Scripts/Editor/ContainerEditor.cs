@@ -64,7 +64,7 @@ public class ContainerEditor : Editor
             var validColliders = new List<Collider>();
             foreach (var c in newColliders)
             {
-                if (c.gameObject.layer == viva.Instance.itemsLayer && !c.isTrigger)
+                if (c.gameObject.layer == viva.WorldUtil.itemsLayer && !c.isTrigger)
                 {
                     validColliders.Add(c);
                 }
