@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using static viva.GameDirector;
 
 namespace viva
 {
@@ -24,122 +24,139 @@ namespace viva
             private float follow_startForwardY = 0.0f;
             private float follow_lastRelativeForwardY;
 
-            private float present_lastPalmUpTime = 0.0f;
+            private float present_lastPalmResetTime = 0.0f;
             private float present_waitForReset = 0.0f;
 
-            private int hello_step = 0;
-            private float hello_lastWaveTime = 0.0f;
-            private int hello_targetSignForwardX = 0;
-            private float hello_startForwardX = 0.0f;
-            private float hello_lastForwardX = 0.0f;
+            private float stop_lastPalmResetTime = 0.0f;
+            private float stop_waitForReset = 0.0f;
 
+            private int hello_step = 0;
+            private float hello_lastRelativeUpX;
+            private int hello_currWaveSign;
+            private int hello_lastWaveSign;
+            private float hello_lastWaveTime;
+            private float hello_oldWaveTime;
+
+            private bool presented = false;
 
             public bool AttemptHello(Transform head)
             {
                 Vector3 relativeUp = head.InverseTransformDirection(gestureTarget.up);
-                Vector3 relativeRight = head.InverseTransformDirection(gestureTarget.right);
-                //hand point up and forward
-                if (relativeUp.y > 0.7f && relativeRight.x > 0.7f)
-                {
-
-                    int signUpX = (int)Mathf.Sign(relativeUp.x - hello_lastForwardX);
-                    if (signUpX == 0)
-                    {
-                        signUpX = -1;
-                    }
-                    if (hello_step == 0)
-                    {
-                        hello_targetSignForwardX = signUpX;
-                        hello_step++;
-                        hello_lastWaveTime = Time.time;
-                        hello_startForwardX = relativeUp.x;
-
-                    }
-                    else if (signUpX != hello_targetSignForwardX)
-                    { //wave dir change detected
-                        hello_targetSignForwardX = signUpX;
-                        float waveDistance = Mathf.Abs(relativeUp.x - hello_startForwardX);
-                        if (Mathf.Abs(1.2f - waveDistance) < 0.8f && Mathf.Abs(0.5f - (Time.time - hello_lastWaveTime)) < 0.44f)
-                        {
-                            hello_step++;
-                            if (hello_step > 4)
-                            {
-                                hello_step = 0;
-                                return true;
-                            }
-                        }
-                        else
-                        {
-                            hello_step = 0;
-                        }
-                        hello_lastWaveTime = Time.time;
-                        hello_startForwardX = relativeUp.x;
-                    }
-                    hello_lastForwardX = relativeUp.x;
+                Vector3 relativeForward = head.InverseTransformDirection(gestureTarget.forward);
+                if( relativeUp.y > 0.6f && relativeForward.z > 0.6f ){
+                
+                const float minWaveDeltaX = 0.2f;
+                if( relativeUp.x > hello_lastRelativeUpX+minWaveDeltaX ){
+                    hello_currWaveSign = 1;
+                    hello_lastRelativeUpX = relativeUp.x;
+                }else if( relativeUp.x < hello_lastRelativeUpX-minWaveDeltaX ){
+                    hello_currWaveSign = -1;
+                    hello_lastRelativeUpX = relativeUp.x;
                 }
-                else
-                {
-                    if (hello_step != 0)
-                    {
-                        //Debug.LogError("!"+Mathf.Abs( 1.0f-relativeForward.y ));
+                if( hello_currWaveSign != hello_lastWaveSign ){
+                    float waveTime = Mathf.Abs( Time.time-hello_lastWaveTime );
+                    if( Mathf.Abs( waveTime-hello_oldWaveTime ) < 0.125f ){
+                        if( ++hello_step > 3 ){
+                            hello_step = -4;
+                            return true;
+                        }
+                    }else{
+                        hello_step = 0;
                     }
-                    hello_step = 0;
+                    hello_lastWaveTime = Time.time;
+                    hello_oldWaveTime = waveTime;
                 }
-                return false;
+                hello_lastWaveSign = hello_currWaveSign;
+            }else{
+                if( hello_step != 0 ){
+                    //Debug.LogError("!"+Mathf.Abs( 1.0f-relativeForward.y ));
+                }
+                hello_step = 0;
+            }
+            return false;
             }
 
             public bool? AttemptPresent(Transform head)
             {
+                Vector3 relativeUp = head.InverseTransformDirection(gestureTarget.up);
+                Vector3 relativeForward = head.InverseTransformDirection(gestureTarget.forward);
+                if ( relativeForward.y > 0.75f && relativeUp.z > 0.75f ){   //hand out
+                Vector3 localHand = head.InverseTransformPoint( gestureTarget.position );
+                if( Mathf.Abs( localHand.x ) < 0.3f &&    //hands x near head center
+                    Mathf.Abs( localHand.y+0.2f ) < 0.2f &&    //hands y near head center
+                    localHand.z > 0.2f                  //hands z in front of head
+                    ){               
+                    if( Time.time-present_lastPalmResetTime > 0.5f && present_waitForReset <= 0.0f ){
+                        present_waitForReset = 0.3f;
+                        presented = true;
+                        return true;
+                    }
+                }else{
+                    present_lastPalmResetTime = Time.time;
+                }
+            }else{
+                present_lastPalmResetTime = Time.time;
+                if( present_waitForReset > 0.0f ){
+                    present_waitForReset -= Time.deltaTime;
+                    if( present_waitForReset <= 0.0f && presented ){
+                        presented = false;
+                        return false;
+                    }                
+                }else{
+                    present_waitForReset -= Time.deltaTime;
+                }
+            }
+            return null;
+            }
 
-                Vector3 handForward = head.InverseTransformDirection(gestureTarget.forward);
-                if (handForward.y > 0.7f)
-                {   //hand facing up
-
+            public bool AttemptStop(Transform head)
+            {
+                Vector3 relativeUp = head.InverseTransformDirection(gestureTarget.up);
+                Vector3 relativeForward = head.InverseTransformDirection(gestureTarget.forward);
+                if (relativeUp.y > 0.6f && Mathf.Abs(relativeForward.x + signFlip * 0.2f) < 0.2f)
+                {   //hand out
                     Vector3 localHand = head.InverseTransformPoint(gestureTarget.position);
-                    Vector3 handUp = head.InverseTransformDirection(gestureTarget.up);
-                    if (Mathf.Abs(head.forward.y) < 0.75f && //head facing straight
-                        Mathf.Abs(localHand.x) < 0.3f &&    //hands x near head center
-                        Mathf.Abs(localHand.y) < 0.4f &&    //hands y near head center
-                        localHand.z > 0.1f &&               //hands z in front of head
-                        handUp.z > 0.8f                     //hand pointing out
+                    if (Mathf.Abs(localHand.x) < 0.3f &&    //hands x near head center
+                        Mathf.Abs(localHand.y + 0.2f) < 0.2f &&    //hands y near head center
+                        localHand.z > 0.3f                  //hands z in front of head
                         )
                     {
-                        if (Time.time - present_lastPalmUpTime > 0.5f && present_waitForReset <= 0.0f)
+                        if (Time.time - stop_lastPalmResetTime > 0.5f && stop_waitForReset <= 0.0f)
                         {
-                            present_waitForReset = 0.3f;
+                            stop_waitForReset = 0.3f;
                             return true;
                         }
                     }
                     else
                     {
-                        present_lastPalmUpTime = Time.time;
+                        stop_lastPalmResetTime = Time.time;
                     }
                 }
                 else
                 {
-                    present_lastPalmUpTime = Time.time;
-                    if (present_waitForReset > 0.0f)
+                    stop_lastPalmResetTime = Time.time;
+                    if (stop_waitForReset > 0.0f)
                     {
-                        present_waitForReset -= Time.deltaTime;
-                        if (present_waitForReset <= 0.0f)
+                        stop_waitForReset -= Time.deltaTime;
+                        if (stop_waitForReset <= 0.0f)
                         {
                             return false;
                         }
                     }
                     else
                     {
-                        present_waitForReset -= Time.deltaTime;
+                        stop_waitForReset -= Time.deltaTime;
                     }
                 }
-                return null;
+                return false;
             }
 
             public bool AttemptFollow(Transform head)
             {
                 Vector3 relativeUp = head.InverseTransformDirection(gestureTarget.up);
-                if (follow_step < 4)
+                if (follow_step < 5)
                 {
-                    if (Mathf.Abs(-0.4f - relativeUp.x) < 0.8f)
+                    if (Mathf.Abs(-0.4f * signFlip - relativeUp.x) < 0.8f)
                     { //must twist hand to face up ~90 degrees
 
                         Vector3 relativeForward = head.InverseTransformDirection(gestureTarget.forward);
@@ -175,7 +192,7 @@ namespace viva
                                     {    //break conditions
                                         follow_step = 0;
                                     }
-                                    else if (Time.time - follow_lastSwingTime > 0.1f && swingDistance > 0.2f)
+                                    else if (Time.time - follow_lastSwingTime > 0.1f && Time.time - follow_lastSwingTime < 1f && swingDistance > 0.2f)
                                     {
                                         follow_step++;
                                         //Debug.Log("+"+follow_step);
@@ -196,8 +213,8 @@ namespace viva
                 }
                 else
                 {
-                    follow_step = 0;
                     present_waitForReset = 1.0f; //cancel present
+                    follow_step = -4;
                     return true;
                 }
                 return false;
@@ -216,7 +233,8 @@ namespace viva
             PRESENT_END,
             HELLO,
             MECHANISM,
-            WAIT
+            WAIT,
+            STOP
         }
 
         [Header("Gestures")]
@@ -247,7 +265,7 @@ namespace viva
 
 
         public void UpdateGestureDetection(GestureHand sourceHand, Transform head)
-        {            
+        {
             if (sourceHand.AttemptHello(head))
             {
                 FireGesture(sourceHand, Gesture.HELLO);
@@ -255,6 +273,13 @@ namespace viva
             else if (sourceHand.AttemptFollow(head))
             {
                 FireGesture(sourceHand, Gesture.FOLLOW);
+            }
+            else if (GameDirector.player.controls != Player.ControlType.KEYBOARD)
+            {
+                if (sourceHand.AttemptStop(head))
+                {
+                    FireGesture(sourceHand, Gesture.STOP);
+                }
             }
             bool? presenting = sourceHand.AttemptPresent(head);
             if (presenting.HasValue)
@@ -280,17 +305,14 @@ namespace viva
                 case Gesture.FOLLOW:
                     foreach (Loli loli in selectedLolis)
                     {
-                        loli.active.OnGesture(sourceHand.playerHandState.selfItem, Gesture.FOLLOW);
+                        loli.active.OnGesture(sourceHand.playerHandState.selfItem, gesture);
                     }
                     GameDirector.player.pauseMenu.ContinueTutorial(PauseMenu.MenuTutorial.WAIT_TO_COME_HERE);
+                    SendGestureToVisibleCharacters(sourceHand, gesture);
                     break;
 
-                case Gesture.HELLO:
-                    viva.DevTools.LogExtended("Gesture HELLO", true, true);
-                    foreach (Loli loli in selectedLolis)
-                    {
-                        loli.active.OnGesture(sourceHand.playerHandState.selfItem, Gesture.HELLO);
-                    }
+                case Gesture.HELLO:                    
+                    SendGestureToVisibleCharacters(sourceHand, gesture);
                     GameDirector.player.pauseMenu.ContinueTutorial(PauseMenu.MenuTutorial.WAIT_TO_WAVE);
                     break;
 
@@ -321,6 +343,82 @@ namespace viva
                     }
                     break;
             }
+            Debug.Log("Gestured " + gesture);
+        }
+
+        public T FindSpherecastCharacter<T>( Vector3 rayStart, Vector3 rayForward, float rayLength, BoolReturnCharacterFunc validate =null) where T: Character
+        {
+            var rayEnd = rayStart+rayForward*rayLength;
+            var mask = WorldUtil.characterMovementMask | WorldUtil.wallsMask | WorldUtil.itemsMask;
+
+            var rayCastHits = Physics.SphereCastAll(rayStart, 0.25f, rayEnd-rayStart, rayLength, mask, QueryTriggerInteraction.Ignore);
+            float shortestDistSq = Mathf.Infinity;
+            T shortest = null;
+            foreach(var raycast in rayCastHits){
+                var result = raycast.collider.GetComponentInParent<T>();
+                if(result && result != shortest)
+                {
+                    var distSq = Vector3.SqrMagnitude(raycast.point-rayStart);
+                    if(distSq < shortestDistSq)
+                    {
+                        if (validate == null || validate(result))
+                        {
+                            shortestDistSq = distSq;
+                            shortest = result;
+                        }
+                    }
+                }
+            }
+            return shortest;
+        }
+
+        private void SendGestureToVisibleCharacters(GestureHand gestureHand, Gesture gesture)
+        {
+
+            var rayStart = gestureHand.gestureTarget.position;
+            //fire horizontal rays from caller
+            int rayCount = 8;
+            float yawAngle = 40.0f;
+            float yawStep = yawAngle / 8;
+            var rayLength = 10.0f;
+            float currentYaw = yawStep * rayCount / -2;
+            var rayForward = player.head.transform.forward;
+
+            var seen = new List<Character>();
+
+            //If 
+            foreach (Loli loli in selectedLolis)
+            {
+                loli.active.OnGesture(gestureHand.playerHandState.selfItem, gesture);
+            }
+
+            for (int i = 0; i < rayCount; i++)
+            {
+                currentYaw += yawStep;
+
+                var currentRayForward = Quaternion.Euler(0, currentYaw, 0) * rayForward;
+                var character = FindSpherecastCharacter<Character>(rayStart, currentRayForward, rayLength, delegate (Character character) {
+                    //ignore character being grabbed by player
+                    var candidate = character as Loli;
+                    //if (candidate.isConstrained) return false;
+
+                    return candidate;
+                });
+                if (character != null && !seen.Contains(character)) seen.Add(character);
+            }
+
+            foreach (var character in seen)
+            {
+                var loli = character as Loli;
+                //loli.onGesture.Invoke(gesture, player.character);
+                if (!selectedLolis.Contains(loli))
+                {
+                    Outline.StartOutlining(loli, Color.white, Outline.Flash);
+                    loli.active.OnGesture(gestureHand.playerHandState.selfItem, gesture);
+                }
+            }
+            //player.character.onSendGesture.Invoke(gesture);
+
         }
 
         public void ClearSelection()

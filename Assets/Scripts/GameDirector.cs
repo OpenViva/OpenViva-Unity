@@ -8,6 +8,7 @@ namespace viva
     {
 
         public delegate void OnVivaFileCallback();
+        public delegate bool BoolReturnCharacterFunc(Character character);
 
         public static GameDirector instance;
         public static SkyDirector skyDirector;
@@ -19,7 +20,6 @@ namespace viva
         public static Set<Mechanism> mechanisms { get { return m_mechanisms; } }
         private static Set<Item> m_items = new Set<Item>();
         public static Set<Item> items { get { return m_items; } }
-
         [SerializeField]
         private GamePostProcessing m_postProcessing;
         public GamePostProcessing postProcessing { get { return m_postProcessing; } }
@@ -52,6 +52,7 @@ namespace viva
         public Camera mainCamera { get; private set; }
         private OnVivaFileCallback onFinishLoadingVivaFile;
         public bool physicsFrame { get; private set; } = false;
+        //public static InputManager input { get; private set; }
 
 
         public void AddOnFinishLoadingCallback(OnVivaFileCallback callback)
@@ -75,6 +76,7 @@ namespace viva
         {
             Debug.Log("[GameDirector] Awake");
             instance = this;
+            //input = new InputManager();
             skyDirector = m_skyDirector;
             lampDirector = m_lampDirector;
             utilityTransform = new GameObject("UTILITY").transform;
