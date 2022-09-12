@@ -8,7 +8,7 @@ using viva;
 
 public class LoliEditor : EditorWindow
 {
-    [MenuItem("Tools/Loli Editor")]
+    [MenuItem("Tools/Voice Editor")]
     static void Init()
     {
         GetWindow(typeof(LoliEditor));
@@ -20,9 +20,6 @@ public class LoliEditor : EditorWindow
 
     [SerializeField]
     public Voice targetVoice;
-
-    [SerializeField]
-    public Loli target;
 
     private GUIStyle titleStyle = null;
     private Vector2 scrollPos = Vector2.zero;
@@ -38,8 +35,6 @@ public class LoliEditor : EditorWindow
             titleStyle = new GUIStyle();
             titleStyle.fontSize = 16;
             titleStyle.fontStyle = FontStyle.Bold;
-
-            target = Component.FindObjectOfType(typeof(Loli)) as Loli;
 
         }
 
@@ -90,7 +85,7 @@ public class LoliEditor : EditorWindow
         }
 
 
-        EditorGUILayout.LabelField("voiceLines", titleStyle);
+        EditorGUILayout.LabelField("VoiceLines", titleStyle);
         EditorGUI.indentLevel = 1;
         for (int i = 0; i < listProperty.arraySize; i++)
         {
@@ -226,15 +221,15 @@ public class LoliEditor : EditorWindow
         Assembly unityEditorAssembly = typeof(AudioImporter).Assembly;
         Type audioUtilClass = unityEditorAssembly.GetType("UnityEditor.AudioUtil");
         MethodInfo method = audioUtilClass.GetMethod(
-            "PlayClip",
+            "PlayPreviewClip",
             BindingFlags.Static | BindingFlags.Public,
             null,
-            new System.Type[] {
+            new Type[] { 
                 typeof(AudioClip),
-                typeof(Int32),
-                typeof(Boolean)
+                typeof(int),
+                typeof(bool)
             },
-        null
+            null
         );
         method.Invoke(
             null,
