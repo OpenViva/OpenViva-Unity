@@ -219,10 +219,8 @@ namespace viva
             m_holdArmIK.arm = forearmControl.Find("arm_" + suffix);
             m_holdArmIK.wrist = forearmControl.Find("wrist_" + suffix);
             m_holdArmIK.hand = forearmControl.Find("hand_" + suffix);
-            float armLength = Vector3.Distance(armControl.position, forearmControl.position);
-            float forearmLength = Vector3.Distance(forearmControl.position, m_holdArmIK.hand.position);
 
-            m_holdArmIK.ik = new Loli.TwoBoneIK(armControl, armLength, Quaternion.Euler(180.0f - rotation, 90.0f, 90.0f), forearmControl, forearmLength, Quaternion.Euler(rotation, 90.0f, 90.0f));
+            m_holdArmIK.ik = new TwoBoneIK(armControl, Quaternion.Euler(180.0f - rotation, 90.0f, 90.0f), forearmControl, Quaternion.Euler(rotation, 90.0f, 90.0f), m_holdArmIK.hand);
         }
 
         private void CacheIKTransforms()
@@ -253,9 +251,19 @@ namespace viva
             Debug.DrawLine(holdArmIK.HoldSpaceToWorld(handtarget), holdArmIK.HoldSpaceToWorld(handPole), Color.green, 0.1f);
 
             //if object maintains yaw, pick up in a way to not spill contents
+            Quaternion baseRot;
+            if (!heldItem.settings.pickupAnimMaintainsYaw)
+            {
+                baseRot = loli.head.parent.parent.rotation;
+            }
+            else
+            {
+                baseRot = loli.spine2RigidBody.rotation;
+            }
+
             Quaternion targetHandRot = Quaternion.LerpUnclamped(
                 cachedIKHandRotation,
-                loli.spine2RigidBody.rotation,
+                baseRot,
                 cacheIKEaseBlend.value
             ) * Quaternion.Euler(
                 item.settings.IKHandEuler.x % 360.0f * cacheIKEaseBlend.value,
@@ -297,7 +305,7 @@ namespace viva
             }
             if (item.settings.itemType == Item.Type.WATER_REED)
             {
-                GameDirector.player.CompleteAchievement(Player.ObjectiveType.FIND_SHINOBU_A_WATER_REED);
+                GameDirector.player.CompleteAchievement(Player.ObjectiveType.FIND_CHARACTER_A_WATER_REED);
             }
         }
     }

@@ -106,7 +106,8 @@ namespace viva
             GENERIC,
             FIREWORK,
             RUBBER_DUCKY,
-            FLASHLIGHT
+            FLASHLIGHT,
+            GESTURE_STOP,
         }
     }
 

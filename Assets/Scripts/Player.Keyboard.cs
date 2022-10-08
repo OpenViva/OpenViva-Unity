@@ -23,7 +23,7 @@ namespace viva
         {
             if (enable)
             {
-                vivaControls.Keyboard.Enable();
+                GameDirector.input.actions.Keyboard.Enable();
                 crosshair.SetActive(true);
                 head.localPosition = Vector3.up * keyboardCurrentHeight;
                 GameDirector.instance.mainCamera.stereoTargetEye = StereoTargetEyeMask.None;
@@ -31,7 +31,7 @@ namespace viva
             }
             else
             {
-                vivaControls.Keyboard.Disable();
+                GameDirector.input.actions.Keyboard.Disable();
             }
             keyboardHelperItemDetector.SetActive(enable);
         }
@@ -125,6 +125,14 @@ namespace viva
             if (rightPlayerHandState.animSys.currentAnim == rightPlayerHandState.animSys.idleAnimation)
             {
                 rightPlayerHandState.animSys.SetTargetAnimation(Animation.GESTURE_COME);
+            }
+        }
+
+        private void OnInputStopHand()
+        {
+            if (rightPlayerHandState.animSys.currentAnim == rightPlayerHandState.animSys.idleAnimation)
+            {
+                rightPlayerHandState.animSys.SetTargetAnimation(Animation.GESTURE_STOP);
             }
         }
 

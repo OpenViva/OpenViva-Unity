@@ -179,6 +179,15 @@ public partial class @InputActions_viva : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""stop"",
+                    ""type"": ""Button"",
+                    ""id"": ""c219a71f-9664-48f7-85c4-cdd667ddffa4"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -432,6 +441,17 @@ public partial class @InputActions_viva : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""mousePosition"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2024f90f-416e-44c3-b02d-ba0c29ee76cf"",
+                    ""path"": ""<Keyboard>/g"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""stop"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1472,6 +1492,7 @@ public partial class @InputActions_viva : IInputActionCollection2, IDisposable
         m_Keyboard_d = m_Keyboard.FindAction("d", throwIfNotFound: true);
         m_Keyboard_mouseVelocity = m_Keyboard.FindAction("mouseVelocity", throwIfNotFound: true);
         m_Keyboard_mousePosition = m_Keyboard.FindAction("mousePosition", throwIfNotFound: true);
+        m_Keyboard_stop = m_Keyboard.FindAction("stop", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_mousePosition = m_UI.FindAction("mousePosition", throwIfNotFound: true);
@@ -1588,6 +1609,7 @@ public partial class @InputActions_viva : IInputActionCollection2, IDisposable
     private readonly InputAction m_Keyboard_d;
     private readonly InputAction m_Keyboard_mouseVelocity;
     private readonly InputAction m_Keyboard_mousePosition;
+    private readonly InputAction m_Keyboard_stop;
     public struct KeyboardActions
     {
         private @InputActions_viva m_Wrapper;
@@ -1609,6 +1631,7 @@ public partial class @InputActions_viva : IInputActionCollection2, IDisposable
         public InputAction @d => m_Wrapper.m_Keyboard_d;
         public InputAction @mouseVelocity => m_Wrapper.m_Keyboard_mouseVelocity;
         public InputAction @mousePosition => m_Wrapper.m_Keyboard_mousePosition;
+        public InputAction @stop => m_Wrapper.m_Keyboard_stop;
         public InputActionMap Get() { return m_Wrapper.m_Keyboard; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1669,6 +1692,9 @@ public partial class @InputActions_viva : IInputActionCollection2, IDisposable
                 @mousePosition.started -= m_Wrapper.m_KeyboardActionsCallbackInterface.OnMousePosition;
                 @mousePosition.performed -= m_Wrapper.m_KeyboardActionsCallbackInterface.OnMousePosition;
                 @mousePosition.canceled -= m_Wrapper.m_KeyboardActionsCallbackInterface.OnMousePosition;
+                @stop.started -= m_Wrapper.m_KeyboardActionsCallbackInterface.OnStop;
+                @stop.performed -= m_Wrapper.m_KeyboardActionsCallbackInterface.OnStop;
+                @stop.canceled -= m_Wrapper.m_KeyboardActionsCallbackInterface.OnStop;
             }
             m_Wrapper.m_KeyboardActionsCallbackInterface = instance;
             if (instance != null)
@@ -1724,6 +1750,9 @@ public partial class @InputActions_viva : IInputActionCollection2, IDisposable
                 @mousePosition.started += instance.OnMousePosition;
                 @mousePosition.performed += instance.OnMousePosition;
                 @mousePosition.canceled += instance.OnMousePosition;
+                @stop.started += instance.OnStop;
+                @stop.performed += instance.OnStop;
+                @stop.canceled += instance.OnStop;
             }
         }
     }
@@ -2103,6 +2132,7 @@ public partial class @InputActions_viva : IInputActionCollection2, IDisposable
         void OnD(InputAction.CallbackContext context);
         void OnMouseVelocity(InputAction.CallbackContext context);
         void OnMousePosition(InputAction.CallbackContext context);
+        void OnStop(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

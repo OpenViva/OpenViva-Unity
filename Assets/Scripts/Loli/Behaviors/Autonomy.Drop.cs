@@ -61,10 +61,7 @@ namespace viva
         {
             if (newOccupyState == null)
             {
-                RemoveRequirement(waitForIdle);
-                RemoveRequirement(moveTo);
-                RemoveRequirement(faceTarget);
-                RemoveRequirement(playTargetAnim);
+                RemoveAllPassivesAndRequirements();
             }
         }
 

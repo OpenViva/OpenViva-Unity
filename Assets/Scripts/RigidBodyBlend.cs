@@ -69,7 +69,7 @@ namespace viva
                 configJoint.connectedBody = connectedBody;
                 configJoint.anchor = Vector3.zero;
                 configJoint.connectedAnchor = Vector3.zero;
-                configJoint.xMotion = ConfigurableJointMotion.Locked;
+                configJoint.xMotion = ConfigurableJointMotion.Limited;
                 configJoint.yMotion = ConfigurableJointMotion.Limited;
                 configJoint.zMotion = ConfigurableJointMotion.Limited;
                 var drive = configJoint.xDrive;
@@ -119,6 +119,7 @@ namespace viva
             ConfigurableJoint configJoint = joint as ConfigurableJoint;
             if (configJoint)
             {
+                configJoint.targetPosition = Quaternion.Inverse(targetLocalRot) * -targetLocalPos;
                 configJoint.SetTargetRotationLocal(jointOffset * targetLocalRot, startLocalRotation);
             }
             // joint.connectedMassScale = blendValue;

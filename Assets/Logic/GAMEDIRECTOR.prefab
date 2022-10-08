@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 252897711}
   - component: {fileID: 252897712}
+  - component: {fileID: 7888830040451546991}
   m_Layer: 15
   m_Name: hint_mixBatter
   m_TagString: Untagged
@@ -53,6 +54,49 @@ MonoBehaviour:
   enableOnEnterTargetMenu: {fileID: 0}
   useHUD: 0
   useSound: 1
+--- !u!114 &7888830040451546991
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 252897710}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69beb381e244f92449b8c4cf954630e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_TrackedObjects:
+  - rid: 6944366223613755437
+  references:
+    version: 2
+    RefIds:
+    - rid: 6944366223613755437
+      type: {class: TrackedMonoBehaviourObject, ns: UnityEngine.Localization.PropertyVariants.TrackedObjects,
+        asm: Unity.Localization}
+      data:
+        m_Target: {fileID: 252897712}
+        m_TrackedProperties:
+          items:
+          - rid: 6944366223613755438
+        m_UpdateType: 0
+        m_Changed:
+          m_PersistentCalls:
+            m_Calls: []
+    - rid: 6944366223613755438
+      type: {class: LocalizedStringProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties,
+        asm: Unity.Localization}
+      data:
+        m_Localized:
+          m_TableReference:
+            m_TableCollectionName: GUID:0cbff4e97e5791544a4a1d8b1d9dcc45
+          m_TableEntryReference:
+            m_KeyId: 4114651910328320
+            m_Key: 
+          m_FallbackState: 0
+          m_WaitForCompletion: 0
+          m_LocalVariables: []
+        m_PropertyPath: hintText
 --- !u!1 &309248835
 GameObject:
   m_ObjectHideFlags: 0
@@ -63,6 +107,7 @@ GameObject:
   m_Component:
   - component: {fileID: 309248836}
   - component: {fileID: 309248837}
+  - component: {fileID: 4007288972827196604}
   m_Layer: 15
   m_Name: hint_vacuumCards
   m_TagString: Untagged
@@ -107,6 +152,49 @@ MonoBehaviour:
   enableOnEnterTargetMenu: {fileID: 0}
   useHUD: 0
   useSound: 1
+--- !u!114 &4007288972827196604
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 309248835}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69beb381e244f92449b8c4cf954630e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_TrackedObjects:
+  - rid: 6944366223613755450
+  references:
+    version: 2
+    RefIds:
+    - rid: 6944366223613755450
+      type: {class: TrackedMonoBehaviourObject, ns: UnityEngine.Localization.PropertyVariants.TrackedObjects,
+        asm: Unity.Localization}
+      data:
+        m_Target: {fileID: 309248837}
+        m_TrackedProperties:
+          items:
+          - rid: 6944366223613755451
+        m_UpdateType: 0
+        m_Changed:
+          m_PersistentCalls:
+            m_Calls: []
+    - rid: 6944366223613755451
+      type: {class: LocalizedStringProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties,
+        asm: Unity.Localization}
+      data:
+        m_Localized:
+          m_TableReference:
+            m_TableCollectionName: GUID:0cbff4e97e5791544a4a1d8b1d9dcc45
+          m_TableEntryReference:
+            m_KeyId: 4116733832810496
+            m_Key: 
+          m_FallbackState: 0
+          m_WaitForCompletion: 0
+          m_LocalVariables: []
+        m_PropertyPath: hintText
 --- !u!1 &462646964
 GameObject:
   m_ObjectHideFlags: 0
@@ -118,6 +206,7 @@ GameObject:
   - component: {fileID: 462646965}
   - component: {fileID: 462646967}
   - component: {fileID: 1370503770}
+  - component: {fileID: 8077046325057034678}
   m_Layer: 15
   m_Name: hint_bed
   m_TagString: Untagged
@@ -165,8 +254,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a687718036e011bebf62679774c9463, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hintText: The loli will sleep if she is tired. Point to the bed when she is tired.
-    Speed up nighttime in the pause menu.
+  hintText: The character will sleep if  they are tired. Point to the bed when she
+    is tired. Speed up nighttime in the pause menu.
   vrHintText: 
   localSpawnPosition: {x: 0, y: 1, z: -1}
   scale: 1
@@ -175,6 +264,49 @@ MonoBehaviour:
   enableOnEnterTargetMenu: {fileID: 0}
   useHUD: 0
   useSound: 1
+--- !u!114 &8077046325057034678
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 462646964}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69beb381e244f92449b8c4cf954630e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_TrackedObjects:
+  - rid: 6944365950684627004
+  references:
+    version: 2
+    RefIds:
+    - rid: 6944365950684627004
+      type: {class: TrackedMonoBehaviourObject, ns: UnityEngine.Localization.PropertyVariants.TrackedObjects,
+        asm: Unity.Localization}
+      data:
+        m_Target: {fileID: 1370503770}
+        m_TrackedProperties:
+          items:
+          - rid: 6944366104714149920
+        m_UpdateType: 0
+        m_Changed:
+          m_PersistentCalls:
+            m_Calls: []
+    - rid: 6944366104714149920
+      type: {class: LocalizedStringProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties,
+        asm: Unity.Localization}
+      data:
+        m_Localized:
+          m_TableReference:
+            m_TableCollectionName: GUID:0cbff4e97e5791544a4a1d8b1d9dcc45
+          m_TableEntryReference:
+            m_KeyId: 1865118031630336
+            m_Key: 
+          m_FallbackState: 0
+          m_WaitForCompletion: 0
+          m_LocalVariables: []
+        m_PropertyPath: hintText
 --- !u!1 &506935404
 GameObject:
   m_ObjectHideFlags: 0
@@ -185,6 +317,7 @@ GameObject:
   m_Component:
   - component: {fileID: 506935405}
   - component: {fileID: 506935406}
+  - component: {fileID: 5657397374285975565}
   m_Layer: 15
   m_Name: hint_howToPlayOne
   m_TagString: Untagged
@@ -229,6 +362,49 @@ MonoBehaviour:
   enableOnEnterTargetMenu: {fileID: 0}
   useHUD: 0
   useSound: 1
+--- !u!114 &5657397374285975565
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 506935404}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69beb381e244f92449b8c4cf954630e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_TrackedObjects:
+  - rid: 6944365950684627023
+  references:
+    version: 2
+    RefIds:
+    - rid: 6944365950684627023
+      type: {class: TrackedMonoBehaviourObject, ns: UnityEngine.Localization.PropertyVariants.TrackedObjects,
+        asm: Unity.Localization}
+      data:
+        m_Target: {fileID: 506935406}
+        m_TrackedProperties:
+          items:
+          - rid: 6944366223613755432
+        m_UpdateType: 0
+        m_Changed:
+          m_PersistentCalls:
+            m_Calls: []
+    - rid: 6944366223613755432
+      type: {class: LocalizedStringProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties,
+        asm: Unity.Localization}
+      data:
+        m_Localized:
+          m_TableReference:
+            m_TableCollectionName: GUID:0cbff4e97e5791544a4a1d8b1d9dcc45
+          m_TableEntryReference:
+            m_KeyId: 4114108794097664
+            m_Key: 
+          m_FallbackState: 0
+          m_WaitForCompletion: 0
+          m_LocalVariables: []
+        m_PropertyPath: hintText
 --- !u!1 &540084571
 GameObject:
   m_ObjectHideFlags: 0
@@ -240,8 +416,9 @@ GameObject:
   - component: {fileID: 540084572}
   - component: {fileID: 540084574}
   - component: {fileID: 540084573}
+  - component: {fileID: 934891884146351892}
   m_Layer: 15
-  m_Name: hint_mirror_spawn_loli (5)
+  m_Name: hint_go_swimming
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -296,6 +473,49 @@ MonoBehaviour:
   enableOnEnterTargetMenu: {fileID: 8430301093217427698}
   useHUD: 0
   useSound: 1
+--- !u!114 &934891884146351892
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 540084571}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69beb381e244f92449b8c4cf954630e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_TrackedObjects:
+  - rid: 6944365950684626971
+  references:
+    version: 2
+    RefIds:
+    - rid: 6944365950684626971
+      type: {class: TrackedMonoBehaviourObject, ns: UnityEngine.Localization.PropertyVariants.TrackedObjects,
+        asm: Unity.Localization}
+      data:
+        m_Target: {fileID: 540084573}
+        m_TrackedProperties:
+          items:
+          - rid: 6944366104714149912
+        m_UpdateType: 0
+        m_Changed:
+          m_PersistentCalls:
+            m_Calls: []
+    - rid: 6944366104714149912
+      type: {class: LocalizedStringProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties,
+        asm: Unity.Localization}
+      data:
+        m_Localized:
+          m_TableReference:
+            m_TableCollectionName: GUID:0cbff4e97e5791544a4a1d8b1d9dcc45
+          m_TableEntryReference:
+            m_KeyId: 1702333947662336
+            m_Key: 
+          m_FallbackState: 0
+          m_WaitForCompletion: 0
+          m_LocalVariables: []
+        m_PropertyPath: hintText
 --- !u!1 &591249856
 GameObject:
   m_ObjectHideFlags: 0
@@ -306,6 +526,7 @@ GameObject:
   m_Component:
   - component: {fileID: 591249857}
   - component: {fileID: 591249858}
+  - component: {fileID: 896029303214354846}
   m_Layer: 15
   m_Name: hint_howToFanCards
   m_TagString: Untagged
@@ -350,6 +571,49 @@ MonoBehaviour:
   enableOnEnterTargetMenu: {fileID: 0}
   useHUD: 0
   useSound: 1
+--- !u!114 &896029303214354846
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 591249856}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69beb381e244f92449b8c4cf954630e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_TrackedObjects:
+  - rid: 6944366223613755433
+  references:
+    version: 2
+    RefIds:
+    - rid: 6944366223613755433
+      type: {class: TrackedMonoBehaviourObject, ns: UnityEngine.Localization.PropertyVariants.TrackedObjects,
+        asm: Unity.Localization}
+      data:
+        m_Target: {fileID: 591249858}
+        m_TrackedProperties:
+          items:
+          - rid: 6944366223613755434
+        m_UpdateType: 0
+        m_Changed:
+          m_PersistentCalls:
+            m_Calls: []
+    - rid: 6944366223613755434
+      type: {class: LocalizedStringProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties,
+        asm: Unity.Localization}
+      data:
+        m_Localized:
+          m_TableReference:
+            m_TableCollectionName: GUID:0cbff4e97e5791544a4a1d8b1d9dcc45
+          m_TableEntryReference:
+            m_KeyId: 4114334971940864
+            m_Key: 
+          m_FallbackState: 0
+          m_WaitForCompletion: 0
+          m_LocalVariables: []
+        m_PropertyPath: hintText
 --- !u!1 &702620476
 GameObject:
   m_ObjectHideFlags: 0
@@ -360,6 +624,7 @@ GameObject:
   m_Component:
   - component: {fileID: 702620477}
   - component: {fileID: 702620478}
+  - component: {fileID: 3754067887120016342}
   m_Layer: 15
   m_Name: hint_addFruit
   m_TagString: Untagged
@@ -404,6 +669,49 @@ MonoBehaviour:
   enableOnEnterTargetMenu: {fileID: 0}
   useHUD: 0
   useSound: 1
+--- !u!114 &3754067887120016342
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 702620476}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69beb381e244f92449b8c4cf954630e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_TrackedObjects:
+  - rid: 6944366223613755444
+  references:
+    version: 2
+    RefIds:
+    - rid: 6944366223613755444
+      type: {class: TrackedMonoBehaviourObject, ns: UnityEngine.Localization.PropertyVariants.TrackedObjects,
+        asm: Unity.Localization}
+      data:
+        m_Target: {fileID: 702620478}
+        m_TrackedProperties:
+          items:
+          - rid: 6944366223613755445
+        m_UpdateType: 0
+        m_Changed:
+          m_PersistentCalls:
+            m_Calls: []
+    - rid: 6944366223613755445
+      type: {class: LocalizedStringProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties,
+        asm: Unity.Localization}
+      data:
+        m_Localized:
+          m_TableReference:
+            m_TableCollectionName: GUID:0cbff4e97e5791544a4a1d8b1d9dcc45
+          m_TableEntryReference:
+            m_KeyId: 4115935065362432
+            m_Key: 
+          m_FallbackState: 0
+          m_WaitForCompletion: 0
+          m_LocalVariables: []
+        m_PropertyPath: hintText
 --- !u!1 &783639936
 GameObject:
   m_ObjectHideFlags: 0
@@ -414,6 +722,7 @@ GameObject:
   m_Component:
   - component: {fileID: 783639937}
   - component: {fileID: 783639938}
+  - component: {fileID: 4989231620136584373}
   m_Layer: 15
   m_Name: hint_potNeedsHeat
   m_TagString: Untagged
@@ -457,6 +766,49 @@ MonoBehaviour:
   enableOnEnterTargetMenu: {fileID: 0}
   useHUD: 0
   useSound: 1
+--- !u!114 &4989231620136584373
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 783639936}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69beb381e244f92449b8c4cf954630e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_TrackedObjects:
+  - rid: 6944366223613755446
+  references:
+    version: 2
+    RefIds:
+    - rid: 6944366223613755446
+      type: {class: TrackedMonoBehaviourObject, ns: UnityEngine.Localization.PropertyVariants.TrackedObjects,
+        asm: Unity.Localization}
+      data:
+        m_Target: {fileID: 783639938}
+        m_TrackedProperties:
+          items:
+          - rid: 6944366223613755447
+        m_UpdateType: 0
+        m_Changed:
+          m_PersistentCalls:
+            m_Calls: []
+    - rid: 6944366223613755447
+      type: {class: LocalizedStringProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties,
+        asm: Unity.Localization}
+      data:
+        m_Localized:
+          m_TableReference:
+            m_TableCollectionName: GUID:0cbff4e97e5791544a4a1d8b1d9dcc45
+          m_TableEntryReference:
+            m_KeyId: 4116071480905728
+            m_Key: 
+          m_FallbackState: 0
+          m_WaitForCompletion: 0
+          m_LocalVariables: []
+        m_PropertyPath: hintText
 --- !u!1 &841841903
 GameObject:
   m_ObjectHideFlags: 0
@@ -467,6 +819,7 @@ GameObject:
   m_Component:
   - component: {fileID: 841841904}
   - component: {fileID: 841841905}
+  - component: {fileID: 9086079304937063511}
   m_Layer: 15
   m_Name: hint_heatPot
   m_TagString: Untagged
@@ -511,6 +864,49 @@ MonoBehaviour:
   enableOnEnterTargetMenu: {fileID: 0}
   useHUD: 0
   useSound: 1
+--- !u!114 &9086079304937063511
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 841841903}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69beb381e244f92449b8c4cf954630e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_TrackedObjects:
+  - rid: 6944366223613755442
+  references:
+    version: 2
+    RefIds:
+    - rid: 6944366223613755442
+      type: {class: TrackedMonoBehaviourObject, ns: UnityEngine.Localization.PropertyVariants.TrackedObjects,
+        asm: Unity.Localization}
+      data:
+        m_Target: {fileID: 841841905}
+        m_TrackedProperties:
+          items:
+          - rid: 6944366223613755443
+        m_UpdateType: 0
+        m_Changed:
+          m_PersistentCalls:
+            m_Calls: []
+    - rid: 6944366223613755443
+      type: {class: LocalizedStringProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties,
+        asm: Unity.Localization}
+      data:
+        m_Localized:
+          m_TableReference:
+            m_TableCollectionName: GUID:0cbff4e97e5791544a4a1d8b1d9dcc45
+          m_TableEntryReference:
+            m_KeyId: 4115532806443008
+            m_Key: 
+          m_FallbackState: 0
+          m_WaitForCompletion: 0
+          m_LocalVariables: []
+        m_PropertyPath: hintText
 --- !u!1 &1090023156
 GameObject:
   m_ObjectHideFlags: 0
@@ -522,8 +918,9 @@ GameObject:
   - component: {fileID: 1090023157}
   - component: {fileID: 1090023159}
   - component: {fileID: 1090023158}
+  - component: {fileID: 8905827896431023521}
   m_Layer: 15
-  m_Name: hint_mirror_spawn_loli (3)
+  m_Name: hint_select_before_changing_character
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -579,6 +976,49 @@ MonoBehaviour:
   enableOnEnterTargetMenu: {fileID: 8430301093217427698}
   useHUD: 0
   useSound: 1
+--- !u!114 &8905827896431023521
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1090023156}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69beb381e244f92449b8c4cf954630e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_TrackedObjects:
+  - rid: 6944365950684626967
+  references:
+    version: 2
+    RefIds:
+    - rid: 6944365950684626967
+      type: {class: TrackedMonoBehaviourObject, ns: UnityEngine.Localization.PropertyVariants.TrackedObjects,
+        asm: Unity.Localization}
+      data:
+        m_Target: {fileID: 1090023158}
+        m_TrackedProperties:
+          items:
+          - rid: 6944366104714149903
+        m_UpdateType: 0
+        m_Changed:
+          m_PersistentCalls:
+            m_Calls: []
+    - rid: 6944366104714149903
+      type: {class: LocalizedStringProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties,
+        asm: Unity.Localization}
+      data:
+        m_Localized:
+          m_TableReference:
+            m_TableCollectionName: GUID:0cbff4e97e5791544a4a1d8b1d9dcc45
+          m_TableEntryReference:
+            m_KeyId: 1700771573616640
+            m_Key: 
+          m_FallbackState: 0
+          m_WaitForCompletion: 0
+          m_LocalVariables: []
+        m_PropertyPath: hintText
 --- !u!1 &1194709939
 GameObject:
   m_ObjectHideFlags: 0
@@ -590,8 +1030,9 @@ GameObject:
   - component: {fileID: 1194709940}
   - component: {fileID: 1194709942}
   - component: {fileID: 1194709941}
+  - component: {fileID: 5698506204131551077}
   m_Layer: 15
-  m_Name: hint_mirror_spawn_loli (1)
+  m_Name: hint_slide_door
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -646,6 +1087,49 @@ MonoBehaviour:
   enableOnEnterTargetMenu: {fileID: 8430301093217427698}
   useHUD: 0
   useSound: 1
+--- !u!114 &5698506204131551077
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1194709939}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69beb381e244f92449b8c4cf954630e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_TrackedObjects:
+  - rid: 6944365950684626963
+  references:
+    version: 2
+    RefIds:
+    - rid: 6944365950684626963
+      type: {class: TrackedMonoBehaviourObject, ns: UnityEngine.Localization.PropertyVariants.TrackedObjects,
+        asm: Unity.Localization}
+      data:
+        m_Target: {fileID: 1194709941}
+        m_TrackedProperties:
+          items:
+          - rid: 6944366104714149901
+        m_UpdateType: 0
+        m_Changed:
+          m_PersistentCalls:
+            m_Calls: []
+    - rid: 6944366104714149901
+      type: {class: LocalizedStringProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties,
+        asm: Unity.Localization}
+      data:
+        m_Localized:
+          m_TableReference:
+            m_TableCollectionName: GUID:0cbff4e97e5791544a4a1d8b1d9dcc45
+          m_TableEntryReference:
+            m_KeyId: 1700353850298368
+            m_Key: 
+          m_FallbackState: 0
+          m_WaitForCompletion: 0
+          m_LocalVariables: []
+        m_PropertyPath: hintText
 --- !u!1 &1248172813
 GameObject:
   m_ObjectHideFlags: 0
@@ -657,8 +1141,9 @@ GameObject:
   - component: {fileID: 1248172814}
   - component: {fileID: 1248172816}
   - component: {fileID: 1248172815}
+  - component: {fileID: 7948923404753750344}
   m_Layer: 15
-  m_Name: hint_bathroom_door (1)
+  m_Name: hint_bag
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -704,8 +1189,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a687718036e011bebf62679774c9463, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hintText: Use the bag to store items. You can give this bag to your loli by offering
-    it to her using the GIVE gesture.
+  hintText: Use the bag to store items. You can give this bag to your character by
+    offering it to her using the GIVE gesture.
   vrHintText: 
   localSpawnPosition: {x: 0, y: 0.5, z: -1}
   scale: 1
@@ -714,6 +1199,49 @@ MonoBehaviour:
   enableOnEnterTargetMenu: {fileID: 0}
   useHUD: 0
   useSound: 1
+--- !u!114 &7948923404753750344
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1248172813}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69beb381e244f92449b8c4cf954630e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_TrackedObjects:
+  - rid: 6944365950684627006
+  references:
+    version: 2
+    RefIds:
+    - rid: 6944365950684627006
+      type: {class: TrackedMonoBehaviourObject, ns: UnityEngine.Localization.PropertyVariants.TrackedObjects,
+        asm: Unity.Localization}
+      data:
+        m_Target: {fileID: 1248172815}
+        m_TrackedProperties:
+          items:
+          - rid: 6944366104714149921
+        m_UpdateType: 0
+        m_Changed:
+          m_PersistentCalls:
+            m_Calls: []
+    - rid: 6944366104714149921
+      type: {class: LocalizedStringProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties,
+        asm: Unity.Localization}
+      data:
+        m_Localized:
+          m_TableReference:
+            m_TableCollectionName: GUID:0cbff4e97e5791544a4a1d8b1d9dcc45
+          m_TableEntryReference:
+            m_KeyId: 2445727573561344
+            m_Key: 
+          m_FallbackState: 0
+          m_WaitForCompletion: 0
+          m_LocalVariables: []
+        m_PropertyPath: hintText
 --- !u!1 &1279219526
 GameObject:
   m_ObjectHideFlags: 0
@@ -724,6 +1252,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1279219527}
   - component: {fileID: 1279219528}
+  - component: {fileID: 4438935356839133040}
   m_Layer: 15
   m_Name: hint_crackEggs
   m_TagString: Untagged
@@ -759,7 +1288,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hintText: Crack and egg by pressing ACTION
-  vrHintText: 
+  vrHintText: Crack an egg by pressing TRIGGER
   localSpawnPosition: {x: 0, y: 0.2, z: 0}
   scale: 0.4
   targetMenu: {fileID: 0}
@@ -767,6 +1296,64 @@ MonoBehaviour:
   enableOnEnterTargetMenu: {fileID: 0}
   useHUD: 0
   useSound: 1
+--- !u!114 &4438935356839133040
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1279219526}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69beb381e244f92449b8c4cf954630e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_TrackedObjects:
+  - rid: 6944366223613755439
+  references:
+    version: 2
+    RefIds:
+    - rid: 6944366223613755439
+      type: {class: TrackedMonoBehaviourObject, ns: UnityEngine.Localization.PropertyVariants.TrackedObjects,
+        asm: Unity.Localization}
+      data:
+        m_Target: {fileID: 1279219528}
+        m_TrackedProperties:
+          items:
+          - rid: 6944366223613755440
+          - rid: 6944366223613755441
+        m_UpdateType: 0
+        m_Changed:
+          m_PersistentCalls:
+            m_Calls: []
+    - rid: 6944366223613755440
+      type: {class: LocalizedStringProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties,
+        asm: Unity.Localization}
+      data:
+        m_Localized:
+          m_TableReference:
+            m_TableCollectionName: GUID:0cbff4e97e5791544a4a1d8b1d9dcc45
+          m_TableEntryReference:
+            m_KeyId: 4114768872689664
+            m_Key: 
+          m_FallbackState: 0
+          m_WaitForCompletion: 0
+          m_LocalVariables: []
+        m_PropertyPath: hintText
+    - rid: 6944366223613755441
+      type: {class: LocalizedStringProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties,
+        asm: Unity.Localization}
+      data:
+        m_Localized:
+          m_TableReference:
+            m_TableCollectionName: GUID:0cbff4e97e5791544a4a1d8b1d9dcc45
+          m_TableEntryReference:
+            m_KeyId: 4114807208628224
+            m_Key: 
+          m_FallbackState: 0
+          m_WaitForCompletion: 0
+          m_LocalVariables: []
+        m_PropertyPath: vrHintText
 --- !u!1 &1480673912
 GameObject:
   m_ObjectHideFlags: 0
@@ -778,8 +1365,9 @@ GameObject:
   - component: {fileID: 1480673913}
   - component: {fileID: 1480673915}
   - component: {fileID: 1480673914}
+  - component: {fileID: 5909917789815030593}
   m_Layer: 15
-  m_Name: hint_mirror_spawn_loli (7)
+  m_Name: hint_select_to_command
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -834,6 +1422,49 @@ MonoBehaviour:
   enableOnEnterTargetMenu: {fileID: 8430301093217427698}
   useHUD: 0
   useSound: 1
+--- !u!114 &5909917789815030593
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1480673912}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69beb381e244f92449b8c4cf954630e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_TrackedObjects:
+  - rid: 6944365950684626975
+  references:
+    version: 2
+    RefIds:
+    - rid: 6944365950684626975
+      type: {class: TrackedMonoBehaviourObject, ns: UnityEngine.Localization.PropertyVariants.TrackedObjects,
+        asm: Unity.Localization}
+      data:
+        m_Target: {fileID: 1480673914}
+        m_TrackedProperties:
+          items:
+          - rid: 6944366104714149914
+        m_UpdateType: 0
+        m_Changed:
+          m_PersistentCalls:
+            m_Calls: []
+    - rid: 6944366104714149914
+      type: {class: LocalizedStringProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties,
+        asm: Unity.Localization}
+      data:
+        m_Localized:
+          m_TableReference:
+            m_TableCollectionName: GUID:0cbff4e97e5791544a4a1d8b1d9dcc45
+          m_TableEntryReference:
+            m_KeyId: 1861976154001408
+            m_Key: 
+          m_FallbackState: 0
+          m_WaitForCompletion: 0
+          m_LocalVariables: []
+        m_PropertyPath: hintText
 --- !u!1 &1601707899
 GameObject:
   m_ObjectHideFlags: 0
@@ -844,6 +1475,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1601707900}
   - component: {fileID: 1601707901}
+  - component: {fileID: 2009105090213383182}
   m_Layer: 15
   m_Name: hint_offerDeck
   m_TagString: Untagged
@@ -887,6 +1519,49 @@ MonoBehaviour:
   enableOnEnterTargetMenu: {fileID: 0}
   useHUD: 0
   useSound: 1
+--- !u!114 &2009105090213383182
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1601707899}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69beb381e244f92449b8c4cf954630e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_TrackedObjects:
+  - rid: 6944365950684627021
+  references:
+    version: 2
+    RefIds:
+    - rid: 6944365950684627021
+      type: {class: TrackedMonoBehaviourObject, ns: UnityEngine.Localization.PropertyVariants.TrackedObjects,
+        asm: Unity.Localization}
+      data:
+        m_Target: {fileID: 1601707901}
+        m_TrackedProperties:
+          items:
+          - rid: 6944366223613755431
+        m_UpdateType: 0
+        m_Changed:
+          m_PersistentCalls:
+            m_Calls: []
+    - rid: 6944366223613755431
+      type: {class: LocalizedStringProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties,
+        asm: Unity.Localization}
+      data:
+        m_Localized:
+          m_TableReference:
+            m_TableCollectionName: GUID:0cbff4e97e5791544a4a1d8b1d9dcc45
+          m_TableEntryReference:
+            m_KeyId: 4113857253298176
+            m_Key: 
+          m_FallbackState: 0
+          m_WaitForCompletion: 0
+          m_LocalVariables: []
+        m_PropertyPath: hintText
 --- !u!1 &1606391198
 GameObject:
   m_ObjectHideFlags: 0
@@ -898,8 +1573,9 @@ GameObject:
   - component: {fileID: 1606391199}
   - component: {fileID: 1606391201}
   - component: {fileID: 1606391200}
+  - component: {fileID: 3092901402419559378}
   m_Layer: 15
-  m_Name: hint_mirror_spawn_loli (2)
+  m_Name: hint_ring_bell
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -954,6 +1630,49 @@ MonoBehaviour:
   enableOnEnterTargetMenu: {fileID: 8430301093217427698}
   useHUD: 0
   useSound: 1
+--- !u!114 &3092901402419559378
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1606391198}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69beb381e244f92449b8c4cf954630e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_TrackedObjects:
+  - rid: 6944365950684626965
+  references:
+    version: 2
+    RefIds:
+    - rid: 6944365950684626965
+      type: {class: TrackedMonoBehaviourObject, ns: UnityEngine.Localization.PropertyVariants.TrackedObjects,
+        asm: Unity.Localization}
+      data:
+        m_Target: {fileID: 1606391200}
+        m_TrackedProperties:
+          items:
+          - rid: 6944366104714149902
+        m_UpdateType: 0
+        m_Changed:
+          m_PersistentCalls:
+            m_Calls: []
+    - rid: 6944366104714149902
+      type: {class: LocalizedStringProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties,
+        asm: Unity.Localization}
+      data:
+        m_Localized:
+          m_TableReference:
+            m_TableCollectionName: GUID:0cbff4e97e5791544a4a1d8b1d9dcc45
+          m_TableEntryReference:
+            m_KeyId: 1700632628908032
+            m_Key: 
+          m_FallbackState: 0
+          m_WaitForCompletion: 0
+          m_LocalVariables: []
+        m_PropertyPath: hintText
 --- !u!1 &1737873717
 GameObject:
   m_ObjectHideFlags: 0
@@ -965,8 +1684,9 @@ GameObject:
   - component: {fileID: 1737873718}
   - component: {fileID: 1737873720}
   - component: {fileID: 1737873719}
+  - component: {fileID: 3644298607684262361}
   m_Layer: 15
-  m_Name: hint_mirror_spawn_loli (10)
+  m_Name: hint_must_be_employed
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1012,8 +1732,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a687718036e011bebf62679774c9463, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hintText: A store must be employed to spawn items. If a loli leaves her post you
-    can select them and point to the stand to employ her again.
+  hintText: A store must be employed to spawn items. If a character leaves her post
+    you can select them and point to the stand to employ her again.
   vrHintText: 
   localSpawnPosition: {x: 0, y: 0.36, z: 0}
   scale: 1
@@ -1022,6 +1742,49 @@ MonoBehaviour:
   enableOnEnterTargetMenu: {fileID: 8430301093217427698}
   useHUD: 0
   useSound: 1
+--- !u!114 &3644298607684262361
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1737873717}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69beb381e244f92449b8c4cf954630e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_TrackedObjects:
+  - rid: 6944365950684626998
+  references:
+    version: 2
+    RefIds:
+    - rid: 6944365950684626998
+      type: {class: TrackedMonoBehaviourObject, ns: UnityEngine.Localization.PropertyVariants.TrackedObjects,
+        asm: Unity.Localization}
+      data:
+        m_Target: {fileID: 1737873719}
+        m_TrackedProperties:
+          items:
+          - rid: 6944366104714149917
+        m_UpdateType: 0
+        m_Changed:
+          m_PersistentCalls:
+            m_Calls: []
+    - rid: 6944366104714149917
+      type: {class: LocalizedStringProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties,
+        asm: Unity.Localization}
+      data:
+        m_Localized:
+          m_TableReference:
+            m_TableCollectionName: GUID:0cbff4e97e5791544a4a1d8b1d9dcc45
+          m_TableEntryReference:
+            m_KeyId: 1863205701636096
+            m_Key: 
+          m_FallbackState: 0
+          m_WaitForCompletion: 0
+          m_LocalVariables: []
+        m_PropertyPath: hintText
 --- !u!1 &1757225888
 GameObject:
   m_ObjectHideFlags: 0
@@ -1032,6 +1795,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1757225889}
   - component: {fileID: 1757225890}
+  - component: {fileID: 648981324907090998}
   m_Layer: 15
   m_Name: hint_lastBakeStep
   m_TagString: Untagged
@@ -1075,6 +1839,49 @@ MonoBehaviour:
   enableOnEnterTargetMenu: {fileID: 0}
   useHUD: 0
   useSound: 1
+--- !u!114 &648981324907090998
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1757225888}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69beb381e244f92449b8c4cf954630e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_TrackedObjects:
+  - rid: 6944366223613755448
+  references:
+    version: 2
+    RefIds:
+    - rid: 6944366223613755448
+      type: {class: TrackedMonoBehaviourObject, ns: UnityEngine.Localization.PropertyVariants.TrackedObjects,
+        asm: Unity.Localization}
+      data:
+        m_Target: {fileID: 1757225890}
+        m_TrackedProperties:
+          items:
+          - rid: 6944366223613755449
+        m_UpdateType: 0
+        m_Changed:
+          m_PersistentCalls:
+            m_Calls: []
+    - rid: 6944366223613755449
+      type: {class: LocalizedStringProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties,
+        asm: Unity.Localization}
+      data:
+        m_Localized:
+          m_TableReference:
+            m_TableCollectionName: GUID:0cbff4e97e5791544a4a1d8b1d9dcc45
+          m_TableEntryReference:
+            m_KeyId: 4116469759430656
+            m_Key: 
+          m_FallbackState: 0
+          m_WaitForCompletion: 0
+          m_LocalVariables: []
+        m_PropertyPath: hintText
 --- !u!1 &1774462006
 GameObject:
   m_ObjectHideFlags: 0
@@ -1177,8 +1984,9 @@ GameObject:
   - component: {fileID: 1823929003}
   - component: {fileID: 1823929005}
   - component: {fileID: 1823929004}
+  - component: {fileID: 5886317342400656290}
   m_Layer: 15
-  m_Name: hint_mirror_spawn_loli (6)
+  m_Name: hint_question_mark
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1233,6 +2041,49 @@ MonoBehaviour:
   enableOnEnterTargetMenu: {fileID: 8430301093217427698}
   useHUD: 0
   useSound: 1
+--- !u!114 &5886317342400656290
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1823929002}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69beb381e244f92449b8c4cf954630e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_TrackedObjects:
+  - rid: 6944365950684626973
+  references:
+    version: 2
+    RefIds:
+    - rid: 6944365950684626973
+      type: {class: TrackedMonoBehaviourObject, ns: UnityEngine.Localization.PropertyVariants.TrackedObjects,
+        asm: Unity.Localization}
+      data:
+        m_Target: {fileID: 1823929004}
+        m_TrackedProperties:
+          items:
+          - rid: 6944366104714149913
+        m_UpdateType: 0
+        m_Changed:
+          m_PersistentCalls:
+            m_Calls: []
+    - rid: 6944366104714149913
+      type: {class: LocalizedStringProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties,
+        asm: Unity.Localization}
+      data:
+        m_Localized:
+          m_TableReference:
+            m_TableCollectionName: GUID:0cbff4e97e5791544a4a1d8b1d9dcc45
+          m_TableEntryReference:
+            m_KeyId: 1702579478024192
+            m_Key: 
+          m_FallbackState: 0
+          m_WaitForCompletion: 0
+          m_LocalVariables: []
+        m_PropertyPath: hintText
 --- !u!1 &1848555484
 GameObject:
   m_ObjectHideFlags: 0
@@ -1244,8 +2095,9 @@ GameObject:
   - component: {fileID: 1848555485}
   - component: {fileID: 1848555487}
   - component: {fileID: 1848555486}
+  - component: {fileID: 6618778333581963028}
   m_Layer: 15
-  m_Name: hint_mirror_spawn_loli (9)
+  m_Name: hint_help_boxes_stand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1300,6 +2152,49 @@ MonoBehaviour:
   enableOnEnterTargetMenu: {fileID: 8430301093217427698}
   useHUD: 0
   useSound: 1
+--- !u!114 &6618778333581963028
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1848555484}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69beb381e244f92449b8c4cf954630e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_TrackedObjects:
+  - rid: 6944365950684626996
+  references:
+    version: 2
+    RefIds:
+    - rid: 6944365950684626996
+      type: {class: TrackedMonoBehaviourObject, ns: UnityEngine.Localization.PropertyVariants.TrackedObjects,
+        asm: Unity.Localization}
+      data:
+        m_Target: {fileID: 1848555486}
+        m_TrackedProperties:
+          items:
+          - rid: 6944366104714149916
+        m_UpdateType: 0
+        m_Changed:
+          m_PersistentCalls:
+            m_Calls: []
+    - rid: 6944366104714149916
+      type: {class: LocalizedStringProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties,
+        asm: Unity.Localization}
+      data:
+        m_Localized:
+          m_TableReference:
+            m_TableCollectionName: GUID:0cbff4e97e5791544a4a1d8b1d9dcc45
+          m_TableEntryReference:
+            m_KeyId: 1863095550824448
+            m_Key: 
+          m_FallbackState: 0
+          m_WaitForCompletion: 0
+          m_LocalVariables: []
+        m_PropertyPath: hintText
 --- !u!1 &1885600918
 GameObject:
   m_ObjectHideFlags: 0
@@ -1310,6 +2205,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1885600919}
   - component: {fileID: 1885600920}
+  - component: {fileID: 7990994292720828396}
   m_Layer: 15
   m_Name: hint_addEggs
   m_TagString: Untagged
@@ -1353,6 +2249,49 @@ MonoBehaviour:
   enableOnEnterTargetMenu: {fileID: 0}
   useHUD: 0
   useSound: 1
+--- !u!114 &7990994292720828396
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1885600918}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69beb381e244f92449b8c4cf954630e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_TrackedObjects:
+  - rid: 6944366223613755435
+  references:
+    version: 2
+    RefIds:
+    - rid: 6944366223613755435
+      type: {class: TrackedMonoBehaviourObject, ns: UnityEngine.Localization.PropertyVariants.TrackedObjects,
+        asm: Unity.Localization}
+      data:
+        m_Target: {fileID: 1885600920}
+        m_TrackedProperties:
+          items:
+          - rid: 6944366223613755436
+        m_UpdateType: 0
+        m_Changed:
+          m_PersistentCalls:
+            m_Calls: []
+    - rid: 6944366223613755436
+      type: {class: LocalizedStringProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties,
+        asm: Unity.Localization}
+      data:
+        m_Localized:
+          m_TableReference:
+            m_TableCollectionName: GUID:0cbff4e97e5791544a4a1d8b1d9dcc45
+          m_TableEntryReference:
+            m_KeyId: 4114521614274560
+            m_Key: 
+          m_FallbackState: 0
+          m_WaitForCompletion: 0
+          m_LocalVariables: []
+        m_PropertyPath: hintText
 --- !u!1 &1938969894
 GameObject:
   m_ObjectHideFlags: 0
@@ -1364,8 +2303,9 @@ GameObject:
   - component: {fileID: 1938969895}
   - component: {fileID: 1938969897}
   - component: {fileID: 1938969896}
+  - component: {fileID: 2475375918067069139}
   m_Layer: 15
-  m_Name: hint_mirror_spawn_loli (4)
+  m_Name: hint_select_before_changing_clothes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1420,6 +2360,49 @@ MonoBehaviour:
   enableOnEnterTargetMenu: {fileID: 8430301093217427698}
   useHUD: 0
   useSound: 1
+--- !u!114 &2475375918067069139
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1938969894}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69beb381e244f92449b8c4cf954630e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_TrackedObjects:
+  - rid: 6944365950684626969
+  references:
+    version: 2
+    RefIds:
+    - rid: 6944365950684626969
+      type: {class: TrackedMonoBehaviourObject, ns: UnityEngine.Localization.PropertyVariants.TrackedObjects,
+        asm: Unity.Localization}
+      data:
+        m_Target: {fileID: 1938969896}
+        m_TrackedProperties:
+          items:
+          - rid: 6944366104714149904
+        m_UpdateType: 0
+        m_Changed:
+          m_PersistentCalls:
+            m_Calls: []
+    - rid: 6944366104714149904
+      type: {class: LocalizedStringProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties,
+        asm: Unity.Localization}
+      data:
+        m_Localized:
+          m_TableReference:
+            m_TableCollectionName: GUID:0cbff4e97e5791544a4a1d8b1d9dcc45
+          m_TableEntryReference:
+            m_KeyId: 1701360231600128
+            m_Key: 
+          m_FallbackState: 0
+          m_WaitForCompletion: 0
+          m_LocalVariables: []
+        m_PropertyPath: hintText
 --- !u!1 &1961982348
 GameObject:
   m_ObjectHideFlags: 0
@@ -1431,8 +2414,9 @@ GameObject:
   - component: {fileID: 1961982349}
   - component: {fileID: 1961982351}
   - component: {fileID: 1961982350}
+  - component: {fileID: 2593580828582541819}
   m_Layer: 15
-  m_Name: hint_mirror_spawn_loli (8)
+  m_Name: hint_nametags_employed
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1478,7 +2462,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a687718036e011bebf62679774c9463, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hintText: Lolis with nametags are employed
+  hintText: Characters with nametags are employed
   vrHintText: 
   localSpawnPosition: {x: 0, y: 0.36, z: 0}
   scale: 1
@@ -1487,6 +2471,49 @@ MonoBehaviour:
   enableOnEnterTargetMenu: {fileID: 8430301093217427698}
   useHUD: 0
   useSound: 1
+--- !u!114 &2593580828582541819
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1961982348}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69beb381e244f92449b8c4cf954630e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_TrackedObjects:
+  - rid: 6944365950684626977
+  references:
+    version: 2
+    RefIds:
+    - rid: 6944365950684626977
+      type: {class: TrackedMonoBehaviourObject, ns: UnityEngine.Localization.PropertyVariants.TrackedObjects,
+        asm: Unity.Localization}
+      data:
+        m_Target: {fileID: 1961982350}
+        m_TrackedProperties:
+          items:
+          - rid: 6944366104714149915
+        m_UpdateType: 0
+        m_Changed:
+          m_PersistentCalls:
+            m_Calls: []
+    - rid: 6944366104714149915
+      type: {class: LocalizedStringProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties,
+        asm: Unity.Localization}
+      data:
+        m_Localized:
+          m_TableReference:
+            m_TableCollectionName: GUID:0cbff4e97e5791544a4a1d8b1d9dcc45
+          m_TableEntryReference:
+            m_KeyId: 1862645887881216
+            m_Key: 
+          m_FallbackState: 0
+          m_WaitForCompletion: 0
+          m_LocalVariables: []
+        m_PropertyPath: hintText
 --- !u!1 &2006671577
 GameObject:
   m_ObjectHideFlags: 0
@@ -1497,6 +2524,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2006671578}
   - component: {fileID: 2006671579}
+  - component: {fileID: 6044900690564340}
   m_Layer: 5
   m_Name: Image container
   m_TagString: Untagged
@@ -1511,7 +2539,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2006671577}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -0.000000059604645}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1545,6 +2573,108 @@ MonoBehaviour:
   m_FlexibleWidth: -1
   m_FlexibleHeight: -1
   m_LayoutPriority: 1
+--- !u!114 &6044900690564340
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2006671577}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69beb381e244f92449b8c4cf954630e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_TrackedObjects:
+  - rid: 6944366104714149950
+  references:
+    version: 2
+    RefIds:
+    - rid: 6944366104714149950
+      type: {class: TrackedRectTransform, ns: UnityEngine.Localization.PropertyVariants.TrackedObjects,
+        asm: Unity.Localization}
+      data:
+        m_Target: {fileID: 2006671578}
+        m_TrackedProperties:
+          items:
+          - rid: 6944366104714149951
+          - rid: 6944366104714149952
+          - rid: 6944366104714149953
+          - rid: 6944366104714149954
+          - rid: 6944366104714149955
+          - rid: 6944366104714149956
+    - rid: 6944366104714149951
+      type: {class: FloatTrackedProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties,
+        asm: Unity.Localization}
+      data:
+        m_PropertyPath: m_AnchorMin.y
+        m_VariantData:
+        - localeIdentifier:
+            m_Code: en
+          value: 1
+        - localeIdentifier:
+            m_Code: tr
+          value: 0
+    - rid: 6944366104714149952
+      type: {class: FloatTrackedProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties,
+        asm: Unity.Localization}
+      data:
+        m_PropertyPath: m_AnchorMax.y
+        m_VariantData:
+        - localeIdentifier:
+            m_Code: en
+          value: 1
+        - localeIdentifier:
+            m_Code: tr
+          value: 0
+    - rid: 6944366104714149953
+      type: {class: FloatTrackedProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties,
+        asm: Unity.Localization}
+      data:
+        m_PropertyPath: m_AnchoredPosition.x
+        m_VariantData:
+        - localeIdentifier:
+            m_Code: en
+          value: 100
+        - localeIdentifier:
+            m_Code: tr
+          value: 0
+    - rid: 6944366104714149954
+      type: {class: FloatTrackedProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties,
+        asm: Unity.Localization}
+      data:
+        m_PropertyPath: m_AnchoredPosition.y
+        m_VariantData:
+        - localeIdentifier:
+            m_Code: en
+          value: -132
+        - localeIdentifier:
+            m_Code: tr
+          value: 0
+    - rid: 6944366104714149955
+      type: {class: FloatTrackedProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties,
+        asm: Unity.Localization}
+      data:
+        m_PropertyPath: m_SizeDelta.x
+        m_VariantData:
+        - localeIdentifier:
+            m_Code: en
+          value: 100
+        - localeIdentifier:
+            m_Code: tr
+          value: 0
+    - rid: 6944366104714149956
+      type: {class: FloatTrackedProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties,
+        asm: Unity.Localization}
+      data:
+        m_PropertyPath: m_SizeDelta.y
+        m_VariantData:
+        - localeIdentifier:
+            m_Code: en
+          value: 100
+        - localeIdentifier:
+            m_Code: tr
+          value: 0
 --- !u!1 &1075421151766106
 GameObject:
   m_ObjectHideFlags: 0
@@ -1554,8 +2684,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4416302805113904}
-  - component: {fileID: 23040241922250728}
-  - component: {fileID: 33550210559635408}
   - component: {fileID: 114243395228347494}
   - component: {fileID: 568965071000808229}
   - component: {fileID: 897248624}
@@ -1611,56 +2739,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 1, y: 0, z: 0}
---- !u!23 &23040241922250728
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1075421151766106}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 4294967295
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 0}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 0
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
---- !u!33 &33550210559635408
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1075421151766106}
-  m_Mesh: {fileID: 0}
 --- !u!114 &114243395228347494
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2626,6 +3704,7 @@ GameObject:
   - component: {fileID: 222298759618788082}
   - component: {fileID: 114258884074700384}
   - component: {fileID: 706950986}
+  - component: {fileID: 3582584701841101630}
   m_Layer: 5
   m_Name: Text
   m_TagString: Untagged
@@ -2686,8 +3765,8 @@ MonoBehaviour:
     m_FontSize: 14
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 1
-    m_MaxSize: 40
+    m_MinSize: 0
+    m_MaxSize: 121
     m_Alignment: 1
     m_AlignByGeometry: 0
     m_RichText: 0
@@ -2721,6 +3800,85 @@ MonoBehaviour:
   m_FlexibleWidth: -1
   m_FlexibleHeight: -1
   m_LayoutPriority: 1
+--- !u!114 &3582584701841101630
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1378079167811392}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69beb381e244f92449b8c4cf954630e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_TrackedObjects:
+  - rid: 6944366223613755426
+  references:
+    version: 2
+    RefIds:
+    - rid: 6944366223613755426
+      type: {class: TrackedUGuiGraphic, ns: UnityEngine.Localization.PropertyVariants.TrackedObjects,
+        asm: Unity.Localization}
+      data:
+        m_Target: {fileID: 114258884074700384}
+        m_TrackedProperties:
+          items:
+          - rid: 6944366223613755427
+          - rid: 6944366223613755428
+          - rid: 6944366223613755429
+          - rid: 6944366223613755430
+        m_UpdateType: 0
+    - rid: 6944366223613755427
+      type: {class: UnityObjectProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties,
+        asm: Unity.Localization}
+      data:
+        m_PropertyPath: m_FontData.m_Font
+        m_TypeString: UnityEngine.Font, UnityEngine.TextRenderingModule, Version=0.0.0.0,
+          Culture=neutral, PublicKeyToken=null
+        m_VariantData:
+        - localeIdentifier:
+            m_Code: en
+          value: {fileID: 12800000, guid: 3cd3c0eff46a0d3ad8682dfeb1ee4fac, type: 3}
+        - localeIdentifier:
+            m_Code: ru
+          value: {fileID: 12800000, guid: 3a90ca7629c19b7448d63871ddb6f491, type: 3}
+    - rid: 6944366223613755428
+      type: {class: IntTrackedProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties,
+        asm: Unity.Localization}
+      data:
+        m_PropertyPath: m_FontData.m_FontSize
+        m_VariantData:
+        - localeIdentifier:
+            m_Code: en
+          value: 14
+        - localeIdentifier:
+            m_Code: ru
+          value: 12
+    - rid: 6944366223613755429
+      type: {class: IntTrackedProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties,
+        asm: Unity.Localization}
+      data:
+        m_PropertyPath: m_FontData.m_MaxSize
+        m_VariantData:
+        - localeIdentifier:
+            m_Code: en
+          value: 40
+        - localeIdentifier:
+            m_Code: ru
+          value: 121
+    - rid: 6944366223613755430
+      type: {class: IntTrackedProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties,
+        asm: Unity.Localization}
+      data:
+        m_PropertyPath: m_FontData.m_MinSize
+        m_VariantData:
+        - localeIdentifier:
+            m_Code: en
+          value: 1
+        - localeIdentifier:
+            m_Code: ru
+          value: 0
 --- !u!1 &1394944424295250
 GameObject:
   m_ObjectHideFlags: 0
@@ -2929,6 +4087,7 @@ GameObject:
   - component: {fileID: 4746709061146624}
   - component: {fileID: 135762679046328496}
   - component: {fileID: 1489247532}
+  - component: {fileID: 8527271389717125234}
   m_Layer: 15
   m_Name: hint bathe
   m_TagString: Untagged
@@ -2976,7 +4135,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a687718036e011bebf62679774c9463, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hintText: To bathe your loli, Lead her into the bathroom and point at the bathtub
+  hintText: To bathe your character, Lead them into the bathroom and point at the
+    bathtub
   vrHintText: 
   localSpawnPosition: {x: 0, y: 0.45, z: -1}
   scale: 1
@@ -2985,6 +4145,49 @@ MonoBehaviour:
   enableOnEnterTargetMenu: {fileID: 0}
   useHUD: 0
   useSound: 1
+--- !u!114 &8527271389717125234
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1798109778365104}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69beb381e244f92449b8c4cf954630e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_TrackedObjects:
+  - rid: 6944365950684627002
+  references:
+    version: 2
+    RefIds:
+    - rid: 6944365950684627002
+      type: {class: TrackedMonoBehaviourObject, ns: UnityEngine.Localization.PropertyVariants.TrackedObjects,
+        asm: Unity.Localization}
+      data:
+        m_Target: {fileID: 1489247532}
+        m_TrackedProperties:
+          items:
+          - rid: 6944366104714149919
+        m_UpdateType: 0
+        m_Changed:
+          m_PersistentCalls:
+            m_Calls: []
+    - rid: 6944366104714149919
+      type: {class: LocalizedStringProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties,
+        asm: Unity.Localization}
+      data:
+        m_Localized:
+          m_TableReference:
+            m_TableCollectionName: GUID:0cbff4e97e5791544a4a1d8b1d9dcc45
+          m_TableEntryReference:
+            m_KeyId: 1864486105206784
+            m_Key: 
+          m_FallbackState: 0
+          m_WaitForCompletion: 0
+          m_LocalVariables: []
+        m_PropertyPath: hintText
 --- !u!1 &1871214999503662
 GameObject:
   m_ObjectHideFlags: 0
@@ -3085,6 +4288,7 @@ GameObject:
   - component: {fileID: 4261325449278114}
   - component: {fileID: 135104823632309660}
   - component: {fileID: 820747266}
+  - component: {fileID: 8900282195594785093}
   m_Layer: 15
   m_Name: hint_bathroom_door
   m_TagString: Untagged
@@ -3141,6 +4345,49 @@ MonoBehaviour:
   enableOnEnterTargetMenu: {fileID: 0}
   useHUD: 0
   useSound: 1
+--- !u!114 &8900282195594785093
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1989280128864486}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69beb381e244f92449b8c4cf954630e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_TrackedObjects:
+  - rid: 6944365950684627000
+  references:
+    version: 2
+    RefIds:
+    - rid: 6944365950684627000
+      type: {class: TrackedMonoBehaviourObject, ns: UnityEngine.Localization.PropertyVariants.TrackedObjects,
+        asm: Unity.Localization}
+      data:
+        m_Target: {fileID: 820747266}
+        m_TrackedProperties:
+          items:
+          - rid: 6944366104714149918
+        m_UpdateType: 0
+        m_Changed:
+          m_PersistentCalls:
+            m_Calls: []
+    - rid: 6944366104714149918
+      type: {class: LocalizedStringProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties,
+        asm: Unity.Localization}
+      data:
+        m_Localized:
+          m_TableReference:
+            m_TableCollectionName: GUID:0cbff4e97e5791544a4a1d8b1d9dcc45
+          m_TableEntryReference:
+            m_KeyId: 1863775325868032
+            m_Key: 
+          m_FallbackState: 0
+          m_WaitForCompletion: 0
+          m_LocalVariables: []
+        m_PropertyPath: hintText
 --- !u!1 &196601029318882069
 GameObject:
   m_ObjectHideFlags: 0
@@ -3196,6 +4443,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3880006209449973846}
   - component: {fileID: 7603120484319812547}
+  - component: {fileID: 7971979453860182734}
   m_Layer: 15
   m_Name: hint_wheatIntoMortar
   m_TagString: Untagged
@@ -3239,6 +4487,49 @@ MonoBehaviour:
   enableOnEnterTargetMenu: {fileID: 0}
   useHUD: 0
   useSound: 1
+--- !u!114 &7971979453860182734
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 781497922364726770}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69beb381e244f92449b8c4cf954630e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_TrackedObjects:
+  - rid: 6944365950684627010
+  references:
+    version: 2
+    RefIds:
+    - rid: 6944365950684627010
+      type: {class: TrackedMonoBehaviourObject, ns: UnityEngine.Localization.PropertyVariants.TrackedObjects,
+        asm: Unity.Localization}
+      data:
+        m_Target: {fileID: 7603120484319812547}
+        m_TrackedProperties:
+          items:
+          - rid: 6944366104714149923
+        m_UpdateType: 0
+        m_Changed:
+          m_PersistentCalls:
+            m_Calls: []
+    - rid: 6944366104714149923
+      type: {class: LocalizedStringProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties,
+        asm: Unity.Localization}
+      data:
+        m_Localized:
+          m_TableReference:
+            m_TableCollectionName: GUID:0cbff4e97e5791544a4a1d8b1d9dcc45
+          m_TableEntryReference:
+            m_KeyId: 2447066877743104
+            m_Key: 
+          m_FallbackState: 0
+          m_WaitForCompletion: 0
+          m_LocalVariables: []
+        m_PropertyPath: hintText
 --- !u!1 &802111427303304639
 GameObject:
   m_ObjectHideFlags: 0
@@ -3367,6 +4658,7 @@ MonoBehaviour:
   firstLoadDayOffset: 1.06
   sunMaterial: {fileID: 2100000, guid: f2d9fe7da6b4342e79e47d517952199e, type: 2}
   sunYaw: 100
+  worldTime: 0
   environmentMapProbe: {fileID: 0}
   m_defaultDayNightPhase:
     ambience: {r: 1, g: 1, b: 1, a: 1}
@@ -3888,6 +5180,7 @@ GameObject:
   - component: {fileID: 6354122775891804802}
   - component: {fileID: 8583130130671823788}
   - component: {fileID: 5235371615687514427}
+  - component: {fileID: 7208120761699827002}
   m_Layer: 15
   m_Name: hint_Ingredients
   m_TagString: Untagged
@@ -3945,6 +5238,49 @@ MonoBehaviour:
   enableOnEnterTargetMenu: {fileID: 0}
   useHUD: 0
   useSound: 1
+--- !u!114 &7208120761699827002
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2140858514197198481}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69beb381e244f92449b8c4cf954630e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_TrackedObjects:
+  - rid: 6944365950684627008
+  references:
+    version: 2
+    RefIds:
+    - rid: 6944365950684627008
+      type: {class: TrackedMonoBehaviourObject, ns: UnityEngine.Localization.PropertyVariants.TrackedObjects,
+        asm: Unity.Localization}
+      data:
+        m_Target: {fileID: 5235371615687514427}
+        m_TrackedProperties:
+          items:
+          - rid: 6944366104714149922
+        m_UpdateType: 0
+        m_Changed:
+          m_PersistentCalls:
+            m_Calls: []
+    - rid: 6944366104714149922
+      type: {class: LocalizedStringProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties,
+        asm: Unity.Localization}
+      data:
+        m_Localized:
+          m_TableReference:
+            m_TableCollectionName: GUID:0cbff4e97e5791544a4a1d8b1d9dcc45
+          m_TableEntryReference:
+            m_KeyId: 2446362423414784
+            m_Key: 
+          m_FallbackState: 0
+          m_WaitForCompletion: 0
+          m_LocalVariables: []
+        m_PropertyPath: hintText
 --- !u!1 &2297783145649381514
 GameObject:
   m_ObjectHideFlags: 0
@@ -4030,6 +5366,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6369384763896555371}
   - component: {fileID: 6172845480025891977}
+  - component: {fileID: 46043909459690593}
   m_Layer: 15
   m_Name: hint_flourIntoBowl
   m_TagString: Untagged
@@ -4073,6 +5410,64 @@ MonoBehaviour:
   enableOnEnterTargetMenu: {fileID: 0}
   useHUD: 0
   useSound: 1
+--- !u!114 &46043909459690593
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2379780554005897326}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69beb381e244f92449b8c4cf954630e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_TrackedObjects:
+  - rid: 6944365950684627018
+  references:
+    version: 2
+    RefIds:
+    - rid: 6944365950684627018
+      type: {class: TrackedMonoBehaviourObject, ns: UnityEngine.Localization.PropertyVariants.TrackedObjects,
+        asm: Unity.Localization}
+      data:
+        m_Target: {fileID: 6172845480025891977}
+        m_TrackedProperties:
+          items:
+          - rid: 6944366104714149932
+          - rid: 6944366104714149933
+        m_UpdateType: 0
+        m_Changed:
+          m_PersistentCalls:
+            m_Calls: []
+    - rid: 6944366104714149932
+      type: {class: LocalizedStringProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties,
+        asm: Unity.Localization}
+      data:
+        m_Localized:
+          m_TableReference:
+            m_TableCollectionName: GUID:0cbff4e97e5791544a4a1d8b1d9dcc45
+          m_TableEntryReference:
+            m_KeyId: 2466769897607168
+            m_Key: 
+          m_FallbackState: 0
+          m_WaitForCompletion: 0
+          m_LocalVariables: []
+        m_PropertyPath: hintText
+    - rid: 6944366104714149933
+      type: {class: LocalizedStringProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties,
+        asm: Unity.Localization}
+      data:
+        m_Localized:
+          m_TableReference:
+            m_TableCollectionName: GUID:0cbff4e97e5791544a4a1d8b1d9dcc45
+          m_TableEntryReference:
+            m_KeyId: 2466791007539200
+            m_Key: 
+          m_FallbackState: 0
+          m_WaitForCompletion: 0
+          m_LocalVariables: []
+        m_PropertyPath: vrHintText
 --- !u!1 &2607047465462697698
 GameObject:
   m_ObjectHideFlags: 0
@@ -4609,6 +6004,7 @@ GameObject:
   - component: {fileID: 8825878942524483463}
   - component: {fileID: 5653353221889418490}
   - component: {fileID: 1880927117}
+  - component: {fileID: 4960216072427243448}
   m_Layer: 15
   m_Name: hint_mirror_spawn_loli
   m_TagString: Untagged
@@ -4656,7 +6052,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a687718036e011bebf62679774c9463, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hintText: Use the mirror to select your loli character
+  hintText: Use the mirror to select your character.
   vrHintText: 
   localSpawnPosition: {x: -0.22, y: 0.6, z: -1.22}
   scale: 1
@@ -4665,6 +6061,49 @@ MonoBehaviour:
   enableOnEnterTargetMenu: {fileID: 8430301093217427698}
   useHUD: 0
   useSound: 1
+--- !u!114 &4960216072427243448
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4085088343574581875}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69beb381e244f92449b8c4cf954630e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_TrackedObjects:
+  - rid: 6944365950684626961
+  references:
+    version: 2
+    RefIds:
+    - rid: 6944365950684626961
+      type: {class: TrackedMonoBehaviourObject, ns: UnityEngine.Localization.PropertyVariants.TrackedObjects,
+        asm: Unity.Localization}
+      data:
+        m_Target: {fileID: 1880927117}
+        m_TrackedProperties:
+          items:
+          - rid: 6944366104714149900
+        m_UpdateType: 0
+        m_Changed:
+          m_PersistentCalls:
+            m_Calls: []
+    - rid: 6944366104714149900
+      type: {class: LocalizedStringProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties,
+        asm: Unity.Localization}
+      data:
+        m_Localized:
+          m_TableReference:
+            m_TableCollectionName: GUID:0cbff4e97e5791544a4a1d8b1d9dcc45
+          m_TableEntryReference:
+            m_KeyId: 1700126896508928
+            m_Key: 
+          m_FallbackState: 0
+          m_WaitForCompletion: 0
+          m_LocalVariables: []
+        m_PropertyPath: hintText
 --- !u!1 &4154603523179186743
 GameObject:
   m_ObjectHideFlags: 0
@@ -10189,8 +11628,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 85}
-  m_SizeDelta: {x: 40, y: -81.36}
+  m_AnchoredPosition: {x: 0, y: 77.16}
+  m_SizeDelta: {x: 40, y: -65.67999}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3759487281325160354
 CanvasRenderer:
@@ -10233,7 +11672,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Unpacking 999 characters
+  m_Text: If You're stuck on this message either the cards or save file is corrupt
 --- !u!1 &6054900118684802266
 GameObject:
   m_ObjectHideFlags: 0
@@ -10990,6 +12429,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4704370427667582523}
   - component: {fileID: 2105070313683885865}
+  - component: {fileID: 5230934682332745957}
   m_Layer: 15
   m_Name: hint_mortarAndPestle
   m_TagString: Untagged
@@ -11033,6 +12473,64 @@ MonoBehaviour:
   enableOnEnterTargetMenu: {fileID: 0}
   useHUD: 0
   useSound: 1
+--- !u!114 &5230934682332745957
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8131447299347874313}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69beb381e244f92449b8c4cf954630e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_TrackedObjects:
+  - rid: 6944365950684627013
+  references:
+    version: 2
+    RefIds:
+    - rid: 6944365950684627013
+      type: {class: TrackedMonoBehaviourObject, ns: UnityEngine.Localization.PropertyVariants.TrackedObjects,
+        asm: Unity.Localization}
+      data:
+        m_Target: {fileID: 2105070313683885865}
+        m_TrackedProperties:
+          items:
+          - rid: 6944366104714149924
+          - rid: 6944366104714149925
+        m_UpdateType: 0
+        m_Changed:
+          m_PersistentCalls:
+            m_Calls: []
+    - rid: 6944366104714149924
+      type: {class: LocalizedStringProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties,
+        asm: Unity.Localization}
+      data:
+        m_Localized:
+          m_TableReference:
+            m_TableCollectionName: GUID:0cbff4e97e5791544a4a1d8b1d9dcc45
+          m_TableEntryReference:
+            m_KeyId: 2447403705520128
+            m_Key: 
+          m_FallbackState: 0
+          m_WaitForCompletion: 0
+          m_LocalVariables: []
+        m_PropertyPath: hintText
+    - rid: 6944366104714149925
+      type: {class: LocalizedStringProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties,
+        asm: Unity.Localization}
+      data:
+        m_Localized:
+          m_TableReference:
+            m_TableCollectionName: GUID:0cbff4e97e5791544a4a1d8b1d9dcc45
+          m_TableEntryReference:
+            m_KeyId: 2447421896216576
+            m_Key: 
+          m_FallbackState: 0
+          m_WaitForCompletion: 0
+          m_LocalVariables: []
+        m_PropertyPath: vrHintText
 --- !u!1 &8171684434618382673
 GameObject:
   m_ObjectHideFlags: 0
@@ -13909,7 +15407,7 @@ PrefabInstance:
     - target: {fileID: 1487841468594555215, guid: b1081a8a82a4f9740815d57b829b587c,
         type: 3}
       propertyPath: m_Size
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1487841468594555215, guid: b1081a8a82a4f9740815d57b829b587c,
         type: 3}
@@ -13924,7 +15422,7 @@ PrefabInstance:
     - target: {fileID: 1487841469206362423, guid: b1081a8a82a4f9740815d57b829b587c,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -0.00008106232
+      value: 0.00006866455
       objectReference: {fileID: 0}
     - target: {fileID: 1487841469360280756, guid: b1081a8a82a4f9740815d57b829b587c,
         type: 3}

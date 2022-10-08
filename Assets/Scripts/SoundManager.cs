@@ -21,11 +21,12 @@ namespace viva
         public class AudioSourceHandle
         {
             private AudioSource source;
-            public bool valid { get { return source != null; } }
+            public bool exists { get { return source != null; } }
             public float volume { get { if (source) { return source.volume; } else { return 0.0f; } } set { if (source) { source.volume = value; } } }
             public float pitch { set { if (source) { source.pitch = value; } } }
             public bool loop { set { if (source) { source.loop = value; } } }
             public float maxDistance { set { if (source) { source.maxDistance = value; } } }
+            public bool playing { get { return source ? source.isPlaying : false; } }
 
             public AudioSourceHandle(AudioSource _source, Vector3 localPosition, Transform parent)
             {
@@ -91,10 +92,19 @@ namespace viva
         public AudioSourceHandle RequestHandle(Vector3 localPosition, Transform parent = null)
         {
 
-            handleIndex = (handleIndex + 1) % audioSources.Length;
+            for (int i = 0; i < audioSources.Length; i++)
+            {
+                handleIndex = (handleIndex + 1) % audioSources.Length;
+                var candidate = handles[handleIndex];
+                //keep iterating until finding one that isn't occupied
+                if (!candidate.exists || !candidate.playing)
+                {
+                    break;
+                }
+            }
 
             var handle = handles[handleIndex];
-            if (!handle.valid)
+            if (!handle.exists)
             {
                 var audioSourcePrefabInstance = GameObject.Instantiate(audioSourcePrefab);
                 var newAudioSource = audioSourcePrefabInstance.GetComponent<AudioSource>();

@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: 3062532439630056851}
   - component: {fileID: 6465166801541601046}
   - component: {fileID: 1389814676330820858}
+  - component: {fileID: 1630500033209198764}
   m_Layer: 12
   m_Name: chair1
   m_TagString: Untagged
@@ -268,3 +269,25 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.0495774, y: 1.0204873, z: 0.04957743}
   m_Center: {x: -0.21375084, y: 0.51010287, z: 0.2137523}
+--- !u!114 &1630500033209198764
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1579529018165228}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f90974abe2d0d7408dfed68f439c210, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sourceItem: {fileID: 0}
+  collisionSoundsSoft: {fileID: 11400000, guid: 9bc5f34365f08d841966b1d859a6e21e,
+    type: 2}
+  collisionSoundsHard: {fileID: 11400000, guid: 6ecf84d65634b364abafd790f652a26b,
+    type: 2}
+  ignoreSoundsFrom: []
+  dragSoundLoop: {fileID: 8300000, guid: 437df6830a7604b43bfb5df050c74b63, type: 3}
+  rigidBody: {fileID: 9037562915238848801}
+  settings: {fileID: 11400000, guid: 5ed3fa87f3de4664b867f53e667ded9b, type: 2}
+  playSounds: 1

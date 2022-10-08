@@ -10,7 +10,6 @@
         {
             RELAX_ONSEN,
             WASH_HAIR,
-            TAKE_PANTY_SHOT,
             POKE_ANGRY,
             MAKE_ANGRY_WITH_HEADPAT,
             MAKE_HAPPY_WITH_HEADPAT,
@@ -19,7 +18,7 @@
             THROW_DUCK,
             LOOK_UP_SKIRT,
             GIVE_2_DONUTS,
-            FIND_SHINOBU_A_WATER_REED,
+            FIND_CHARACTER_A_WATER_REED,
             WATER_REED_SMACK,
             FIND_HAT,
             HOLD_HANDS_AND_WALK,
@@ -33,37 +32,35 @@
             switch (type)
             {
                 case ObjectiveType.RELAX_ONSEN:
-                    return "Have a Loli Relax in the Onsen";
+                    return "Have a character Relax in the Onsen";
                 case ObjectiveType.WASH_HAIR:
-                    return "Wash a Loli's hair in the bathtub";
-                case ObjectiveType.TAKE_PANTY_SHOT:
-                    return "Show a Loli a picture of her own panties";
+                    return "Wash a characters hair in the bathtub";
                 case ObjectiveType.POKE_ANGRY:
-                    return "Poke a Loli's face until she gets angry";
+                    return "Poke a characters face until they get angry";
                 case ObjectiveType.MAKE_ANGRY_WITH_HEADPAT:
-                    return "Make angry with a rough headpat";
+                    return "Make a character angry with a rough headpat";
                 case ObjectiveType.MAKE_HAPPY_WITH_HEADPAT:
-                    return "Make happy with a nice headpat";
+                    return "Make a character happy with a nice headpat";
                 case ObjectiveType.KISS_ANGRY_WIPE:
-                    return "Make a Loli angrily wipe off a cheek kiss";
+                    return "Make a character angrily wipe off a cheek kiss";
                 case ObjectiveType.KISS_MAKE_HAPPY:
-                    return "Make Loli happy with a cheek kiss";
+                    return "Make a character happy with a cheek kiss";
                 case ObjectiveType.THROW_DUCK:
-                    return "Make a Loli throw a duck at you";
+                    return "Make a character throw a duck at you";
                 case ObjectiveType.HOLD_HANDS_AND_WALK:
-                    return "Hold a Loli's hand and walk around";
+                    return "Hold a characters hand and walk around";
                 case ObjectiveType.LOOK_UP_SKIRT:
-                    return "Look up Loli's skirt";
+                    return "Look up characters skirt";
                 case ObjectiveType.GIVE_2_DONUTS:
-                    return "Make her hold 2 donuts";
-                case ObjectiveType.FIND_SHINOBU_A_WATER_REED:
-                    return "Find her a water reed";
+                    return "Make a character hold 2 donuts";
+                case ObjectiveType.FIND_CHARACTER_A_WATER_REED:
+                    return "Find a character a water reed";
                 case ObjectiveType.WATER_REED_SMACK:
-                    return "Make a loli hit you with a water reed";
+                    return "Make a character hit you with a water reed";
                 case ObjectiveType.FIND_HAT:
-                    return "Find and give a loli, A sunhat";
+                    return "Find and give a character, A sunhat";
                 case ObjectiveType.POUR_FLOUR_ON_HEAD:
-                    return "Pour Flour on your loli's Head";
+                    return "Pour Flour on your characters Head";
                 case ObjectiveType.BAKE_A_PASTRY:
                     return "Bake a pastry";
             }

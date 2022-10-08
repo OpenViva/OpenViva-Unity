@@ -105,20 +105,20 @@ namespace viva
             if (!DEBUG_BOOL)
             { //This is a Hardcoded Way to Load Viva Files Since you cant drag and drop into unity editor
                 DEBUG_BOOL = true;
-                GameDirector.player.vivaControls.Keyboard.wave.performed += delegate
+                GameDirector.input.actions.Keyboard.wave.performed += delegate
                 {
-                //    ClickCreateTab();
-                //    GameDirector.instance.StartCoroutine(ApplyFilesToModel(new string[]{
-                //    "C:/Users/Master-Donut/Documents/viva/Cards/Starter Kit/shinobu/megumin.viva3d",
-                //    "C:/Users/tabwe/Documents/viva/Cards/Starter Kit/senko/senko.viva3d",
-                //    "C:/Users/tabwe/Documents/viva/Cards/Starter Kit/senko/senko_texture.png",
-                //    "C:/Users/tabwe/Documents/viva/Cards/Starter Kit/senko/senko_pupil_r.png",
-                //    "C:/Users/tabwe/Documents/viva/Cards/Starter Kit/senko/senko_pupil_l.png",
-                    
-                //    "C:/Program Files/Blender Foundation/Blender 2.81/Viva Project Pre-Exports/megumin.viva3d",
-                //    "C:/Program Files/Blender Foundation/Blender 2.81/Viva Project Pre-Exports/megumin.png"
-                //    "C:/Program Files/Blender Foundation//Blender/Viva Project Pre-Exports/shinobu_texture.png"
-                //}));
+                    ClickCreateTab();
+                    GameDirector.instance.StartCoroutine(ApplyFilesToModel(new string[]{
+                    //"C:/Users/Master-Donut/Documents/viva/Cards/Starter Kit/shinobu/megumin.viva3d",
+                    "C:/Users/tabwe/Downloads/body.viva3d",
+                    //"C:/Users/tabwe/Documents/viva/Cards/Starter Kit/senko/senko_texture.png",
+                    //"C:/Users/tabwe/Documents/viva/Cards/Starter Kit/senko/senko_pupil_r.png",
+                    //"C:/Users/tabwe/Documents/viva/Cards/Starter Kit/senko/senko_pupil_l.png",
+
+                    //"C:/Program Files/Blender Foundation/Blender 2.81/Viva Project Pre-Exports/megumin.viva3d",
+                    //"C:/Program Files/Blender Foundation/Blender 2.81/Viva Project Pre-Exports/megumin.png"
+                    //"C:/Program Files/Blender Foundation//Blender/Viva Project Pre-Exports/shinobu_texture.png"
+                }));
                 };
             }
 #endif
@@ -180,7 +180,7 @@ namespace viva
                 loli.characterSelectionTarget.OnUnselected();
                 GameDirector.player.objectFingerPointer.selectedLolis.Remove(loli);
             }
-            selectedLolisText.text = GameDirector.player.objectFingerPointer.selectedLolis.Count + " lolis selected";
+            selectedLolisText.text = GameDirector.player.objectFingerPointer.selectedLolis.Count + " " + LocalizationManager.GetLocalizedStringFromTable("OtherUI", "CharactersSelected");
         }
 
         public override void OnBeginUIInput()
@@ -188,7 +188,7 @@ namespace viva
             FileDragAndDrop.EnableDragAndDrop(OnDropFile);
             this.enabled = true;
             SetTab(lastValidTabIndex);
-            selectedLolisText.text = GameDirector.player.objectFingerPointer.selectedLolis.Count + " lolis selected";
+            selectedLolisText.text = GameDirector.player.objectFingerPointer.selectedLolis.Count + " " + LocalizationManager.GetLocalizedStringFromTable("OtherUI", "CharactersSelected");
         }
 
         public override void OnExitUIInput()

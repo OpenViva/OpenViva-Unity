@@ -31,14 +31,10 @@ namespace viva
         {
             var cardsAvailable = ModelCustomizer.main.characterCardBrowser.FindAllExistingCardsInFolders();
 
-            if (cardsAvailable.Length == 0)
-            {
-                GameDirector.instance.fileLoadStatus.description.text = "No Cards Found!";
-            }
-            else
+            if (cardsAvailable.Length > 0)
             {
                 BuildTownLolis(cardsAvailable, maxResidents - (GameDirector.characters.Count - 1), null);
-            } 
+            }
         }
 
         public void BuildTownLolis(string[] cards, int count, Vector3? defaultSpawnPos)

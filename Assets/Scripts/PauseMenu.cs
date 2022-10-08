@@ -399,7 +399,7 @@ namespace viva
 
         public void clickDiscord()
         {
-            Application.OpenURL("https://discord.gg/openviva");
+            Application.OpenURL("https://discord.gg/NFXNZgwpjd");
         }
 
         public void clickSaveAndQuitGame(bool save)
@@ -465,13 +465,13 @@ namespace viva
             if (GameSettings.main.vrControls == Player.VRControlType.TRACKPAD)
             {
                 GameSettings.main.SetVRControls(Player.VRControlType.TELEPORT);
-                buttonText.text = "Using Teleport";
+                buttonText.text = LocalizationManager.GetLocalizedStringFromTable("PauseMenu", "UsingTrackPad");
                 OrientPauseBookToPlayer();
             }
             else
             {
                 GameSettings.main.SetVRControls(Player.VRControlType.TRACKPAD);
-                buttonText.text = "Using Trackpad";
+                buttonText.text = LocalizationManager.GetLocalizedStringFromTable("PauseMenu", "UsingTeleport");
             }
             UpdateVRMovementPrefText();
         }

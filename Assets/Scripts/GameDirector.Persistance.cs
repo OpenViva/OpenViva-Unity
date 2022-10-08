@@ -429,8 +429,8 @@ namespace viva
         private IEnumerator LoadVivaFile(VivaFile file)
         {
             int oldMask = mainCamera.cullingMask;
+            var cardsAvailable = ModelCustomizer.main.characterCardBrowser.FindAllExistingCardsInFolders();
             mainCamera.cullingMask = WorldUtil.uiMask;
-
             fileLoadStatus.gameObject.SetActive(true);
 
             if (file == null)
@@ -467,7 +467,14 @@ namespace viva
 
                 while (!cdm.finished)
                 {
-                    fileLoadStatus.description.text = "Unpacking " + cdm.waiting + " asset(s)";
+                    if(cardsAvailable.Length > 0)
+                    {
+                        fileLoadStatus.description.text = "Unpacking " + cdm.waiting + " asset(s)";
+                    }
+                    else
+                    {
+                        fileLoadStatus.description.text = "No Cards Found!";
+                    }                   
                     yield return null;
                 }
                 Debug.Log("[Persistance] Loaded storage variables...");
@@ -484,7 +491,14 @@ namespace viva
 
                 while (!cdm.finished)
                 {
-                    fileLoadStatus.description.text = "Initializing " + cdm.waiting + " character(s)";
+                    if (cardsAvailable.Length > 0)
+                    {
+                        fileLoadStatus.description.text = "Initializing " + cdm.waiting + " character(s)";
+                    }
+                    else
+                    {
+                        fileLoadStatus.description.text = "No Cards Found!";
+                    }
                     yield return null;
                 }
                 Debug.Log("[Persistance] Loaded file!");

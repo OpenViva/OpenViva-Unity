@@ -228,7 +228,6 @@ namespace viva
                         case PolaroidFrame.PhotoSummary.PANTY:
                             polaroidFrameReactAnim = Loli.Animation.STAND_POLAROID_FRAME_REACT_PANTY_RIGHT;
                             self.ShiftHappiness(-2);
-                            GameDirector.player.CompleteAchievement(Player.ObjectiveType.TAKE_PANTY_SHOT);
                             break;
                     }
                 }
@@ -243,7 +242,6 @@ namespace viva
                         case PolaroidFrame.PhotoSummary.PANTY:
                             polaroidFrameReactAnim = Loli.Animation.STAND_POLAROID_FRAME_REACT_PANTY_LEFT;
                             self.ShiftHappiness(-2);
-                            GameDirector.player.CompleteAchievement(Player.ObjectiveType.TAKE_PANTY_SHOT);
                             break;
                     }
                     self.SetLookAtTarget(GameDirector.player.head, 1.0f);
@@ -330,11 +328,8 @@ namespace viva
             }
             if (self.CanSeePoint(GameDirector.player.head.position))
             {
-                self.autonomy.Interrupt(new AutonomyFaceDirection(self.autonomy, "face direction", delegate (TaskTarget target)
-                {
-                    target.SetTargetPosition(GameDirector.player.floorPos);
-                }, 2.0f));
-                // self.SetRootFacingTarget( GameDirector.player.floorPos, 270.0f, 30.0f, 20.0f );
+                var facedirection = LoliUtility.SetRootFacingTarget(self, "face player", 2.0f, GameDirector.player.floorPos);
+                self.autonomy.Interrupt(facedirection);
                 float bearing = Tools.Bearing(self.transform, GameDirector.player.floorPos);
                 if (Mathf.Abs(bearing) < 20.0f)
                 {

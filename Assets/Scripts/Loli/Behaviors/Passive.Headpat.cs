@@ -10,7 +10,7 @@ namespace viva
 
         private bool wantsMoreHeadpats = false;
 
-        private Loli.TwoBoneIK spineIK;
+        private TwoBoneIK spineIK;
         private Loli.ArmIK.RetargetingInfo spineInfo = new Loli.ArmIK.RetargetingInfo();
         private Tools.EaseBlend headpatBlend = new Tools.EaseBlend();
         private Vector3 headpatStartOffset;
@@ -37,10 +37,8 @@ namespace viva
 
             Transform spine3 = self.spine3;
             Transform neck = spine3.Find("neck");
-            float spine3Length = Vector3.Distance(spine3.position, neck.position);
-            float neckLength = Vector3.Distance(neck.position, self.head.position);
 
-            spineIK = new Loli.TwoBoneIK(spine3, spine3Length, Quaternion.Euler(0, 0, 0), neck, neckLength, Quaternion.Euler(0, 0, 0));
+            spineIK = new TwoBoneIK(spine3, Quaternion.Euler(0, 0, 0), neck, Quaternion.Euler(0, 0, 0), self.head);
         }
 
         public HeadpatBehavior(Loli _self) : base(_self, 0.0f)

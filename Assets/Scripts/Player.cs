@@ -9,7 +9,7 @@ namespace viva
 
         [Header("Controls")]
         [SerializeField]
-        private ControlType m_controls = ControlType.KEYBOARD;
+        private ControlType m_controls = ControlType.VR;
         public ControlType controls { get { return m_controls; } set { m_controls = value; } }
         public float walkSpeed = 0.2f;
         public Vector3 moveVel = Vector3.zero;
@@ -59,7 +59,6 @@ namespace viva
         public InputController controller { get { return m_controller; } }
         private bool grabbingEnabled = true;
         private bool initialized = false;
-        public InputActions_viva vivaControls { get; private set; }
 
         protected override Vector3 CalculateFloorPosition()
         {
@@ -106,9 +105,10 @@ namespace viva
             {
                 return;
             }
-            //settings are built in to start as keyboard mode
+            //settings are built in to start in vr then switch to keyboard if it fails
             initialized = true;
             BindAllControls();
+            SetControls(ControlType.VR);
 
             ReloadCurrentControlType();
             SetInputController(null);    //ensure controller exists on initialize
@@ -157,7 +157,7 @@ namespace viva
 
         private void BindAllControls()
         {
-            vivaControls = new InputActions_viva();
+            var vivaControls = GameDirector.input.actions;
             vivaControls.Enable();
             rightPlayerHandState.InitializeUnityInputControls( vivaControls );
             leftPlayerHandState.InitializeUnityInputControls( vivaControls );
@@ -172,6 +172,7 @@ namespace viva
 
             vivaControls.Keyboard.wave.performed += ctx => OnInputWaveRightHand();
             vivaControls.Keyboard.follow.performed += ctx => OnInputFollowRightHand();
+            vivaControls.Keyboard.stop.performed += ctx => OnInputStopHand();
             vivaControls.Keyboard.crouch.performed += ctx => FlipKeyboardHeight();
             vivaControls.Keyboard.pauseButton.performed += ctx => TogglePauseMenu();
         }

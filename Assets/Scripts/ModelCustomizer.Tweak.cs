@@ -538,7 +538,7 @@ namespace viva
             if (allow)
             {
                 text.color = Color.white;
-                text.text = "Tweak";
+                text.text = LocalizationManager.GetLocalizedStringFromTable("OtherUI", "Tweak");
             }
             else
             {

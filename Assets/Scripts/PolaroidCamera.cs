@@ -246,17 +246,19 @@ namespace viva
 
             //Analyze pixels for panties
             PolaroidFrame.PhotoSummary summary;
-            if (dataTexture != null)
-            {
-                Color32[] pixelData = dataTexture.GetPixels32();
-                yield return new WaitForEndOfFrame();
-                summary = AnalyzePhoto(pixelData);
-            }
-            else
-            {
-                Debug.LogError("ERROR Could not analyze photo summary!");
-                summary = PolaroidFrame.PhotoSummary.GENERIC;
-            }
+            //if (dataTexture != null)
+            //{
+            //    Color32[] pixelData = dataTexture.GetPixels32();
+            //    yield return new WaitForEndOfFrame();
+            //    summary = AnalyzePhoto(pixelData);
+            //}
+            //else
+            //{
+            //    Debug.LogError("ERROR Could not analyze photo summary!");
+            //    summary = PolaroidFrame.PhotoSummary.GENERIC;
+            //}
+
+            summary = IsLookingAtPanty() ? PolaroidFrame.PhotoSummary.PANTY : PolaroidFrame.PhotoSummary.GENERIC;
 
             //animate polaroid coming out of camera
             PolaroidFrame polaroidFrame = SpawnPolaroid(polaroidTexture);

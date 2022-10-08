@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using UnityEngine;
+using UnityEngine.XR;
 using UnityEngine.XR.Management;
 
 
@@ -47,15 +48,18 @@ namespace viva
         private void SetEnableVRControls(bool enable)
         {
             if (enable)
-            {
+            {                
                 if (XRGeneralSettings.Instance.Manager.activeLoader == null)
                 {
                     Debug.Log("#VR Enabled " + (XRGeneralSettings.Instance.Manager.activeLoader == null));
                     XRGeneralSettings.Instance.Manager.InitializeLoaderSync();
 
+                    Debug.Log("DEVICE NAME = " + XRSettings.loadedDeviceName);
+
                     if (XRGeneralSettings.Instance.Manager.activeLoader == null)
                     {
                         Debug.LogError("Failed to initialize VR");
+                        SetControls(ControlType.KEYBOARD);
                         return;
                     }
                     else
@@ -66,7 +70,7 @@ namespace viva
                 head.localPosition = Vector3.zero;
                 head.localRotation = Quaternion.identity;
 
-                crosshair.SetActive(false);
+                SetCrosshair(false);
                 CreateVRTeleportMesh();
                 GameDirector.instance.mainCamera.stereoTargetEye = StereoTargetEyeMask.Both;
             }

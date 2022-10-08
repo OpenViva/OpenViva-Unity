@@ -252,8 +252,7 @@ namespace viva
         private GestureHand[] gestureHands = new GestureHand[2];
         public GestureHand rightGestureHand { get { return gestureHands[0]; } }
         public GestureHand leftGestureHand { get { return gestureHands[1]; } }
-
-        public List<Loli> selectedLolis { get; private set; } = new List<Loli>();
+        public List<Loli> selectedLolis { get; private set; } = new List<Loli>();       
         private Coroutine pointingCoroutine = null;
         private List<VivaSessionAsset> pointedAssets = new List<VivaSessionAsset>();
         private Coroutine gestureDisplayCoroutine = null;
@@ -386,7 +385,7 @@ namespace viva
 
             var seen = new List<Character>();
 
-            //If 
+            //Call if selected
             foreach (Loli loli in selectedLolis)
             {
                 loli.active.OnGesture(gestureHand.playerHandState.selfItem, gesture);

@@ -24,7 +24,7 @@ namespace viva
 
             if (!tired)
             {
-                if (GameDirector.skyDirector.sunPitchRadian > tiredSunPitchRadianStart && GameDirector.skyDirector.sunPitchRadian < tiredSunPitchRadianEnd)
+                if (GameDirector.skyDirector.sunPitchRadian < tiredSunPitchRadianStart && GameDirector.skyDirector.sunPitchRadian > tiredSunPitchRadianEnd)
                 {
                     //SetTired( true );
                     BecomeTired();

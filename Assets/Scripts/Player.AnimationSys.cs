@@ -122,6 +122,11 @@ namespace viva
                 new PlayerAnimationEvent( 0.5f ,(int)AnimationEventName.FIRE_GESTURE, new float[]{ 1, (int)ObjectFingerPointer.Gesture.FOLLOW } )
                 }
             );
+            m_animationInfos[Animation.GESTURE_STOP] = new PlayerAnimationInfo(Animator.StringToHash("player_gesture_stop"), duration, Priority.LOW, Animation.IDLE, 1.0f,
+                new PlayerAnimationEvent[]{
+                new PlayerAnimationEvent( 0.5f ,(int)AnimationEventName.FIRE_GESTURE, new float[]{ 1, (int)ObjectFingerPointer.Gesture.STOP } )
+                }
+            );
             m_animationInfos[Animation.GESTURE_WAVE] = new PlayerAnimationInfo(Animator.StringToHash("player_gesture_wave"), duration, Priority.LOW, Animation.IDLE, 1.0f,
                 new PlayerAnimationEvent[]{
                 new PlayerAnimationEvent( 0.5f ,(int)AnimationEventName.FIRE_GESTURE, new float[]{ 1, (int)ObjectFingerPointer.Gesture.HELLO } )

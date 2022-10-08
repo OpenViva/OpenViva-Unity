@@ -27,11 +27,13 @@ namespace viva
 
         private float lastCollisionSoundTime;
         private Coroutine dragCoroutine = null;
+        private bool isDragging = false;
+        public bool playSounds = true;
 
 
         protected virtual void OnCollisionEnter(Collision collision)
         {
-
+            if (!playSounds) return;
             if (settings == null)
             {
                 Debug.LogError("[PhysicsSound] Missing settings " + name);
@@ -102,8 +104,10 @@ namespace viva
                 Debug.LogError("[PhysicsSound] missing rigidBody reference for " + name);
                 return;
             }
-            if (rigidBody.velocity.sqrMagnitude > settings.dragMinVel * settings.dragMinVel)
+            var relativeVel = collision.rigidbody ? collision.rigidbody.velocity : Vector3.zero;
+            if ((rigidBody.velocity-relativeVel).sqrMagnitude > settings.dragMinVel * settings.dragMinVel)
             {
+                isDragging = true;
                 if (dragCoroutine == null)
                 {
                     dragCoroutine = GameDirector.instance.StartCoroutine(Drag());
@@ -118,15 +122,13 @@ namespace viva
             handle.Play(dragSoundLoop);
             handle.loop = true;
 
-            while (true)
+            while (isDragging)
             {
                 float vel = rigidBody.velocity.magnitude;
                 handle.pitch = Mathf.LerpUnclamped(settings.dragMinPitch, settings.dragMaxPitch, Tools.GetClampedRatio(settings.dragMinVel, settings.dragMaxVel, vel));
                 handle.volume = Mathf.Clamp01(vel / (settings.dragMaxVolumeVel));
-                if (vel < settings.dragMinVel)
-                {
-                    break;
-                }
+                isDragging = false;
+                yield return new WaitForFixedUpdate();
                 yield return new WaitForFixedUpdate();
             }
 

@@ -266,6 +266,7 @@ namespace viva
                 case Item.Type.KNIFE:
                 case Item.Type.MIXING_SPOON:
                 case Item.Type.LID:
+                case Item.Type.REINS:
                     return false;
             }
             //can only store items that are parentable
@@ -291,18 +292,24 @@ namespace viva
             }
 
             //ensure bag is fully parented before triggering animation so blends look right
-            // if( !loli.active.IsTaskActive( loli.active.give ) ){
-            // 	if( loli.leftHandState.heldItem == this && !loli.rightShoulderState.occupied ){
+            //if (!loli.active.IsTaskActive(loli.active.give))
+            //{
+            //    if (loli.leftHandState.heldItem == this && !loli.rightShoulderState.occupied)
+            //    {
 
-            // 	 	if( loli.leftHandState.finishedBlending ){
-            // 			loli.SetTargetAnimation( Loli.Animation.STAND_WEAR_BAG_RIGHT );
-            // 		}
-            // 	}else if( !loli.leftShoulderState.occupied ){
-            // 		if( loli.rightHandState.finishedBlending ){
-            // 			loli.SetTargetAnimation( Loli.Animation.STAND_WEAR_BAG_LEFT );
-            // 		}
-            // 	}
-            // }
+            //        if (loli.leftHandState.finishedBlending)
+            //        {
+            //            loli.SetTargetAnimation(Loli.Animation.STAND_WEAR_BAG_RIGHT);
+            //        }
+            //    }
+            //    else if (!loli.leftShoulderState.occupied)
+            //    {
+            //        if (loli.rightHandState.finishedBlending)
+            //        {
+            //            loli.SetTargetAnimation(Loli.Animation.STAND_WEAR_BAG_LEFT);
+            //        }
+            //    }
+            //}
         }
 
         public override bool ShouldPickupWithRightHand(Character source)

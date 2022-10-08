@@ -72,6 +72,18 @@ namespace viva
                 }
             }
 
+            public void RemoveAllPassivesAndRequirements()
+            {
+                for (int i = passiveCount; i-- > 0;)
+                {
+                    RemovePassive(passives[i]);
+                }
+                for (int i = requirementCount; i-- > 0;)
+                {
+                    RemoveRequirement(requirements[i]);
+                }
+            }
+
             public void AddRequirement(Task requirement)
             {
                 if (requirement == null || requirement.isAPassive || requirement.isARequirement || requirement == this)

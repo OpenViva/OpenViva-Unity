@@ -187,6 +187,7 @@ namespace viva
             stand.propertyValues[PropertyValue.PICKUP_DISTANCE] = 0.42f;
             stand.bodyStateConnections[BodyState.FLOOR_SIT] = Animation.STAND_TO_SIT_FLOOR;
             stand.bodyStateConnections[BodyState.SQUAT] = Animation.STAND_TO_SQUAT;
+            stand.bodyStateConnections[BodyState.STANDING_HUG] = Animation.STAND_TO_STAND_HUG_FAR_HAPPY;
 
 
             var standingHug = new BodyStateAnimationSet(true);

@@ -11,6 +11,7 @@ namespace viva
 
 
         public int lodLevel { get; protected set; } = 0;
+        private readonly float far = 16f;
         public OutfitInstance outfitInstance { get; private set; } = new OutfitInstance();
 
         private void FixedUpdateLOD()
@@ -41,6 +42,7 @@ namespace viva
                     {
                         Cloth cloth = clothingInstance.containers[0].GetComponent<Cloth>();
                         cloth.enabled = enableClothSim;
+                        cloth.clothSolverFrequency = Tools.RemapClamped(0, far * far, 85, 10f, sqDist);
                     }
                 }
                 if (lodLevel == 0)

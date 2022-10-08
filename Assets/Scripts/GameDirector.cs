@@ -52,7 +52,7 @@ namespace viva
         public Camera mainCamera { get; private set; }
         private OnVivaFileCallback onFinishLoadingVivaFile;
         public bool physicsFrame { get; private set; } = false;
-        //public static InputManager input { get; private set; }
+        public static InputManager input { get; private set; }
 
 
         public void AddOnFinishLoadingCallback(OnVivaFileCallback callback)
@@ -76,7 +76,7 @@ namespace viva
         {
             Debug.Log("[GameDirector] Awake");
             instance = this;
-            //input = new InputManager();
+            input = new InputManager();
             skyDirector = m_skyDirector;
             lampDirector = m_lampDirector;
             utilityTransform = new GameObject("UTILITY").transform;

@@ -567,6 +567,99 @@ namespace viva
             Debug.DrawLine(pos + new Vector3(0.0f, 0.0f, radius), pos - new Vector3(0.0f, 0.0f, radius), color, 4.0f);
         }
 
+        public static void DrawDiagCross(Vector3 pos, Color color, float radius = 0.4f, float duration = 4.0f)
+        {
+            Debug.DrawLine(pos + new Vector3(radius, radius, -radius), pos + new Vector3(-radius, -radius, radius), color, duration);
+            Debug.DrawLine(pos + new Vector3(-radius, radius, radius), pos + new Vector3(radius, -radius, -radius), color, duration);
+            Debug.DrawLine(pos + new Vector3(-radius, radius, -radius), pos + new Vector3(radius, -radius, radius), color, duration);
+            Debug.DrawLine(pos + new Vector3(-radius, -radius, -radius), pos + new Vector3(radius, radius, radius), color, duration);
+        }
+
+        public static Vector2? CircleCircleIntersection(Vector2 p0, Vector2 p1, float r0, float r1, bool positiveSolution)
+        {
+            float d = Vector3.Distance(p0, p1);
+            if (d == 0) return null;
+            if (d >= r0 + r1) return null;
+            if (d <= Mathf.Abs(r0 - r1)) return null;
+
+            var a = (r0 * r0 - r1 * r1 + d * d) / (2 * d);
+            var h = Mathf.Sqrt(r0 * r0 - a * a);
+            var x2 = p0.x + a * (p1.x - p0.x) / d;
+            var y2 = p0.y + a * (p1.y - p0.y) / d;
+            if (positiveSolution) return new Vector2(x2 - h * (p1.y - p0.y) / d, y2 + h * (p1.x - p0.x) / d);
+            else return new Vector2(x2 + h * (p1.y - p0.y) / d, y2 - h * (p1.x - p0.x) / d);
+        }
+
+        public static void AverageQuaternion(ref Vector4 cumulative, float weight, Quaternion newRotation, Quaternion firstRotation)
+        {
+            if (!AreQuaternionsClose(newRotation, firstRotation))
+            {
+                newRotation = new Quaternion(-newRotation.x, -newRotation.y, -newRotation.z, -newRotation.w);
+            }
+            cumulative.x += newRotation.x * weight;
+            cumulative.y += newRotation.y * weight;
+            cumulative.z += newRotation.z * weight;
+            cumulative.w += newRotation.w * weight;
+        }
+
+        public static bool AreQuaternionsClose(Quaternion q1, Quaternion q2)
+        {
+            return Quaternion.Dot(q1, q2) >= 0.0f;
+        }
+
+        public static Vector3 ClosestPointOnBoxColliderSurface(Vector3 point, BoxCollider box)
+        {
+            var closest = box.ClosestPoint(point);
+            var local = box.transform.InverseTransformPoint(closest) - box.center;
+
+            float halfX = (box.size.x * 0.5f);
+            float halfY = (box.size.y * 0.5f);
+            float halfZ = (box.size.z * 0.5f);
+            if (local.x > halfX || local.x < -halfX ||
+                local.y > halfY || local.y < -halfY ||
+                local.z > halfZ || local.z < -halfZ)
+            {
+                return closest;
+            }
+            else
+            {
+                Vector3 deltaAbs = new Vector3(
+                    halfX - Mathf.Abs(local.x),
+                    halfY - Mathf.Abs(local.y),
+                    halfZ - Mathf.Abs(local.z)
+                );
+                var largest = Mathf.Min(deltaAbs.x, Mathf.Min(deltaAbs.y, deltaAbs.z));
+                if (largest == deltaAbs.x)
+                {
+                    local.x = halfX * Mathf.Sign(local.x);
+                }
+                else if (largest == deltaAbs.y)
+                {
+                    local.y = halfY * Mathf.Sign(local.y);
+                }
+                else
+                {
+                    local.z = halfZ * Mathf.Sign(local.z);
+                }
+                return box.transform.TransformPoint(local);
+            }
+        }
+
+        public static bool PointInsideBoxCollider(Vector3 point, BoxCollider box)
+        {
+            point = box.transform.InverseTransformPoint(point) - box.center;
+
+            float halfX = (box.size.x * 0.5f);
+            float halfY = (box.size.y * 0.5f);
+            float halfZ = (box.size.z * 0.5f);
+            if (point.x < halfX && point.x > -halfX &&
+               point.y < halfY && point.y > -halfY &&
+               point.z < halfZ && point.z > -halfZ)
+                return true;
+            else
+                return false;
+        }
+
         public static void GizmoArrow(Vector3 a, Vector3 b, float shrinkPercent = 0.0f)
         {
 
@@ -606,6 +699,119 @@ namespace viva
         {
             forward.y = 0.0001f;
             return forward.normalized;
+        }
+
+        public static float CircleArea(float r)
+        {
+            return Mathf.PI * r * r;
+        }
+
+        public static float ApproximateVolume(Collider collider)
+        {
+            var sc = collider as SphereCollider;
+            if (sc)
+            {
+                var r = sc.radius * collider.transform.lossyScale.y;
+                return (4f / 3f) * Mathf.PI * r * r * r;
+            }
+            var cc = collider as CapsuleCollider;
+            if (cc)
+            {
+                var r = cc.radius * collider.transform.lossyScale.y;
+                var h = cc.height * collider.transform.lossyScale.y;
+                var heightOnly = Mathf.Max(h, r * 2) / 2 - r;
+                return Mathf.PI * r * r * ((4f / 3f) * r + heightOnly);
+            }
+            var bc = collider as BoxCollider;
+            if (bc)
+            {
+                var size = Vector3.zero;
+                size.x = collider.transform.lossyScale.x * bc.size.x;
+                size.y = collider.transform.lossyScale.y * bc.size.y;
+                size.z = collider.transform.lossyScale.z * bc.size.z;
+                return size.x * size.y * size.z;
+            }
+            var mc = collider as MeshCollider;
+            if (mc)
+            {
+                return collider.transform.lossyScale.x * mc.sharedMesh.bounds.size.magnitude;
+            }
+            return 0;
+        }
+
+        public static Vector3 DirToVector3(int coord)
+        {
+            switch (coord)
+            {
+                case 0:
+                    return Vector3.right;
+                case 1:
+                    return Vector3.up;
+                default:
+                    return Vector3.forward;
+            }
+        }
+
+        public static float CircleSectorArea(float r, float h)
+        {
+            if (r == 0) return 0;
+            var H = Mathf.Clamp(Mathf.Abs(h), 0, r);
+            float theta = Mathf.Acos(H / r) * 2;
+            if (h < 0)
+            {
+                theta = 2 * Mathf.PI - theta;
+            }
+            return r * r * (theta - Mathf.Sin(theta)) / 2f;
+        }
+
+        public static Quaternion SafeLookRotation(Vector3 from, Vector3 to)
+        {
+            var diff = to - from;
+            if (diff.sqrMagnitude <= Mathf.Epsilon) return Quaternion.identity;
+            return Quaternion.LookRotation(diff, Vector3.up);
+        }
+
+        public static bool ExploreFile(string filePath)
+        {
+            if (!System.IO.File.Exists(filePath))
+            {
+                return false;
+            }
+            //Clean up file path so it can be navigated OK
+            filePath = System.IO.Path.GetFullPath(filePath);
+            System.Diagnostics.Process.Start("explorer.exe", string.Format("/select,\"{0}\"", filePath));
+            return true;
+        }
+
+        public static Texture2D CreateThumbnailTexture(string stringData, int resolution, TextureFormat format, bool mipMap)
+        {
+            var data = Tools.StringToBase64ByteArray(stringData);
+            Texture2D thumbnailTex = new Texture2D(resolution, resolution, format, mipMap, true);
+            try
+            {
+                thumbnailTex.LoadRawTextureData(data);
+                thumbnailTex.Apply(false, true);
+            }
+            catch (System.Exception e)
+            {
+                Texture2D.DestroyImmediate(thumbnailTex);
+                return null;
+            }
+            return thumbnailTex;
+        }
+
+        public static bool IsOverriden<T>(string methodName)
+        {
+            var m = typeof(T).GetMethod(methodName);
+            if (m == null) return false;
+            return m.GetBaseDefinition().DeclaringType != m.DeclaringType;
+        }
+
+        public static int CombineHashes(int a, int b)
+        {
+            int h = 17;
+            h = h * 37 + a;
+            return h * 37 + b;
         }
 
         public static Transform SearchTransformFamily(Transform branch, string target)

@@ -12,6 +12,8 @@ namespace viva
 
         public delegate void OnNavSearchFinish(Vector3[] path, Vector3 navSearchPoint, Vector3 navPointDir);
 
+        private static readonly int MAX_SEARCHES_PER_FRAME = 10;
+
         public abstract class PathRequest
         {
 
@@ -253,10 +255,10 @@ namespace viva
                 int steps = 0;
                 while (true)
                 {
-                    if (++steps > 10)
+                    if (++steps >= MAX_SEARCHES_PER_FRAME)
                     {   //max searches per frame
                         steps = 0;
-                        yield return new WaitForSeconds(0.05f);
+                        yield return new WaitForFixedUpdate();
                     }
                     Vector3? testPoint = request.GetNextSearchPoint();
                     if (!testPoint.HasValue)
@@ -271,7 +273,12 @@ namespace viva
                             Tools.DrawCross(testPoint.Value - Vector3.down * 0.2f, Color.red, 0.05f);
                             continue;
                         }
-                        Tools.DrawCross(testPoint.Value, Color.yellow, 0.06f);
+                        if (cachePath.status == NavMeshPathStatus.PathPartial)
+                        {
+                            continue;
+                        }
+
+                        Tools.DrawDiagCross(testPoint.Value, Color.yellow, 0.02f);
 
                         //find path closest to target and shortest path
                         float pathCost;
@@ -281,7 +288,7 @@ namespace viva
                         }
                         else
                         {
-                            pathCost = PathSqLength(cachePath);
+                            pathCost = PathSqLength(cachePath.corners);
                         }
                         if (pathCost < shortestCost)
                         {
@@ -304,7 +311,7 @@ namespace viva
                     }
                     else
                     {
-                        Tools.DrawCross(testPoint.Value, Color.red, 0.15f);
+                        Tools.DrawDiagCross(testPoint.Value, Color.red, 0.15f);
                     }
                 }
             }
@@ -315,12 +322,12 @@ namespace viva
             continuousNavSearchCoroutine = null;
         }
 
-        private float PathSqLength(NavMeshPath path)
+        public static float PathSqLength(Vector3[] path)
         {
             float length = 0.0f;
-            for (int j = path.corners.Length - 1, i = 0; i < path.corners.Length; j = i++)
+            for (int j = path.Length - 1, i = 0; i < path.Length; j = i++)
             {
-                length += Vector3.SqrMagnitude(path.corners[i] - path.corners[j]);
+                length += Vector3.SqrMagnitude(path[i] - path[j]);
             }
             return length;
         }

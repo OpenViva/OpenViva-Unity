@@ -133,7 +133,7 @@ namespace viva
             }
             if (player.controls == Player.ControlType.KEYBOARD)
             {
-                DisplayHUDMessage("Open the options menu with ESC", true, HintType.HINT, MenuTutorial.WAIT_TO_OPEN_PAUSE_MENU);
+                DisplayHUDMessage("Open the pause book with ESC", true, HintType.HINT, MenuTutorial.WAIT_TO_OPEN_PAUSE_MENU);
                 while (menuTutorialPhase <= MenuTutorial.NONE)
                 {
                     checkIfExitedTutorialCircle();
@@ -142,7 +142,7 @@ namespace viva
             }
             else
             {
-                DisplayHUDMessage("Press the MENU controller button", true, HintType.HINT, MenuTutorial.WAIT_TO_OPEN_PAUSE_MENU);
+                DisplayHUDMessage("Open the pause book with the MENU button", true, HintType.HINT, MenuTutorial.WAIT_TO_OPEN_PAUSE_MENU);
                 while (menuTutorialPhase <= MenuTutorial.NONE)
                 {
                     checkIfExitedTutorialCircle();
@@ -261,7 +261,7 @@ namespace viva
             if (player.controls == Player.ControlType.KEYBOARD)
             {
                 DisplayHUDMessage("Left click left hand. Right click right hand.", true, HintType.HINT_NO_IMAGE, MenuTutorial.WAIT_TO_START_PICKUP);
-                DisplayHUDMessage("Drop by holding SHIFT", true, HintType.HINT, MenuTutorial.WAIT_TO_START_PICKUP);
+                DisplayHUDMessage("Drop objects by holding SHIFT and clicking.", true, HintType.HINT, MenuTutorial.WAIT_TO_START_PICKUP);
             }
             else
             {

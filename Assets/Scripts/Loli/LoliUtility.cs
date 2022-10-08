@@ -1,10 +1,10 @@
-﻿namespace viva
-{
+﻿using UnityEngine;
 
+namespace viva
+{
 
     public static class LoliUtility
     {
-
 
         public static AutonomyPlayAnimation CreateSpeechAnimation(Loli loli, AnimationSet animationSet, SpeechBubble bubble)
         {
@@ -15,7 +15,16 @@
             };
             return playConfuseAnim;
         }
-    }
 
+        public static AutonomyFaceDirection SetRootFacingTarget(Loli loli, string name, float speedMultiplier, Vector3 position)
+        {
+            var setRootFacingTarget = new AutonomyFaceDirection(loli.autonomy, name, delegate (TaskTarget target)
+            {
+                target.SetTargetPosition(position);
+            }, speedMultiplier);
+
+            return setRootFacingTarget;        
+        }
+    }
 
 }

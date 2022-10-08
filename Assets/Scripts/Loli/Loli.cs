@@ -87,7 +87,6 @@ namespace viva
         private float bodyFlagPercent = 1.0f;
         private float bodyFlagSpeedMult = 1.0f;
         private float eyeFlagSpeedMult = 1.0f;
-        private VivaModel vivaHead;
         private static readonly int dirtID = Shader.PropertyToID("_Dirt");
         private int lowLODstep = 0;
         private bool previewMode = false;

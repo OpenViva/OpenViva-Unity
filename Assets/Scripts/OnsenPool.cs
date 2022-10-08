@@ -22,19 +22,19 @@ namespace viva
 
         public override void OnMechanismAwake()
         {
-            GameDirector.player.vivaControls.Keyboard.wave.performed += delegate
-            {
-                for (int i = 1; i < GameDirector.characters.objects.Count; i++)
-                {
-                    var loli = GameDirector.characters.objects[i] as Loli;
-                    if (loli)
-                    {
-                        // loli.BeginRagdollMode( 0.2f, Loli.Animation.FALLING_LOOP );
-                    }
-                }
+            //GameDirector.player.vivaControls.Keyboard.wave.performed += delegate
+            //{
+            //    for (int i = 1; i < GameDirector.characters.objects.Count; i++)
+            //    {
+            //        var loli = GameDirector.characters.objects[i] as Loli;
+            //        if (loli)
+            //        {
+            //            loli.BeginRagdollMode(0.2f, Loli.Animation.FALLING_LOOP);
+            //        }
+            //    }
 
-                // GameDirector.instance.StartCoroutine( testNumerator() );
-            };
+            //    GameDirector.instance.StartCoroutine(testNumerator());
+            //};
         }
 
         private IEnumerator testNumerator()

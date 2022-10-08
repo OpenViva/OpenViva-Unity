@@ -55,8 +55,8 @@ namespace viva
         {
 
             if (Vector3.SqrMagnitude(GameDirector.player.floorPos - self.floorPos) > 2.25f)
-            {   //1.5f squared
-                // self.active.follow.AttemptFollowRefresh( GameDirector.player.floorPos, true, 0.55f );
+            {   //1.5f squared                
+                //self.active.follow.UpdateFollowRefresh( GameDirector.player.floorPos, 0.55f );
                 self.SetTargetAnimation(Loli.Animation.STAND_CHASE_LOCOMOTION);
                 if (!self.IsSpeakingAtAll() && self.currentAnim == Loli.Animation.STAND_CHASE_LOCOMOTION)
                 {
@@ -66,10 +66,10 @@ namespace viva
             else
             {
                 // self.SetRootFacingTarget( GameDirector.player.floorPos, 140.0f, 25.0f, 20.0f );
-                self.autonomy.Interrupt(new AutonomyFaceDirection(self.autonomy, "face direction cattail", delegate (TaskTarget target)
-                {
-                    target.SetTargetPosition(GameDirector.player.floorPos);
-                }, 3.0f));
+                //self.autonomy.Interrupt(new AutonomyFaceDirection(self.autonomy, "face direction cattail", delegate (TaskTarget target)
+                //{
+                //    target.SetTargetPosition(GameDirector.player.floorPos);
+                //}, 3.0f));
 
                 //if facing player under 35 degrees bearing
                 if (Mathf.Abs(Tools.Bearing(self.transform, GameDirector.player.floorPos)) < 35.0f &&

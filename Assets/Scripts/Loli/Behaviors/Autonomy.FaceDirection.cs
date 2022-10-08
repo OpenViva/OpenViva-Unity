@@ -14,10 +14,15 @@ namespace viva
             WORLD_POSITION,
             ITEM_POSITION,
             IN_HIERARCHY,
+            TRANSFORM,
+            CHARACTER,
+            RIGIDBODY
         }
 
         private readonly Loli self;
         public Vector3? lastReadPos = null;
+
+        public object target { get; private set; }
         public TargetType type { get; private set; } = TargetType.WORLD_POSITION;
 
         public TaskTarget(Loli _self)
@@ -25,10 +30,30 @@ namespace viva
             self = _self;
         }
 
-        public void SetTargetPosition(Vector3 pos)
+        public void SetTargetPosition(Vector3? pos)
         {
             type = TargetType.WORLD_POSITION;
             lastReadPos = pos;
+        }
+
+        public void SetTargetCharacter(Character character)
+        {
+            type = TargetType.CHARACTER;
+            target = character;
+        }
+
+        public void SetTargetRigidBody(Rigidbody rigidBody)
+        {
+            type = TargetType.RIGIDBODY;
+            target = rigidBody;
+        }
+
+        /// <summary>Assigns a transform to track its world position.</summary>
+        /// <param name="newTargetTransform">The new target transform. You can pass null to disable the entire TaskTarget.</param>
+        public void SetTargetTransform(Transform newTargetTransform)
+        {
+            type = TargetType.TRANSFORM;
+            target = newTargetTransform;
         }
 
         public void SetTargetItem(Item targetItem)
@@ -48,6 +73,39 @@ namespace viva
             {
                 lastReadPos = targetItem.transform.position + Vector3.up * 0.025f;
                 type = TargetType.ITEM_POSITION;
+            }
+        }
+
+        public Vector3? Read()
+        {
+            switch (type)
+            {
+                case TargetType.WORLD_POSITION:
+                    return lastReadPos;
+                case TargetType.TRANSFORM:
+                    var targetTransform = target as Transform;
+                    if (targetTransform)
+                    {
+                        lastReadPos = targetTransform.position;
+                    }
+                    else
+                    {
+                        lastReadPos = null;
+                    }
+                    return lastReadPos;
+                case TargetType.RIGIDBODY:
+                    var targetRigidBody = target as Rigidbody;
+                    if (targetRigidBody)
+                    {
+                        lastReadPos = targetRigidBody.worldCenterOfMass;
+                    }
+                    else
+                    {
+                        lastReadPos = null;
+                    }
+                    return lastReadPos;
+                default:
+                    return null;
             }
         }
     }

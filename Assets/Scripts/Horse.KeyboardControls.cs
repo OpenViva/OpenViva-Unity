@@ -19,12 +19,12 @@ namespace viva
             playerArmatureBlend.SetTarget(false, player.armature, true, true, 0.0f, 0.6f, 1.0f);
             player.headRigidBody.isKinematic = true;
 
-            player.vivaControls.Keyboard.w.performed += ctx => OnInputHorseGear(1);
-            player.vivaControls.Keyboard.s.performed += ctx => OnInputHorseGear(-1);
-            player.vivaControls.Keyboard.a.performed += ctx => OnInputHorseDirection(-1);
-            player.vivaControls.Keyboard.a.canceled += ctx => OnInputHorseDirection(0);
-            player.vivaControls.Keyboard.d.performed += ctx => OnInputHorseDirection(1);
-            player.vivaControls.Keyboard.d.canceled += ctx => OnInputHorseDirection(0);
+            GameDirector.input.actions.Keyboard.w.performed += ctx => OnInputHorseGear(1);
+            GameDirector.input.actions.Keyboard.s.performed += ctx => OnInputHorseGear(-1);
+            GameDirector.input.actions.Keyboard.a.performed += ctx => OnInputHorseDirection(-1);
+            GameDirector.input.actions.Keyboard.a.canceled += ctx => OnInputHorseDirection(0);
+            GameDirector.input.actions.Keyboard.d.performed += ctx => OnInputHorseDirection(1);
+            GameDirector.input.actions.Keyboard.d.canceled += ctx => OnInputHorseDirection(0);
         }
 
         public override void OnExit(Player player)
@@ -34,12 +34,12 @@ namespace viva
 
             player.transform.position = horse.spine1.position + Vector3.down * 0.5f + horse.transform.forward;
 
-            player.vivaControls.Keyboard.w.performed -= ctx => OnInputHorseGear(1);
-            player.vivaControls.Keyboard.s.performed -= ctx => OnInputHorseGear(-1);
-            player.vivaControls.Keyboard.a.performed -= ctx => OnInputHorseDirection(-1);
-            player.vivaControls.Keyboard.a.canceled -= ctx => OnInputHorseDirection(0);
-            player.vivaControls.Keyboard.d.performed -= ctx => OnInputHorseDirection(1);
-            player.vivaControls.Keyboard.d.canceled -= ctx => OnInputHorseDirection(0);
+            GameDirector.input.actions.Keyboard.w.performed -= ctx => OnInputHorseGear(1);
+            GameDirector.input.actions.Keyboard.s.performed -= ctx => OnInputHorseGear(-1);
+            GameDirector.input.actions.Keyboard.a.performed -= ctx => OnInputHorseDirection(-1);
+            GameDirector.input.actions.Keyboard.a.canceled -= ctx => OnInputHorseDirection(0);
+            GameDirector.input.actions.Keyboard.d.performed -= ctx => OnInputHorseDirection(1);
+            GameDirector.input.actions.Keyboard.d.canceled -= ctx => OnInputHorseDirection(0);
         }
 
         public override void OnFixedUpdateControl(Player player)
