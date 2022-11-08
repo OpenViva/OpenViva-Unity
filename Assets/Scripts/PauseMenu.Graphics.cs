@@ -229,7 +229,7 @@ namespace viva
 
         private void UpdateLodDistanceText()
         {
-            lodDistanceText.text = GameSettings.main.lodDistance * 100.0f + "%";
+            lodDistanceText.text = (GameSettings.main.lodDistance * 100f).ToString("00") + "%";
         }
 
     }
