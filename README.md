@@ -2,8 +2,8 @@
 
 Open source continuation of Viva.
 
-#Important Notice
-We are looking for more developers so if you can help, please contact us on out discord
+# Important Notice
+We are looking for more developers so if you can help, please contact us on out discord.
 
 ## Copyrights
 
