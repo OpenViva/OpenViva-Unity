@@ -10,7 +10,7 @@ We currently have translations for:
 - English
 - Russian
 - Hungarian
-- Turkish (Incomplete)
+- Turkish
 - Romanian
 
 ## Copyrights
