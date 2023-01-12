@@ -1,0 +1,383 @@
+(Sorry if this seems confusing by the way)
+(I will double check this with Google translate) 
+NOTE: Please Keep Headers ENGLISH. (Header: 	)
+
+
+
+
+
+HINTS:
+
+--Mirror-Hint: 	Utilise le mirroir pour sélectioner un personnage.
+
+--SlideDoor-Hint: 	Ouvre la porte coulissante à l'aide de tes mains.
+
+--Bell-Hint: 	Appuie sur la sonette pour que l'on t'apporte une serviette.
+
+--SelectBeforeChangingCharacter-Hint: 	Tu dois d'abors choisir un personnage avant de changer son apparence.
+
+--SelectBeforeChangingClothes-Hint: 	Tu dois d'abors choisir un personnage avant de changer ses vêtements.
+
+--GoSwimming-Hint: 	Si tu veux qu'un personnage aille nager, sélectionne le et pointe l'eau avec tes mains.
+
+--???-Hint: 	??? 
+
+--SelectToCommand-Hint:		Sélectionne les personnages à commander en les pointant rapidement du doigt.
+
+--WithNameTag-Hint:	Les personnages avec des noms sont employés.
+
+--BoxesStands-Hint:	Aide les personnages employés à faire apparaître des objets en plaçant les boîtes sur les supports.
+
+--MustBeEmployed-Hint:     Un magasin doit être employé pour faire apparaître des objets. Si un personnage les laisse sur place, vous pouvez les sélectionner et pointer vers le stand pour les employer à nouveau.
+
+--BathroomDoor-Hint:     Les portes peuvent être ouvertes en saisissant la poignée comme un objet.
+
+--Bathing-Hint:     Pour baigner ton personnage, conduis le dans la salle de bain et pointe la baignoire.
+
+--Bed-Hint:     Le personnage va dormir s'il est fatigué. Pointez vers le lit quand il est fatigué. Accélérez la nuit dans le menu pause.
+
+--Bag-Hint:     Utilise le sac pour stocker des objets. Tu peux donner ce sac à ton personnage en le lui offrant à l'aide du geste DONNER.
+
+--Ingredients-Hint:        Tu as besoin d'ingrédients pour cuisiner. Utilise ta CARTE dans le menu pause pour les trouver dans la nature !
+
+--SoapyHands-Hint:     Tes mains doivent être savonneuses pour laver ses cheveux. Trouve une savonnette.
+
+--KeepTrying-Hint:     Continue. Elle finira par accepter et sera heureuse.
+
+OBJECT-HINTS:
+
+--MakeFlour-Hint:     Pour faire de la farine, place jusqu'à 3 épis de blés dans le mortier.
+
+--MortarPestle-Hint: 	 Tiens à la fois le mortier et le pilon et maintien ACTION pour moudre le blé.
+
+--MortarPestleVR-Hint:     Fais un cercle avec ta main dans le mortier avec le pilon pour moudre le blé.
+
+--FlourIntoBowl-Hint: 	  Appuie maintenant sur ACTION pour verser la farine dans le bol de mélange. Tu as besoin de 6 farines au total.
+
+--FlourIntoBowlVR-Hint:     Maintenant, versez soigneusement la farine dans le bol de mélange. Vous avez besoin de 6 farines.
+
+--OfferDeck-Hint:     Pour jouer à un jeu de cartes, fait le s'asseoir et offre lui un jeu.
+
+--CardGameTutorial-Hint:     Ce jeu est similaire à UNO. Pose toute tes cartes pour gagner. Consulte le MANUEL dans le menu pause pour obtenir des instructions.
+
+--CollapseCards-Hint:      Tu peux réduire ou déplier les cartes en maintenant la touche ACTION pendant une demi-seconde, puis en la relâchant.
+
+--AddEggs-Hint:      Ajoute maintenant 4 œufs pour compléter la pâte.
+
+--MixBatter-Hint:      Mélange la pâte à l'aide d'une cuillère.
+
+--CrackEgg-Hint:      Casse un œuf en appuyant sur ACTION.
+
+--CrackEggVR-Hint:     Casse un œuf en appuyant sur la gachette.
+
+--HeatPot-Hint:      Tu dois ajouter une garniture fruitée à la pâte. D'abord, fais chauffer l'eau dans la casserole.
+
+--AddFruit-Hint:      Ajoute n'importe quel fruits dans la marmite chaude, préleve un peu compote de fruit et place la sur la pâte crue.
+
+--PotNeedsHeat-Hint:      La marmite doit être remplie d'eau chaude avant de pouvoir faire des farces fruitées avec elle.
+
+--BakePastry-Hint:      Enfin, fais cuire la pâtisserie avant de la manger !
+
+--VacuumCards-Hint      Tu peux rapidement ramasser de nombreuses cartes en tenant une carte et en maintenant ACTION près d'autres cartes.
+
+--PlaceChicken-Hint:     Place le poulet sur le sol pour avoir des œufs.
+
+--HorseRein-Hint:     Il suffit de saisir une seule rêne pour contrôler le cheval.
+
+--HorseShiftSpeed:     Appuie sur Z et S pour changer la vitesse du cheval.
+
+--HorseShiftSpeedVR:     Appuie sur le pavé tactile/joystick vers le haut/bas pour modifier la vitesse du cheval.
+
+PAUSEMENU:
+
+--Close/Open: 	ÉCHAP pour ouvrir/fermer le menu
+
+--PauseMenu:     Menu Pause
+
+--Checklist:     Checklist
+
+--Map:     Carte
+
+--Controls:     Contrôles
+
+--Options:     Options
+
+--Graphics:     Paramètres graphique
+
+--Manual:     Manuel
+
+--Close:     Fermer
+
+--Back:     Retour
+
+--Save&Quit:     Sauvegarder & quitter
+
+PAUSEMENU-KBCONTROLS:
+
+--Controls:     Contrôles (Clavier)
+
+--Device:     Périphérique
+
+--SwitchToVR:     Passer en VR
+
+--MouseSensitivity:     Sensibilité de la souris
+
+--WASD:     ZQSD - Déplacement
+
+--Shift+Click:     Shift+Click - Lâcher les objets
+
+--Ctrl:    Crtl - S'accroupir
+
+--R:     R - Saluer
+
+--F:     F - Par ici
+
+--QE:    Q/E - Offrir (main gauche/droite)
+
+PAUSEMENU-VRCONTROLS:
+
+--Controls:     Contrôles (VR)
+
+--Movement:     Mouvement
+
+--TrackPad:     Pavé tactile/Joystick
+
+--Teleport:     Téléportation
+
+--LeftHandMode:     Main gauche principale
+
+--RightHandMode:     Main droite principale
+
+--CalibrateHands:     Etalonage des mains
+
+--GrabToggleOn:     Cliquer pour saisir
+
+--GrabToggleOff:     Maintenir pour saisir
+
+--PressToTurn:     Using Press to Turn
+
+--TouchToTurn: Using Touch to Turn
+
+--Description: Use SteamVR Input to map controls Disable Grab Toggle if you are an Index user
+
+PAUSEMENU-MAP:
+
+--TeleportMarket:     Se téléporter au marché
+
+--TeleportOnsen:     Se téléporter au onsen
+
+--TeleportHouse:     Se téléporter à la maison
+
+PAUSEMENU-OPTIONS:
+
+--Options:     Options
+
+--MusicVolume:     Volume de la musique
+
+--DayCycle:     Vitesse du cycle Jour/nuit
+
+--CycleTime:     Changer l'heure en jeu
+
+PAUSEMENU-GRAPHICS:
+
+--Graphics:     Paramètres Graphique
+
+--FPSLimit:     Limite d'images/sec
+
+--ReflectionDistance:     Distance des reflets
+
+--Resolution:     Résolution
+
+--LODDistance:     Distance d'affichage des détails
+
+--ScreenMode:     Mode d'affichage
+
+--QualityLevel:     Niveau de détail
+
+--Vsync:     Vsync
+
+--AntiAlias:     Anti-Aliasing (Anti-Crénelage)
+
+--Clouds:     Nuages
+
+--ShadowQuality:     Qualité des ombres
+
+--Windowed:     Fenêtré
+
+--FullScreen:     Plein écran
+
+--Disabled:     Désactivé
+
+--Enabled:     Activé
+
+--Potato:     Patate
+
+--Low:     Bas
+
+--Medium:     Moyen
+
+--High:     Elevé
+
+--VeryHigh:     Très élevé
+
+--Ultra:     Ultra
+
+--None:     Aucun
+
+--2x:     2x
+
+--4x:     4x
+
+--8x:     8x
+
+--BadValue:     Valeur incorrect
+
+--CloudsOn:     Nuages activé
+
+--CloudsOff:     Nuages désactivé
+
+--PerformanceWarning:     Le préréglage graphique "Ultra" peut poser problème sur les systèmes peu puissants.
+
+PAUSEMENU-CHECKLIST:
+
+--Achievements:     Objectifs
+
+--Page:     Page
+
+--RELAXONSEN:     Guide un personnage dans le Onsen pour qu'il se détende.
+
+--WASHHAIR:     Lave les cheveux d'un personnage dans le bain.
+
+--PANTYSHOT:     Montre a un personnage une photo de sa culotte.
+
+--POKEANGRY:     Touche le visage d'un personnage jusqu'à ce qu'il se mette en colère.
+
+--ANGRYHEADPAT:     Met un personnage en colère avec des caresses sur la tête énergique.
+
+--HAPPYHEADPAT:     Rend heureux un personnage avec des caresses sur la tête.
+
+--KISSWIPE:     Fais en sorte qu'un personnage efface rageusement un baiser sur la joue.
+
+--KISSHAPPY:     Rend un personnage heureux avec un baiser sur la joue.
+
+--THROWDUCK:     Fais en sorte qu'un personnage te lance un canard.
+
+--HOLDHANDS:     Tiens un personnage par la main et promenez-vous. 
+
+--LOOKSKIRT:     Regarde sous la jupe d'un personnage.
+
+--GIVE2DONUTS:     Fais en sorte qu'un personnage tienne deux donuts.
+
+--WATERREED:     Fais en sorte qu'un personnage te frappe avec un roseau.
+
+--FINDHAT:     Trouve et donne un chapeau à un personnage.
+
+--BAKEPASTRY:     Prépare une pâtisserie.
+
+PAUSEMENU-CALIBRATE:
+
+--CalibrateHands:     Etalonage des mains en VR
+
+--Description:     Utilise cette fonction pour modifier la distance/rotation de tes mains. APPUIE et MAINTIEN la poignée pour libérer ta main virtuelle. Déplace maintenant ta main pour l'ajuster. RELÂCHE pour la fixer à nouveau. Les changements sont dupliqués sur l'autre main.
+
+PAUSEMENU-MANUAL:
+
+Manual:     Manuel
+
+PlayTutorial:     Lancer le tutoriel
+
+Problem:     Problèmes ?
+
+Topics:     Topics
+
+PAUSEMENU-QUIT:
+
+--Description:     Tu peux également supprimer manuellement tes sauvegardes en supprimant le dossier "Saves" situé dans le répertoire du jeu.
+
+--WantToSave:     Veux-tu sauvegarder ?
+
+--DontSave:     Ne pas sauvegarder
+
+--DeleteSave:     Supprimer la sauvegarde
+
+--WillClose:     La suppression de la sauvegarde fermera le jeu.
+
+TUTORIAL:
+
+--Welcome:     Bienvenue au tutoriel.
+
+--LeaveGreenCircle:     Tu peux quitter le tutoriel en quittant le cercle vert.
+
+--OpenPauseBook:     Ouvre le menu avec la touche ÉCHAP.
+
+--OpenPauseBookVR:     Ouvre le menu avec la bouton MENU.
+
+--SwitchToVR:     Tu peux passer en VR dans le menu de configuration des contrôles.
+
+--RecommendCalibrate:     Il est recommendé d'étaloner les mains pour la VR.
+
+--WhenReady:     Lorsque tu es prêt à continuer, clique sur Objectifs.
+
+--CompleteTasks:     Complète toutes les tâches ci-dessous en tant qu'objectif.
+
+--WhenReady2:     Lorsque tu es prêt à continuer, ferme tous les menus.
+
+--WalkRun:     Utilise ZQSD pour te déplacer. Shift gauche pour courir.
+
+--WalkRunVR:     Utilise le pavé tactile/joystick pour te déplacer. Appuie et maintien pour courir.
+
+--Teleport:     Appuie sur le pavé tactile/joystick pour te téléporter.
+
+--SitDown:     Si tu t'assois par terre avec un personage vous pouvez jouer à des jeux de mains avec lui.
+
+--Crouch:     Accroupie-toi avec la touche Ctrl.
+
+--MakeGestures:     Tu peux intéragir avec le personnage en faisant des gestes.
+
+--SayHello:     Appuie sur R pour saluer.
+
+--SayHelloVR:     Fais un signe de la main, jusqu'à ce que tu vois apparaître l'icône de geste de la main.
+
+--Good:     Parfait
+
+--NowGesture:     Maintenant fais signe à quelqu'un de venir vers toi.
+
+--Follow:     Appuie sur F pour que le personnage te suive.
+
+--FollowVR:     Balance ta main d'avant en arrière, la paume tournée vers toi.
+
+--FollowYou:     Parfait. De cette manière le peronnage te suivra.
+
+--PickupDuck:     Attrape le canard en plastique au milieu de la zone.
+
+--Pickup:     Clic gauche main gauche. Clic droit main droite.
+
+--Drop:     Dépose les objets en maintenant la touche SHIFT enfoncée et en cliquant.
+
+--PickupDropVR:     Déposer/Attraper : Bouton de saisie
+
+--ExtendDucky:     Maintenant, tends le canard comme un cadeau.
+
+--ExtendOffering:     Tends la main gauche avec A et la main droite avec E.
+
+--LikeThat:     Tu peux donner ou demander des objets de cette façon.
+
+--PickupPolaroid:     Ramasse la photo au centre de la zone
+
+--DropRest:     et dépose le reste des objets.
+
+--RipFrame:     Pour déchirer la photo, clique avec la main tenant la photo
+
+--RipFrameVR:	Pour déchirer la photo, rapproche les deux mains l'une de l'autre
+
+--OnceItsHeld:     puis une fois qu'il est tenu avec les deux mains,
+
+--ClickWithBoth:     clique avec les deux clics de la souris simultanément.
+
+--ClickWithBothVR:     appuie sur les deux gâchettes et tire.
+
+--TutorialFinished:     Tutoriel terminé !
+
+--UnderDevelopment:     Jeu en cours de dévelopement, des bugs peuvent survenir !
+
+--PreviousLocation:     Tu vas maintenant être renvoyé à la position précédente.
