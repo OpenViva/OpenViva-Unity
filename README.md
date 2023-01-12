@@ -7,9 +7,11 @@ We are looking for more developers so if you can help, please contact us on our 
 
 # Localization
 We currently have translations for:
-English
-Russian
-Hungarian
+- English
+- Russian
+- Hungarian
+- Turkish (Incomplete)
+- Romanian
 
 ## Copyrights
 
