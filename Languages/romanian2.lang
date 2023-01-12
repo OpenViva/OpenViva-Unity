@@ -1,0 +1,383 @@
+(Sorry if this seems confusing by the way)
+(I will double check this with Google translate) 
+NOTE: Please Keep Headers ENGLISH. (Header: 	)
+
+
+
+
+
+HINTS:
+
+--Mirror-Hint: 	Folosește oglinda pentru a-ți selecta personajul.
+
+--SlideDoor-Hint: 	Deschideți ușa folosind mâinile.
+
+--Bell-Hint: 	Sună clopotul pentru a primi prosopul.
+
+--SelectBeforeChangingCharacter-Hint: 	Trebuie să selectezi un personaj înainte de a-i schimba înfățișarea.
+
+--SelectBeforeChangingClothes-Hint: 	rebuie să selectezi un personaj înainte de a-i schimba hainele.
+
+--GoSwimming-Hint: 	Dacă doriți ca personajele să meargă la înot, selectați un personaj și arătați spre apă.
+
+--???-Hint: 	??? 
+
+--SelectToCommand-Hint:		Selectați personajele pentru a le comanda arătând rapid spre ele.
+
+--WithNameTag-Hint:	Personajele cu ecusoane sunt angajate.
+
+--BoxesStands-Hint:	Ajută personajele angajate să genereze obiecte prin plasarea cutiilor pe suporturi.
+
+--MustBeEmployed-Hint:     Un magazin trebuie să fie angajat pentru a genera obiecte. Dacă un personaj le părăsește postul, îl poți selecta și îndrepta spre stand pentru a-l angaja din nou.
+
+--BathroomDoor-Hint:     Ușile pot fi deschise prin apucarea clanței ca pe un obiect.
+
+--Bathing-Hint:     Pentru a face baie personajului tău, condu-l în baie și indică spre cadă
+
+--Bed-Hint:     Personajul va dormi dacă este obosit. Arătați spre pat atunci când este obosit. Accelerează timpul de noapte în meniul de pauză.
+
+--Bag-Hint:     Folosiți sacul pentru a depozita obiecte. Poți da această geantă personajului tău oferindu-i-o folosind gestul GIVE.
+
+--Ingredients-Hint:        Aveți nevoie de ingrediente pentru a găti. Folosește MAP în meniul de pauză pentru a le găsi în sălbăticie!
+
+--SoapyHands-Hint:    Mâinile tale trebuie să fie săpunite pentru a le spăla părul. Găsește un baton de săpun
+
+--KeepTrying-Hint:    Continuă să încerci. În cele din urmă va ceda și va deveni fericită
+
+OBJECT-HINTS:
+
+--MakeFlour-Hint:     Pentru a face făină, puneți până la 3 grâne într-un mortar.
+
+--MortarPestle-Hint: 	 Țineți atât mortarul cât și pisălogul și țineți ACTION pentru a măcina grâul
+
+--MortarPestleVR-Hint:     Înconjurați mâna peste mortar cu pisălogul pentru a măcina grâul.
+
+--FlourIntoBowl-Hint: 	  Acum apăsați ACTION pentru a turna făina în bolul de amestecare. Aveți nevoie de 6 făină.
+
+--FlourIntoBowlVR-Hint:     Acum toarnă cu grijă făina în bolul de amestecare. Aveți nevoie de 6 făină.
+
+--OfferDeck-Hint:     Pentru a juca un joc de cărți, fă-i să se așeze și apoi OFERĂ-le un pachet de cărți
+
+--CardGameTutorial-Hint:     Acest joc este similar cu UNO. Joacă-ți toate cărțile pentru a câștiga. Consultați MANUALUL din meniul de pauză pentru instrucțiuni.
+
+--CollapseCards-Hint:      Poți să prăbușești/întinzi cărțile ținând apăsat ACTION timp de o jumătate de secundă și apoi eliberându-le
+
+--AddEggs-Hint:      Acum adăugați 4 ouă pentru a completa aluatul.
+
+--MixBatter-Hint:      Amestecați aluatul cu o lingură.
+
+--CrackEgg-Hint:      Spargeți un ou apăsând ACTION (acțiune)
+
+--CrackEggVR-Hint:     Sparge un ou apăsând TRIGGER
+
+--HeatPot-Hint:      Trebuie să adaugi umplutura de fructe în aluat. Mai întâi, încălziți apa în oală
+
+--AddFruit-Hint:      Adaugă orice fruct în oala fierbinte și apoi scoate câteva. Așezați umplutura pe aluatul crud
+
+--PotNeedsHeat-Hint:      Oala are nevoie de apă caldă înainte de a putea face umplutura de fructe cu ea
+
+--BakePastry-Hint:      În cele din urmă, coaceți aluatul înainte de a-l mânca!
+
+--VacuumCards-Hint      Poți ridica rapid o mulțime de cărți ținând în mână 1 carte și ținând ACTION lângă alte cărți
+
+--PlaceChicken-Hint:    Puneți puiul pe jos pentru a obține ouă
+
+--HorseRein-Hint:     Trebuie să apuci doar o singură frâu pentru a controla calul
+
+--HorseShiftSpeed:    Apăsați W și S pentru a schimba viteza calului
+
+--HorseShiftSpeedVR:     Apăsați trackpad-ul în sus/jos pentru a schimba viteza calului
+
+PAUSEMENU:
+
+--Close/Open: 	Apăsați ESC pentru a închide/deschide meniul
+
+--PauseMenu:     Meniu de pauză
+
+--Checklist:     Checklist
+
+--Map:     Hartă
+
+--Controls:     Controale
+
+--Options:     Opțiuni
+
+--Graphics:     Grafică
+
+--Manual:     Manual
+
+--Close:     Închide
+
+--Back:     Back
+
+--Save&Quit:     Salvare și închidere
+
+PAUSEMENU-KBCONTROLS:
+
+--Controls:     Controale (tastatură)
+
+--Device:     Dispozitiv
+
+--SwitchToVR:    Comută în VR
+
+--MouseSensitivity:     Mouse Sensitivity
+
+--WASD:     WASD - deplasare
+
+--Shift+Click:     Shift+Click - Aruncă elemente
+
+--Ctrl:    Crtl - Crouch
+
+--R:     R - Wave
+
+--F:     F - Vino aici
+
+--QE:    QE - Oferă mâna
+
+PAUSEMENU-VRCONTROLS:
+
+--Controls:     Controale (VR)
+
+--Movement:     Mișcare
+
+--TrackPad:     Utilizarea trackpad-ului
+
+--Teleport:     Utilizarea teleportării
+
+--LeftHandMode:     Utilizarea cu mâna stângă
+
+--RightHandMode:     Utilizarea cu mâna dreaptă
+
+--CalibrateHands:     Calibrarea mâinilor
+
+--GrabToggleOn:     Grab Toggle este activat
+
+--GrabToggleOff:     Grab Toggle este oprit
+
+--PressToTurn:     Folosind Press to Turn
+
+--TouchToTurn: Utilizarea atingerii pentru a întoarce
+
+--Description: Folosește SteamVR Input pentru a cartografia comenzile Dezactivează Grab Toggle dacă ești un utilizator Index
+
+PAUSEMENU-MAP:
+
+--TeleportMarket:     Teleportarea pe piață
+
+--TeleportOnsen:     Teleportarea la Onsen
+
+--TeleportHouse:     Teleportarea în casă
+
+PAUSEMENU-OPTIONS:
+
+--Options:     Opțiuni
+
+--MusicVolume:     Volumul muzicii
+
+--DayCycle:     Viteza ciclului zi/noapte
+
+--CycleTime:     Ciclul Ziua
+
+PAUSEMENU-GRAPHICS:
+
+--Graphics:     Grafică
+
+--FPSLimit:     Limita Fps
+
+--ReflectionDistance:     Distanța de reflexie
+
+--Resolution:     Rezoluție
+
+--LODDistance:     Distanța LOD
+
+--ScreenMode:     Mod ecran
+
+--QualityLevel:     Nivelul de calitate
+
+--Vsync:     Vsync
+
+--AntiAlias:     Anti-Aliasing
+
+--Clouds:     Norii
+
+--ShadowQuality:     Calitatea umbrelor
+
+--Windowed:     Cu fereastră
+
+--FullScreen:     Ecran complet
+
+--Disabled:     Dezactivat
+
+--Enabled:     Activat
+
+--Potato:     Cartofi
+
+--Low:     Scăzut
+
+--Medium:     Medie
+
+--High:     Înaltă
+
+--VeryHigh:     Foarte ridicat
+
+--Ultra:     Ultra
+
+--None:     Nici unul
+
+--2x:     2x
+
+--4x:     4x
+
+--8x:     8x
+
+--BadValue:     Valoare proastă
+
+--CloudsOn:     Porniți norii
+
+--CloudsOff:     Opriți norii
+
+--PerformanceWarning:     Setările foarte ridicate pot cauza probleme pe sistemele cu specificații reduse
+
+PAUSEMENU-CHECKLIST:
+
+--Achievements:     Realizări
+
+--Page:     Pagina
+
+--RELAXONSEN:     Aveți un caracter Relaxați-vă în Onsen
+
+--WASHHAIR:     Spălați părul unui personaj în cadă
+
+--PANTYSHOT:     Arată unui personaj o poză cu chiloții lor
+
+--POKEANGRY:     Poke o față de caractere până când se enervează
+
+--ANGRYHEADPAT:     Make a character angry with a rough headpat
+
+--HAPPYHEADPAT:     Make a character happy with a nice headpat
+
+--KISSWIPE:     Fă ca un personaj să șteargă furios un sărut pe obraz
+
+--KISSHAPPY:     Fă un personaj fericit cu un sărut pe obraz
+
+--THROWDUCK:     Fă un personaj să arunce o rață de cauciuc spre tine
+
+--HOLDHANDS:     Țineți o mână de caractere și plimbați-vă
+
+--LOOKSKIRT:     Uită-te la fusta unui personaj
+
+--GIVE2DONUTS:     Faceți un personaj să țină 2 gogoși
+
+--WATERREED:     Fă ca un personaj să te lovească cu o trestie de apă
+
+--FINDHAT:     Găsiți și oferiți un personaj, O pălărie de soare
+
+--BAKEPASTRY:     Coaceți un produs de patiserie
+
+PAUSEMENU-CALIBRATE:
+
+--CalibrateHands:     Calibrarea mâinilor pentru VR
+
+--Description:     Folosiți acest lucru pentru a schimba distanța/rotația mâinilor. Apăsați și mențineți apăsat GRIP pentru a elibera mâna virtuală. Acum mișcați-vă mâna pentru a o ajusta. RELIAȚI pentru a o ancora din nou. Modificările sunt oglindite.
+
+PAUSEMENU-MANUAL:
+
+Manual:     Manual
+
+PlayTutorial:     Joaca Tutorial
+
+Problem:     Probleme?
+
+Topics:     Subiecte
+
+PAUSEMENU-QUIT:
+
+--Description:     De asemenea, vă puteți șterge manual salvările ștergând folderul Saves din directorul Game.
+
+--WantToSave:     Vrei să salvezi?
+
+--DontSave:     Nu salvați
+
+--DeleteSave:     Ștergere Salvare
+
+--WillClose:     Ștergerea salvării va închide jocul
+
+TUTORIAL:
+
+--Welcome:     Bine ați venit la Tutorial
+
+--LeaveGreenCircle:     Ieșiți din tutorial părăsind cercul verde.
+
+--OpenPauseBook:     Deschideți cartea de pauză cu ESC
+
+--OpenPauseBookVR:     Deschideți cartea de pauză cu ajutorul butonului MENU
+
+--SwitchToVR:     Puteți trece la VR în cadrul comenzilor.
+
+--RecommendCalibrate:     Se recomandă calibrarea mâinilor VR.
+
+--WhenReady:     Când sunteți gata să continuați, faceți clic pe Checklist.
+
+--CompleteTasks:     Efectuați toate sarcinile de mai jos ca obiectiv.
+
+--WhenReady2:     Când sunteți gata să continuați, ieșiți din toate meniurile.
+
+--WalkRun:     WASD pentru a te plimba. Shift stânga pentru a alerga.
+
+--WalkRunVR:     Folosește trackpadul/thumbstick-ul pentru a te plimba. Țineți apăsat pentru a alerga mai repede.
+
+--Teleport:     Folosește trackpadul/thumbstick-ul pentru a te plimba. Țineți apăsat pentru a alerga mai repede.
+
+--SitDown:     Dacă vă așezați pe podea cu un personaj, puteți juca jocuri de mână cu el.
+
+--Crouch:     Încercați să comutați crouch cu Ctrl.
+
+--MakeGestures:     Puteți face gesturi pentru a interacționa cu un personaj.
+
+--SayHello:     Spuneți bună ziua cu R
+
+--SayHelloVR:     Faceți valuri de la o parte la alta cu mâna, până când vedeți că apare pictograma valului.
+
+--Good:     Bine!
+
+--NowGesture:     Acum faceți un gest ca cineva să vină aici.
+
+--Follow:     Apăsați F pentru a urma
+
+--FollowVR:     Sîntindeți mâna înainte și înapoi, cu palma îndreptată spre dumneavoastră.
+
+--FollowYou:     Bine! Acest lucru va face ca personajul tău să te urmeze.
+
+--PickupDuck:     Ridicați rățușca de cauciuc din centru.
+
+--Pickup:     Faceți clic stânga pe mâna stângă. Faceți clic dreapta pe mâna dreaptă.
+
+--Drop:     Aruncați obiectele ținând apăsat SHIFT și făcând clic.
+
+--PickupDropVR:     Aruncare/preluare :Buton de prindere
+
+--ExtendDucky:     Acum întindeți rățușca ca pe o ofrandă
+
+--ExtendOffering:    Întindeți mâna stângă cu Q și dreapta cu E
+
+--LikeThat:     Puteți să le oferiți sau să le cereți obiecte în acest fel.
+
+--PickupPolaroid:     Ridicați rama Polaroid din centru.
+
+--DropRest:     și renunță la restul obiectelor
+
+--RipFrame:     Pentru a rupe cadrul, faceți clic cu mâna care îl ține.
+
+--RipFrameVR:	Pentru a rupe cadrul, apropiați ambele mâini.
+
+--OnceItsHeld:     apoi o dată ce este ținută cu ambele mâini, 
+
+--ClickWithBoth:     faceți clic cu ambele clicuri ale mouse-ului simultan
+
+--ClickWithBothVR:     then press both triggers and pull away
+
+--TutorialFinished:     Tutorial Finished!
+
+--UnderDevelopment:     Game under development expect bugs!
+
+--PreviousLocation:     You will now be sent back to your previous location.
