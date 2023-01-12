@@ -3,7 +3,13 @@
 Open source continuation of Viva.
 
 # Important Notice
-We are looking for more developers so if you can help, please contact us on out discord.
+We are looking for more developers so if you can help, please contact us on our discord.
+
+# Localization
+We currently have translations for:
+English
+Russian
+Hungarian
 
 ## Copyrights
 
