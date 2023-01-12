@@ -9,9 +9,14 @@ We are looking for more developers so if you can help, please contact us on our 
 We currently have translations for:
 - English
 - Russian
-- Hungarian
+- Hungarian (1/2 complete)
 - Turkish
-- Romanian
+- Romanian (1/2 complete)
+- German
+- Slovakian
+- Spanish (Latin American)
+- Spanish (Spain)
+- French (1/2 complete)
 
 ## Copyrights
 
