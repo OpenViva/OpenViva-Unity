@@ -1,0 +1,383 @@
+(Sorry if this seems confusing by the way)
+(I will double check this with Google translate) 
+NOTE: Please Keep Headers ENGLISH. (Header: 	)
+
+
+
+
+
+HINTS:
+
+--Mirror-Hint: 	Használd a tükröt a karaktered kiválasztásához.
+
+--SlideDoor-Hint: 	Csúsztassa ki az ajtót a kezeivel.
+
+--Bell-Hint: 	Csengessen, hogy megkapja a törölközőt.
+
+--SelectBeforeChangingCharacter-Hint: 	A megjelenés megváltoztatása előtt ki kell választania egy karaktert.
+
+--SelectBeforeChangingClothes-Hint: 	A ruhaváltás előtt ki kell választanod egy karaktert.
+
+--GoSwimming-Hint: 	Ha azt szeretné, hogy a karakterek úszni menjenek, válasszon ki egy karaktert, és mutasson a vízre.
+
+--???-Hint: 	??? 
+
+--SelectToCommand-Hint:		Válasszon ki karaktereket a parancsoláshoz, ha gyorsan rámutat rájuk.
+
+--WithNameTag-Hint:	Névtáblával ellátott karaktereket alkalmaznak.
+
+--BoxesStands-Hint:	Segítség alkalmazott karakterek spawn elemek elhelyezésével a dobozok az állványokon.
+
+--MustBeEmployed-Hint:     Egy boltot kell használni a tárgyak létrehozásához. Ha egy karakter elhagyja őket, akkor kiválaszthatja őket, és rámutathat a standra, hogy újra alkalmazza őket.
+
+--BathroomDoor-Hint:     Az ajtókat úgy lehet kinyitni, hogy megragadjuk a kilincset, mint egy tárgyat.
+
+--Bathing-Hint:     A karakter fürdetéséhez vezesse be a fürdőszobába, és mutasson a kádra.
+
+--Bed-Hint:     A karakter aludni fog, ha fáradt. Mutasson az ágyra, ha fáradt. Gyorsítsd fel az éjszakai alvást a szünet menüben.
+
+--Bag-Hint:     Használja a táskát tárgyak tárolására. Ezt a táskát úgy adhatod a karakterednek, hogy az Adás gesztussal felajánlod neki.
+
+--Ingredients-Hint:        A főzéshez hozzávalókra van szükséged. Használd a MAP-ot a szünet menüben, hogy megtaláld őket a vadonban!
+
+--SoapyHands-Hint:     A kezednek szappanosnak kell lennie, hogy megmosd a hajukat. Keressen egy szappanos rudat
+
+--KeepTrying-Hint:     Próbálkozz tovább. Végül beadja  és boldog lesz.
+
+OBJECT-HINTS:
+
+--MakeFlour-Hint:     A liszt készítéséhez tegyünk akár 3 búzát mozsárba.
+
+--MortarPestle-Hint: 	 Fogja meg a mozsarat és a mozsárt, és tartsa az ACTION-t a búza őrléséhez.
+
+--MortarPestleVR-Hint:     Körözzön a kezével a mozsárban a mozsártörővel a búza őrléséhez.
+
+--FlourIntoBowl-Hint: 	  Most nyomja meg az ACTION gombot, hogy a lisztet a keverőtálba öntse. 6 lisztre van szüksége.
+
+--FlourIntoBowlVR-Hint:     Most óvatosan öntse a lisztet a keverőtálba. 6 lisztre van szüksége.
+
+--OfferDeck-Hint:     A kártyajátékhoz le kell ültetni őket, majd fel kell ajánlani nekik egy paklit.
+
+--CardGameTutorial-Hint:     Ez a játék hasonlít az UNO-hoz. Játszd ki az összes kártyádat a győzelemért. A szünet menüben található KÉZIKÖNYVben találod az utasításokat.
+
+--CollapseCards-Hint:      A kártyák összecsukhatók/felnyithatók, ha fél másodpercig lenyomva tartod az ACTION-t, majd elengeded.
+
+--AddEggs-Hint:      Most adjunk hozzá 4 tojást, hogy teljes legyen a tészta.
+
+--MixBatter-Hint:      Keverje össze a tésztát egy kanállal
+
+--CrackEgg-Hint:      Törje fel a tojást az ACTION megnyomásával
+
+--CrackEggVR-Hint:     Törjön fel egy tojást a TRIGGER megnyomásával
+
+--HeatPot-Hint:      A tésztához gyümölcsös tölteléket kell adni. Először is, melegítsük fel a vizet a fazékban.
+
+--AddFruit-Hint:      Adjon hozzá bármilyen gyümölcsöt a forró edényhez, majd kanalazzon ki belőle. Helyezze a tölteléket a nyers tésztára
+
+--PotNeedsHeat-Hint:      A fazéknak forró vízre van szüksége, mielőtt gyümölcsös tölteléket készíthet vele
+
+--BakePastry-Hint:      Végül süssük meg a tésztát, mielőtt megennénk!
+
+--VacuumCards-Hint      Gyorsan felvehetsz sok kártyát, ha 1 kártyát tartasz a kezedben, és az ACTION-t más kártyák közelében tartod.
+
+--PlaceChicken-Hint:     Helyezze a csirkét a földre a tojásokért
+
+--HorseRein-Hint:     Csak az egyik kantárt kell megfogni a ló irányításához.
+
+--HorseShiftSpeed:     Nyomja meg a W és az S gombot a ló sebességének váltásához
+
+--HorseShiftSpeedVR:     Nyomja meg a trackpadot fel/le a ló sebességének változtatásához.
+
+PAUSEMENU:
+
+--Close/Open: 	A menü bezárásához/megnyitásához nyomja meg az ESC gombot
+
+--PauseMenu:     Szünet menü
+
+--Checklist:     Ellenőrző lista
+
+--Map:     Térkép
+
+--Controls:     Irányítások
+
+--Options:     Beállítások
+
+--Graphics:     Grafika
+
+--Manual:     Kézikönyv
+
+--Close:     Bezárás
+
+--Back:     Vissza
+
+--Save&Quit:     Mentés és kilépés
+
+PAUSEMENU-KBCONTROLS:
+
+--Controls:     Irányítások (billentyűzet)
+
+--Device:     Eszköz
+
+--SwitchToVR:     Váltás VR-ra
+
+--MouseSensitivity:     Egér érzékenysége
+
+--WASD:     WASD - mozgás
+
+--Shift+Click:     Shift+Klikk - Elemek eldobása
+
+--Ctrl:    Crtl - Guggol
+
+--R:     R - Integet
+
+--F:     F - Gyere ide
+
+--QE:    QE - Offer hand
+
+PAUSEMENU-VRCONTROLS:
+
+--Controls:     Irányítások (VR)
+
+--Movement:     Mozgás
+
+--TrackPad:     A Trackpad használata
+
+--Teleport:     Teleport használata
+
+--LeftHandMode:     Balkezes használata
+
+--RightHandMode:     Jobb kezes használata
+
+--CalibrateHands:     Calibrate Hands
+
+--GrabToggleOn:     Grab Toggle be van kapcsolva
+
+--GrabToggleOff:     Grab Toggle ki van kapcsolva
+
+--PressToTurn:     Using Press to Turn
+
+--TouchToTurn: Az érintés használata a forduláshoz
+
+--Description: SteamVR Input használata a vezérlők leképezéséhez Grab Toggle letiltása, ha Index felhasználó vagy
+
+PAUSEMENU-MAP:
+
+--TeleportMarket:     Teleportálás a piacra
+
+--TeleportOnsen:     Teleportálás Onsenbe
+
+--TeleportHouse:     Teleportálás a házba
+
+PAUSEMENU-OPTIONS:
+
+--Options:     Beállítások
+
+--MusicVolume:     Zene hangereje
+
+--DayCycle:     Nappali/éjszakai ciklus sebessége
+
+--CycleTime:     Ciklus napközben
+
+PAUSEMENU-GRAPHICS:
+
+--Graphics:     Grafika
+
+--FPSLimit:     Fps limit
+
+--ReflectionDistance:     Tükrözési távolság
+
+--Resolution:     Felbontás
+
+--LODDistance:     LOD távolság
+
+--ScreenMode:     Képernyő mód
+
+--QualityLevel:     Minőségi szint
+
+--Vsync:     Vsync
+
+--AntiAlias:     Elmosódásgátló
+
+--Clouds:     Felhők
+
+--ShadowQuality:     Árnyék minőség
+
+--Windowed:     Ablakos
+
+--FullScreen:     Teljes képernyő
+
+--Disabled:     Kikapcsolt
+
+--Enabled:     Engedélyezett
+
+--Potato:     Krumpli
+
+--Low:     Alacsony
+
+--Medium:     Közepes
+
+--High:     Magas
+
+--VeryHigh:     Nagyon magas
+
+--Ultra:     Ultra
+
+--None:     Semmi
+
+--2x:     2x
+
+--4x:     4x
+
+--8x:     8x
+
+--BadValue:     Rossz érték
+
+--CloudsOn:     Felhők bekapcsolása
+
+--CloudsOff:     Felhők kikapcsolása
+
+--PerformanceWarning:     Az ultra magas beállítások problémákat okozhatnak az alacsony specifikációjú rendszereken
+
+PAUSEMENU-CHECKLIST:
+
+--Achievements:     Teljesítmények
+
+--Page:     Page
+
+--RELAXONSEN:     Legyen egy karakter lazitson az Onsenben
+
+--WASHHAIR:     Mossa meg a karakterek haját a fürdőkádban
+
+--PANTYSHOT:     Mutasson egy karakternek egy képet a bugyijáról
+
+--POKEANGRY:     Bökdösd a karakterek arcát, amíg feldühödnek.
+
+--ANGRYHEADPAT:     Dühítsd fel a karaktert egy durva headpat
+
+--HAPPYHEADPAT:     Boldoggá tesz egy karaktert egy szép headpat
+
+--KISSWIPE:     Egy karakter dühösen töröljön le egy arccsókot
+
+--KISSHAPPY:    Tegyen  Boldoggá egy karaktert egy arccsókkal
+
+--THROWDUCK:     Vedd rá egy karaktert, hogy rád dobjon egy gumikacsát.
+
+--HOLDHANDS:     Fogd meg egy karakter kezét és sétálj körbe
+
+--LOOKSKIRT:     Néz  a karakterek szoknyája alá
+
+--GIVE2DONUTS:     Egy karakter tartson 2 fánkot
+
+--WATERREED:     Vedd rá egy karaktert hogy üssön meg téged egy vizes nádszállal
+
+--FINDHAT:     Keresse meg és adjon egy karakternek, a  napkalapját
+
+--BAKEPASTRY:     Süssön egy süteményt
+
+PAUSEMENU-CALIBRATE:
+
+--CalibrateHands:     Kéz kalibrálása VR-hoz
+
+--Description:     Használja ezt a kezek távolságának/forgatásának megváltoztatására. Nyomja meg és tartsa lenyomva a GRIP-et a virtuális kéz elengedéséhez. Most mozgassa a kezét a beállításhoz. Engedje el újra a rögzítéshez. A változások tükrözve lesznek.
+
+PAUSEMENU-MANUAL:
+
+Manual:     Kézikönyv
+
+PlayTutorial:     Játsszon a bemutatóval
+
+Problem:     Problémák?
+
+Topics:     Témák
+
+PAUSEMENU-QUIT:
+
+--Description:     A mentéseket manuálisan is törölheted a játékkönyvtárban található Saves mappa törlésével.
+
+--WantToSave:     Menteni szeretne?
+
+--DontSave:     Ne mentsd el
+
+--DeleteSave:     Mentés törlése
+
+--WillClose:     A mentés törlése bezárja a játékot
+
+TUTORIAL:
+
+--Welcome:     Üdvözöljük a Tutorialban
+
+--LeaveGreenCircle:     A zöld kör elhagyásával lépjen ki az oktatóprogramból.
+
+--OpenPauseBook:     A szünetfüzet megnyitása az ESC billentyűvel
+
+--OpenPauseBookVR:     Nyissa meg a szünetfüzetet a MENU gombbal.
+
+--SwitchToVR:     A Vezérlőkben átválthat a VR-re.
+
+--RecommendCalibrate:     Javasoljuk a VR kezek kalibrálását.
+
+--WhenReady:     Ha készen áll a folytatásra, kattintson az Ellenőrző lista gombra.
+
+--CompleteTasks:     Célként teljesítse az alábbi feladatokat.
+
+--WhenReady2:     Ha készen áll a folytatásra, lépjen ki az összes menüből.
+
+--WalkRun:     WASD a járkáláshoz. Bal Shift a futáshoz.
+
+--WalkRunVR:     Használd a trackpadet/ujjbegyet a járkáláshoz. Nyomd meg és tartsd lenyomva a gyorsabb futáshoz.
+
+--Teleport:     Nyomd meg a trackpadet/ujjbegyet a teleportáláshoz.
+
+--SitDown:     Ha leülsz egy karakterel a földre, kézijátékokat játszhatsz vele.
+
+--Crouch:     Próbáld meg a Crtl billentyűvel kapcsolni a guggolást.
+
+--MakeGestures:     A karakterrel való interakcióhoz gesztusokat tehetsz.
+
+--SayHello:     Köszönj az R-rel
+
+--SayHelloVR:     Integessen oldalra a kezével, amíg meg nem jelenik a integetes ikon.
+
+--Good:     Remek!
+
+--NowGesture:     Most gesztus, hogy valaki jöjjön ide.
+
+--Follow:     Nyomja meg az F gombot a követéshez
+
+--FollowVR:     Lengesse a kezét előre-hátra, tenyérrel maga felé.
+
+--FollowYou:     Jól van! Ezáltal a karaktered követni fog téged.
+
+--PickupDuck:     Vedd fel a középen lévő gumikacsát.
+
+--Pickup:     Bal kattintás bal kézzel. Jobb klikk jobb kézzel.
+
+--Drop:     Dobja el az objektumokat a SHIFT lenyomva tartásával és kattintással.
+
+--PickupDropVR:     Dobás/felvétel :Grip gomb
+
+--ExtendDucky:     Most nyújtsd ki a kacsát, mint egy ajándékot.
+
+--ExtendOffering:     Nyújtsa ki a bal kezét Q-val és a jobb kezét E-vel.
+
+--LikeThat:     Így adhatsz vagy kérhetsz tőlük tárgyakat.
+
+--PickupPolaroid:     Vedd fel a középen lévő Polaroid keretet
+
+--DropRest:     és dobja el a többi objektumot
+
+--RipFrame:     A keret törléséhez kattintson a keretet tartó kézzel.
+
+--RipFrameVR:	A keret kihúzásához mozgassa mindkét kezét közel egymáshoz.
+
+--OnceItsHeld:     majd ha egyszer mindkét kézzel fogva tartjuk, 
+
+--ClickWithBoth:     kattintson mindkét egérkattintással egyszerre
+
+--ClickWithBothVR:     majd nyomja meg mindkét ravaszt és húzza el
+
+--TutorialFinished:     Tutorial befejezve!
+
+--UnderDevelopment:     A játék fejlesztés alatt áll, számítson hibákra!
+
+--PreviousLocation:     Most visszakerülsz a korábbi helyedre.
