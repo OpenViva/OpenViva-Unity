@@ -4,6 +4,8 @@ Open source continuation of Viva.
 
 Discord: https://discord.com/invite/w7rFnssghW
 
+Website: https://viva-project.org
+
 # Important Notice
 We are looking for more developers so if you can help, please contact us on our discord.
 
