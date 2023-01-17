@@ -1,4 +1,8 @@
-# OpenViva                                  [![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://choosealicense.com/licenses/mit/) [![Downloads](https://img.shields.io/github/downloads/OpenViva/OpenViva/latest/OpenViva.0.2.1.exe)]([https://choosealicense.com/licenses/mit/](https://github.com/OpenViva/OpenViva/releases/tag/v0.2.1)) ![GitHub release (latest by date)](https://img.shields.io/github/v/release/OpenViva/OpenViva)
+# OpenViva
+[![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://choosealicense.com/licenses/mit/) [![Downloads](https://img.shields.io/github/downloads/OpenViva/OpenViva/latest/OpenViva.0.2.1.exe)]([https://choosealicense.com/licenses/mit/](https://github.com/OpenViva/OpenViva/releases/tag/v0.2.1)) ![GitHub release (latest by date)](https://img.shields.io/github/v/release/OpenViva/OpenViva)  [![Size](https://img.shields.io/github/repo-size/OpenViva/OpenViva)](https://github.com/OpenViva/OpenViva/)
+![Commits since 0.2.1](https://img.shields.io/github/commits-since/OpenViva/OpenViva/v0.2.1)
+
+
 
 Open source continuation of Viva.
 
