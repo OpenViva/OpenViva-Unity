@@ -2,6 +2,8 @@
 
 Open source continuation of Viva.
 
+Discord: https://discord.com/invite/w7rFnssghW
+
 # Important Notice
 We are looking for more developers so if you can help, please contact us on our discord.
 
@@ -17,6 +19,12 @@ We currently have translations for:
 - Spanish (Latin American)
 - Spanish (Spain)
 - French 
+
+# Prerequisites
+
+- Git LFS (Large file storage)
+- Unity 2022.1.21f1
+- 3rd Party assets (you will have to ask for them manually from SolidStonee or Foxify52 since we cannot share them publically)
 
 ## Copyrights
 
