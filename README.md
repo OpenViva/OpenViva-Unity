@@ -1,4 +1,4 @@
-# OpenViva
+# OpenViva                                  [![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://choosealicense.com/licenses/mit/) [![Downloads](https://img.shields.io/github/downloads/OpenViva/OpenViva/latest/OpenViva.0.2.1.exe)](https://choosealicense.com/licenses/mit/)
 
 Open source continuation of Viva.
 
