@@ -9,7 +9,7 @@ OpenViva is an open-source continuation of Project Viva, originally made by Sir 
 
 
 # Community
-We have a community of users dedicated to continuing the Viva project as a free and open-source game under the name "OpenViva". Our goal is to polish 0.8.03 and replace any and all third-party paid assets with either free or custom assets. All assets and scripts are available to anyone who wants to download them or fork the project on our GitHub. If you have any questions or want to help us, you can join our community on Discord.
+We are a group of users dedicated to continuing Viva project as a free and open-source game under the name "OpenViva". Our goal is to polish 0.8.03 and replace any and all third-party paid assets with either free or custom assets. All assets and scripts are available to anyone who wants to download them or fork the project on our GitHub. If you have any questions or want to help us, you can join our community on Discord.
 
 Discord: https://discord.com/invite/w7rFnssghW
 
