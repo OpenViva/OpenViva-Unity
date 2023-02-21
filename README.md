@@ -2,7 +2,8 @@
 [![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://choosealicense.com/licenses/mit/) [![Downloads](https://img.shields.io/github/downloads/OpenViva/OpenViva/latest/OpenViva.0.2.1.exe)]([https://choosealicense.com/licenses/mit/](https://github.com/OpenViva/OpenViva/releases/tag/v0.2.1)) ![GitHub release (latest by date)](https://img.shields.io/github/v/release/OpenViva/OpenViva)  [![Size](https://img.shields.io/github/repo-size/OpenViva/OpenViva)](https://github.com/OpenViva/OpenViva/)
 ![Commits since 0.2.1](https://img.shields.io/github/commits-since/OpenViva/OpenViva/v0.2.1)
 
-
+# Notice
+We are rebuilding the game in unreal engine as opposed to continuing to work on unity. The new unreal version can be founr here: https://github.com/OpenViva/OpenViva-UE5
 
 OpenViva is an open-source continuation of Project Viva, originally made by Sir Hal. It is a VR and non-VR compatible game where you can interact with your very own AI anime character. The game features advanced AI simulation that can interact and respond to many of your actions in a dynamic way through inverse kinematics, complex behaviors, and currently over 200 animations. The character's mood is dynamic and responds to how you treat it, allowing you to play with it, feed it, or just be friends with it.
 
